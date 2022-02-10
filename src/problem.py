@@ -74,7 +74,7 @@ class Problem:
             return '-'
 
         if self.is_obj():
-            return latex.cmd('MiniBox', chr(65 + self.obj))
+            return chr(65 + self.obj)
 
         if len(self.answer) == 1:
             return self.answer[0]

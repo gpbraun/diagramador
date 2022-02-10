@@ -19,7 +19,7 @@ def main():
     )
     cur = conn.cursor()
 
-    with open('src/simulados.json', 'r') as json_file:
+    with open('database/simulados.json', 'r') as json_file:
         simulados = json.load(json_file)
 
         for name, data in simulados.items():

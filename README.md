@@ -1,5 +1,12 @@
 # Diagramação de Simulados
 
+## Instalação
+
+### Pré requisitos
+
+1. [Python](https://www.python.org/downloads/)
+2. [LaTeX](https://www.latex-project.org/get/)
+3. [Pandoc](https://pandoc.org/installing.html)
 
 ## Texto
 
@@ -40,19 +47,6 @@ Problemas objetivos
 3. [ ] Proposição falsa.
 4. [x] Mais uma proposição falsa.
 ```
-
-
-### Proposições
-
-O **comando** de questões 
-
-## Dados a serem adicionados
-
-- Função trabalho do potássio: 2,29 eV
-- Função trabalho do zinco: 3,63 eV
-- Entalpia de combustão do metano (g): -890,5 kJ/mol
-- Entalpia de vaporização do Br₂: 30 kJ/mol
-- Entalpia de vaporização CH₃CHBrCH₂Br: 35,61 kJ/mol
 
 ## Dados Termodinâmicos
 

@@ -63,7 +63,7 @@ class Topic:
         constants_list = const_header \
             + constants.tex_display() if constants else ''
 
-        return header + constants_list + elements_table + latex.cmd('bigskip')
+        return header + constants_list + elements_table + latex.cmd('EndData')
 
     def tex_statements(self, print_solutions):
         # return statements in latex format
@@ -100,7 +100,7 @@ class Topic:
 
     def tex_answers(self):
         # return statements in latex format
-        header = latex.section('Gabarito', level=0, newpage=True)
+        header = latex.section('Gabarito', level=0, newpage=False)
         if len(self.problems) == 1:
             # se há apenas um problemset, não coloca título
             pset = self.problems[0]

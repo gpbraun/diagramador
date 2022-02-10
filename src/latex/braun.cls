@@ -1764,13 +1764,10 @@
 %%% CHOICES
 
 \NewTasksEnvironment[
-    label  = {\MiniBox{\Alph*}},
-	%label  = {\textbf{\Alph*}\,(\;\;)},
-    item-indent = 3em,
-	%item-indent = 4em,
+	label  = {\textbf{\Alph*}\,(\;\;)},
+	item-indent = 4em,
     after-item-skip = 2\itemsep,
-    label-width = 1.5em,
-	%label-width = 2.5em,
+	label-width = 2.5em,
 	label-align = right,
     label-offset = 0.7em,
 ]{choices}[\task]
@@ -1908,6 +1905,28 @@
         \braun_end_problem_box:
         \bool_if:NT \l_braun_problem_single_page_bool { \newpage }
     }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   DATA
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentCommand \EndData {}
+    {
+        \str_case:Vn \l_braun_problem_template_tl
+            {
+				{ IME }
+                {
+					\bigskip
+                }  
+                { ITA }
+                {
+                    \BraunHRule
+					\bigskip
+                }       
+            }
+    } 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
