@@ -79,7 +79,7 @@ class Topic:
 
             points = 10/problem_num
             return pset.tex_statements(
-                points=points, print_solutions=print_solutions
+                points=points, print_solutions=print_solutions, data_header_level=0
             )
 
         problem_num = sum([len(pset) for pset in self.problems])
@@ -91,7 +91,7 @@ class Topic:
         newpage = False
         for pset in self.problems:
             statements += pset.tex_statements(
-                            pset.title, problem_num, print_solutions,
+                            pset.title, points, print_solutions,
                             newpage=newpage
                         )
             newpage = True
@@ -109,24 +109,30 @@ class Topic:
         answers = ''.join([
             pset.tex_answers(pset.title) for pset in self.problems
         ])
-        return header + latex.cmd('small') + answers
+        return header + '{' + latex.cmd('small') + answers + '}' + latex.cmd('bigskip')
 
     def latex(self, print_level=1):
+        if print_level == 2:
+            template = 'gabarito'
+        else:
+            template = self.template
+
         # return tex file for compiling problem sheet as pdf
-        preamble = latex.cmd(f'documentclass[{self.template}]', ['braun'])
+        preamble = latex.cmd(f'documentclass[{template}]', ['braun'])
 
         for prop in ['title', 'affiliation', 'author']:
             preamble += '\n' + latex.cmd(prop, [getattr(self, prop)])
 
         if not print_level:
             # print_level = 0: sem respostas e sem soluções
-            data = self.tex_data()
             statements = self.tex_statements(print_solutions=False)
-            return latex.document(preamble, latex.pu2qty(data + statements))
+            return latex.document(preamble, latex.pu2qty(statements))
 
         answers = self.tex_answers()
 
         if print_level == 2:
+            if self.template not in ['IMEOobj', 'ITAobj']:
+                answers = ''
             # print_level = 2: respostas e soluções
             statements = self.tex_statements(print_solutions=True)
             return latex.document(preamble, latex.pu2qty(answers + statements))
@@ -143,7 +149,7 @@ class Topic:
             self.latex(print_level),
             file_name,
             tmp_path=f'temp/{self.area}',
-            out_path=f'archive/{self.area}'
+            out_path=f'out/{self.area}'
         )
 
 

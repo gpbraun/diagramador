@@ -6,6 +6,7 @@ import os
 import re
 import csv
 from pathlib import Path
+from sigfig import round
 
 from attr import frozen, Factory
 
@@ -133,13 +134,14 @@ class DataSet:
         # return data object from csv cell
         dt = DATATYPES[datatype]
 
-        value = value.replace('.', ',')
+        value = round(float(value), sigfigs=2)
+        value = str(value).replace('.', ',')
         unit = dt.unit
 
         mol_match = re.match(RE_DATA_MOL, datamol)
         if mol_match:
             mol, state = mol_match.group(1), mol_match.group(2)
-            name = dt.name + ' ' + latex.cmd('ce', mol) + f'({state})'
+            name = dt.name + ' ' + latex.cmd('ce', mol)
             symbol = dt.symbol + \
                 '(' + latex.cmd('ce', mol + f', {{{state}}}') + ')'
         else:
@@ -168,42 +170,42 @@ CONSTANTS = DataSet([
         'g',
         'Aceleração da gravidade',
         'g',
-        '9,8067',
+        '9,8',
         'm.s-2',
     ),
     Data(
         'G',
         'Constante gravitacional',
         'G',
-        '6,67384e11',
+        '6,6e11',
         'm3.kg.s-2',
     ),
     Data(
         'c',
         'Velocidade da luz no vácuo',
         'c',
-        '2,99792458e8',
+        '3e8',
         'm.s-1',
     ),
     Data(
         'e',
         'Carga elementar',
         'e',
-        '1,602176634e-19',
+        '1,6e-19',
         'C',
     ),
     Data(
         'me',
         'Massa do elétron',
         'm_e',
-        '9,1093837015e-31',
+        '9,1e-31',
         'kg',
     ),
     Data(
         'h',
         'Constante de Planck',
         'h',
-        '6,62607015e-34',
+        '6,6e-34',
         'J.s',
     ),
     Data(
@@ -217,16 +219,32 @@ CONSTANTS = DataSet([
         'R',
         'Constante dos Gases',
         'R',
-        '8,314462',
+        '8,3',
         'J.K-1.mol-1'
 
     ),
     Data(
         'Patm',
         'Pressão atmosférica',
-        '1 \\pu{atm}',
+        '\\pu{1 atm}',
         '1,01325e5',
         'Pa'
+
+    ),
+    Data(
+        'Ryd',
+        'Constante de Rydberg',
+        '\\mathcal{R}_\infty',
+        '1,1e7',
+        'm-1'
+
+    ),
+    Data(
+        'Na',
+        'Constante de Avogadro',
+        'N_\\mathrm{A}',
+        '6,0e23',
+        'mol-1'
 
     )
 ])

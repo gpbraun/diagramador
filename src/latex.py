@@ -41,7 +41,7 @@ def section(content, level=0, newpage=False, numbered=True):
     return newpage_cmd + cmd(section_cmd, [content], end='\n')
 
 
-TEX_LEN = re.compile(r'\\\w+|[\w\d\+\-\=\%]|\d')
+TEX_LEN = re.compile(r'\\\w+|[\w\d\+\-\=\%<>]|\d')
 
 
 def latex_len(tex_str):
@@ -62,11 +62,11 @@ def enum(name, items, cols=0, auto_cols=False, sep_cmd='item'):
     # latex enumerate
     if auto_cols:
         max_length = max([latex_len(i) for i in items])
-        if max_length < 4:
+        if max_length < 8:
             cols = 5
-        elif max_length < 7:
+        elif max_length < 12:
             cols = 3
-        elif max_length < 20:
+        elif max_length < 40:
             cols = 2
 
     cols = f'({cols})' if cols else ''

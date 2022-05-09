@@ -27,6 +27,10 @@ EXTENSIONS = ''.join([
 
 
 def md2soup(content):
+    content = content.replace('\\begin{aligned}','$$\n\\begin{aligned}')
+    content = content.replace('\\end{aligned}','\\end{aligned}\n$$')
+    content = content.replace('$$\n$$\n\\begin{aligned}','$$\n\\begin{aligned}')
+    content = content.replace('\\end{aligned}\n$$\n$$','\\end{aligned}\n$$')
     content = content.replace('\\\\', '\\\\\\')
     return BeautifulSoup(MD.convert(content), 'html.parser')
 
@@ -51,10 +55,13 @@ def soup_split(soup, tag):
 
 def md2tex(content):
     # convert html string to tex using pandoc
-    return convert_text(
+
+    tex = convert_text(
         content, 'tex',
         format=f'markdown_strict+tex_math_dollars+raw_tex{EXTENSIONS}',
     ).replace('\\tightlist', '')
+    
+    return tex
 
 
 def copy_r(loc, dest):
@@ -65,11 +72,14 @@ def copy_r(loc, dest):
 
 
 def copy_all(loc, dest):
+    loc = Path(loc)
+    dest = Path(dest)
+    dest.mkdir(parents=True, exist_ok=True)
     for f in os.listdir(loc):
         copy_r(os.path.join(loc, f), dest)
 
 
-def tex2pdf(tex_contents, filename, tmp_path='temp', out_path='archive'):
+def tex2pdf(tex_contents, filename, tmp_path='temp', out_path='out'):
     # convert tex string to pdf
     cwd = Path.cwd()
 

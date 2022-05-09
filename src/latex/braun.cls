@@ -229,7 +229,7 @@
 \RequirePackage { mathtools, amssymb, textcomp }
 
 \numberwithin { equation     } { section }
-\mathtoolsset { showonlyrefs }
+% \mathtoolsset { showonlyrefs }
 
 \cs_set_eq:NN \degree \textdegree
 
@@ -244,9 +244,6 @@
         range-phrase = { ~a~ }, 
         list-final-separator = { ~e~ }, 
         locale = FR,
-        round-mode = figures,
-        round-precision = 3,
-        drop-zero-decimal,
     }
 
 \cs_set_eq:NN \pu \mathrm
@@ -390,7 +387,7 @@
 			{
 				\BraunNoWarning
 				\group_begin:
-					\dim_zero:N \parindent
+					% \dim_zero:N \parindent
 					\IfValueT {##1} { \keys_set:nn { braun/box } {##1} }
 					\vcoffin_set:NVn \l__braun_txta_coffin \l_braun_box_width_dim
 						{ 	
@@ -1790,9 +1787,9 @@
 \NewTasksEnvironment[
 	label = \sffamily{\small\textbf{\arabic*.}},
 	label-align = right,
-    item-indent = 3em,
+    item-indent = 2em,
     label-width = 1.5em,
-    label-offset = 0.7em,
+    label-offset = 0.3em,
     before-skip = 1em,
 ]{checks}[\item]
 
@@ -1826,10 +1823,7 @@
 
 \cs_set:Nn \braun_end_problem_box:
     { 
-        \bool_if:NTF \l_braun_problem_breakable_bool 
-            {
-                \skip_vertical:N \l_braun_problem_after_skip
-            }
+        \bool_if:NF \l_braun_problem_breakable_bool 
             { 
                 \vbox_set_end:
                 \box_use_drop:N  \l__braun_problem_box
@@ -1856,7 +1850,9 @@
         \keys_set:nn { braun/problems } {path = , id = , #1}
 
         \BraunNoWarning
-        \dim_zero:N \parindent
+		\setlength\parindent{24pt}
+        % \dim_zero:N \parindent
+		
         \braun_begin_problem_box:
         %% HEADER
         \str_case:VnF \l_braun_problem_template_tl
@@ -1891,7 +1887,18 @@
                         ]
                         {
                             \sffamily\bfseries
-                            \arabic { problem_counter }
+                            \arabic { problem_counter_absolute }
+                            \textsuperscript { a } ~
+                            \text_uppercase:n { \l_braun_problem_name_tl }
+                        }
+                } 
+				{ gaba }
+                {
+                    \skip_vertical:n {-1em}
+                    \IMEaltHeader
+                        {
+                            \sffamily\bfseries
+                            \arabic { problem_counter_absolute }
                             \textsuperscript { a } ~
                             \text_uppercase:n { \l_braun_problem_name_tl }
                         }
@@ -1902,8 +1909,32 @@
             }
     } 
     {
+		\str_case:VnF \l_braun_problem_template_tl
+            {
+                { braun }
+                { }
+			}
+			{
+				\bigskip
+				\bigskip
+			}
         \braun_end_problem_box:
+		
         \bool_if:NT \l_braun_problem_single_page_bool { \newpage }
+    }
+
+\NewDocumentEnvironment { solution } { o }
+    {
+		\IfValueTF {#1}
+			{
+				\subsection*{Gabarito: \;\; #1}
+			}
+			{
+				\subsection*{Gabarito}
+			}	
+    } 
+    {
+        \skip_vertical:n {3em}
     }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1922,7 +1953,6 @@
                 }  
                 { ITA }
                 {
-                    \BraunHRule
 					\bigskip
                 }       
             }
@@ -1941,12 +1971,12 @@
 %   ITA
 %============================================================%
 
-\DeclareBraunTemplate { ITA }
+\DeclareBraunTemplate { ITAbase }
     {
         DIV = 20,
         font = lmodern,
         fontsize = 11pt,
-        emph = \bfseries,
+        emph = \itshape,
 		page / section / name = ITA,
         maketitle / print = { title, subtitle, date },
         maketitle / title / case = upper,
@@ -1961,13 +1991,13 @@
         problems / name = Questão,
         problems / template = ITA,
         graphics / width = \linewidth,
-        graphics / height = 5cm,
+        graphics / height = 6cm,
     }
 
 
 \DeclareBraunTemplate { ITAobj }
     {
-        ITA,
+        ITAbase,
 		problems / breakable = true,
 		problems / vfill = false,
     }
@@ -1975,7 +2005,7 @@
 
 \DeclareBraunTemplate { ITAdis }
     {
-        ITA,
+        ITAbase,
 		problems / breakable = false,
 		problems / vfill = true,
     }
@@ -1984,14 +2014,14 @@
 %   IME
 %============================================================%
 
-\DeclareBraunTemplate { IME }
+\DeclareBraunTemplate { IMEbase }
     {
         DIV = 16,
         font = helvetica,
         fontsize = 11pt,
         familydefault = sf,
         linewidth = 1.5pt,
-        emph = \bfseries,
+        emph = \itshape,
         page / IME,
         maketitle / align = c,
         maketitle / print = { title, subtitle, date },
@@ -2004,48 +2034,62 @@
         maketitle / subtitle / font = \large\bfseries,
         maketitle / date / value = \int_use:N \c_sys_year_int,
         maketitle / date / font = \large\bfseries,
-        maketitle / logo / value = ime,
-        maketitle / logo / value = ita-alt,
         problems / name = Questão,
-        problems / template = IME,
         graphics / width = \linewidth,
-        graphics / height = 5cm,
+        graphics / height = 4cm,
         lists / itemize = {label = {\alph*)}},
-		problems / breakable = true,
-		problems / vfill = false,
     }
 
-%============================================================%
-%   IME
-%============================================================%
+\DeclareBraunTemplate { IMEdis }
+    {
+        IMEbase,
+        maketitle / logo / value = ime,
+        maketitle / logo / value = pensi,
+		problems / breakable = false,
+		problems / vfill = true,
+		problems / template = IME,
+		graphics / height = 7cm,
+    }
+
+\DeclareBraunTemplate { IMEobj }
+    {
+        IMEbase,
+        maketitle / logo / value = ime,
+        maketitle / logo / value = pensi,
+		problems / breakable = false,
+		problems / vfill = true,
+		problems / template = IME,
+    }
+
+	\DeclareBraunTemplate { IMEling }
+    {
+        IMEbase,
+        maketitle / logo / value = ime,
+        maketitle / logo / value = pensi,
+		problems / breakable = true,
+		problems / vfill = false,
+		problems / template = IME,
+    }
+
 
 \DeclareBraunTemplate { diagnostico }
     {
-        DIV = 16,
-        font = helvetica,
-        fontsize = 11pt,
-        familydefault = sf,
-        linewidth = 1.5pt,
-        emph = \bfseries,
-        page / IME,
-        maketitle / align = c,
-        maketitle / print = { title, subtitle, date },
-        maketitle / toprule = false,
-        maketitle / botrule = false,
-        maketitle / title / case = upper,
-        maketitle / title / font = \Large\bfseries,
-        maketitle / subtitle /value = Turma~ IME-ITA,
-        maketitle / subtitle / case = upper,
-        maketitle / subtitle / font = \large\bfseries,
-        maketitle / date / value = \int_use:N \c_sys_year_int,
-        maketitle / date / font = \large\bfseries,
+        IMEbase,
         maketitle / logo / value = ime,
-        maketitle / logo / value = pensi,
-        problems / name = Questão,
-        problems / template = IME,
-        graphics / width = \linewidth,
-        graphics / height = 5cm,
-        lists / itemize = {label = {\alph*)}},
+        maketitle / logo / value = ita-alt,
+		problems / breakable = false,
+		problems / vfill = true,
+		problems / template = IME,
+    }
+
+\DeclareBraunTemplate { gabarito }
+    {
+        IMEbase,
+        maketitle / logo / value = ime,
+        maketitle / logo / value = ita-alt,
+		problems / breakable = true,
+		problems / vfill = false,
+		problems / template = gaba,
     }
 
 %============================================================%
@@ -2107,7 +2151,6 @@
 
 \AtBeginEnvironment{quote}{\small}
 
-\cs_set_eq:NN \textbackslash \relax
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -3024,6 +3067,8 @@
 	name = Meitnerium, 
 	mass = 276.15, 
 }
+
+\cs_set_eq:NN \textbackslash \relax
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              

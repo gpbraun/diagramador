@@ -16,6 +16,8 @@ from data import read_datasets, DataSet, CONSTANTS
 
 from multiprocessing import Pool
 
+import sys
+
 
 DATA = read_datasets('database/data')
 
@@ -43,7 +45,11 @@ class Problem:
         return convert.md2tex(self.statement) + self.tex_choices()
 
     def tex_solution(self):
-        return convert.md2tex(self.solution)
+        contents = convert.md2tex(self.solution)
+        if self.is_obj():
+            return latex.env('solution', f'[{chr(65 + self.obj)}]\n{contents}')
+    
+        return latex.env(f'solution', contents)
 
     def tex_data(self, print_data=True):
         # return data as tex list with header
@@ -51,9 +57,9 @@ class Problem:
             return ''
 
         header = latex.section('Dados', level=2, numbered=False)
-        data = self.data.astex() if print_data else ''
+        data = self.data.tex_display() if print_data else ''
 
-        return header + data
+        return header + latex.cmd('small') + data
 
     def tex_choices(self):
         # return choices as tex list
@@ -96,25 +102,29 @@ class Problem:
             return latex.env('problem', args)
 
         parameters['breakable'] = 'true'
-        header = latex.section('Gabarito', level=1, numbered=False)
-        args = f'[{latex.key(parameters)}]\n{contents+header+self.solution}'
+        args = f'[{latex.key(parameters)}]\n{contents+self.tex_solution()}'
 
         return latex.env('problem', args)
 
 
 def link2problem(cur, link):
     # get problem contents from link
-    bytes_id = bytes.hex(base64.urlsafe_b64decode(link+"=="))
-    p_id = '-'.join(
-        [bytes_id[x:y]
-            for x, y in [(0, 8), (8, 12), (12, 16), (16, 20), (20, 32)]]
-    )
-    cur.execute(f'''SELECT * FROM "Notes" WHERE id = {"'"+p_id+"'"}''')
-    query_results = cur.fetchall()
+    try:
+        bytes_id = bytes.hex(base64.urlsafe_b64decode(link+"=="))
+        p_id = '-'.join(
+            [bytes_id[x:y]
+                for x, y in [(0, 8), (8, 12), (12, 16), (16, 20), (20, 32)]]
+        )
+        cur.execute(f'''SELECT * FROM "Notes" WHERE id = {"'"+p_id+"'"}''')
+        query_results = cur.fetchall()
 
-    # get YAML data and contents
-    pfile = loads(query_results[0][2])
-    return problem_contents(link, Path(), pfile)
+        # get YAML data and contents
+        pfile = loads(query_results[0][2])
+        return problem_contents(link, Path(), pfile)
+    except:
+        print(f'editor.painelcupula.com/{link}')
+        sys.exit(1)
+    
 
 
 def file2problem(path):
@@ -198,11 +208,6 @@ def problem_contents(id_, path, pfile):
 
     # problema discursivo
     if solution:
-        alist = solution.find('ul')
-        if alist:
-            answer = [convert.html2md(i) for i in alist.find_all('li')]
-            kwargs['answer'] = answer
-            alist.decompose()
         kwargs['solution'] = convert.html2md(solution.extract())
 
     kwargs['statement'] = convert.html2md(soup)
@@ -241,8 +246,34 @@ class ProblemSet:
     def tex_constants(self):
         return sum([p.constants for p in self.problems])
 
+    def tex_data(self, header_level):
+        constants = self.tex_constants()
+        elements = self.elements()
+
+        if self.title == "Química":
+            elements += [
+                'H', 'He', 'C', 'N', 'O', 'F', 'Ne', 
+                'Na', 'Mg', 'S', 'Cl', 'Ar', 'K', 'Ca', 
+                'Cr', 'Fe', 'Cu', 'Zn', 'Br', 'I',
+            ]
+    
+        if not constants.data and not elements:
+            return ''
+
+        header = latex.section('Dados', level=header_level, numbered=False)
+
+        el_header = latex.section('Elementos', level=2, numbered=False)
+        elements_table = el_header + latex.cmd(
+            'MolTable', ','.join(elements)) if elements else ''
+
+        const_header = latex.section('Constantes', level=2, numbered=False)
+        constants_list = const_header \
+            + constants.tex_display() if constants else ''
+
+        return header + latex.pu2qty(constants_list + elements_table) + latex.cmd('EndData')
+
     def tex_statements(self, title='', points=1.0, print_solutions=False,
-                       print_data=False, newpage=False):
+                       print_data=True, newpage=False, data_header_level=1):
         # get statements in latex format
         if not self.problems:
             return ''
@@ -251,6 +282,10 @@ class ProblemSet:
             [p.astex(points, print_solutions, print_data)
              for p in self.problems]
         )
+
+        if print_data:
+            statements = self.tex_data(header_level=data_header_level) + statements
+
         return latex.section(title, newpage=newpage) + statements
 
     def tex_answers(self, title=''):
@@ -262,7 +297,7 @@ class ProblemSet:
         answers = [p.tex_answer() for p in self.problems]
 
         if all([p.is_obj() for p in self.problems]):
-            return header + latex.enum('checks', answers, cols=5)
+            return header + latex.enum('checks', answers, cols=15)
 
         return header + latex.enum('answers', answers)
 
@@ -426,7 +461,7 @@ def autoprops(true_props):
             '**2**, **3** e **4**',
             '**1**, **2**, **3** e **4**'
         ]
-        obj = 3
+        obj = 4
     answer = [choices[obj]]
     return choices, answer, obj
 

@@ -1,15 +1,15 @@
 import psycopg2
-
 from topic import links2topic
-
 import json
-
+from convert import copy_all
 
 #
 # MAIN
 #
 
 def main():
+    # copy_all('database/images', 'temp/Pensi2022/images')
+
     conn = psycopg2.connect(
         host='editor.painelcupula.com',
         port=5432,
@@ -18,19 +18,23 @@ def main():
         password='change_password'
     )
     cur = conn.cursor()
+    print("Conectado")
 
     with open('database/simulados.json', 'r') as json_file:
         simulados = json.load(json_file)
 
         for name, data in simulados.items():
+            if name != '3-DIS':
+                continue
+
             p = links2topic(
                 cur,
-                name,
+                name, 
                 data['problems'],
-                area='Pensi2022',
+                area='Pensi2022', 
                 title=data['title'],
                 template=data['template'],
-            )
+            ) 
             # caderno de questões
             p.generate_pdf(name, print_level=0)
             # gabarito
