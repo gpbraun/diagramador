@@ -24,7 +24,7 @@ def main():
         simulados = json.load(json_file)
 
         for name, data in simulados.items():
-            if name != '3-DIS':
+            if name not in ['4-FIS', '4-QUI']:
                 continue
 
             p = links2topic(

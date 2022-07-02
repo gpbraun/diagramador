@@ -1255,6 +1255,12 @@
 
 \RequirePackage { svg }
 
+
+\cs_set:Nn \graphics_include:n
+{ 
+    \graphics_include:nn {} {#1}
+}
+
 \keys_define:nn { braun/graphics }
 	{
         fps .code:n = { \cs_set_protected:Npn \fps@figure {#1} },

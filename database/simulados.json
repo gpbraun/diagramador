@@ -461,5 +461,187 @@
         "GGnbmgdeQby_OtpzZBXSPw"
       ]
     }
+  },
+  "4-OBJ": {
+    "title": "Ciclo IME 4 - Objetivo",
+    "template": "IMEobj",
+    "problems": {
+      "Matemática": [
+        "5WfimOeKQluyc_g86a-6qQ",
+        "6b8aI5BgT6auzQrhIhljWQ",
+        "7PI2oDaCScOvfUPQ1PabgA",
+        "kr3X4LHnQky4BNc1PlRN2A",
+        "LfAMLOyoTSOokAJmujtVDA",
+        "8Odo0kGlSeCgqHHNkBbkPQ",
+        "JxHe-pkkT0eENAO_0a4BnA",
+        "gBne-L6GSVC2no4KB1BveQ",
+        "ja0xmte3T6O1wmATWPxKUQ",
+        "Hq384ReGTriWGM4wbRXDjA",
+        "N7k7EqBjTtKrZ3-zHSehAA",
+        "Jx4lCzOkRla5MdOar-64Uw",
+        "q5YdFmegT6SW0-Lq11oupA",
+        "ROsKKhdQR2OqiyRedcNIQA",
+        "CZtqMe5_TCC2Csfm4Sg3Ww"
+      ],
+      "Física": [
+        "s6xaeb9TTu2_bXfTjweCog",
+        "sNKTMlhFR_utiOsbc7jFkQ",
+        "tgigVbc7TZGM-A04qklcmg",
+        "PWokPqgYQByXnDw6HajLrA",
+        "qR0Zj3wjRl6tLcsv0A490w",
+        "UreqhkAKSieuiQF3JyQXQg",
+        "17-lrI4jQPqyrbFD0XmE2Q",
+        "BWQ0zGC2SDmKKB6hYzeMKA",
+        "U4Cej-mkSc2DicDw_Pj1tA",
+        "Pt7bkiv2TxGWUctjn8XqcA",
+        "ExIOOCkETZ-OKp4HmS6ZtQ",
+        "FwcwnStwSvSQWSpo7Azmvw",
+        "M-RKQKohTGetLjyRjrzFjQ",
+        "j5i9Y3mSQcqyaFA8DzY7Uw",
+        "MUiJ7X7PTqG6xs_GPvbL-g"
+      ],
+      "Química": [
+        "2XBXpZF-Q3KUeW3ojoB6bw",
+        "g3KNQXaJRbWe73li35rUEg",
+        "bfcVgQHYQtOiy01LrGdDNQ",
+        "Q_DZCxJKT8ePkErzXKKhkA",
+        "XpC85NUgTVq57wNU0BOfUw",
+        "xdeZNClIQaSD4Cri8gQ2aA",
+        "ll6oWK-vQwS1Em1eYrcQnA",
+        "rUGdJ9TWTNaUioikjNukmQ",
+        "JvRqlzT0RkK1yG8N02vKuQ",
+        "1yfnnQHhTle11tk3kRHIFw"
+      ]
+    }
+  },
+  "4-MAT": {
+    "title": "Ciclo IME 4 - Matemática",
+    "template": "IMEdis",
+    "problems": {
+      "Química": [
+        "SnAbzPivTjuoIB_jR-VJAA",
+        "seeP9M_GTz2VDTyeTpuOYw",
+        "bcTRsDxrTUq5NtUb7Q0itg",
+        "DmWISpYoRDSVat4Sa-4klA",
+        "ISgtl4qDRsiTOgwHuFpaow",
+        "9iQsjfP9Royhl7fou-oOSA",
+        "v_-2DaG7SyiPbuNa-xCMcQ",
+        "-YCJssvvQqGU9nGnz3sRrA",
+        "0Bxj-xbDTJ-TkPzmv-I3UQ",
+        "K6ilLqaRScijwHhOuSPd1A"
+      ]
+    }
+  },
+  "4-FIS": {
+    "title": "Ciclo IME 4 - Física",
+    "template": "IMEdis",
+    "problems": {
+      "Física": [
+        "DpxjhENlRk-E1XoQfV9woQ",
+        "rengR4PjQOS4rlrBoMOUvw",
+        "pUHNmJSnRRq1MoFocC8c1Q",
+        "SKgGmfgIShyOysCw8_c6YA",
+        "Fk8koe6eRnWzJ2Juyvcu2g",
+        "VYc5mefORB2qrDZsM62mcw",
+        "8s_eNA0gSAOeh-X0P4qjjw",
+        "puUwZGq_R32qVq3Jnql-zg",
+        "hX_qUWxoRneYpsQbL4xQQA",
+        "p0IZDyxKTJuQgZDgp7jNMw"
+      ]
+    }
+  },
+  "4-QUI": {
+    "title": "Ciclo IME 4 - Química",
+    "template": "IMEdis",
+    "problems": {
+      "Química": [
+        "WR-bmUHPTs6K1me1SQxpjA",
+        "REZ0YM6TRNSLvfR9eT9Tyg",
+        "Xtx7zYI0TDaVtucjduTA9Q",
+        "w9NLwFZ6S26atSm5notIRw",
+        "TV9RjN8TQTqAelKa1mh8Wg",
+        "4h5xylu1TviU0IMJD7fnew",
+        "G3M889B2RTW2Q6rck0YEdw",
+        "UBy7A5UzQ6ecyO_JhrHu3A",
+        "FvlsasNMRYKxr-NSJp8h9g",
+        "m1NDBGciRLy98bcE9qpDqA"
+      ]
+    }
+  },
+  "5-OBJ": {
+    "title": "Ciclo ITA 5 - Objetivo",
+    "template": "ITAobj",
+    "problems": {
+      "Física": [
+        "0wkfImiVR2-AyrLsYHj0_w",
+        "wMYsVIV2Qa6x8_Hwtfzxqw",
+        "TW0Dx_dZQrat5pV4ZZhcOw",
+        "_uHZj6QORP2fXpGR7LOqeg",
+        "dTzb4luDS4eK9sV7BOo68w",
+        "PihN7ZWiTZ-GHJv43AqFAQ",
+        "b-jTsNh-REiTnYSXUZCxuQ",
+        "deK9fH9_T1CKR5AQ7Nhmtg",
+        "jXaINzYSRS6qC7ux7cOFRw",
+        "y8M7wjTaS-eEteKo75dugQ",
+        "NnKRN6-nReeVK35bngbSEg",
+        "tIX7cEmGSxmleP4CUlt7nA"
+      ],
+      "Portugês": [
+        "KczPffcdQUWDYWEKAubAwA",
+        "nrEvTsDrSYu2j4JVsBGWnA",
+        "n_bsCpJHS2-MoAJiq68qZg",
+        "wPITadmZToKRjmfd1L8pBg",
+        "KBeHv_seTgGHiVp7gIYTAw",
+        "GklV8U3fSaSj0sLh46PgQA",
+        "KK5KkzKoQ6qklhO1DVkZ1A",
+        "neQnzMfPRGWePFdq7eykYg",
+        "tTRckZWyS56mIwdD7mFkBw",
+        "C_YyJ1CYRryj0o49W0rfLg",
+        "AVxwV7crSz6juy-bFrJ2Yg",
+        "Lc29PMI7TDe7Mt2GzQ6Omw"
+      ],
+      "Inglês": [
+        "lksW2jB7TACldyiOT3Fh-w",
+        "9cpnYxxIRrmDw0XBBqS69w",
+        "6QYCROWbRluUpd2i2BS-UA",
+        "UeHvn6pxTXubkw6NdsuNlw",
+        "uxjfJxeOR72bYQgWGVTBJQ",
+        "FLVvGBm3RAyJDutMKjXVJA",
+        "qAL40tQLSQmQBJRrc-vrxA",
+        "WqFwCROyRXe-Bp6nWbjPyQ",
+        "6NNOQ0z_TN61Kwc_q2zbKg",
+        "Iejp6DD3Syq1IAeCsAJ6SA",
+        "-IK1sRvaTWKHO-cqBB8xzg",
+        "jSIA_89uS_iB5U-WL_DXfA"
+      ],
+      "Matemática": [
+        "CTXpXxRqQDa3pSi4jyACyQ",
+        "0erz0-JaSGSPXQv-dnpS_A",
+        "5EKKLYYrR0-7DJhC26z2gA",
+        "ff8LVUarR8WhI-owR3zE1Q",
+        "TLQR2DYwTQW2_3p__5iqQA",
+        "OP69l-gNR4OhH2Qg8L9AfQ",
+        "ucJx6gzuRlaxnMgBfYB99w",
+        "8AMmatjRRHGpiOAwcdXuIw",
+        "EP_5uskYSB2S34BbNLdB5A",
+        "3n9dz9OZTHq2RwXbJ1bR9A",
+        "JGbGrUIRTwaDkmVHRDhLyQ",
+        "17IWG_69TM6dteMhlev0IA"
+      ],
+      "Química": [
+        "MIsXttRARNuFwc0glWfdcQ",
+        "-Zi9KY4iQIqgLfmbtGgnwA",
+        "dmW0dqjBSem2OeAwZHtAWg",
+        "7z-SPVe2SEejHbBb5FbeyA",
+        "ewfIvsm1Rg-qdNkdzyNYjg",
+        "RRdQJKp6QvOD92M1M0HcPA",
+        "pQbavYJAT7aFq2DsTfJa6g",
+        "pxWF9robRl-6dDYPsFjv1Q",
+        "FtEoqIzIR3uv1g7rSMkBvQ",
+        "yBW32xFCSQ2THFf61b1vaw",
+        "I6ErSrhaTzu_o-UX8zuMyQ",
+        "yMcenHWiRCWlj_drn2Xj5Q"
+      ]
+    }
   }
 }
