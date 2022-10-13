@@ -1,0 +1,5 @@
+beautifulsoup4==4.11.1
+black==22.8.0
+bs4==0.0.1
+python-frontmatter==1.0.0
+pypandoc==1.8.1
