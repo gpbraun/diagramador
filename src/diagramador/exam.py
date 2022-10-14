@@ -69,19 +69,10 @@ class Exam(BaseModel):
 
         if problem_sets := metadata["problem_sets"]:
             metadata["problem_sets"] = [
-                ProblemSet.parse_hedgedoc(cursor, title, paths)
-                for title, paths in problem_sets.items()
+                ProblemSet.parse_hedgedoc(
+                    cursor, problem_set["title"], problem_set["problems"]
+                )
+                for problem_set in problem_sets
             ]
 
         return cls.parse_obj(metadata)
-
-    @classmethod
-    def parse_hedgedoc(
-        cls, cursor, id_: str, hedgedoc_paths: list[str] | dict, **kwargs
-    ):
-        """Retorna a prova a partir dos dados do AdminBro."""
-        problem_sets = [
-            ProblemSet.parse_hedgedoc(cursor, title, paths)
-            for title, paths in hedgedoc_paths.items()
-        ]
-        return Exam(id_=id_, problem_sets=problem_sets, **kwargs)
