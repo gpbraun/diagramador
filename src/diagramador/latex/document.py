@@ -1,5 +1,4 @@
-from genericpath import exists
-import braunchem.utils.latex as latex
+from diagramador.latex.commands import cmd, env, itemize
 
 import subprocess
 import shutil
@@ -59,9 +58,9 @@ class Document:
         """Preâmbulo do documento"""
         return "\n".join(
             [
-                latex.cmd("title", self.title) if self.title else "",
-                latex.cmd("author", self.author) if self.author else "",
-                latex.cmd("affiliation", self.affiliation) if self.affiliation else "",
+                cmd("title", self.title) if self.title else "",
+                cmd("author", self.author) if self.author else "",
+                cmd("affiliation", self.affiliation) if self.affiliation else "",
             ]
         )
 
@@ -73,7 +72,7 @@ class Document:
     @property
     def body(self) -> str:
         """Corpo do documento em LaTeX."""
-        return latex.env("document", f"\\maketitle\n\n{self.contents}")
+        return env("document", f"\\maketitle\n\n{self.contents}")
 
     def document(self) -> str:
         return "\n".join(

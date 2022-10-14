@@ -22,7 +22,7 @@ PANDOC_MARKDOWN_FORMAT = (
 )
 """Formato markdown para o pandoc."""
 
-PANDOC_FILTER_PATH = importlib.resources.files("braunchem.utils.filters")
+PANDOC_FILTER_PATH = importlib.resources.files("diagramador.utils.filters")
 """Diretório contendo os filtros"""
 
 PANDOC_FILTERS = [
