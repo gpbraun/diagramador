@@ -28,7 +28,7 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage { l3keys2e, l3draw, l3graphics, silence }
+\RequirePackage { l3keys2e, l3draw, l3graphics }
 
 \ExplSyntaxOn
 
@@ -53,18 +53,6 @@
 	{ \c_brauntex_date_tl    }
 	{ \c_brauntex_version_tl }
 	{ \c_brauntex_info_tl    }
-
-%============================================================%
-%   FILTERED WARNINGS
-%============================================================%
-
-\WarningFilter{ hyperref }         { Token~not~allowed~in~a~PDF~string }
-\WarningFilter{ typearea }         { Bad~type~area~settings! }
-\WarningFilter{ latex }            { Font~shape }
-\WarningFilter{ latex }            { Unused~global~option(s) }
-\WarningFilter{ latex }            { \KOMAScriptVersion }
-\WarningFilter{ scrlayer-scrpage } { \headheight }
-\WarningFilter{ scrlayer-scrpage } { \footheight }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
