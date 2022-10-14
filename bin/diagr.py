@@ -1,12 +1,12 @@
-from diagramador.problem import Problem
 from diagramador.exam import Exam
 
 from pathlib import Path
+import sys
 
 import psycopg2
 
 
-def main():
+def main(hedgedoc_paths):
     conn = psycopg2.connect(
         host="192.168.0.54",
         port=5432,
@@ -15,16 +15,14 @@ def main():
         password="password",
     )
     cursor = conn.cursor()
-    print("Conectado")
 
-    links = [
-        "OXGO0otySbahbWtJTS-wtQ",
-    ]
+    if isinstance(hedgedoc_paths, str):
+        hedgedoc_paths = [hedgedoc_paths]
 
     exam = Exam.parse_hedgedoc(
         cursor,
         id_="teste1",
-        hedgedoc_paths=links,
+        hedgedoc_paths=hedgedoc_paths,
         title="sampini",
         template="IME",
     )
@@ -32,4 +30,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

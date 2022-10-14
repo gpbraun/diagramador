@@ -6,6 +6,9 @@ from diagramador.latex.commands import env, itemize
 from diagramador.utils.text import md2soup, soup_split, html2tex
 from diagramador.utils.autoprops import autoprops
 
+import base64
+from pathlib import Path
+
 import frontmatter
 from pydantic import BaseModel
 
@@ -104,3 +107,20 @@ class Problem(BaseModel):
         problem["statement"] = html2tex(soup)
 
         return cls.parse_obj(problem)
+
+    @classmethod
+    def parse_hedgedoc(cls, cursor, hedgedoc_path: str):
+        """Retorna o problema em um link do hedgedoc."""
+        link = str(Path(hedgedoc_path).stem)
+        print(f"Extraindo problema no link: {link}")
+
+        bytes_id = bytes.hex(base64.urlsafe_b64decode(link + "=="))
+        p_id = "-".join(
+            [bytes_id[x:y] for x, y in [(0, 8), (8, 12), (12, 16), (16, 20), (20, 32)]]
+        )
+        cursor.execute(f"""SELECT * FROM "Notes" WHERE id = {"'"+p_id+"'"}""")
+        query_results = cursor.fetchall()
+
+        print(query_results)
+        # get YAML data and contents
+        return cls.parse_mdstr(link, query_results[0][2])

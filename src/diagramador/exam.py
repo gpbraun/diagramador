@@ -30,3 +30,9 @@ class Exam(BaseModel):
     def write_pdf(self, tmp_dir: Path, out_dir: Path | None = None):
         """Cria o arquivo `pdf` do tópico."""
         self.tex_document().write_pdf(tmp_dir.joinpath(self.id_), out_dir)
+
+    @classmethod
+    def parse_hedgedoc(cls, cursor, id_: str, hedgedoc_paths: list[str], **kwargs):
+        """Retorna a prova a partir dos dados do AdminBro."""
+        problems = [Problem.parse_hedgedoc(cursor, path) for path in hedgedoc_paths]
+        return Exam(id_=id_, problems=problems, **kwargs)
