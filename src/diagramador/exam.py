@@ -1,3 +1,4 @@
+from diagramador.latex.commands import section
 from diagramador.latex.document import Document
 from diagramador.problem import Problem
 
@@ -6,17 +7,46 @@ from pathlib import Path
 from pydantic import BaseModel
 
 
+class ProblemSet(BaseModel):
+    """Conjunto de problemas em uma prova."""
+
+    title: str
+    problems: list[Problem]
+
+    def __len__(self):
+        return len(self.problems)
+
+    def tex(self, header: bool = True):
+        """Retorna o conjunto de problemas em LaTeX."""
+        if not self.problems:
+            return ""
+
+        header = section(self.title, level=0) if header else ""
+        return header + "\n".join(problem.tex() for problem in self.problems)
+
+    @classmethod
+    def parse_hedgedoc(cls, cursor, title: str, hedgedoc_paths: list[str]):
+        """Retorna a prova a partir dos dados do AdminBro."""
+        problems = [Problem.parse_hedgedoc(cursor, path) for path in hedgedoc_paths]
+        return cls(title, problems)
+
+
 class Exam(BaseModel):
     """Prova."""
 
     id_: str
     title: str
     template: str
-    problems: list[Problem]
+    problem_sets: list[ProblemSet]
 
-    def tex_problems(self):
+    def tex(self):
         """Retorna os problemas em LaTeX."""
-        return "\n".join(problem.tex() for problem in self.problems)
+        if len(self.problem_sets) == 1:
+            return self.problem_sets[0].tex(header=False)
+
+        return "\n".join(
+            problem_set.tex(header=True) for problem_set in self.problem_sets
+        )
 
     def tex_document(self):
         """Cria o arquivo `pdf` do tópico."""
@@ -24,7 +54,7 @@ class Exam(BaseModel):
             id_=self.id_,
             title=self.title,
             template=self.template,
-            contents=self.tex_problems(),
+            contents=self.tex(),
         )
 
     def write_pdf(self, tmp_dir: Path, out_dir: Path | None = None):
@@ -32,7 +62,17 @@ class Exam(BaseModel):
         self.tex_document().write_pdf(tmp_dir.joinpath(self.id_), out_dir)
 
     @classmethod
-    def parse_hedgedoc(cls, cursor, id_: str, hedgedoc_paths: list[str], **kwargs):
+    def parse_hedgedoc(
+        cls, cursor, id_: str, hedgedoc_paths: list[str] | dict, **kwargs
+    ):
         """Retorna a prova a partir dos dados do AdminBro."""
-        problems = [Problem.parse_hedgedoc(cursor, path) for path in hedgedoc_paths]
-        return Exam(id_=id_, problems=problems, **kwargs)
+        if isinstance(hedgedoc_paths, list):  # apenas um conjunto de problemas.
+            problem_set = ProblemSet.parse_hedgedoc(cursor, "Problemas", hedgedoc_paths)
+
+            return Exam(id_=id_, problem_sets=[problem_set], **kwargs)
+
+        problem_sets = [
+            ProblemSet.parse_hedgedoc(cursor, title, paths)
+            for title, paths in hedgedoc_paths.items()
+        ]
+        return Exam(id_=id_, problem_sets=problem_sets, **kwargs)

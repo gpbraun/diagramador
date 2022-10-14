@@ -1,33 +1,26 @@
 from diagramador.problem import Problem
-from diagramador.exam import Exam
+from diagramador.exam import Exam, ProblemSet
 
 from pathlib import Path
 
-import psycopg2
-
 
 def main():
-    conn = psycopg2.connect(
-        host="192.168.0.54",
-        port=5432,
-        database="hedgedoc",
-        user="hedgedoc",
-        password="password",
-    )
-    cursor = conn.cursor()
-    print("Conectado")
+    p1_path = Path("test/problema_1.md")
+    p2_path = Path("test/problema_2.md")
 
-    links = [
-        "OXGO0otySbahbWtJTS-wtQ",
-    ]
+    p1 = Problem.parse_mdstr("p1", p1_path.read_text())
+    p2 = Problem.parse_mdstr("p2", p2_path.read_text())
 
-    exam = Exam.parse_hedgedoc(
-        cursor,
-        id_="teste1",
-        hedgedoc_paths=links,
-        title="sampini",
+    p_set1 = ProblemSet(title="Matemática", problems=[p1])
+    p_set2 = ProblemSet(title="Química", problems=[p2])
+
+    exam = Exam(
+        id_="teste",
+        title="Um teste",
         template="IME",
+        problem_sets=[p_set1, p_set2],
     )
+
     exam.write_pdf(Path("tmp/test"), Path("./test"))
 
 
