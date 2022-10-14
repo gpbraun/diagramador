@@ -43,7 +43,7 @@ class Exam(BaseModel):
     def tex(self):
         """Retorna os problemas em LaTeX."""
         if len(self.problem_sets) == 1:
-            return self.problem_sets[0].tex(header=False)
+            return self.problem_sets[0].tex(header=True)
 
         return "\n".join(
             problem_set.tex(header=True) for problem_set in self.problem_sets

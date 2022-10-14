@@ -743,12 +743,24 @@
 				{
 					\Large \textbf {#2}
 				}
+				{ prova }
+				{
+					\PensiTitleHeader 
+						{
+							\LARGE
+							\bfseries
+							\sffamily
+							\text_uppercase:n {#2} 
+						}
+				}
 				{ IME }
 				{
 					\skip_vertical:n {-1em}
 					\IMEaltHeader 
 						{ 
-							\bfseries \normalsize  \text_uppercase:n {#2} 
+							\bfseries 
+							\normalsize  
+							\text_uppercase:n {#2} 
 						} 
 				}
 				{ ITA }
@@ -1223,13 +1235,6 @@
 							\hline
 						\end{tabular}
 					\end{center}
-					\PensiTitleHeader 
-						{
-							\LARGE
-							\bfseries
-							\sffamily
-							\text_uppercase:n { \PrintSubject } 
-						}
 					\skip_vertical:n { 1em }
                 }      
             }
@@ -2008,6 +2013,7 @@
 		% Cabeçalho e rodapé
 		page / footer / prova,
 		page / header / prova,
+		page / section / name = prova,
 
 		% Título
 		maketitle / template = prova,
