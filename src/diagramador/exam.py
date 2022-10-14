@@ -11,6 +11,7 @@ class Exam(BaseModel):
 
     id_: str
     title: str
+    template: str
     problems: list[Problem]
 
     def tex_problems(self):
@@ -22,7 +23,7 @@ class Exam(BaseModel):
         return Document(
             id_=self.id_,
             title=self.title,
-            template="IMEdis",
+            template=self.template,
             contents=self.tex_problems(),
         )
 

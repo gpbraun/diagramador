@@ -14,6 +14,8 @@ TEX_TEMPLATE_FILES = [
     "ime-logo.pdf",
     "ita-logo.pdf",
     "ita-logo-alt.pdf",
+    "header.png",
+    "header_first.png",
 ]
 
 
