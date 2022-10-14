@@ -6,7 +6,7 @@ import sys
 import psycopg2
 
 
-def main(hedgedoc_paths):
+def main(exam_folder_path):
     conn = psycopg2.connect(
         host="192.168.0.54",
         port=5432,
@@ -16,18 +16,11 @@ def main(hedgedoc_paths):
     )
     cursor = conn.cursor()
 
-    if isinstance(hedgedoc_paths, str):
-        hedgedoc_paths = [hedgedoc_paths]
+    exam_folder_path = Path(exam_folder_path)
 
-    exam = Exam.parse_hedgedoc(
-        cursor,
-        id_="teste1",
-        hedgedoc_paths=hedgedoc_paths,
-        title="sampini",
-        template="IME",
-    )
-    exam.write_pdf(Path("tmp/test"), Path("./test"))
+    exam = Exam.parse_bro(cursor, json_path=exam_folder_path.joinpath("input.json"))
+    exam.write_pdf(exam_folder_path)
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main(sys.argv[1])

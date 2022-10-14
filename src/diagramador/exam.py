@@ -2,6 +2,7 @@ from diagramador.latex.commands import section
 from diagramador.latex.document import Document
 from diagramador.problem import Problem
 
+import json
 from pathlib import Path
 
 from pydantic import BaseModel
@@ -62,15 +63,23 @@ class Exam(BaseModel):
         self.tex_document().write_pdf(tmp_dir.joinpath(self.id_), out_dir)
 
     @classmethod
+    def parse_bro(cls, cursor, json_path: Path):
+        """Retorna a prova a partir dos dados do AdminBro."""
+        metadata = json.loads(json_path.read_text())
+
+        if problem_sets := metadata["problem_sets"]:
+            metadata["problem_sets"] = [
+                ProblemSet.parse_hedgedoc(cursor, title, paths)
+                for title, paths in problem_sets.items()
+            ]
+
+        return cls.parse_obj(metadata)
+
+    @classmethod
     def parse_hedgedoc(
         cls, cursor, id_: str, hedgedoc_paths: list[str] | dict, **kwargs
     ):
         """Retorna a prova a partir dos dados do AdminBro."""
-        if isinstance(hedgedoc_paths, list):  # apenas um conjunto de problemas.
-            problem_set = ProblemSet.parse_hedgedoc(cursor, "Problemas", hedgedoc_paths)
-
-            return Exam(id_=id_, problem_sets=[problem_set], **kwargs)
-
         problem_sets = [
             ProblemSet.parse_hedgedoc(cursor, title, paths)
             for title, paths in hedgedoc_paths.items()
