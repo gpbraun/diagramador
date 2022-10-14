@@ -723,8 +723,8 @@
 
 \keys_define:nn { braun/page/section }
 	{
-		name .tl_set:N = \l_braun_page_section_type_tl,
-		name .initial:n = latex,
+		template .tl_set:N = \l_braun_page_section_type_tl,
+		template .initial:n = latex,
 	}
 
 \cs_set_eq:NN \legacysection \section
@@ -782,10 +782,10 @@
     {
         IME .meta:n = 
             {
-                header/plain,
-                footer/plain,
+                header / plain,
+                footer / plain,
                 boxed = true,
-                section/name = IME,
+                section / template = IME,
             }
     }
 
@@ -936,28 +936,16 @@
 	{ title }
 
 \NewTitleElement 
+	[ font = \LARGE\bfseries ] 
+	{ code }
+
+\NewTitleElement 
 	[ font = \large ]
-	{ subtitle }
-
-\NewTitleElement 
-	[ font = \large  ]
-	{ author }
-
-\NewTitleElement 
-	[ font = \large  ]
-	{ subject }
-
-\NewTitleElement 
-	[ sep = break ]
-	{ affiliation }
+	{ class }
 
 \NewTitleElement 
 	[ case = none, single-value ]
 	{ date }
-
-\NewTitleElement 
-	[ case = lower, font = \ttfamily , before-skip = 0pt, after-skip = 0pt, pre-text = \textnormal{Contato:~} ]
-	{ contact }
 
 %============================================================%
 %   LOGO
@@ -1120,19 +1108,6 @@
         \int_set_eq:NN \vbadness \c_max_int
     }
 
-% #1 -> footnote text
-\cs_set:Npn \BraunThanks #1
-    { % equivalent to \thanks
-		\tl_if_blank:nF {#1}
-		{
-			\group_begin:
-				\cs_set:Npn \thefootnote { \ensuremath { \star } }
-				\footnotetext [ 0 ] {#1}
-			\group_end:
-		}
-		\cs_undefine:N \BraunThanks % save memory
-    }
-
 \cs_set:Npn \BraunHRule
     { % print horizontal rule
 		\group_begin:
@@ -1165,6 +1140,7 @@
 		\BraunNoWarning
 		\dim_zero:N  \parindent
 		\dim_gzero:N \@topnum % Prevents figures from going at top of page.
+
 		% Set keys
 		\IfNoValueF {#1} { \keys_set:nn { braun/maketitle } {#1} }
 
@@ -1214,9 +1190,9 @@
 							\hline
 							Nome:~ \hrulefill &
 							Turma:~ IME-ITA \\
-							Unidade:~ Tijuca~ II 
-								\hspace{4em} 
-								Professor:~ \PrintAuthor \hfill &
+							Unidade:~ \hrulefill
+							\quad
+							Professor:~ \hrulefill &
 							Data:~ \PrintDate
 							\\
 							\hline
@@ -1280,8 +1256,6 @@
 
 						\skip_vertical:n { 3em }
 					}
-				\bool_if:NT \l_braun_title_contact_input_bool
-				{ \BraunThanks { \PrintContact } }
             }
 		\tl_use:N \l_braun_title_post_text_tl
 		\group_end:
@@ -1727,18 +1701,17 @@
 		\color_select:n {ptable-color}	
 
 		\bool_if:NT \l_ptable_row_sort_bool
-		{ \mendeleev_organize_elements:N \l_tmpa_clist  }
+			{ \mendeleev_organize_elements:N \l_tmpa_clist  }
 
 		\clist_map_inline:Nn \l_tmpa_clist
-		{
-			\ptable_element:nn {} {##1}
-			\skip_horizontal:n {-0.1ex}
-		}
+			{
+				\ptable_element:nn {} {##1}
+				\skip_horizontal:n {-0.1ex}
+			}
 
 		\color_group_end:
 	}
 \cs_generate_variant:Nn \ptable_row:nn {nV}
-
 
 \NewDocumentCommand \PTableRow
 	{ o m } { \ptable_row:nn {#1} {#2} }
@@ -1945,10 +1918,10 @@
         font = lmodern,
         fontsize = 11pt,
         emph = \itshape,
-		page / section / name = ITA,
+		page / section / template = ITA,
 
 		% Título
-        maketitle / print = { title, subtitle, date },
+        maketitle / print = { title, date },
         maketitle / title / case = upper,
         maketitle / title / font = \Large\bfseries,
 		maketitle / subtitle /value = Turma~ IME-ITA,
@@ -1980,7 +1953,7 @@
 
 		% Título
         maketitle / align = c,
-        maketitle / print = { title, subtitle, date },
+        maketitle / print = { title, date },
         maketitle / toprule = false,
         maketitle / botrule = false,
         maketitle / title / case = upper,
@@ -2013,7 +1986,7 @@
 		% Cabeçalho e rodapé
 		page / footer / prova,
 		page / header / prova,
-		page / section / name = prova,
+		page / section / template = prova,
 
 		% Título
 		maketitle / template = prova,
