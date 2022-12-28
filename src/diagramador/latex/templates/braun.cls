@@ -297,7 +297,7 @@
 			}
 	}
     
-%% CABEÇALHO IME NORMAL
+%% CABEÇALHO  NORMAL
 
 \DeclareBraunHeader { IME }
     {
@@ -1062,9 +1062,9 @@
 				\draw_path_use:n { fill }
 			\draw_end:
 		},
-		ime     = \graphics_include:n { ime-logo.pdf },
-		ita     = \graphics_include:n { ita-logo.pdf },
-        ita-alt = \graphics_include:n { ita-logo-alt.pdf },
+		ime     = \legacyincludegraphics { ime-logo.pdf },
+		ita     = \legacyincludegraphics { ita-logo.pdf },
+        ita-alt = \legacyincludegraphics { ita-logo-alt.pdf },
 	}
 
 %============================================================%
@@ -1081,7 +1081,7 @@
 		align .initial:n  = c,
 
 		print .clist_set:N = \l_braun_title_print_clist,
-		print .initial:n   = { title, subtitle, author, affiliation, date },
+		print .initial:n   = { title, author, affiliation, date },
 
 		pre-text  .tl_set:N = \l_braun_title_pre_text_tl,
 		post-text .tl_set:N = \l_braun_title_post_text_tl,
@@ -1924,9 +1924,6 @@
         maketitle / print = { title, date },
         maketitle / title / case = upper,
         maketitle / title / font = \Large\bfseries,
-		maketitle / subtitle /value = Turma~ IME-ITA,
-        maketitle / subtitle / case = upper,
-		maketitle / subtitle / font = \large\bfseries,
         maketitle / date / value = \int_use:N \c_sys_year_int,
         maketitle / date / font = \large\bfseries,
 		maketitle / logo / value = ita-alt,
@@ -1958,9 +1955,6 @@
         maketitle / botrule = false,
         maketitle / title / case = upper,
         maketitle / title / font = \Large\bfseries,
-        maketitle / subtitle /value = Turma~ IME-ITA,
-        maketitle / subtitle / case = upper,
-        maketitle / subtitle / font = \large\bfseries,
         maketitle / date / value = \int_use:N \c_sys_year_int,
         maketitle / date / font = \large\bfseries,
 		maketitle / logo / value = ime,

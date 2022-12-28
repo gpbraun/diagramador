@@ -20,18 +20,41 @@ TEX_TEMPLATE_FILES = [
 
 def run_latexmk(tex_path: Path):
     """Executa o comando `latexmk`."""
-    subprocess.run(
+    latexmk = subprocess.run(
         [
-            "latexmk",
+            shutil.which("latexmk"),
             "-shell-escape",
             "-interaction=nonstopmode",
             "-file-line-error",
             "-pdf",
             "-cd",
-            tex_path,
+            str(tex_path),
         ],
-        stdout=subprocess.DEVNULL,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
     )
+
+
+def run_tectonic(tex_path: Path):
+    """Executa o comando `latexmk`."""
+    print(f"Compilando o arquivo '{tex_path}' com tectonic.")
+    tectonic = subprocess.run(
+        [
+            shutil.which("tectonic"),
+            "-X",
+            "compile",
+            "--keep-intermediates",
+            str(tex_path),
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    print(f"Comando executado: '{' '.join(tectonic.args)}'")
+    if tectonic.stdout:
+        print(tectonic.stdout.decode())
+    if tectonic.stderr:
+        print(tectonic.stderr.decode())
+    print(f"Arquivo '{tex_path}' compilado com tectonic!")
 
 
 class Document:
@@ -98,7 +121,7 @@ class Document:
 
         tex_path = tmp_dir.joinpath(self.id_).with_suffix(".tex")
         tex_path.write_text(self.document())
-        run_latexmk(tex_path)
+        run_tectonic(tex_path)
         pdf_path = tex_path.with_suffix(".pdf")
 
         if out_dir:

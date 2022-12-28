@@ -41,11 +41,11 @@ class Problem(BaseModel):
 
         return chr(65 + self.correct_choice)
 
-    def tex(self):
+    def tex(self, points):
         """Retorna o enunciado completo do problema em LaTeX."""
 
         parameters = {
-            "points": "10",
+            "points": str(points),
         }
 
         return env("problem", self.statement + self.tex_choices(), keys=parameters)

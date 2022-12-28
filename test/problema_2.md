@@ -1,9 +1,3 @@
----
-data:
-- Kps(CaSO4)
-- Kps(BaSO4)
----
-
 Uma amostra contendo $\pu{0,1 mol}$ de nitrato de cálcio, $\pu{0,1 mol}$ de nitrato de bário e $\pu{0,15 mol}$ de sulfato de sódio foram adicionados em $\pu{600 mL}$ de água destilada.
 
 a. **Determine** a concentração de todas as espécies em solução no equilíbrio.

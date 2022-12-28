@@ -17,13 +17,19 @@ class ProblemSet(BaseModel):
     def __len__(self):
         return len(self.problems)
 
-    def tex(self, header: bool = True):
+    def tex(
+        self,
+        points: str,
+        header: bool = True,
+    ):
         """Retorna o conjunto de problemas em LaTeX."""
         if not self.problems:
             return ""
 
         header = section(self.title, level=0) if header else ""
-        return header + "\n".join(problem.tex() for problem in self.problems)
+        return header + "\n".join(
+            problem.tex(points=points) for problem in self.problems
+        )
 
     @classmethod
     def parse_hedgedoc(cls, cursor, title: str, hedgedoc_paths: list[str]):
@@ -42,11 +48,14 @@ class Exam(BaseModel):
 
     def tex(self):
         """Retorna os problemas em LaTeX."""
+        points = f"{10/len(self.problem_sets):.2f}"
+
         if len(self.problem_sets) == 1:
-            return self.problem_sets[0].tex(header=True)
+            return self.problem_sets[0].tex(header=True, poits=points)
 
         return "\n".join(
-            problem_set.tex(header=True) for problem_set in self.problem_sets
+            problem_set.tex(header=True, points=points)
+            for problem_set in self.problem_sets
         )
 
     def tex_document(self):

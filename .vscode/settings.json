@@ -1,0 +1,12 @@
+{
+    "code-runner.runInTerminal": true,
+    "latex-workshop.latex.autoBuild.run": "never",
+    "python.formatting.provider": "black",
+    "python.analysis.typeCheckingMode": "off",
+    "[latex]": {
+        "editor.formatOnSave": false
+    },
+    "[latex-expl3]": {
+        "editor.formatOnSave": false
+    },
+}
