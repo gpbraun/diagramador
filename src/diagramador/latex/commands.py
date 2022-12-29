@@ -31,7 +31,7 @@ def key(args: dict):
     return f"[\n\t{key_list}\n]"
 
 
-def env(env_name: str, content: str, keys=None):
+def env(env_name: str, content: str, keys=None, opt=None):
     """Cria um ambiente em LaTeX.
 
     Atributos:
@@ -46,7 +46,7 @@ def env(env_name: str, content: str, keys=None):
 
     end = cmd("end", env_name)
 
-    return f"\n{begin}\n{content}\n{end}\n"
+    return f"\n{begin}{'['+ opt +']' if opt else ''}\n{content}\n{end}\n"
 
 
 def itemize(name: str, items: list[str], sep_cmd: str = "item"):

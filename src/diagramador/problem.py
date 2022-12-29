@@ -50,6 +50,19 @@ class Problem(BaseModel):
 
         return env("problem", self.statement + self.tex_choices(), keys=parameters)
 
+    def tex_solution(self, points):
+        """Retorna o enunciado completo do problema em LaTeX."""
+
+        parameters = {
+            "points": str(points),
+        }
+
+        problem = env("problem", self.statement + self.tex_choices(), keys=parameters)
+
+        solution = env("solution", self.solution, opt=self.tex_correct_choice())
+
+        return "\n".join([problem, solution])
+
     @classmethod
     def parse_mdstr(cls, id_: str, md_str: str):
         """Cria um `Problem` a partir de um arquivo `.md`."""

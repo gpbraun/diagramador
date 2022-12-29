@@ -10,4 +10,4 @@ Dados
 
 ---
 
-GABARITO 2
+GABARITO 3

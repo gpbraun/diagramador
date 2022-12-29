@@ -31,6 +31,20 @@ class ProblemSet(BaseModel):
             problem.tex(points=points) for problem in self.problems
         )
 
+    def tex_solutions(
+        self,
+        points: str,
+        header: bool = True,
+    ):
+        """Retorna o conjunto de problemas em LaTeX."""
+        if not self.problems:
+            return ""
+
+        header = section(self.title, level=0) if header else ""
+        return header + "\n".join(
+            problem.tex_solution(points=points) for problem in self.problems
+        )
+
     @classmethod
     def parse_hedgedoc(cls, cursor, title: str, hedgedoc_paths: list[str]):
         """Retorna a prova a partir dos dados do AdminBro."""
@@ -58,6 +72,18 @@ class Exam(BaseModel):
             for problem_set in self.problem_sets
         )
 
+    def tex_solutions(self):
+        """Retorna os problemas em LaTeX."""
+        points = f"{10/len(self.problem_sets):.2f}"
+
+        if len(self.problem_sets) == 1:
+            return self.problem_sets[0].tex_solutions(header=True, poits=points)
+
+        return "\n".join(
+            problem_set.tex_solutions(header=True, points=points)
+            for problem_set in self.problem_sets
+        )
+
     def tex_document(self):
         """Cria o arquivo `pdf` do tópico."""
         return Document(
@@ -67,9 +93,24 @@ class Exam(BaseModel):
             contents=self.tex(),
         )
 
+    def tex_solutions_document(self):
+        """Cria o arquivo `pdf` do tópico."""
+        return Document(
+            id_=self.id_ + "_gabarito",
+            title="Gabarito " + self.title,
+            template="gabarito",
+            contents=self.tex_solutions(),
+        )
+
     def write_pdf(self, tmp_dir: Path, out_dir: Path | None = None):
         """Cria o arquivo `pdf` do tópico."""
         self.tex_document().write_pdf(tmp_dir.joinpath(self.id_), out_dir)
+
+    def write_solutions_pdf(self, tmp_dir: Path, out_dir: Path | None = None):
+        """Cria o arquivo `pdf` do tópico."""
+        self.tex_solutions_document().write_pdf(
+            tmp_dir.joinpath(self.id_ + "_gabarito"), out_dir
+        )
 
     @classmethod
     def parse_bro(cls, cursor, json_path: Path):

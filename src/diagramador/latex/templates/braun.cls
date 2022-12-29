@@ -297,7 +297,7 @@
 			}
 	}
     
-%% CABEÇALHO  NORMAL
+%% CABEÇALHO IME NORMAL
 
 \DeclareBraunHeader { IME }
     {
@@ -755,7 +755,6 @@
 				}
 				{ IME }
 				{
-					\skip_vertical:n {-1em}
 					\IMEaltHeader 
 						{ 
 							\bfseries 
@@ -769,6 +768,7 @@
 						\bfseries \normalsize \text_uppercase:n {#2} 
 						\BraunHRule
 					\end{center}
+					\skip_vertical:n {1em}
 				}
 			}
         \group_end:
@@ -937,6 +937,10 @@
 
 \NewTitleElement 
 	[ font = \LARGE\bfseries ] 
+	{ subtitle }
+
+\NewTitleElement 
+	[ font = \LARGE\bfseries ] 
 	{ code }
 
 \NewTitleElement 
@@ -1081,7 +1085,7 @@
 		align .initial:n  = c,
 
 		print .clist_set:N = \l_braun_title_print_clist,
-		print .initial:n   = { title, author, affiliation, date },
+		print .initial:n   = { title, subtitle, author, affiliation, date },
 
 		pre-text  .tl_set:N = \l_braun_title_pre_text_tl,
 		post-text .tl_set:N = \l_braun_title_post_text_tl,
@@ -1877,7 +1881,7 @@
                 }       
             }
             {
-                \paragraph{ \l_braun_problem_name_tl \; \arabic { problem } }   
+                \textbf{ \l_braun_problem_name_tl \; \arabic { problem }. \quad }   
             }
     } 
     {
@@ -1885,17 +1889,38 @@
         \bool_if:NT \l_braun_problem_single_page_bool { \newpage }
     }
 
+%============================================================%
+%   SOLUTION ENVIRONMENT
+%============================================================%
+
+\RequirePackage { tcolorbox }
+
+\tcbuselibrary { skins, breakable }
+
+\tcbset { enhanced~ jigsaw }
+
 \NewDocumentEnvironment { solution } { o }
     {
-		\IfValueTF {#1}
-			{
-				\subsection*{Gabarito: \;\; #1}
-			}
-			{
-				\subsection*{Gabarito}
-			}	
+		\begin{tcolorbox}
+			[
+				enhanced,
+				title = \textbf{\large Gabarito \IfValueT{#1}{: \; #1}},
+				coltitle = black,
+				colback = white,
+				attach~ boxed~ title~ to~ top~ center =
+					{
+						yshift = -3mm,
+						yshifttext = -1mm
+					},
+				boxed~ title~ style =
+					{
+						size = small,
+						colback = white,
+					}
+			]	
     } 
     {
+		\end{tcolorbox}
         \skip_vertical:n {3em}
     }
 
@@ -1921,9 +1946,12 @@
 		page / section / template = ITA,
 
 		% Título
-        maketitle / print = { title, date },
+        maketitle / print = { title, subtitle, date },
         maketitle / title / case = upper,
         maketitle / title / font = \Large\bfseries,
+		maketitle / subtitle /value = Turma~ IME-ITA,
+        maketitle / subtitle / case = upper,
+		maketitle / subtitle / font = \large\bfseries,
         maketitle / date / value = \int_use:N \c_sys_year_int,
         maketitle / date / font = \large\bfseries,
 		maketitle / logo / value = ita-alt,
@@ -1938,6 +1966,10 @@
         graphics / height = 6cm,
     }
 
+%============================================================%
+%   IME
+%============================================================%
+
 \DeclareBraunTemplate { IME }
     {
         DIV = 16,
@@ -1950,11 +1982,14 @@
 
 		% Título
         maketitle / align = c,
-        maketitle / print = { title, date },
+        maketitle / print = { title, subtitle, date },
         maketitle / toprule = false,
         maketitle / botrule = false,
         maketitle / title / case = upper,
         maketitle / title / font = \Large\bfseries,
+        maketitle / subtitle /value = Turma~ IME-ITA,
+        maketitle / subtitle / case = upper,
+        maketitle / subtitle / font = \large\bfseries,
         maketitle / date / value = \int_use:N \c_sys_year_int,
         maketitle / date / font = \large\bfseries,
 		maketitle / logo / value = ime,
@@ -1968,6 +2003,10 @@
         graphics / width = \linewidth,
         graphics / height = 4cm,
     }
+
+%============================================================%
+%   PROVA
+%============================================================%
 
 \DeclareBraunTemplate { prova }
     {
@@ -1990,6 +2029,41 @@
 		problems / name = Questão,
 		problems / template = prova,
         
+    }
+
+%============================================================%
+%   GABARITO
+%============================================================%
+
+\DeclareBraunTemplate { gabarito }
+    {
+        DIV = 20,
+        font = lmodern,
+        fontsize = 11pt,
+        emph = \itshape,
+		page / section / template = ITA,
+
+		% Título
+        maketitle / print = { title, subtitle, date },
+        maketitle / title / case = upper,
+        maketitle / title / font = \Large\bfseries,
+		maketitle / subtitle /value = Turma~ IME-ITA,
+        maketitle / subtitle / case = upper,
+		maketitle / subtitle / font = \large\bfseries,
+        maketitle / date / value = \int_use:N \c_sys_year_int,
+        maketitle / date / font = \large\bfseries,
+		maketitle / logo / value = ita-alt,
+        maketitle / logo / value = pensi,
+
+		% Problemas
+        problems / name = Questão,
+        problems / template = ITA,
+		problems / breakable = true,
+		problems / vfill = false,
+
+		% Figuras
+        graphics / width = \linewidth,
+        graphics / height = 6cm,
     }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
