@@ -14,11 +14,12 @@ MARKDOWN_EXTENSIONS = [
     "pipe_tables",
     "implicit_figures",
     "fenced_divs",
+    "raw_tex",
 ]
 """Extensões de markdown utilizadas"""
 
 PANDOC_MARKDOWN_FORMAT = (
-    f"markdown_strict-raw_html+tex_math_dollars+{'+'.join(MARKDOWN_EXTENSIONS)}"
+    f"markdown_strict-raw_html+raw_tex+tex_math_dollars+{'+'.join(MARKDOWN_EXTENSIONS)}"
 )
 """Formato markdown para o pandoc."""
 
@@ -52,7 +53,7 @@ def html2tex(html_str: str) -> str:
     tex_str = pypandoc.convert_text(
         source=html_str,
         to="latex",
-        format="html+tex_math_dollars+tex_math_single_backslash",
+        format="html+tex_math_dollars+tex_math_single_backslash+raw_tex",
         extra_args=["--quiet"],
         filters=PANDOC_FILTER_PATHS,
     )

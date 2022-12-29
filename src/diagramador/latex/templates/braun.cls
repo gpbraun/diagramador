@@ -2038,12 +2038,13 @@
 \DeclareBraunTemplate { gabarito }
     {
         DIV = 20,
-        font = lmodern,
+        font = helvetica,
         fontsize = 11pt,
-        emph = \itshape,
+		familydefault = sf,
 		page / section / template = ITA,
 
 		% Título
+		maketitle / align = c,
         maketitle / print = { title, subtitle, date },
         maketitle / title / case = upper,
         maketitle / title / font = \Large\bfseries,
