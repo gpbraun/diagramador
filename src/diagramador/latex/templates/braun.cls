@@ -1234,7 +1234,7 @@
 		height .initial:n = 4cm,
 
         path .tl_set:N = \g_braun_graphics_path_tl,
-        path .initial:n = /var/lib/docker/volumes/hedgedoc_uploads/_data/,
+        path .initial:n = ,
 
 	}
 
@@ -1287,16 +1287,16 @@
         \IfValueT {#1} { \keys_set:nn { braun/graphics } {#1} }
         \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_tmpc_tl
 
-		\g_braun_graphics_path_tl \l_tmpb_tl \l_tmpc_tl
+		/var/lib/docker/volumes/hedgedoc_uploads/_data/ \l_tmpb_tl \l_tmpc_tl
         \str_case:VnF \l_tmpc_tl
             {
                 { .svg }
                 { 
-                    \braun_include_svg:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
+                    \braun_include_svg:Nn \l_tmpa_coffin { /var/lib/docker/volumes/hedgedoc_uploads/_data/ \l_tmpb_tl \l_tmpc_tl }
                 }      
             }
             {
-                \braun_include_graphics:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
+                \braun_include_graphics:Nn \l_tmpa_coffin { /var/lib/docker/volumes/hedgedoc_uploads/_data/ \l_tmpb_tl \l_tmpc_tl }
             }
 
         \coffin_typeset:Nnnnn \l_tmpa_coffin {l} {vc} {0pt} {0pt}
