@@ -2,9 +2,9 @@
 
 Esse módulo implementa funções para conversão entre diferentes formatos.
 """
-from braunchem.latex.document import Document
-import braunchem.utils.latex as latex
-import braunchem.utils.config as config
+from diagramador.latex.document import Document
+import diagramador.utils.latex as latex
+import diagramador.utils.config as config
 
 import os
 import shutil
@@ -34,7 +34,7 @@ PANDOC_MARKDOWN_FORMAT = (
 )
 """Formato markdown para o pandoc."""
 
-PANDOC_FILTER_PATH = importlib.resources.files("braunchem.utils.filters")
+PANDOC_FILTER_PATH = importlib.resources.files("diagramador.utils.filters")
 """Diretório contendo os filtros"""
 
 PANDOC_FILTERS = [
