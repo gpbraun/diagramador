@@ -1274,7 +1274,7 @@
 
 	}
 
-\tl_const:Nn \l_hedgedoc_path_tl {../hedgedoc/uploads/}
+\tl_const:Nn \l_hedgedoc_path_tl {../hedgedoc/uploads}
 
 % #1 -> coffin
 % #2 -> content
@@ -1296,7 +1296,7 @@
 \cs_set:Nn \braun_include_graphics:Nn
     { 
 		\braun_graphics_box:Nn #1 
-			{ \legacyincludegraphics { \g_braun_graphics_path_tl / #2 } } 
+			{ \legacyincludegraphics { #2 } } 
     }
 
 % #1 -> coffin
@@ -1304,7 +1304,7 @@
 \cs_set:Nn \braun_include_svg:Nn
     { 
 		\braun_graphics_box:Nn #1 
-			{ \includesvg [pretex=\sffamily] { \g_braun_graphics_path_tl / #2 } } 
+			{ \includesvg [pretex=\sffamily] { #2 } } 
     }
 
 \cs_set_eq:NN \legacyincludegraphics \includegraphics
@@ -1323,11 +1323,11 @@
             {
                 { .svg }
                 { 
-                    \braun_include_svg:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
+                    \braun_include_svg:Nn \l_tmpa_coffin { \l_hedgedoc_path_tl / \l_tmpb_tl \l_tmpc_tl }
                 }      
             }
             {
-                \braun_include_graphics:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
+                \braun_include_graphics:Nn \l_tmpa_coffin { \l_hedgedoc_path_tl / \l_tmpb_tl \l_tmpc_tl }
             }
 
         \coffin_typeset:Nnnnn \l_tmpa_coffin {l} {vc} {0pt} {0pt}
