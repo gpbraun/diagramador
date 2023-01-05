@@ -1719,7 +1719,7 @@
         id .initial:n = ,
 
         path .tl_set:N = \g_braun_graphics_path_tl,
-        path .initial:n = ,
+        path .initial:n = /var/lib/docker/volumes/hedgedoc_uploads/_data/,
 
         points .fp_set:N = \g_braun_problem_points_fp,
         points .initial:n = 1.00,
