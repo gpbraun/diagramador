@@ -1274,7 +1274,7 @@
 
 	}
 
-\tl_const:Nn \l_hedgedoc_path_tl {../../../hedgedoc/uploads/}
+\tl_const:Nn \l_hedgedoc_path_tl {../hedgedoc/uploads/}
 
 % #1 -> coffin
 % #2 -> content
@@ -1295,22 +1295,30 @@
 % #2 -> figure path
 \cs_set:Nn \braun_include_graphics:Nn
     { 
-        \file_if_exist:nT { \g_braun_graphics_path_tl / #2 }
+        \file_if_exist:nTF { \g_braun_graphics_path_tl / #2 }
             { 
                 \braun_graphics_box:Nn #1 
                     { \legacyincludegraphics { \g_braun_graphics_path_tl / #2 } } 
             }
+			{
+				Current~ working~ directory:~ \texttt{\g_file_curr_dir_str}
+				Image~ path:~ \texttt{\l_hedgedoc_path_tl \l_tmpb_tl \l_tmpc_tl}
+			}
     }
 
 % #1 -> coffin
 % #2 -> svg path
 \cs_set:Nn \braun_include_svg:Nn
     { 
-        \file_if_exist:nT { \g_braun_graphics_path_tl / #2 }
+        \file_if_exist:nTF { \g_braun_graphics_path_tl / #2 }
             { 
                 \braun_graphics_box:Nn #1 
                     { \includesvg [pretex=\sffamily] { \g_braun_graphics_path_tl / #2 } } 
             }
+			{
+				Current~ working~ directory:~ \texttt{\g_file_curr_dir_str}
+				Image~ path:~ \texttt{\l_hedgedoc_path_tl \l_tmpb_tl \l_tmpc_tl}
+			}
     }
 
 \cs_set_eq:NN \legacyincludegraphics \includegraphics
@@ -1325,7 +1333,6 @@
         \IfValueT {#1} { \keys_set:nn { braun/graphics } {#1} }
         \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_tmpc_tl
 
-		\l_hedgedoc_path_tl \l_tmpb_tl \l_tmpc_tl
         \str_case:VnF \l_tmpc_tl
             {
                 { .svg }
