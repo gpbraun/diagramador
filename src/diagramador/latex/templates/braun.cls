@@ -1234,7 +1234,7 @@
 		height .initial:n = 4cm,
 
         path .tl_set:N = \g_braun_graphics_path_tl,
-        path .initial:n = ,
+        path .initial:n = /var/lib/docker/volumes/hedgedoc_uploads/_data/,
 
 	}
 
