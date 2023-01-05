@@ -1,7 +1,7 @@
 {
     "id_": "diag",
     "title": "Diagnóstico",
-    "template": "ITA",
+    "template": "IME",
     "problem_sets": [
         {
             "title": "Matemática",
