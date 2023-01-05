@@ -1295,30 +1295,16 @@
 % #2 -> figure path
 \cs_set:Nn \braun_include_graphics:Nn
     { 
-        \file_if_exist:nTF { \g_braun_graphics_path_tl / #2 }
-            { 
-                \braun_graphics_box:Nn #1 
-                    { \legacyincludegraphics { \g_braun_graphics_path_tl / #2 } } 
-            }
-			{
-				Current~ working~ directory:~ \texttt{\g_file_curr_dir_str}
-				Image~ path:~ \texttt{\l_hedgedoc_path_tl \l_tmpb_tl \l_tmpc_tl}
-			}
+		\braun_graphics_box:Nn #1 
+			{ \legacyincludegraphics { \g_braun_graphics_path_tl / #2 } } 
     }
 
 % #1 -> coffin
 % #2 -> svg path
 \cs_set:Nn \braun_include_svg:Nn
     { 
-        \file_if_exist:nTF { \g_braun_graphics_path_tl / #2 }
-            { 
-                \braun_graphics_box:Nn #1 
-                    { \includesvg [pretex=\sffamily] { \g_braun_graphics_path_tl / #2 } } 
-            }
-			{
-				Current~ working~ directory:~ \texttt{\g_file_curr_dir_str}
-				Image~ path:~ \texttt{\l_hedgedoc_path_tl \l_tmpb_tl \l_tmpc_tl}
-			}
+		\braun_graphics_box:Nn #1 
+			{ \includesvg [pretex=\sffamily] { \g_braun_graphics_path_tl / #2 } } 
     }
 
 \cs_set_eq:NN \legacyincludegraphics \includegraphics
@@ -1337,11 +1323,11 @@
             {
                 { .svg }
                 { 
-                    \braun_include_svg:Nn \l_tmpa_coffin { \l_hedgedoc_path_tl \l_tmpb_tl \l_tmpc_tl }
+                    \braun_include_svg:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
                 }      
             }
             {
-                \braun_include_graphics:Nn \l_tmpa_coffin { \l_hedgedoc_path_tl \l_tmpb_tl \l_tmpc_tl }
+                \braun_include_graphics:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
             }
 
         \coffin_typeset:Nnnnn \l_tmpa_coffin {l} {vc} {0pt} {0pt}
