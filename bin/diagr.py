@@ -20,6 +20,7 @@ def main(exam_folder_path):
 
     exam = Exam.parse_bro(cursor, json_path=exam_folder_path.joinpath("input.json"))
     exam.write_pdf(exam_folder_path)
+    exam.write_solutions_pdf(exam_folder_path)
 
 
 if __name__ == "__main__":

@@ -21,6 +21,7 @@ class Problem(BaseModel):
     solution: str = None
     choices: list[str] = None
     correct_choice: int = None
+    data: list[str] = None
     elements: list[str] = None
 
     @property
@@ -75,6 +76,10 @@ class Problem(BaseModel):
         elements = metadata.pop("elementos", None)
         if elements:
             problem["elements"] = list(elements)
+
+        data = metadata.pop("data", None)
+        if data:
+            problem["data"] = list(data)
 
         # conteúdo
         soup = md2soup(content)

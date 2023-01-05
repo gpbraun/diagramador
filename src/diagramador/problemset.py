@@ -1,6 +1,7 @@
-from diagramador.latex.commands import cmd
+from diagramador.latex.commands import cmd, itemize
 from diagramador.latex.commands import section
 from diagramador.problem import Problem
+from diagramador.utils.text import Text
 
 from pydantic import BaseModel
 
@@ -38,27 +39,52 @@ class ProblemSet(BaseModel):
     def __len__(self):
         return len(self.problems)
 
-    def elements(self):
-        """Retorna a união dos elementos de todos os problemas no conjunto."""
+    def tex_elements(self):
         all_elements = QUIM_DEFAULT_ELEMENTS if self.subject == "qui" else []
-
         for problem in self.problems:
             if not problem.elements:
                 continue
             for element in problem.elements:
                 all_elements.append(element)
-        return all_elements
 
-    def tex_elements(self):
-        elements_header = section("Elementos", level=1)
-        return elements_header + cmd(
-            "MolTable", ",".join(str(element) for element in self.elements())
+        elements_cmd = cmd(
+            "MolTable", ",".join(str(element) for element in all_elements)
         )
+
+        if not all_elements:
+            return ""
+
+        elements_header = section("Elementos", level=1)
+
+        return elements_header + elements_cmd
+
+    def tex_data(self):
+        """Retorna a união dos dados de todos os problemas no conjunto."""
+        all_data = []
+
+        for problem in self.problems:
+            if not problem.data:
+                continue
+            for data in problem.data:
+                all_data.append(data)
+
+        if not all_data:
+            return ""
+
+        data_header = section("Dados Adicionais", level=1)
+        all_tex_data = [Text.parse_md(data).tex for data in all_data]
+
+        return data_header + itemize("itemize", all_tex_data)
 
     def tex_header(self):
         section_header = section(self.title, level=0)
         return "\n".join(
-            [section_header, cmd(f"pre{self.subject}"), self.tex_elements()]
+            [
+                section_header,
+                cmd(f"pre{self.subject}"),
+                self.tex_data(),
+                self.tex_elements(),
+            ]
         )
 
     def tex(self, points: str):
