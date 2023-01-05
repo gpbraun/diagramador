@@ -1268,13 +1268,9 @@
 
 		height .dim_set:N = \l_braun_graphics_height_dim,
 		height .initial:n = 4cm,
-
-        path .tl_set:N = \g_braun_graphics_path_tl,
-        path .initial:n = ,
-
 	}
 
-\tl_const:Nn \l_hedgedoc_path_tl {../hedgedoc/uploads}
+\tl_const:Nn \l_hedgedoc_path_tl {../../../hedgedoc/uploads}
 
 % #1 -> coffin
 % #2 -> content
