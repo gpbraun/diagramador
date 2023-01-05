@@ -84,7 +84,9 @@ class ProblemSet(BaseModel):
         return cls(title=title, subject=subject, problems=problems)
 
     @classmethod
-    def parse_hedgedoc(cls, cursor, title: str, hedgedoc_paths: list[str]):
+    def parse_hedgedoc(
+        cls, cursor, title: str, subject: str, hedgedoc_paths: list[str]
+    ):
         """Retorna a prova a partir dos dados do AdminBro."""
         problems = [Problem.parse_hedgedoc(cursor, path) for path in hedgedoc_paths]
-        return cls(title=title, problems=problems)
+        return cls(title=title, subject=subject, problems=problems)
