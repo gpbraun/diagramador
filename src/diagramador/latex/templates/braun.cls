@@ -413,7 +413,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage [ table, dvipsnames ] { xcolor }
-\RequirePackage{ tikz }
+\RequirePackage { tikz }
 
 \cs_gset_eq:NN \legacydefinecolor \definecolor
 \cs_gset_eq:NN \legacycolor       \color
@@ -1291,13 +1291,11 @@
             {
                 { .svg }
                 { 
-                    \file_if_exist_input:nF 
-                        { \g_braun_graphics_path_tl / \l_tmpa_tl / \l_tmpb_tl .tex }
-                        { \braun_include_svg:Nn \l_tmpa_coffin {#2} }
+                    \braun_include_svg:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
                 }      
             }
             {
-                \braun_include_graphics:Nn \l_tmpa_coffin {#2}
+                \braun_include_graphics:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
             }
 
         \coffin_typeset:Nnnnn \l_tmpa_coffin {l} {vc} {0pt} {0pt}
