@@ -1262,7 +1262,7 @@
         \file_if_exist:nT { \g_braun_graphics_path_tl / #2 }
             { 
                 \braun_graphics_box:Nn #1 
-                    { \graphics_include:n { \g_braun_graphics_path_tl / #2 } } 
+                    { \legacyincludegraphics { \g_braun_graphics_path_tl / #2 } } 
             }
     }
 
