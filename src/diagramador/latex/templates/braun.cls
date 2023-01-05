@@ -426,35 +426,6 @@
     }
 
 %============================================================%
-%   PLOTTING
-%============================================================%
-
-\RequirePackage{ pgfplots }
-
-\keys_define:nn { braun/draw/plot }
-    { 
-        unknown .code:n = \exp_args:Ne \pgfplotsset { \l_keys_key_tl = #1 },
-    }
-
-\pgfqkeys { /pgf/number~format }
-    {
-        set~thousands~separator = {},
-        set~decimal~separator = {,\!},
-    }
-
-\pgfplotsset
-    {
-        compat = 1.17,
-        samples = 150,
-        legend~cell~align = left,
-        every~axis~plot/.append~style = {very~thick},
-        every~axis~plot/.append~style = {mark=none},
-        every~axis~plot/.append~style = {mark~options={fill=white}},
-    }
-
-\tikzstyle{every~pin}=[draw=black]
-
-%============================================================%
 %   PALETA DE CORES (BOOTSTRAP)
 %============================================================%
 
@@ -471,27 +442,7 @@
 \definecolor { cyan   } { HTML } { 0dcaf0 } 
 
 % TONS DE CINZA
-\definecolor { gray-100 } { HTML } { f8f9fa }
-\definecolor { gray-200 } { HTML } { e9ecef }
-\definecolor { gray-300 } { HTML } { dee2e6 }
-\definecolor { gray-400 } { HTML } { ced4da }
-\definecolor { gray-500 } { HTML } { adb5bd } 
-\definecolor { gray-600 } { HTML } { 6c757d } 
-\definecolor { gray-700 } { HTML } { 495057 } 
-\definecolor { gray-800 } { HTML } { 343a40 } 
-\definecolor { gray-900 } { HTML } { 212529 } 
- 
-% CORES EM GRÁFICOS
-\pgfplotscreateplotcyclelist { braun-pallet }
-    {
-        { blue },
-        { red },
-        { green },
-    }
-\pgfplotsset
-    {
-        cycle~list~name = braun-pallet,
-    }
+\definecolor { gray } { HTML } { adb5bd } 
 
 %============================================================%
 %   DRAWING KEYS
@@ -974,13 +925,6 @@
 \cs_set:Npn \logo #1
     { \keys_set:nn { braun/maketitle/logo } { value = #1 } }
 
-% #1 -> qrcode link
-\cs_set:Npn \qrcode #1
-    { 
-        \RequirePackage { qrcode }
-        \seq_put_right:Nn \g_braun_logo_value_seq { \qrcode {#1} }
-    }
-
 \coffin_new:N \l_braun_title_logo_r_coffin
 \coffin_new:N \l_braun_title_logo_l_coffin
 
@@ -1186,7 +1130,7 @@
 							\end{tikzpicture}
 						};
 					\end{tikzpicture}
-					\skip_vertical:n { 1em }
+					\skip_vertical:n { 3em }
 					\rowcolors{1}{GreenYellow!20}{GreenYellow!20}
 					\begin{center}
 						\tl_set:Nn \arraystretch {2.5}
@@ -1215,7 +1159,7 @@
 							\hline
 						\end{tabular}
 					\end{center}
-					\skip_vertical:n { 1em }
+					\skip_vertical:n { 2em }
                 }      
             }
             {
@@ -1264,14 +1208,6 @@
 		\tl_use:N \l_braun_title_post_text_tl
 		\group_end:
     }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                              
-%   TABELAS
-%                                              
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -1838,6 +1774,7 @@
             {
                 { IME }
                 {
+					\skip_vertical:n {-2pt}
                     \IMEHeader
                         [
                             \bfseries
@@ -1849,7 +1786,7 @@
                                     drop-zero-decimal=false, 
                                     round-mode=places, 
                                     round-precision=2,
-                                ] 
+                                ]
                                 { \fp_eval:n { \g_braun_problem_points_fp } }
                             \skip_horizontal:n {2em}
                         ]
@@ -1866,7 +1803,7 @@
 						{ 
 							\bfseries\large
 							\tl_use:N \l_braun_problem_name_tl
-							\, \arabic { problem }
+							~ \arabic { problem }
 						}
                 } 
 				{ gabarito }
@@ -1923,6 +1860,55 @@
 		\end{tcolorbox}
         \skip_vertical:n {3em}
     }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   PREÂMBULO DE CADA DISCIPLINA
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ExplSyntaxOff
+
+\def \premat
+	{
+		\subsection*{Considerações}
+		\begin{itemize}
+			\item Considere o sistema de coordenadas cartesiano, a menos que haja indicação contrária.
+		\end{itemize}
+	}
+
+\def \prefis
+	{
+		\subsection*{Dados}
+		\begin{itemize}
+			\item Aceleração local da gravidade, $g = \qty{10}{m.s^{-2}}$
+			\item Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
+			\item Velocidade do som, $v_\mathrm{som} = \qty{340}{m.s^{-1}}$
+			\item Carga elementar, $e = \qty{1,6e-19}{C}$
+			\item Constante de Planck $h = \pu{6,6e-34 m^2.kg.s^{-1}}$
+		\end{itemize}
+
+		\subsection*{Aproximações Numéricas}
+		\begin{itemize}
+			\item $(1 + \alpha)^n \approx n$ para $|\alpha| \ll 1$
+		\end{itemize}
+	}
+
+\def \prequi
+	{
+		\subsection*{Dados}
+		\begin{itemize}
+			\item Constante de Faraday, $F = \qty{96500}{C.mol^{-1}}$
+		\end{itemize}
+
+		\subsection*{Aproximações Numéricas}
+		\begin{itemize}
+			\item $(1 + \alpha)^n \approx n$ para $|\alpha| \ll 1$
+		\end{itemize}
+	}
+
+\ExplSyntaxOn
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -2010,11 +1996,11 @@
 
 \DeclareBraunTemplate { prova }
     {
-        DIV = 16,
+        DIV = 18,
         font = firasans,
         fontsize = 11pt,
-		headinclude=true,
-		footinclude=true,
+		headinclude = true,
+		footinclude = true,
 
 		% Cabeçalho e rodapé
 		page / footer / prova,

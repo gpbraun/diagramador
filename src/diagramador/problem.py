@@ -21,6 +21,7 @@ class Problem(BaseModel):
     solution: str = None
     choices: list[str] = None
     correct_choice: int = None
+    elements: list[str] = None
 
     @property
     def is_objective(self):
@@ -28,14 +29,14 @@ class Problem(BaseModel):
         return True if self.choices else False
 
     def tex_choices(self):
-        """Retorna as alternativas do problema formatadas em latex."""
+        """Retorna as alternativas do problema formatadas em LaTeX."""
         if not self.is_objective:
             return ""
 
         return itemize("choices", self.choices, sep_cmd="item")
 
     def tex_correct_choice(self):
-        """Retorna as respostas do problema formatados em latex."""
+        """Retorna as respostas do problema formatados em LaTeX."""
         if not self.is_objective:
             return ""
 
@@ -58,7 +59,6 @@ class Problem(BaseModel):
         }
 
         problem = env("problem", self.statement + self.tex_choices(), keys=parameters)
-
         solution = env("solution", self.solution, opt=self.tex_correct_choice())
 
         return "\n".join([problem, solution])
@@ -71,6 +71,10 @@ class Problem(BaseModel):
 
         # informações básicas
         problem = {"id_": id_}
+
+        elements = metadata.pop("elementos", None)
+        if elements:
+            problem["elements"] = list(elements)
 
         # conteúdo
         soup = md2soup(content)
@@ -120,6 +124,12 @@ class Problem(BaseModel):
         problem["statement"] = html2tex(soup)
 
         return cls.parse_obj(problem)
+
+    @classmethod
+    def parse_mdfile(cls, file_path: str):
+        path = Path(file_path)
+        problem_id = path.stem
+        return cls.parse_mdstr(problem_id, path.read_text())
 
     @classmethod
     def parse_hedgedoc(cls, cursor, hedgedoc_path: str):
