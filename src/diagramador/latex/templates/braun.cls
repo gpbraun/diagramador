@@ -1289,7 +1289,6 @@
         \IfValueT {#1} { \keys_set:nn { braun/graphics } {#1} }
         \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_tmpc_tl
 
-		\l_hedgedoc_path_tl \l_tmpb_tl \l_tmpc_tl
         \str_case:VnF \l_tmpc_tl
             {
                 { .svg }
