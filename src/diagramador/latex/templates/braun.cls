@@ -1238,7 +1238,7 @@
 
 	}
 
-\tl_set:Nn \l_hedgedoc_path_tl {/var/lib/docker/volumes/hedgedoc_uploads/_data/}
+\tl_const:Nn \l_hedgedoc_path_tl {/var/lib/docker/volumes/hedgedoc_uploads/_data/}
 
 % #1 -> coffin
 % #2 -> content
