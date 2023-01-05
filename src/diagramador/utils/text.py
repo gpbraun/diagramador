@@ -3,8 +3,6 @@
 Esse módulo implementa funções para conversão entre diferentes formatos.
 """
 from diagramador.latex.document import Document
-import diagramador.utils.latex as latex
-import diagramador.utils.config as config
 
 import os
 import shutil
@@ -154,75 +152,6 @@ class Text(pydantic.BaseModel):
         md_str = html2md(html_str)
         tex_str = html2tex(html_str)
         return cls(html=html_str, md=md_str, tex=tex_str)
-
-
-def get_database_paths(database_dir: Path) -> list[Path]:
-    """Retorna os endereço dos arquivos `.md` dos problemas no diretório.
-
-    Args:
-        database_dir (Path): Diretório com os problemas.
-
-    Retorna:
-        list[Path]: Lista com o endereço dos arquivos `.md` de problemas.
-    """
-    logger.info(f"Procurando arquivos no diretório: '{database_dir}'.")
-
-    md_files = []
-
-    for root, _, files in os.walk(database_dir):
-        for file in files:
-            file_path = Path(root).joinpath(file)
-            file_name = file_path.name
-            name = file_path.stem
-            dir_ = Path(root).relative_to(database_dir)
-
-            # problemas
-            if file_path.suffix == ".md":
-                md_files.append(file_path)
-                logging.debug(f"Arquivo '{file_path}' adicionado à lista.")
-                continue
-
-            img_dst_path = config.IMAGES_DIR.joinpath(file_name)
-
-            # figuras
-            if file_path.suffix in [".svg", ".png"]:
-                # se o svg veio de um .tex, continuar
-                if file_path.with_suffix(".tex").exists():
-                    continue
-
-                if img_dst_path.exists():
-                    if file_path.stat().st_mtime < img_dst_path.stat().st_mtime:
-                        continue
-
-                img_dst_path.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy(src=file_path, dst=img_dst_path)
-                logging.info(f"Arquivo '{file_path}' copiado para: '{img_dst_path}'.")
-                continue
-
-            # figuras em LaTeX
-            if file_path.suffix == ".tex":
-                tex_svg_img_dst_path = img_dst_path.with_suffix(".svg")
-                if tex_svg_img_dst_path.exists():
-                    if file_path.stat().st_mtime < tex_svg_img_dst_path.stat().st_mtime:
-                        logging.debug(f"Figura '{file_path}' mantida.")
-                        continue
-
-                tex_img_dst_dir = tex_svg_img_dst_path.parent
-                tex_img_tmp_dir = config.TMP_IMAGES_DIR.joinpath(dir_).joinpath(name)
-                tex_img_tmp_dir.mkdir(parents=True, exist_ok=True)
-
-                tex_doc = Document(
-                    id_=name,
-                    contents=latex.cmd("input", str(file_path.resolve())),
-                    standalone=True,
-                )
-                tex_doc.write_svg(tmp_dir=tex_img_tmp_dir, out_dir=tex_img_dst_dir)
-                shutil.copy(
-                    src=tex_svg_img_dst_path,
-                    dst=file_path.with_suffix(".svg"),
-                )
-
-    return md_files
 
 
 def soup_split_header(soup: bs4.BeautifulSoup, tag="h1"):
