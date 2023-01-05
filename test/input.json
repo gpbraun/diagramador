@@ -1,8 +1,22 @@
 {
     "id_": "diag",
     "title": "Diagnóstico",
-    "template": "IME",
+    "template": "ITA",
     "problem_sets": [
+        {
+            "title": "Matemática",
+            "subject": "mat",
+            "problems": [
+                "test/problema_5.md"
+            ]
+        },
+        {
+            "title": "Física",
+            "subject": "fis",
+            "problems": [
+                "test/problema_5.md"
+            ]
+        },
         {
             "title": "Química",
             "subject": "qui",

@@ -1,9 +1,5 @@
 ---
-elementos: 
-    - N
-    - H
-    - C
-    - O
+elementos: V, Xe
 ---
 
 **Assinale** a alternativa que mais se aproxima da energia liberada por $\pu{5 g}$ de sódio em uma lâmpada que produz luz amarela com comprimento de onda $\pu{590 nm}$.

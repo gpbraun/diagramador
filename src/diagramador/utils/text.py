@@ -28,7 +28,7 @@ MARKDOWN_EXTENSIONS = [
 """Extensões de markdown utilizadas"""
 
 PANDOC_MARKDOWN_FORMAT = (
-    f"markdown_strict-raw_html+tex_math_dollars+{'+'.join(MARKDOWN_EXTENSIONS)}"
+    f"markdown_strict-raw_html+tex_math_dollars+raw_tex+{'+'.join(MARKDOWN_EXTENSIONS)}"
 )
 """Formato markdown para o pandoc."""
 
@@ -65,7 +65,7 @@ def html2md(html_str: str) -> str:
     return pypandoc.convert_text(
         source=html_str,
         to=PANDOC_MARKDOWN_FORMAT,
-        format="html+tex_math_dollars+tex_math_single_backslash",
+        format="html+tex_math_dollars+tex_math_single_backslash+raw_tex",
         extra_args=["--quiet"],
     )
 

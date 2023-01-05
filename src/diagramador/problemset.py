@@ -54,7 +54,7 @@ class ProblemSet(BaseModel):
         if not all_elements:
             return ""
 
-        elements_header = section("Elementos", level=1)
+        elements_header = cmd("small") + section("Elementos", level=2)
 
         return elements_header + elements_cmd
 
@@ -71,7 +71,7 @@ class ProblemSet(BaseModel):
         if not all_data:
             return ""
 
-        data_header = section("Dados Adicionais", level=1)
+        data_header = cmd("small") + section("Dados Adicionais", level=2)
         all_tex_data = [Text.parse_md(data).tex for data in all_data]
 
         return data_header + itemize("itemize", all_tex_data)
@@ -84,6 +84,7 @@ class ProblemSet(BaseModel):
                 cmd(f"pre{self.subject}"),
                 self.tex_data(),
                 self.tex_elements(),
+                cmd(f"bigskip"),
             ]
         )
 

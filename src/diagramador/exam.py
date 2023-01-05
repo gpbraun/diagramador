@@ -1,4 +1,5 @@
 from diagramador.latex.document import Document
+from diagramador.latex.commands import cmd
 from diagramador.problemset import ProblemSet
 
 import json
@@ -19,18 +20,19 @@ class Exam(BaseModel):
         return sum(len(p_set) for p_set in self.problem_sets)
 
     def problem_points(self):
+        """Retorna a pontuação de cada problema."""
         return f"{10/len(self):.2f}"
 
     def tex(self):
         """Retorna os problemas em LaTeX."""
-        return "\n".join(
+        return cmd("newpage").join(
             problem_set.tex(points=self.problem_points())
             for problem_set in self.problem_sets
         )
 
     def tex_solutions(self):
         """Retorna os problemas em LaTeX."""
-        return "\n".join(
+        return cmd("newpage").join(
             problem_set.tex_solutions(points=self.problem_points())
             for problem_set in self.problem_sets
         )

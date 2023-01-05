@@ -75,7 +75,10 @@ class Problem(BaseModel):
 
         elements = metadata.pop("elementos", None)
         if elements:
-            problem["elements"] = list(elements)
+            if isinstance(elements, str):
+                problem["elements"] = elements.split(",")
+            elif isinstance(elements, list):
+                problem["elements"] = elements
 
         data = metadata.pop("data", None)
         if data:

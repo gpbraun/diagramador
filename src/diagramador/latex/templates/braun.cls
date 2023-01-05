@@ -415,6 +415,41 @@
 \RequirePackage [ table, dvipsnames ] { xcolor }
 \RequirePackage { tikz }
 
+%============================================================%
+%   PLOTTING
+%============================================================%
+
+\RequirePackage{ pgfplots }
+
+\keys_define:nn { braun/draw/plot }
+    { 
+        unknown .code:n = \exp_args:Ne \pgfplotsset { \l_keys_key_tl = #1 },
+    }
+
+\pgfqkeys { /pgf/number~format }
+    {
+        set~thousands~separator = {},
+        set~decimal~separator = {,\!},
+    }
+
+\pgfplotsset
+    {
+        compat = 1.17,
+        samples = 150,
+        legend~cell~align = left,
+        every~axis~plot/.append~style = {very~thick},
+        every~axis~plot/.append~style = {mark=none},
+        every~axis~plot/.append~style = {mark~options={fill=white}},
+    }
+
+\tikzstyle{every~pin}=[draw=black]
+
+\AtBeginDocument 
+    {
+        \usepgfplotslibrary{groupplots, fillbetween}
+        \usetikzlibrary{shapes.geometric, calc}
+    }
+
 \cs_gset_eq:NN \legacydefinecolor \definecolor
 \cs_gset_eq:NN \legacycolor       \color
 
@@ -706,6 +741,7 @@
 				}
 				{ IME }
 				{
+					\skip_vertical:n {-5pt}
 					\IMEaltHeader 
 						{ 
 							\bfseries 
@@ -1238,7 +1274,7 @@
 
 	}
 
-\tl_const:Nn \l_hedgedoc_path_tl {/var/lib/docker/volumes/hedgedoc_uploads/_data/}
+\tl_const:Nn \l_hedgedoc_path_tl {../hedgedoc/uploads/}
 
 % #1 -> coffin
 % #2 -> content
@@ -1823,6 +1859,7 @@
     } 
     {
         \braun_end_problem_box:
+		\bigskip
         \bool_if:NT \l_braun_problem_single_page_bool { \newpage }
     }
 
@@ -1872,24 +1909,31 @@
 
 \def \premat
 	{
-		\subsection*{Considerações}
+		\small
+		\subsubsection*{Convenções}
 		\begin{itemize}
-			\item Considere o sistema de coordenadas cartesiano, a menos que haja indicação contrária.
+			\item Considere o sistema de coordenadas cartesiano, a menos que haja indicação contrária
+			\item $\mathbb{N} = \{ 1, 2, 3, \ldots \}$ denota o conjunto dos números naturais
+			\item $\mathbb{R}$ denota o conjunto dos números reais
+			\item $\mathbb{C}$ denota o conjunto dos números complexos
+			\item $i$ denota a unidade imaginária $i^2 = -1$
 		\end{itemize}
 	}
 
 \def \prefis
 	{
-		\subsection*{Dados}
+		\small
+		\subsubsection*{Dados}
 		\begin{itemize}
 			\item Aceleração local da gravidade, $g = \qty{10}{m.s^{-2}}$
 			\item Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
 			\item Velocidade do som, $v_\mathrm{som} = \qty{340}{m.s^{-1}}$
 			\item Carga elementar, $e = \qty{1,6e-19}{C}$
-			\item Constante de Planck $h = \pu{6,6e-34 m^2.kg.s^{-1}}$
+			\item Constante de Planck $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
 		\end{itemize}
 
-		\subsection*{Aproximações Numéricas}
+		\small
+		\subsubsection*{Aproximações Numéricas}
 		\begin{itemize}
 			\item $(1 + \alpha)^n \approx n$ para $|\alpha| \ll 1$
 		\end{itemize}
@@ -1897,14 +1941,21 @@
 
 \def \prequi
 	{
-		\subsection*{Dados}
+		\small
+		\subsubsection*{Dados}
 		\begin{itemize}
+			\item Constante de Avogadro, $N_\mathrm{A} = \qty{6,02e23}{mol^{-1}}$
 			\item Constante de Faraday, $F = \qty{96500}{C.mol^{-1}}$
+			\item Carga elementar, $e = \qty{1,6e-19}{C}$
+			\item Constante dos gases, $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
+			\item Constante de Planck $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
+			\item Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
 		\end{itemize}
 
-		\subsection*{Aproximações Numéricas}
+		\small
+		\subsubsection*{Definições}
 		\begin{itemize}
-			\item $(1 + \alpha)^n \approx n$ para $|\alpha| \ll 1$
+			\item Composição do ar atmosférico: $79\%\; \ce{N2}$ e $21\%\; \ce{O2}$
 		\end{itemize}
 	}
 
