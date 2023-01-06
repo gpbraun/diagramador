@@ -576,22 +576,23 @@
 						\dim_gzero:N \@topnum
 						\raggedright \normalfont
 						\begin{tikzpicture} [ remember~picture, overlay ]
-						\node (header) at ( current~page.north~west )
+						\node at ( current~page.north~west )
 							{
 								\begin{tikzpicture} [ remember~picture, overlay ]
-									\node [ anchor = north~ west,inner~sep = 0pt ] at (0,0)  
+									\node (header) [ anchor = north~ west,inner~sep = 0pt ] at (0,0)  
 										{
 											\legacyincludegraphics
 												[ width = \paperwidth ]
 												{ header.png }
 										};
+									\node [ anchor = east, shift={(-8pt, 0pt)} ] at ( header.east )
+										{
+											\large\bfseries\sffamily
+											IME-ITA
+										};
 								\end{tikzpicture}
 							};
-						\node [ anchor = north~east ] at ( current~page.north~east )
-							{
-								\bfseries\sffamily
-								IME-ITA
-							};
+						
 						\end{tikzpicture}
 						\group_end:
 					},
