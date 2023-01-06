@@ -10,6 +10,7 @@ TEX_TEMPLATES_PATH = importlib.resources.files("diagramador.latex.templates")
 
 TEX_TEMPLATE_FILES = [
     "braun.cls",
+    "braunchem.sty",
     "ime-logo.pdf",
     "ita-logo.pdf",
     "ita-logo-alt.pdf",

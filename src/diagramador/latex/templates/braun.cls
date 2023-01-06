@@ -1768,9 +1768,9 @@
 
 \cs_set:Nn \braun_begin_problem_box:
     { 
+		\braun_ghost_section:
         \bool_if:NF \l_braun_problem_breakable_bool 
             { 
-                \braun_ghost_section:
                 \vbox_set:Nw \l__braun_problem_box 
             }
     }
@@ -1858,6 +1858,7 @@
 		\dim_set_eq:NN \parskip \medskipamount
     } 
     {
+		\bigskip
         \braun_end_problem_box:
         \bool_if:NT \l_braun_problem_single_page_bool { \newpage }
     }
@@ -1903,6 +1904,13 @@
         \skip_vertical:n {3em}
     }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   BRAUNCHEM
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\RequirePackage { braunchem }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -1940,7 +1948,7 @@
 		\small
 		\subsubsection*{Aproximações Numéricas}
 		\begin{itemize}
-			\item $(1 + \alpha)^n \approx n$ para $|\alpha| \ll 1$
+			\item $(1 + \alpha)^n \approx 1 + n \alpha$ para $|\alpha| \ll 1$
 		\end{itemize}
 	}
 

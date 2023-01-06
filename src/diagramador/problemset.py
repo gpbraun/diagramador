@@ -7,15 +7,10 @@ from pydantic import BaseModel
 
 QUIM_DEFAULT_ELEMENTS = [
     "H",
-    "He",
-    "Li",
-    "Be",
-    "B",
     "C",
     "N",
     "O",
     "F",
-    "Ne",
     "Na",
     "Mg",
     "Al",
@@ -23,7 +18,6 @@ QUIM_DEFAULT_ELEMENTS = [
     "P",
     "S",
     "Cl",
-    "Ar",
     "K",
     "Ca",
 ]
