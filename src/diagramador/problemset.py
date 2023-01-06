@@ -10,16 +10,10 @@ QUIM_DEFAULT_ELEMENTS = [
     "C",
     "N",
     "O",
-    "F",
     "Na",
     "Mg",
-    "Al",
-    "Si",
-    "P",
     "S",
     "Cl",
-    "K",
-    "Ca",
 ]
 
 
@@ -48,7 +42,7 @@ class ProblemSet(BaseModel):
         if not all_elements:
             return ""
 
-        elements_header = cmd("small") + section("Elementos", level=2)
+        elements_header = section("Tabela Periódica", level=2) + cmd("small")
 
         return elements_header + elements_cmd
 
@@ -65,7 +59,7 @@ class ProblemSet(BaseModel):
         if not all_data:
             return ""
 
-        data_header = cmd("small") + section("Dados Adicionais", level=2)
+        data_header = section("Dados Adicionais", level=2) + cmd("small")
         all_tex_data = [Text.parse_md(data).tex for data in all_data]
 
         return data_header + itemize("itemize", all_tex_data)
@@ -77,7 +71,7 @@ class ProblemSet(BaseModel):
                 section_header,
                 cmd("Preamble", self.subject),
                 self.tex_data(),
-                # self.tex_elements(),
+                self.tex_elements(),
                 cmd(f"bigskip"),
             ]
         )

@@ -1553,7 +1553,7 @@
 			[
 				enhanced,
 				breakable,
-				title = \textbf{\large Gabarito \IfValueT{#1}{: \; #1}},
+				title = \textbf{\sffamily\large Gabarito \IfValueT{#1}{: \; #1}},
 				coltitle = black,
 				colback = white,
 				boxrule = \g_braun_linewidth_dim,
@@ -1713,7 +1713,7 @@
 		problems / template = prova,
 
 		% Química
-		% chem / elements / display-style = ptable,
+		chem / elements / display-style = ptable,
         
     }
 
@@ -1726,6 +1726,9 @@
         DIV = 18,
         font = firasans,
         fontsize = 10pt,
+		headinclude = true,
+		footinclude = true,
+		linewidth = 1pt,
 
 		% Cabeçalho e rodapé
 		page / footer / prova,

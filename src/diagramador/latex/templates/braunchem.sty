@@ -28,7 +28,7 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-\RequirePackage { l3keys2e, xparse, l3draw, l3graphics, chemfig }
+\RequirePackage { l3keys2e, xparse, chemfig }
 
 \usetikzlibrary{ calc, decorations }
 
@@ -580,20 +580,11 @@
 
 \keys_define:nn { braun/chem/ptable }
 	{
-		property .tl_set:N  = \l_ptable_property_tl ,
+		property .tl_set:N  = \l_ptable_property_tl,
 		property .initial:n = mass,
-
-		color .code:n    = { \color_set_eq:nn {ptable-color} {#1} } ,
-		color .initial:n = black,
 
 		size .dim_set:N = \l_ptable_box_size_dim,
 		size .initial:n = 3.2em,
-
-		scale .fp_set:N = \l_ptable_box_scale_fp,
-		scale .initial:n = 1.0,
-
-		line-width .dim_set:N = \l_ptable_linewidth_dim,
-		line-width .initial:n = 0.4pt,
 
 		symbol-font .tl_set:N  = \l_ptable_symbol_font_tl,
 		symbol-font .initial:n = \large\bfseries\sffamily,
@@ -606,116 +597,97 @@
 	}
 
 %============================================================%
-%   PERIODIC TABLE ELEMENT
+%   ELEMENTO DA TABELA PERIÓDICA
 %============================================================%
 
-\coffin_new:N \l_ptable_element_coffin
-
-\cs_set:Nn \ptable_element:nn
-	{
-		\color_group_begin:
-
-		\dim_set:Nn \l_ptable_box_size_dim {3.2em}
-		\IfNoValueF{#1}{ \keys_set:nn {mendeleev/ptable} {#1} }
-		\color_select:n {ptable-color}	
-
-		\ptable_element_coffin:n {#2}
-
-		\coffin_typeset:Nnnnn \l_ptable_element_coffin {l}{vc}{0pt}{+1ex}
-
-		\color_group_end:
-	}
-
-\cs_set:Nn \ptable_element_coffin:n
-	{
-		\hcoffin_set:Nn \l_ptable_element_coffin
-		{
-			\draw_begin:
-				\draw_linewidth:n { \l_ptable_linewidth_dim }
-				\draw_path_rectangle:nn
-				{ 0cm , 0cm }
-				{ \l_ptable_box_size_dim , \l_ptable_box_size_dim }
-				\draw_path_use_clear:n { stroke }
-			\draw_end:
-		}
-
-		\ptable_box_attach:nnnnnnnn {#1} {symbol} {hc}{vc}{hc}{vc}{0pt}{+0.2ex}
-		\ptable_box_attach:nnnnnnnn {#1} {number} {l}{t}{l}{t}{+0.6ex}{-0.6ex}
-		\ptable_box_attach:nVnnnnnn {#1} \l_ptable_property_tl {hc}{b}{hc}{H}{0pt}{+0.6ex}
-
-		\coffin_scale:NVV \l_ptable_element_coffin \l_ptable_box_scale_fp \l_ptable_box_scale_fp
-	}
-
-\cs_generate_variant:Nn \coffin_scale:Nnn {NVV}
-
-%% ATTACH PARAMETERS
-
-\coffin_new:N \l__ptable_tmp_coffin
-
 % #1 -> element
-% #2 -> property
-% #3, #4, #5, #6, #7, #8 -> coffin attach parameters
-\cs_set:Nn \ptable_box_attach:nnnnnnnn
+\cs_set:Nn \ptable_element:n
 	{
-		\hcoffin_set:Nn \l__ptable_tmp_coffin
-		{
-			\tl_if_exist:cTF {l_ptable_#2_font_tl}
-				{ \tl_use:c {l_ptable_#2_font_tl} }
-				{ \tl_use:N \l_ptable_property_font_tl }
+		\group_begin:
 
-			\GetElementProperty {#1}{#2} 
-		}
-		\coffin_attach:NnnNnnnn \l_ptable_element_coffin {#3}{#4} \l__ptable_tmp_coffin {#5}{#6}{#7}{#8}
+		\begin{tikzpicture}
+			\node (cell) 
+				[
+					draw = black, 
+					minimum~ size=\l_ptable_box_size_dim,
+				] 
+				{ 
+					\tl_use:N \l_ptable_symbol_font_tl
+					\GetElementProperty {#1}{symbol}  
+				};
+			\node (number) 
+				[ 
+					anchor = north~ west,
+				] 
+				at (cell.north~ west)
+				{ 
+					\tl_use:N \l_ptable_number_font_tl
+					\GetElementProperty {#1}{number}  
+				};
+			\node (property) 
+				[ 
+					anchor = south,
+				] 
+				at (cell.south)
+				{ 
+					\tl_use:N \l_ptable_property_font_tl
+					\GetElementProperty {#1}{mass}  
+				};
+		\end{tikzpicture}
+
+		\group_end:
 	}
-
-\cs_generate_variant:Nn \ptable_box_attach:nnnnnnnn {nVnnnnnn}
 
 \NewDocumentCommand \PTableElement { o m }
-	{ \ptable_element:nn {#1}{#2} }
+	{ 
+		\IfNoValueF {#1}
+			{ 
+				\keys_set:nn { braun/chem/ptable } {#1} 
+			}
+
+		\ptable_element:n {#2} 
+	}
 
 %============================================================%
 %   PERIODIC TABLE ROW
 %============================================================%
 
-\keys_define:nn { mendeleev/ptable/row }
+\keys_define:nn { braun/chem/ptable/row }
 	{
-		%% PTABLE ROW SORTING
 		sort .bool_set:N = \l_ptable_row_sort_bool,
 		sort .initial:n  = true,
 	}
 
 \coffin_new:N \l_ptable_row_coffin
 
-% #1 -> ptable keys
-% #2 -> clist with elements
-\cs_set:Nn \ptable_row:nn
+% #1 -> clist with elements
+\cs_set:Nn \ptable_row:n
 	{	
-		\color_group_begin:
+		\group_begin:
 
-		\clist_set:Nn \l_tmpa_clist {#2}
-
-		\dim_set:Nn \l_ptable_box_size_dim {3.2em}
-		\IfNoValueF{#1}{ \keys_set:nn {mendeleev/ptable} {#1} }
-		\color_select:n {ptable-color}	
+		\clist_set:Nn \l_tmpa_clist {#1}
 
 		\bool_if:NT \l_ptable_row_sort_bool
 			{ \mendeleev_organize_elements:N \l_tmpa_clist  }
 
 		\clist_map_inline:Nn \l_tmpa_clist
 			{
-				\ptable_element:nn {} {##1}
-				\skip_horizontal:n {-\l_ptable_linewidth_dim}
+				\ptable_element:n  {##1}
+				\skip_horizontal:n {-0.4pt}
 			}
 
-		\color_group_end:
+		\group_end:
 	}
-\cs_generate_variant:Nn \ptable_row:nn {nV}
 
-\NewDocumentCommand \PTableRow
-	{ o m } { \ptable_row:nn {#1} {#2} }
-
-\NewDocumentCommand \PTableRowExpand
-	{ o m } { \ptable_row:nx {#1} {#2} }
+\NewDocumentCommand \PTableRow { o m } 
+	{
+		\IfNoValueF {#1}
+			{ 
+				\keys_set:nn { braun/chem/ptable } {#1} 
+			}
+		
+		\ptable_row:n {#2}
+	}
 
 %============================================================%
 %   DISPLAY ELEMENTS
@@ -723,7 +695,7 @@
 
 \cs_set:Npn \DisplayElements #1
 	{
-        \str_case:VnF \l_braun_problem_template_tl
+        \str_case:VnF \l_elements_display_style_tl
             {
                 { table }
                 {
@@ -731,7 +703,9 @@
                 }
                 { ptable }
                 {
-                    \PTableRow {#1}
+					\begin{center}
+                    	\PTableRow {#1}
+					\end{center}
                 }
             }
             {
