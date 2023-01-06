@@ -2,7 +2,7 @@
 
 Esse módulo implementa uma classe para os problemas.
 """
-from diagramador.latex.commands import env, itemize
+from diagramador.latex.commands import env, itemize, section
 from diagramador.utils.text import md2soup, soup_split, html2tex
 from diagramador.utils.autoprops import autoprops
 
@@ -54,13 +54,20 @@ class Problem(BaseModel):
 
     def tex_solution(self, points):
         """Retorna o enunciado completo do problema em LaTeX."""
-
         parameters = {
             "points": str(points),
         }
 
         problem = env("problem", self.statement + self.tex_choices(), keys=parameters)
-        solution = env("solution", self.solution, opt=self.tex_correct_choice())
+
+        if self.solution:
+            solution = env("solution", self.solution, opt=self.tex_correct_choice())
+        else:
+            solution = (
+                section(f"Gabarito: {self.tex_correct_choice()}", level=2)
+                if self.tex_correct_choice()
+                else ""
+            )
 
         return "\n".join([problem, solution])
 

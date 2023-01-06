@@ -739,6 +739,16 @@
 							\text_uppercase:n {#2} 
 						}
 				}
+				{ gabarito }
+				{
+					\PensiTitleHeader 
+						{
+							\large
+							\bfseries
+							\sffamily
+							\text_uppercase:n {#2} 
+						}
+				}
 				{ IME }
 				{
 					\skip_vertical:n {-5pt}
@@ -1800,7 +1810,7 @@
             {
                 { IME }
                 {
-					\skip_vertical:n {-2pt}
+					\skip_vertical:n {-5pt}
                     \IMEHeader
                         [
                             \bfseries
@@ -1829,27 +1839,26 @@
 						{ 
 							\bfseries\large
 							\tl_use:N \l_braun_problem_name_tl
-							~ \arabic { problem }
+							\; \arabic { problem }
 						}
                 } 
 				{ gabarito }
                 {
-                    \IMEaltHeader
-                        {
-                            \sffamily\bfseries
-                            \arabic { problem }
-                            \textsuperscript { a } ~
-                            \text_uppercase:n { \l_braun_problem_name_tl }
-                        }
+                    \PensiHeader
+						{ 
+							\bfseries\large\sffamily
+							\tl_use:N \l_braun_problem_name_tl
+							\; \arabic { problem }
+						}
                 }       
             }
             {
                 \textbf{ \l_braun_problem_name_tl \; \arabic { problem }. \quad }   
             }
+		\dim_set_eq:NN \parskip \medskipamount
     } 
     {
         \braun_end_problem_box:
-		\bigskip
         \bool_if:NT \l_braun_problem_single_page_bool { \newpage }
     }
 
@@ -1865,9 +1874,11 @@
 
 \NewDocumentEnvironment { solution } { o }
     {
+		\medskip
 		\begin{tcolorbox}
 			[
 				enhanced,
+				breakable,
 				title = \textbf{\large Gabarito \IfValueT{#1}{: \; #1}},
 				coltitle = black,
 				colback = white,
@@ -1882,9 +1893,13 @@
 						colback = white,
 					}
 			]	
+		\dim_set_eq:NN \parskip \medskipamount
+		\medskip
     } 
     {
+		\medskip
 		\end{tcolorbox}
+		\bigskip
         \skip_vertical:n {3em}
     }
 
@@ -2068,7 +2083,7 @@
         font = helvetica,
         fontsize = 11pt,
 		familydefault = sf,
-		page / section / template = ITA,
+		page / section / template = gabarito,
 
 		% Título
 		maketitle / align = c,
@@ -2085,7 +2100,7 @@
 
 		% Problemas
         problems / name = Questão,
-        problems / template = ITA,
+        problems / template = gabarito,
 		problems / breakable = true,
 		problems / vfill = false,
 
