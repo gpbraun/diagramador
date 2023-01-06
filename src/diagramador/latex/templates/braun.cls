@@ -290,7 +290,6 @@
 	}
     
 %% CABEÇALHO IME CENTRALIZADO
-
 \DeclareBraunHeader { IME }
     {
         \skip_horizontal:n { -\marginparsep }
@@ -305,7 +304,6 @@
     }
 
 %% CABEÇALHO IME NORMAL (PROBLEMAS)
-
 \DeclareBraunHeader { IMEproblem }
     {
         \skip_horizontal:n { -\marginparsep }
@@ -330,7 +328,6 @@
     }
 
 %% CABEÇALHO DE QUESTÃO PENSI
-
 \DeclareBraunHeader { Pensi }
     {
         % rectangle
@@ -352,7 +349,6 @@
     }
 
 %% CABEÇALHO DE TÍTULO PENSI
-
 \DeclareBraunHeader { PensiTitle }
     {
 		\draw_path_rectangle:nn 
@@ -379,22 +375,22 @@
 \NewDocumentCommand \FooterTriangle { m }
     {
         \group_begin:
-            \draw_begin:
-                \draw_linewidth:V \g_braun_linewidth_dim
-                \hcoffin_set:Nn   \l__braun_txta_coffin {#1}
-                \dim_set:Nn \l_triangle_side_dim { 0.6cm }
-                % triangle
-                \draw_path_lineto:n
-                    { \draw_point_polar:nn { \l_triangle_side_dim } {   0 } }
-                \draw_path_lineto:n
-                    { \draw_point_polar:nn { \l_triangle_side_dim } { 120 } }
-                \draw_path_lineto:n
-                    { \draw_point_polar:nn { \l_triangle_side_dim } { 240 } }
-                \draw_path_close:
-                \color_fill:n { black!10 }
-                \draw_path_use_clear:n { fill }
-                \draw_coffin_use:Nnn \l__braun_txta_coffin {hc} {vc}
-            \draw_end:
+		\draw_begin:
+			\draw_linewidth:V \g_braun_linewidth_dim
+			\hcoffin_set:Nn   \l__braun_txta_coffin {#1}
+			\dim_set:Nn \l_triangle_side_dim { 0.6cm }
+			% triangle
+			\draw_path_lineto:n
+				{ \draw_point_polar:nn { \l_triangle_side_dim } {   0 } }
+			\draw_path_lineto:n
+				{ \draw_point_polar:nn { \l_triangle_side_dim } { 120 } }
+			\draw_path_lineto:n
+				{ \draw_point_polar:nn { \l_triangle_side_dim } { 240 } }
+			\draw_path_close:
+			\color_fill:n { black!10 }
+			\draw_path_use_clear:n { stroke, fill }
+			\draw_coffin_use:Nnn \l__braun_txta_coffin {hc} {vc}
+		\draw_end:
         \group_end:
     }
 
@@ -580,7 +576,7 @@
 						\dim_gzero:N \@topnum
 						\raggedright \normalfont
 						\begin{tikzpicture} [ remember~picture, overlay ]
-						\node at ( current~page.north~west )
+						\node (header) at ( current~page.north~west )
 							{
 								\begin{tikzpicture} [ remember~picture, overlay ]
 									\node [ anchor = north~ west,inner~sep = 0pt ] at (0,0)  
@@ -590,6 +586,11 @@
 												{ header.png }
 										};
 								\end{tikzpicture}
+							};
+						\node [ anchor = north~east ] at ( current~page.north~east )
+							{
+								\bfseries\sffamily
+								IME-ITA
 							};
 						\end{tikzpicture}
 						\group_end:
@@ -926,7 +927,7 @@
 
 \NewTitleElement 
 	[ font = \LARGE\bfseries ] 
-	{ subtitle }
+	{ affiliation }
 
 \NewTitleElement 
 	[ font = \LARGE\bfseries ] 
@@ -1134,42 +1135,6 @@
 
 		\str_case:VnF \l_braun_title_template_tl
             {
-                { prova }
-                { 
-					\bool_set_false:N \l_braun_if_maketitle_bool
-					\raggedright \normalfont
-					\begin{tikzpicture} [ remember~picture, overlay ]
-					\node at ( current~page.north~west )
-						{
-							\begin{tikzpicture} [ remember~picture, overlay ]
-								\node [ anchor = north~ west, inner~ sep = 0pt ] at (0,0)  
-									{
-										\legacyincludegraphics
-											[ width = \paperwidth ]
-											{ header_first.png }
-									};
-									\draw [ anchor = east, align = right ] 
-									( \paperwidth - 1.5cm, -1.3cm ) node 
-									{
-										\group_begin:
-											\LARGE
-											\sffamily
-											\bfseries
-											\PrintTitle
-										\group_end:
-										\\[1ex]
-										\group_begin:
-											\large
-											\sffamily
-											\bfseries
-											IME-ITA
-										\group_end:
-									};
-							\end{tikzpicture}
-						};
-					\end{tikzpicture}
-					\skip_vertical:n { 3em }
-                }   
 				{ pensi }
                 { 
 					\bool_set_false:N \l_braun_if_maketitle_bool
@@ -1198,7 +1163,7 @@
 											\large
 											\sffamily
 											\bfseries
-											IME-ITA
+											\PrintAffiliation
 										\group_end:
 									};
 							\end{tikzpicture}
@@ -1419,7 +1384,6 @@
 		label  = \textbullet,
 	]
 	{ datalist } [ \item ]
-
 
 %============================================================%
 %   PROBLEM ENVIRONMENT
@@ -1660,33 +1624,6 @@
     }
 
 %============================================================%
-%   PROVA
-%============================================================%
-
-\DeclareBraunTemplate { prova }
-    {
-        DIV = 18,
-        font = firasans,
-        fontsize = 11pt,
-		headinclude = true,
-		footinclude = true,
-
-		% Cabeçalho e rodapé
-		page / footer / prova,
-		page / header / prova,
-		page / section / template = prova,
-
-		% Título
-		maketitle / template = prova,
-		maketitle / pre-text = \thispagestyle { plain.scrheadings },
-
-		% Problemas
-		problems / name = Questão,
-		problems / template = prova,
-        
-    }
-
-%============================================================%
 %   PENSI GENÉRICO
 %============================================================%
 
@@ -1715,6 +1652,15 @@
 		% Química
 		chem / elements / display-style = ptable,
         
+    }
+
+%============================================================%
+%   PROVA
+%============================================================%
+
+\DeclareBraunTemplate { prova }
+    {
+        pensi
     }
 
 %============================================================%
@@ -1844,6 +1790,8 @@
 						\item Carga~ elementar,~ $e = \qty{1,6e-19}{C}$
 						\item Constante~ dos~ gases,~ $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
 						\item Constante~ de~ Planck,~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
+						\item Constante~ de~ Rydberg,~ $\mathcal{R} \c_math_subscript_token \mathrm{\infty} = \qty{1,1e-7}{mol^{-1}}$
+						\item Constante~ de~ atoionização~ da água,~ $K \c_math_subscript_token \mathrm{w} = \num{1e-14}$
 						\item Velocidade~ da~ luz~ no~ vácuo,~ $c = \qty{3e8}{m.s^{-1}}$
 					\end{datalist}
 
@@ -1875,7 +1823,8 @@
 
 \def \TestInstructions
 	{
-		\rowcolors{1}{GreenYellow!20}{GreenYellow!20}
+		\group_begin:
+		\rowcolors{1}{yellow!15}{yellow!15}
 		\begin{center}
 			\tl_set:Nn \arraystretch {2.5}
 			\begin{tabular}{ | p{0.7\textwidth} p{0.25\textwidth} | }
@@ -1903,6 +1852,10 @@
 				\hline
 			\end{tabular}
 		\end{center}
+
+		\bigskip
+		
+		\group_end:
 	}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

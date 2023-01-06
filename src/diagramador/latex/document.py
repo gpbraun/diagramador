@@ -38,7 +38,6 @@ def run_latexmk(tex_path: Path):
 
 def run_tectonic(tex_path: Path):
     """Executa o comando `latexmk`."""
-    print(f"Compilando o arquivo '{tex_path}' com tectonic.")
     tectonic = subprocess.run(
         [
             shutil.which("tectonic"),
@@ -65,14 +64,12 @@ class Document:
         self,
         id_: str,
         title: str | None = None,
-        author: str | None = None,
         affiliation: str | None = None,
         template: str = "",
         contents: str = None,
     ):
         self.id_ = id_
         self.title = title
-        self.author = author
         self.affiliation = affiliation
         self.template = template
         self.contents = contents
@@ -83,7 +80,6 @@ class Document:
         return "\n".join(
             [
                 cmd("title", self.title) if self.title else "",
-                cmd("author", self.author) if self.author else "",
                 cmd("affiliation", self.affiliation) if self.affiliation else "",
             ]
         )

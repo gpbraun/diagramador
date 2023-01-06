@@ -14,6 +14,7 @@ class Exam(BaseModel):
     id_: str
     title: str
     template: str
+    affiliation: str | None = None
     problem_sets: list[ProblemSet]
 
     def __len__(self):
@@ -25,7 +26,8 @@ class Exam(BaseModel):
 
     def tex(self):
         """Retorna os problemas em LaTeX."""
-        return cmd("newpage").join(
+        header = cmd("TestInstructions") if self.template == "prova" else ""
+        return header + cmd("newpage").join(
             problem_set.tex(points=self.problem_points())
             for problem_set in self.problem_sets
         )
@@ -42,6 +44,7 @@ class Exam(BaseModel):
         return Document(
             id_=self.id_,
             title=self.title,
+            affiliation=self.affiliation,
             template=self.template,
             contents=self.tex(),
         )
@@ -51,6 +54,7 @@ class Exam(BaseModel):
         return Document(
             id_=self.id_ + "_gabarito",
             title=self.title,
+            affiliation=self.affiliation,
             template="gabarito",
             contents=self.tex_solutions(),
         )
