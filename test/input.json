@@ -1,7 +1,7 @@
 {
     "id_": "diag",
     "title": "Diagnóstico",
-    "template": "IME",
+    "template": "prova",
     "problem_sets": [
         {
             "title": "Química",

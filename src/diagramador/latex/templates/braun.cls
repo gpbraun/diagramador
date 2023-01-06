@@ -1207,6 +1207,42 @@
 					\end{center}
 					\skip_vertical:n { 2em }
                 }      
+				{ gabarito }
+				{ 
+					\bool_set_false:N \l_braun_if_maketitle_bool
+					\raggedright \normalfont
+					\begin{tikzpicture} [ remember~picture, overlay ]
+					\node at ( current~page.north~west )
+						{
+							\begin{tikzpicture} [ remember~picture, overlay ]
+								\node [ anchor = north~ west, inner~ sep = 0pt ] at (0,0)  
+									{
+										\legacyincludegraphics
+											[ width = \paperwidth ]
+											{ header_first.png }
+									};
+									\draw [ anchor = east, align = right ] 
+									( \paperwidth - 1.5cm, -1.3cm ) node 
+									{
+										\group_begin:
+											\LARGE
+											\sffamily
+											\bfseries
+											Gabarito
+										\group_end:
+										\\[1ex]
+										\group_begin:
+											\large
+											\sffamily
+											\bfseries
+											\PrintTitle
+										\group_end:
+									};
+							\end{tikzpicture}
+						};
+					\end{tikzpicture}
+					\skip_vertical:n { 4em }
+				}      
             }
             {
 				\str_if_eq:VnTF \l_braun_title_align_tl {r}
@@ -2087,24 +2123,32 @@
 
 \DeclareBraunTemplate { gabarito }
     {
-        DIV = 20,
+        DIV = 18,
         font = helvetica,
         fontsize = 11pt,
 		familydefault = sf,
+
+		% Cabeçalho e rodapé
+		page / footer / prova,
+		page / header / prova,
 		page / section / template = gabarito,
 
 		% Título
-		maketitle / align = c,
-        maketitle / print = { title, subtitle, date },
-        maketitle / title / case = upper,
-        maketitle / title / font = \Large\bfseries,
-		maketitle / subtitle /value = Turma~ IME-ITA,
-        maketitle / subtitle / case = upper,
-		maketitle / subtitle / font = \large\bfseries,
-        maketitle / date / value = \int_use:N \c_sys_year_int,
-        maketitle / date / font = \large\bfseries,
-		maketitle / logo / value = ita-alt,
-        maketitle / logo / value = pensi,
+		maketitle / template = gabarito,
+		maketitle / pre-text = \thispagestyle { plain.scrheadings },
+
+		% Título
+		% maketitle / align = c,
+        % maketitle / print = { title, subtitle, date },
+        % maketitle / title / case = upper,
+        % maketitle / title / font = \Large\bfseries,
+		% maketitle / subtitle /value = Turma~ IME-ITA,
+        % maketitle / subtitle / case = upper,
+		% maketitle / subtitle / font = \large\bfseries,
+        % maketitle / date / value = \int_use:N \c_sys_year_int,
+        % maketitle / date / font = \large\bfseries,
+		% maketitle / logo / value = ita-alt,
+        % maketitle / logo / value = pensi,
 
 		% Problemas
         problems / name = Questão,
