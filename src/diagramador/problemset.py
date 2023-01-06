@@ -42,7 +42,7 @@ class ProblemSet(BaseModel):
                 all_elements.append(element)
 
         elements_cmd = cmd(
-            "MolTable", ",".join(str(element) for element in all_elements)
+            "DisplayElements", ",".join(str(element) for element in all_elements)
         )
 
         if not all_elements:
@@ -75,9 +75,9 @@ class ProblemSet(BaseModel):
         return "\n".join(
             [
                 section_header,
-                cmd(f"pre{self.subject}"),
+                cmd("Preamble", self.subject),
                 self.tex_data(),
-                self.tex_elements(),
+                # self.tex_elements(),
                 cmd(f"bigskip"),
             ]
         )
@@ -93,7 +93,7 @@ class ProblemSet(BaseModel):
         if not self.problems:
             return ""
 
-        header = section(self.title, level=0)
+        header = section(f"Gabarito {self.title}", level=0)
         return header + "\n".join(
             problem.tex_solution(points=points) for problem in self.problems
         )

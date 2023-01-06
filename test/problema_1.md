@@ -6,7 +6,7 @@ Você trabalha em um laboratório que investiga as propriedades de nanomateriais
 
 a. **Determine** as configurações eletrônicas do $\ce{Cd}$ e do $\ce{Se}$.
 b. **Determine** o grupo e o período do $\ce{Cd}$ e do $\ce{Se}$ na Tabela Periódica.
-c. **Explique** qual elemento tem maior probabilidade de formar um ânion no composto iônico $\ce{CdS}$.
+c. **Explique** qual elemento tem maior probabilidade de formar um ânion no composto iônico $\ce{CdSe}$.
 d. **Calcule** volume de solução de selênio precisa ser adicionado à solução de $\ce{CdO}$.
 
 ---

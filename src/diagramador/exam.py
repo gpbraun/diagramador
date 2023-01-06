@@ -50,7 +50,7 @@ class Exam(BaseModel):
         """Cria o arquivo `pdf` do tópico."""
         return Document(
             id_=self.id_ + "_gabarito",
-            title="Gabarito " + self.title,
+            title=self.title,
             template="gabarito",
             contents=self.tex_solutions(),
         )

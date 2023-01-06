@@ -14,7 +14,7 @@
 %
 %============================================================%
 %
-%  GABRIEL P. BRAUN, 2019-2021
+%  GABRIEL P. BRAUN, 2019-2023
 %
 %============================================================%
 %
@@ -137,8 +137,6 @@
 
 \cs_set:Nn \braun_select_font:
     {
-        %% font names
-        \RequirePackage { anyfontsize }
         \str_case:Vn \g_braun_font_tl
             {
                 { lmodern }
@@ -154,11 +152,6 @@
                 {
                     \RequirePackage { lmodern }
 					\RequirePackage [ scaled ] { FiraSans }
-                }
-                { paratype }
-                {
-                    \RequirePackage { paratype }
-                    \RequirePackage { eulervm  }
                 }  
                 { helvetica }
                 { 
@@ -219,8 +212,7 @@
 
 \RequirePackage { mathtools, amssymb, textcomp }
 
-\numberwithin { equation     } { section }
-% \mathtoolsset { showonlyrefs }
+\numberwithin { equation } { section }
 
 \cs_set_eq:NN \degree \textdegree
 
@@ -240,7 +232,7 @@
 \cs_set_eq:NN \pu \mathrm
 
 %============================================================%
-%   CHEMISTRY
+%   BASIC CHEMISTRY
 %============================================================%
 
 \RequirePackage [ version=4 ] { mhchem }
@@ -297,9 +289,24 @@
 			}
 	}
     
-%% CABEÇALHO IME NORMAL
+%% CABEÇALHO IME CENTRALIZADO
 
 \DeclareBraunHeader { IME }
+    {
+        \skip_horizontal:n { -\marginparsep }
+        \draw_path_rectangle:nn 
+            { 0cm  , 0cm }
+            { \linewidth + 2 \marginparsep ,  \coffin_ht:N \l__braun_txtb_coffin + 1em }
+        \color_fill:n { white }
+        \draw_path_use_clear:n { stroke, fill }
+        \draw_transform_shift:n 
+            { \linewidth / 2 + \marginparsep ,  0.5em }
+        \draw_coffin_use:Nnn \l__braun_txta_coffin {hc} {H}
+    }
+
+%% CABEÇALHO IME NORMAL (PROBLEMAS)
+
+\DeclareBraunHeader { IMEproblem }
     {
         \skip_horizontal:n { -\marginparsep }
         \draw_path_rectangle:nn 
@@ -322,22 +329,7 @@
         \draw_coffin_use:Nnn \l__braun_txta_coffin {l} {H}
     }
 
-%% CABEÇALHO IME CENTRALIZADO
-
-\DeclareBraunHeader { IMEalt }
-    {
-        \skip_horizontal:n { -\marginparsep }
-        \draw_path_rectangle:nn 
-            { 0cm  , 0cm }
-            { \linewidth + 2 \marginparsep ,  \coffin_ht:N \l__braun_txtb_coffin + 1em }
-        \color_fill:n { white }
-        \draw_path_use_clear:n { stroke, fill }
-        \draw_transform_shift:n 
-            { \linewidth / 2 + \marginparsep ,  0.5em }
-        \draw_coffin_use:Nnn \l__braun_txta_coffin {hc} {H}
-    }
-
-%% CABEÇALHO P
+%% CABEÇALHO DE QUESTÃO PENSI
 
 \DeclareBraunHeader { Pensi }
     {
@@ -359,7 +351,7 @@
 		\draw_coffin_use:Nnn \l__braun_txta_coffin {l} {H}
     }
 
-%% CABEÇALHO P
+%% CABEÇALHO DE TÍTULO PENSI
 
 \DeclareBraunHeader { PensiTitle }
     {
@@ -412,8 +404,10 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage [ table, dvipsnames ] { xcolor }
+\RequirePackage [ table ] { xcolor }
 \RequirePackage { tikz }
+
+\RequirePackage { braunchem }
 
 %============================================================%
 %   PLOTTING
@@ -475,9 +469,7 @@
 \definecolor { green  } { HTML } { 198754 } 
 \definecolor { teal   } { HTML } { 20c997 } 
 \definecolor { cyan   } { HTML } { 0dcaf0 } 
-
-% TONS DE CINZA
-\definecolor { gray } { HTML } { adb5bd } 
+\definecolor { gray   } { HTML } { adb5bd } 
 
 %============================================================%
 %   DRAWING KEYS
@@ -752,7 +744,7 @@
 				{ IME }
 				{
 					\skip_vertical:n {-5pt}
-					\IMEaltHeader 
+					\IMEHeader 
 						{ 
 							\bfseries 
 							\normalsize  
@@ -1177,38 +1169,9 @@
 						};
 					\end{tikzpicture}
 					\skip_vertical:n { 3em }
-					\rowcolors{1}{GreenYellow!20}{GreenYellow!20}
-					\begin{center}
-						\tl_set:Nn \arraystretch {2.5}
-						\begin{tabular}{ | p{0.7\textwidth} p{0.25\textwidth} | }
-							\hline
-							Nome:~ \hrulefill &
-							Turma:~ IME-ITA \\
-							Unidade:~ \hrulefill
-							\quad
-							Professor:~ \hrulefill &
-							Data:~ \PrintDate
-							\\
-							\hline
-							\textbf{Instruções:}
-							\group_begin:
-							\begin{itemize}[noitemsep]
-								\item Faça~ sua~ avaliação~ à~ caneta.
-								\item Resoluções~ a~ lápis~ não~ serão~ corrigidas.
-								\item Questões~ discursivas~ sem~ desenvolvimento~ não~ serão~ consideradas.
-								\item Não~ serão~ fornecidas~ folhas~ para~ rascunho.
-							\end{itemize}
-							\group_end:
-								&
-								\multicolumn { 1 } { |l| } { \textbf{Nota:} }
-							\\
-							\hline
-						\end{tabular}
-					\end{center}
-					\skip_vertical:n { 2em }
-                }      
-				{ gabarito }
-				{ 
+                }   
+				{ pensi }
+                { 
 					\bool_set_false:N \l_braun_if_maketitle_bool
 					\raggedright \normalfont
 					\begin{tikzpicture} [ remember~picture, overlay ]
@@ -1228,21 +1191,21 @@
 											\LARGE
 											\sffamily
 											\bfseries
-											Gabarito
+											\PrintTitle
 										\group_end:
 										\\[1ex]
 										\group_begin:
 											\large
 											\sffamily
 											\bfseries
-											\PrintTitle
+											IME-ITA
 										\group_end:
 									};
 							\end{tikzpicture}
 						};
 					\end{tikzpicture}
-					\skip_vertical:n { 4em }
-				}      
+					\skip_vertical:n { 5em }
+                }         
             }
             {
 				\str_if_eq:VnTF \l_braun_title_align_tl {r}
@@ -1316,7 +1279,8 @@
 		height .initial:n = 4cm,
 	}
 
-\tl_const:Nn \l_hedgedoc_path_tl {../../../hedgedoc/uploads}
+% Não alterar!
+\tl_const:Nn \l_hedgedoc_path_tl { ../../../hedgedoc/uploads }
 
 % #1 -> coffin
 % #2 -> content
@@ -1401,338 +1365,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   ELEMENTS
-%                                              
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%============================================================%
-%   GET PROPERTY FROM ELEMENT SYMBOL/NUMBER
-%============================================================%
-
-% #1 -> element symbol
-% #2 -> property
-\cs_new:Nn \elements_get_property_S:nn % get from symbol
-	{ \prop_item:cn { c_elements_#1_prop } {#2} }
-\cs_generate_variant:Nn \elements_get_property_S:nn {nV}
-
-% #1 -> element atomic number
-% #2 -> property
-\cs_new:Nn \elements_get_property_Z:nn % get from number
-	{ 
-	\prop_item:cn 
-			{ c_elements_ \clist_item:Nn \c_elements_clist {#1} _prop } {#2} 
-	}
-\cs_generate_variant:Nn \elements_get_property_Z:nn {nV}
-
-% #1 -> element symbol/atomic number
-% #2 -> property
-\cs_new:Npn \GetElementProperty #1 #2 % get from symbol or number
-	{
-		\regex_match:nnTF {\d} {#1}
-			{ \elements_get_property_Z:nn {#1}{#2} }
-			{ \elements_get_property_S:nn {#1}{#2} }
-	}
-
-%============================================================%
-%   ORGANIZE ELEMENT LIST
-%============================================================%
-
-\clist_new:N \l__mendeleev_organize_tmp_clist
-
-% #1 -> clist with elements
-\cs_set:Nn \mendeleev_organize_elements:N
-	{
-		\clist_map_inline:Nn #1
-			{
-				\clist_put_right:Ne \l__mendeleev_organize_tmp_clist 
-					{ \elements_get_property_S:nn {##1} { number } }
-			}
-		\clist_remove_duplicates:N \l__mendeleev_organize_tmp_clist
-		\clist_sort:Nn \l__mendeleev_organize_tmp_clist
-			{
-				\int_compare:nNnTF { ##1 } > { ##2 }
-					{ \sort_return_swapped: }
-					{ \sort_return_same: }
-			}
-		\clist_set_eq:NN #1 \l__mendeleev_organize_tmp_clist
-	}
-
-%============================================================%
-%   PRINT ELEMENT TABLE
-%============================================================%
-
-% #1 -> elements clist
-\cs_set:Npn \MolTable #1
-	{
-		\begin{center}
-		\group_begin:
-			\clist_set:Nn \l_tmpa_clist {#1}
-			%% SORTING
-			\bool_if:NT \l_ptable_row_sort_bool
-				{ \mendeleev_organize_elements:N \l_tmpa_clist  }
-			%% SPLIT COLUMNS
-			\legacy_if:nTF { @twocolumn } 
-				{ \tl_set_eq:NN \l_tmpb_clist \l_tmpa_clist }
-				{ % split element list in two
-					\bool_while_do:nn 
-						{ 
-							\int_compare_p:n 
-								{ 
-									\clist_count:N \l_tmpa_clist > 
-									\clist_count:N \l_tmpb_clist 
-								} 
-						}
-						{
-							\clist_pop:NNT \l_tmpa_clist \l_tmpa_tl
-								{ \clist_put_right:NV \l_tmpb_clist \l_tmpa_tl }
-						}
-				}
-			%% TABLE
-			\exp_args:Nx \tabular 
-				{ 		
-					\legacy_if:nTF { @twocolumn } 
-						{
-							c 
-							S[ table-format = 2   ] 
-							S[ 
-								round-mode = places,
-								round-precision = 2,
-								table-format = 3.2, 
-								drop-zero-decimal = false 
-							]
-						}
-						{
-							c 
-							S[ table-format = 2   ] 
-							S[ 
-								round-mode = places,
-								round-precision = 2,
-								table-format = 3.2, 
-								drop-zero-decimal = false 
-							]
-							c 
-							S[ table-format = 2   ] 
-							S[ 
-								round-mode = places,
-								round-precision = 2,
-								table-format = 3.2, 
-								drop-zero-decimal = false 
-							]
-						}
-				}
-				\toprule
-				\legacy_if:nTF { @twocolumn } 
-					{ % top header with one column
-						{ Elemento    } \c_alignment_token 
-						{ Número      } \c_alignment_token 
-						{ Massa~Molar } 
-					}
-					{ % top header with two columns
-						{ Elemento    } \c_alignment_token 
-						{ Número      } \c_alignment_token 
-						{ Massa~Molar } \c_alignment_token 
-						{ Elemento    } \c_alignment_token 
-						{ Número      } \c_alignment_token 
-						{ Massa~Molar }
-					}
-				\tex_cr:D
-				\legacy_if:nTF { @twocolumn } 
-					{ % top header with one column
-						{ Químico }                   \c_alignment_token 
-						{ Atômico }                   \c_alignment_token 
-						{ ( \unit { g.mol^{-1} } ) } 
-					}
-					{  % top header with two columns
-						{ Químico }                   \c_alignment_token 
-						{ Atômico }                   \c_alignment_token 
-						{ ( \unit { g.mol^{-1} } ) }  \c_alignment_token  
-						{ Químico }                   \c_alignment_token 
-						{ Atômico }                   \c_alignment_token 
-						{ ( \unit { g.mol^{-1} } ) } 
-					}
-				\tex_cr:D
-				\midrule 
-				\bool_do_until:nn { \clist_if_empty_p:N \l_tmpb_clist }
-					{
-						\legacy_if:nTF { @twocolumn } 
-							{
-								\elements_ita_ptable_row:N \l_tmpb_clist
-							}
-							{
-								\elements_ita_ptable_row:N \l_tmpb_clist 
-								\c_alignment_token
-								\elements_ita_ptable_row:N \l_tmpa_clist 
-							}
-						\tex_cr:D
-					}
-				\bottomrule
-			\endtabular
-		\group_end:
-		\end{center}
-		\bigskip
-	}
-
-% #1 -> clist with elements
-\cs_set:Nn \elements_ita_ptable_row:N
-	{
-		\clist_gpop:NNT #1 \l_tmpa_tl
-		{
-			\tl_gset_eq:NN \g_tmpa_tl \l_tmpa_tl
-			\elements_get_property_Z:Vn \g_tmpa_tl {symbol}
-			\c_alignment_token
-			\tl_use:N \g_tmpa_tl
-			\c_alignment_token
-			\elements_get_property_Z:Vn \g_tmpa_tl {mass}
-		}
-	}
-
-\cs_generate_variant:Nn \elements_get_property_Z:nn {Vn}
-
-%============================================================%
-%   ELEMENT BOXES
-%============================================================%
-
-\keys_define:nn { mendeleev/ptable }
-	{
-		property .tl_set:N  = \l_ptable_property_tl ,
-		property .initial:n = mass,
-
-		color .code:n    = { \color_set_eq:nn {ptable-color} {#1} } ,
-		color .initial:n = black,
-
-		size .dim_set:N = \l_ptable_box_size_dim,
-		size .initial:n = 3.2em,
-
-		scale .fp_set:N = \l_ptable_box_scale_fp,
-		scale .initial:n = 1.0,
-
-		line-width .dim_set:N = \l_ptable_line_width_dim,
-		line-width .initial:n = 0.4pt,
-
-		symbol-font .tl_set:N  = \l_ptable_symbol_font_tl,
-		symbol-font .initial:n = \large\bfseries\sffamily,
-
-		number-font .tl_set:N  = \l_ptable_number_font_tl,
-		number-font .initial:n = \mdseries\scriptsize\sffamily,
-
-		property-font .tl_set:N  = \l_ptable_property_font_tl,
-		property-font .initial:n = \mdseries\scriptsize\sffamily,
-	}
-
-%============================================================%
-%   PERIODIC TABLE ELEMENT
-%============================================================%
-
-\coffin_new:N \l_ptable_element_coffin
-
-\cs_set:Nn \ptable_element:nn
-	{
-		\color_group_begin:
-
-		\dim_set:Nn \l_ptable_box_size_dim {3.2em}
-		\IfNoValueF{#1}{ \keys_set:nn {mendeleev/ptable} {#1} }
-		\color_select:n {ptable-color}	
-
-		\ptable_element_coffin:n {#2}
-
-		\coffin_typeset:Nnnnn \l_ptable_element_coffin {l}{vc}{0pt}{+1ex}
-
-		\color_group_end:
-	}
-
-\cs_set:Nn \ptable_element_coffin:n
-	{
-		\hcoffin_set:Nn \l_ptable_element_coffin
-		{
-			\draw_begin:
-				\draw_linewidth:n { \l_ptable_line_width_dim }
-				\draw_path_rectangle:nn
-				{ 0cm , 0cm }
-				{ \l_ptable_box_size_dim , \l_ptable_box_size_dim }
-				\draw_path_use_clear:n { stroke }
-			\draw_end:
-		}
-
-		\ptable_box_attach:nnnnnnnn {#1} {symbol} {hc}{vc}{hc}{vc}{0pt}{+0.2ex}
-		\ptable_box_attach:nnnnnnnn {#1} {number} {l}{t}{l}{t}{+0.6ex}{-0.6ex}
-		\ptable_box_attach:nVnnnnnn {#1} \l_ptable_property_tl {hc}{b}{hc}{H}{0pt}{+0.6ex}
-
-		\coffin_scale:NVV \l_ptable_element_coffin \l_ptable_box_scale_fp \l_ptable_box_scale_fp
-	}
-
-\cs_generate_variant:Nn \coffin_scale:Nnn {NVV}
-
-%% ATTACH PARAMETERS
-
-\coffin_new:N \l__ptable_tmp_coffin
-
-% #1 -> element
-% #2 -> property
-% #3, #4, #5, #6, #7, #8 -> coffin attach parameters
-\cs_set:Nn \ptable_box_attach:nnnnnnnn
-	{
-		\hcoffin_set:Nn \l__ptable_tmp_coffin
-		{
-			\tl_if_exist:cTF {l_ptable_#2_font_tl}
-				{ \tl_use:c {l_ptable_#2_font_tl} }
-				{ \tl_use:N \l_ptable_property_font_tl }
-
-			\GetElementProperty {#1}{#2} 
-		}
-		\coffin_attach:NnnNnnnn \l_ptable_element_coffin {#3}{#4} \l__ptable_tmp_coffin {#5}{#6}{#7}{#8}
-	}
-
-\cs_generate_variant:Nn \ptable_box_attach:nnnnnnnn {nVnnnnnn}
-
-\NewDocumentCommand \PTableElement { o m }
-	{ \ptable_element:nn {#1}{#2} }
-
-%============================================================%
-%   PERIODIC TABLE ROW
-%============================================================%
-
-\keys_define:nn { mendeleev/ptable/row }
-	{
-		%% PTABLE ROW SORTING
-		sort .bool_set:N = \l_ptable_row_sort_bool,
-		sort .initial:n  = true,
-	}
-
-\coffin_new:N \l_ptable_row_coffin
-
-% #1 -> ptable keys
-% #2 -> clist with elements
-\cs_set:Nn \ptable_row:nn
-	{	
-		\color_group_begin:
-
-		\clist_set:Nn \l_tmpa_clist {#2}
-
-		\dim_set:Nn \l_ptable_box_size_dim {3.2em}
-		\IfNoValueF{#1}{ \keys_set:nn {mendeleev/ptable} {#1} }
-		\color_select:n {ptable-color}	
-
-		\bool_if:NT \l_ptable_row_sort_bool
-			{ \mendeleev_organize_elements:N \l_tmpa_clist  }
-
-		\clist_map_inline:Nn \l_tmpa_clist
-			{
-				\ptable_element:nn {} {##1}
-				\skip_horizontal:n {-0.1ex}
-			}
-
-		\color_group_end:
-	}
-\cs_generate_variant:Nn \ptable_row:nn {nV}
-
-\NewDocumentCommand \PTableRow
-	{ o m } { \ptable_row:nn {#1} {#2} }
-
-\NewDocumentCommand \PTableRowExpand
-	{ o m } { \ptable_row:nx {#1} {#2} }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                              
 %   PROBLEMS
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1761,16 +1393,13 @@
         vfill .default:n  = true,
     }
 
-
-\cs_set:Npn \path #1 { \seq_put_right:Nn \l_file_search_path_seq {#1} }
-
 %============================================================%
-%   CUSTOM LISTS FOR PROBLEMS
+%   NOVOS AMBIENTES PARA LSITAS
 %============================================================%
 
 \RequirePackage { tasks, enumitem }
 
-%%% CHOICES
+%%% ALTERNATIVAS
 
 \NewTasksEnvironment
 	[
@@ -1782,6 +1411,15 @@
 		label-offset = 0.7em,
 	]
 	{ choices } [ \item ]
+
+%%% DADOS NA CAPA
+
+\NewTasksEnvironment
+	[
+		label  = \textbullet,
+	]
+	{ datalist } [ \item ]
+
 
 %============================================================%
 %   PROBLEM ENVIRONMENT
@@ -1828,7 +1466,6 @@
 
 \newcounter { problem }
 
-
 % #1 -> set keys: braun/problem
 \NewDocumentEnvironment { problem } { O{} }
     {
@@ -1847,7 +1484,7 @@
                 { IME }
                 {
 					\skip_vertical:n {-5pt}
-                    \IMEHeader
+                    \IMEproblemHeader
                         [
                             \bfseries
                             \skip_horizontal:n {2em}
@@ -1873,7 +1510,7 @@
                 {
                     \PensiHeader
 						{ 
-							\bfseries\large
+							\sffamily\bfseries
 							\tl_use:N \l_braun_problem_name_tl
 							\; \arabic { problem }
 						}
@@ -1919,15 +1556,17 @@
 				title = \textbf{\large Gabarito \IfValueT{#1}{: \; #1}},
 				coltitle = black,
 				colback = white,
+				boxrule = \g_braun_linewidth_dim,
 				attach~ boxed~ title~ to~ top~ center =
 					{
 						yshift = -3mm,
-						yshifttext = -1mm
+						yshifttext = -1mm,
 					},
 				boxed~ title~ style =
 					{
 						size = small,
 						colback = white,
+						boxrule = \g_braun_linewidth_dim,
 					}
 			]	
 		\dim_set_eq:NN \parskip \medskipamount
@@ -1939,76 +1578,6 @@
 		\bigskip
         \skip_vertical:n {3em}
     }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                              
-%   BRAUNCHEM
-%                                              
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-\RequirePackage { braunchem }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                              
-%   PREÂMBULO DE CADA DISCIPLINA
-%                                              
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\ExplSyntaxOff
-
-\def \premat
-	{
-		\small
-		\subsubsection*{Convenções}
-		\begin{itemize}
-			\item Considere o sistema de coordenadas cartesiano, a menos que haja indicação contrária
-			\item $\mathbb{N} = \{ 1, 2, 3, \ldots \}$ denota o conjunto dos números naturais
-			\item $\mathbb{R}$ denota o conjunto dos números reais
-			\item $\mathbb{C}$ denota o conjunto dos números complexos
-			\item $i$ denota a unidade imaginária $i^2 = -1$
-		\end{itemize}
-	}
-
-\def \prefis
-	{
-		\small
-		\subsubsection*{Dados}
-		\begin{itemize}
-			\item Aceleração local da gravidade, $g = \qty{10}{m.s^{-2}}$
-			\item Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
-			\item Velocidade do som, $v_\mathrm{som} = \qty{340}{m.s^{-1}}$
-			\item Carga elementar, $e = \qty{1,6e-19}{C}$
-			\item Constante de Planck $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
-		\end{itemize}
-
-		\small
-		\subsubsection*{Aproximações Numéricas}
-		\begin{itemize}
-			\item $(1 + \alpha)^n \approx 1 + n \alpha$ para $|\alpha| \ll 1$
-		\end{itemize}
-	}
-
-\def \prequi
-	{
-		\small
-		\subsubsection*{Dados}
-		\begin{itemize}
-			\item Constante de Avogadro, $N_\mathrm{A} = \qty{6,02e23}{mol^{-1}}$
-			\item Constante de Faraday, $F = \qty{96500}{C.mol^{-1}}$
-			\item Carga elementar, $e = \qty{1,6e-19}{C}$
-			\item Constante dos gases, $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
-			\item Constante de Planck $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
-			\item Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
-		\end{itemize}
-
-		\small
-		\subsubsection*{Definições}
-		\begin{itemize}
-			\item Composição do ar atmosférico: $79\%\; \ce{N2}$ e $21\%\; \ce{O2}$
-		\end{itemize}
-	}
-
-\ExplSyntaxOn
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -2118,15 +1687,17 @@
     }
 
 %============================================================%
-%   GABARITO
+%   PENSI GENÉRICO
 %============================================================%
 
-\DeclareBraunTemplate { gabarito }
+\DeclareBraunTemplate { pensi }
     {
         DIV = 18,
-        font = helvetica,
+        font = firasans,
         fontsize = 11pt,
-		familydefault = sf,
+		headinclude = true,
+		footinclude = true,
+		linewidth = 1pt,
 
 		% Cabeçalho e rodapé
 		page / footer / prova,
@@ -2134,21 +1705,36 @@
 		page / section / template = gabarito,
 
 		% Título
-		maketitle / template = gabarito,
+		maketitle / template = pensi,
 		maketitle / pre-text = \thispagestyle { plain.scrheadings },
 
+		% Problemas
+		problems / name = Questão,
+		problems / template = prova,
+
+		% Química
+		% chem / elements / display-style = ptable,
+        
+    }
+
+%============================================================%
+%   GABARITO
+%============================================================%
+
+\DeclareBraunTemplate { gabarito }
+    {
+        DIV = 18,
+        font = firasans,
+        fontsize = 10pt,
+
+		% Cabeçalho e rodapé
+		page / footer / prova,
+		page / header / prova,
+		page / section / template = gabarito,
+
 		% Título
-		% maketitle / align = c,
-        % maketitle / print = { title, subtitle, date },
-        % maketitle / title / case = upper,
-        % maketitle / title / font = \Large\bfseries,
-		% maketitle / subtitle /value = Turma~ IME-ITA,
-        % maketitle / subtitle / case = upper,
-		% maketitle / subtitle / font = \large\bfseries,
-        % maketitle / date / value = \int_use:N \c_sys_year_int,
-        % maketitle / date / font = \large\bfseries,
-		% maketitle / logo / value = ita-alt,
-        % maketitle / logo / value = pensi,
+		maketitle / template = pensi,
+		maketitle / pre-text = \thispagestyle { plain.scrheadings },
 
 		% Problemas
         problems / name = Questão,
@@ -2187,922 +1773,133 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \RequirePackage { hyperref }
+
 \exp_args:Nx \hypersetup
 	{
-		pdftitle    = Gabriel~ Braun,
-		pdfauthor   = Gabriel~ Braun,
+		pdftitle    = Braun,
+		pdfauthor   = Braun,
 		pdfkeywords = {IME, ITA, Olimpíadas},
-		pdfproducer = Gabriel~ Braun,
-		pdfcreator  = Gabriel~ Braun,
+		pdfproducer = Braun,
+		pdfcreator  = Braun,
 	}
-
 
 \recalctypearea
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   CONSTANTS DATABASE
+%   MACROS ESPECÍFICAS PARA ALGUMAS PROVAS
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\prop_const_from_keyval:Nn \c_constants_g_prop
-	{
-		symbol = g, 
-		name = Aceleração da gravidade, 
-		value = 9.8, 
-		unit = m.s^{-2},
-	}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                              
-%   ELEMENTS DATABASE
-%                                              
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\clist_const:Nn \c_elements_clist
-	{
-		H,	He,	Li,	Be,	B,	C,	N,	O,	F,	Ne,	Na,	Mg,	Al,	Si,	
-		P,	S,	Cl,	Ar,	K,	Ca,	Sc,	Ti,	V,	Cr,	Mn,	Fe,	Co,	Ni,	
-		Cu,	Zn,	Ga,	Ge,	As,	Se,	Br,	Kr,	Rb,	Sr,	Y,	Zr,	Nb,	Mo,	
-		Tc,	Ru,	Rh,	Pd,	Ag,	Cd,	In,	Sn,	Sb,	Te,	I,	Xe,	Cs,	Ba,	
-		La,	Ce,	Pr,	Nd,	Pm,	Sm,	Eu,	Gd,	Tb,	Dy,	Ho,	Er,	Tm,	Yb,	
-		Lu,	Hf,	Ta,	W,	Re,	Os,	Ir,	Pt,	Au,	Hg,	Tl,	Pb,	Bi,	Po,	
-		At,	Rn,	Fr,	Ra,	Ac,	Th,	Pa,	U,	Np,	Pu,	Am,	Cm,	Bk,	Cf,	
-		Es,	Fm,	Md,	No,	Lr,	Rf,	Db,	Sg,	Bh,	Hs,	Mt
-	}
-
-\prop_const_from_keyval:Nn \c_elements_H_prop
-	{
-		number = 1, 
-		symbol = H, 
-		name = Hydrogen, 
-		mass = 1.01, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_He_prop
-	{
-		number = 2, 
-		symbol = He, 
-		name = Helium, 
-		mass = 4.00, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Li_prop
-	{
-		number = 3, 
-		symbol = Li, 
-		name = Lithium, 
-		mass = 6.94, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Be_prop
-	{
-		number = 4, 
-		symbol = Be, 
-		name = Beryllium, 
-		mass = 9.01, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_B_prop
-	{
-		number = 5, 
-		symbol = B, 
-		name = Boron, 
-		mass = 10.81, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_C_prop
-	{
-		number = 6, 
-		symbol = C, 
-		name = Carbon, 
-		mass = 12.01, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_N_prop
-	{
-		number = 7, 
-		symbol = N, 
-		name = Nitrogen, 
-		mass = 14.01, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_O_prop
-	{
-		number = 8, 
-		symbol = O, 
-		name = Oxygen, 
-		mass = 16.00, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_F_prop
-	{
-		number = 9, 
-		symbol = F, 
-		name = Fluorine, 
-		mass = 19.00, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ne_prop
-	{
-		number = 10, 
-		symbol = Ne, 
-		name = Neon, 
-		mass = 20.18, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Na_prop
-	{
-		number = 11, 
-		symbol = Na, 
-		name = Sodium, 
-		mass = 22.99, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Mg_prop
-	{
-		number = 12, 
-		symbol = Mg, 
-		name = Magnesium, 
-		mass = 24.31, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Al_prop
-	{
-		number = 13, 
-		symbol = Al, 
-		name = Aluminium, 
-		mass = 26.98, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Si_prop
-	{
-		number = 14, 
-		symbol = Si, 
-		name = Silicon, 
-		mass = 28.09, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_P_prop
-	{
-		number = 15, 
-		symbol = P, 
-		name = Phosphorus, 
-		mass = 30.97, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_S_prop
-	{
-		number = 16, 
-		symbol = S, 
-		name = Sulfur, 
-		mass = 32.06, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Cl_prop
-	{
-		number = 17, 
-		symbol = Cl, 
-		name = Chlorine, 
-		mass = 35.45, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ar_prop
-	{
-		number = 18, 
-		symbol = Ar, 
-		name = Argon, 
-		mass = 39.95, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_K_prop
-	{
-		number = 19, 
-		symbol = K, 
-		name = Potassium, 
-		mass = 39.10, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ca_prop
-	{
-		number = 20, 
-		symbol = Ca, 
-		name = Calcium, 
-		mass = 40.08, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Sc_prop
-	{
-		number = 21, 
-		symbol = Sc, 
-		name = Scandium, 
-		mass = 44.96, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ti_prop
-	{
-		number = 22, 
-		symbol = Ti, 
-		name = Titanium, 
-		mass = 47.87, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_V_prop
-	{
-		number = 23, 
-		symbol = V, 
-		name = Vanadium, 
-		mass = 50.94, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Cr_prop
-	{
-		number = 24, 
-		symbol = Cr, 
-		name = Chromium, 
-		mass = 52.00, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Mn_prop
-	{
-		number = 25, 
-		symbol = Mn, 
-		name = Manganese, 
-		mass = 54.94, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Fe_prop
-	{
-		number = 26, 
-		symbol = Fe, 
-		name = Iron, 
-		mass = 55.84, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Co_prop
-	{
-		number = 27, 
-		symbol = Co, 
-		name = Cobalt, 
-		mass = 58.93, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ni_prop
-	{
-		number = 28, 
-		symbol = Ni, 
-		name = Nickel, 
-		mass = 58.69, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Cu_prop
-	{
-		number = 29, 
-		symbol = Cu, 
-		name = Copper, 
-		mass = 63.55, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Zn_prop
-	{
-		number = 30, 
-		symbol = Zn, 
-		name = Zinc, 
-		mass = 65.38, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ga_prop
-	{
-		number = 31, 
-		symbol = Ga, 
-		name = Gallium, 
-		mass = 69.72, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ge_prop
-	{
-		number = 32, 
-		symbol = Ge, 
-		name = Germanium, 
-		mass = 72.63, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_As_prop
-	{
-		number = 33, 
-		symbol = As, 
-		name = Arsenic, 
-		mass = 74.92, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Se_prop
-	{
-		number = 34, 
-		symbol = Se, 
-		name = Selenium, 
-		mass = 78.97, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Br_prop
-	{
-		number = 35, 
-		symbol = Br, 
-		name = Bromine, 
-		mass = 79.90, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Kr_prop
-	{
-		number = 36, 
-		symbol = Kr, 
-		name = Krypton, 
-		mass = 83.80, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Rb_prop
-	{
-		number = 37, 
-		symbol = Rb, 
-		name = Rubidium, 
-		mass = 85.47, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Sr_prop
-	{
-		number = 38, 
-		symbol = Sr, 
-		name = Strontium, 
-		mass = 87.62, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Y_prop
-	{
-		number = 39, 
-		symbol = Y, 
-		name = Yttrium, 
-		mass = 88.91, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Zr_prop
-	{
-		number = 40, 
-		symbol = Zr, 
-		name = Zirconium, 
-		mass = 91.22, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Nb_prop
-	{
-		number = 41, 
-		symbol = Nb, 
-		name = Niobium, 
-		mass = 92.91, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Mo_prop
-	{
-		number = 42, 
-		symbol = Mo, 
-		name = Molybdenum, 
-		mass = 95.95, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Tc_prop
-	{
-		number = 43, 
-		symbol = Tc, 
-		name = Technetium, 
-		mass = 97.91, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ru_prop
-	{
-		number = 44, 
-		symbol = Ru, 
-		name = Ruthenium, 
-		mass = 101.07, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Rh_prop
-	{
-		number = 45, 
-		symbol = Rh, 
-		name = Rhodium, 
-		mass = 102.91, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Pd_prop
-	{
-		number = 46, 
-		symbol = Pd, 
-		name = Palladium, 
-		mass = 106.42, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ag_prop
-	{
-		number = 47, 
-		symbol = Ag, 
-		name = Silver, 
-		mass = 107.87, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Cd_prop
-	{
-		number = 48, 
-		symbol = Cd, 
-		name = Cadmium, 
-		mass = 112.41, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_In_prop
-	{
-		number = 49, 
-		symbol = In, 
-		name = Indium, 
-		mass = 114.82, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Sn_prop
-	{
-		number = 50, 
-		symbol = Sn, 
-		name = Tin, 
-		mass = 118.71, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Sb_prop
-	{
-		number = 51, 
-		symbol = Sb, 
-		name = Antimony, 
-		mass = 121.76, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Te_prop
-	{
-		number = 52, 
-		symbol = Te, 
-		name = Tellurium, 
-		mass = 127.60, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_I_prop
-	{
-		number = 53, 
-		symbol = I, 
-		name = Iodine, 
-		mass = 126.90, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Xe_prop
-	{
-		number = 54, 
-		symbol = Xe, 
-		name = Xenon, 
-		mass = 131.29, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Cs_prop
-	{
-		number = 55, 
-		symbol = Cs, 
-		name = Caesium, 
-		mass = 132.91, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ba_prop
-	{
-		number = 56, 
-		symbol = Ba, 
-		name = Barium, 
-		mass = 137.33, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_La_prop
-	{
-		number = 57, 
-		symbol = La, 
-		name = Lanthanum, 
-		mass = 138.91, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ce_prop
-	{
-		number = 58, 
-		symbol = Ce, 
-		name = Cerium, 
-		mass = 140.12, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Pr_prop
-	{
-		number = 59, 
-		symbol = Pr, 
-		name = Praseodymium, 
-		mass = 140.91, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Nd_prop
-	{
-		number = 60, 
-		symbol = Nd, 
-		name = Neodymium, 
-		mass = 144.24, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Pm_prop
-	{
-		number = 61, 
-		symbol = Pm, 
-		name = Promethium, 
-		mass = 144.91, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Sm_prop
-	{
-		number = 62, 
-		symbol = Sm, 
-		name = Samarium, 
-		mass = 150.36, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Eu_prop
-	{
-		number = 63, 
-		symbol = Eu, 
-		name = Europium, 
-		mass = 151.96, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Gd_prop
-	{
-		number = 64, 
-		symbol = Gd, 
-		name = Gadolinium, 
-		mass = 157.25, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Tb_prop
-	{
-		number = 65, 
-		symbol = Tb, 
-		name = Terbium, 
-		mass = 158.93, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Dy_prop
-	{
-		number = 66, 
-		symbol = Dy, 
-		name = Dysprosium, 
-		mass = 162.50, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ho_prop
-	{
-		number = 67, 
-		symbol = Ho, 
-		name = Holmium, 
-		mass = 164.93, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Er_prop
-	{
-		number = 68, 
-		symbol = Er, 
-		name = Erbium, 
-		mass = 167.26, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Tm_prop
-	{
-		number = 69, 
-		symbol = Tm, 
-		name = Thulium, 
-		mass = 168.93, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Yb_prop
-	{
-		number = 70, 
-		symbol = Yb, 
-		name = Ytterbium, 
-		mass = 173.05, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Lu_prop
-	{
-		number = 71, 
-		symbol = Lu, 
-		name = Lutetium, 
-		mass = 174.97, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Hf_prop
-	{
-		number = 72, 
-		symbol = Hf, 
-		name = Hafnium, 
-		mass = 178.49, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ta_prop
-	{
-		number = 73, 
-		symbol = Ta, 
-		name = Tantalum, 
-		mass = 180.95, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_W_prop
-	{
-		number = 74, 
-		symbol = W, 
-		name = Tungsten, 
-		mass = 183.84, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Re_prop
-	{
-		number = 75, 
-		symbol = Re, 
-		name = Rhenium, 
-		mass = 186.21, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Os_prop
-	{
-		number = 76, 
-		symbol = Os, 
-		name = Osmium, 
-		mass = 190.23, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ir_prop
-	{
-		number = 77, 
-		symbol = Ir, 
-		name = Iridium, 
-		mass = 192.22, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Pt_prop
-	{
-		number = 78, 
-		symbol = Pt, 
-		name = Platinum, 
-		mass = 195.08, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Au_prop
-	{
-		number = 79, 
-		symbol = Au, 
-		name = Gold, 
-		mass = 196.97, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Hg_prop
-	{
-		number = 80, 
-		symbol = Hg, 
-		name = Mercury, 
-		mass = 200.59, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Tl_prop
-	{
-		number = 81, 
-		symbol = Tl, 
-		name = Thallium, 
-		mass = 204.38, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Pb_prop
-	{
-		number = 82, 
-		symbol = Pb, 
-		name = Lead, 
-		mass = 207.20, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Bi_prop
-	{
-		number = 83, 
-		symbol = Bi, 
-		name = Bismuth, 
-		mass = 208.98, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Po_prop
-	{
-		number = 84, 
-		symbol = Po, 
-		name = Polonium, 
-		mass = 208.98, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_At_prop
-	{
-		number = 85, 
-		symbol = At, 
-		name = Astatine, 
-		mass = 209.99, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Rn_prop
-	{
-		number = 86, 
-		symbol = Rn, 
-		name = Radon, 
-		mass = 222.02, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Fr_prop
-	{
-		number = 87, 
-		symbol = Fr, 
-		name = Francium, 
-		mass = 223.02, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ra_prop
-	{
-		number = 88, 
-		symbol = Ra, 
-		name = Radium, 
-		mass = 226.03, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Ac_prop
-	{
-		number = 89, 
-		symbol = Ac, 
-		name = Actinium, 
-		mass = 227.03, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Th_prop
-	{
-		number = 90, 
-		symbol = Th, 
-		name = Thorium, 
-		mass = 232.04, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Pa_prop
-	{
-		number = 91, 
-		symbol = Pa, 
-		name = Protactinium, 
-		mass = 231.04, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_U_prop
-	{
-		number = 92, 
-		symbol = U, 
-		name = Uranium, 
-		mass = 238.03, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Np_prop
-	{
-		number = 93, 
-		symbol = Np, 
-		name = Neptunium, 
-		mass = 237.05, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Pu_prop
-	{
-		number = 94, 
-		symbol = Pu, 
-		name = Plutonium, 
-		mass = 244.06, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Am_prop
-	{
-		number = 95, 
-		symbol = Am, 
-		name = Americium, 
-		mass = 243.06, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Cm_prop
-	{
-		number = 96, 
-		symbol = Cm, 
-		name = Curium, 
-		mass = 247.07, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Bk_prop
-	{
-		number = 97, 
-		symbol = Bk, 
-		name = Berkelium, 
-		mass = 247.07, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Cf_prop
-	{
-		number = 98, 
-		symbol = Cf, 
-		name = Californium, 
-		mass = 251.08, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Es_prop
-	{
-		number = 99, 
-		symbol = Es, 
-		name = Einsteinium, 
-		mass = 252.08, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Fm_prop
-	{
-		number = 100, 
-		symbol = Fm, 
-		name = Fermium, 
-		mass = 257.10, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Md_prop
-	{
-		number = 101, 
-		symbol = Md, 
-		name = Mendelevium, 
-		mass = 258.10, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_No_prop
-	{
-		number = 102, 
-		symbol = No, 
-		name = Nobelium, 
-		mass = 259.10, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Lr_prop
-	{
-		number = 103, 
-		symbol = Lr, 
-		name = Lawrencium, 
-		mass = 262.11, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Rf_prop
-	{
-		number = 104, 
-		symbol = Rf, 
-		name = Rutherfordium, 
-		mass = 267.12, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Db_prop
-	{
-		number = 105, 
-		symbol = Db, 
-		name = Dubnium, 
-		mass = 268.13, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Sg_prop
-	{
-		number = 106, 
-		symbol = Sg, 
-		name = Seaborgium, 
-		mass = 271.13, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Bh_prop
-	{
-		number = 107, 
-		symbol = Bh, 
-		name = Bohrium, 
-		mass = 272.14, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Hs_prop
-	{
-		number = 108, 
-		symbol = Hs, 
-		name = Hassium, 
-		mass = 270.13, 
-	}
-
-\prop_const_from_keyval:Nn \c_elements_Mt_prop
-	{
-		number = 109, 
-		symbol = Mt, 
-		name = Meitnerium, 
-		mass = 276.15, 
+%============================================================%
+%   PREÂMBULO DAS DISCIPLINAS
+%============================================================%
+
+\cs_set:Npn \Preamble #1
+    {
+		\group_begin:
+
+        \str_case:nn {#1}
+            {
+                { mat }
+                {
+					\subsubsection*{Convenções}
+					\begin{itemize}
+						\item Considere~ o~ sistema~ de~ coordenadas~ cartesiano,~ a~ menos~ que~ haja~ indicação~ contrária.
+						\item $\mathbb{N} = \{ 1, 2, 3, \ldots \}$ denota~ o~ conjunto~ dos~ números~ naturais.
+						\item $\mathbb{R}$ denota~ o~ conjunto~ dos~ números~ reais.
+						\item $\mathbb{C}$ denota~ o~ conjunto~ dos~ números~ complexos.
+						\item $i$ denota~ a~ unidade~ imaginária,~ $i^2 = -1$.
+					\end{itemize}
+                }
+				{ fis }
+                {
+                    \subsubsection*{Dados}
+					\small
+					\begin{datalist}(2)
+						\item Aceleração~ local~ da~ gravidade,~ $g = \qty{10}{m.s^{-2}}$
+						\item Velocidade~ da~ luz~ no~ vácuo, $c = \qty{3e8}{m.s^{-1}}$
+						\item Velocidade~ do~ som,~ $v_\mathrm{som} = \qty{340}{m.s^{-1}}$
+						\item Carga~ elementar,~ $e = \qty{1,6e-19}{C}$
+						\item Constante~ de~ Planck~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
+					\end{datalist}
+
+					\subsubsection*{Aproximações Numéricas}
+					\small
+					\begin{itemize}
+						\item $(1 + \alpha)^n \approx 1 + n \alpha$ ~para~ $|\alpha| \ll 1$
+					\end{itemize}
+                } 
+				{ qui }
+                {
+                    \subsubsection*{Dados}
+					\small
+					\begin{datalist}(2)
+						\item Constante~ de~ Avogadro,~ $N \c_math_subscript_token \mathrm{A} = \qty{6,02e23}{mol^{-1}}$
+						\item Constante~ de~ Faraday,~ $F = \qty{96500}{C.mol^{-1}}$
+						\item Carga~ elementar,~ $e = \qty{1,6e-19}{C}$
+						\item Constante~ dos~ gases,~ $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
+						\item Constante~ de~ Planck,~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
+						\item Velocidade~ da~ luz~ no~ vácuo,~ $c = \qty{3e8}{m.s^{-1}}$
+					\end{datalist}
+
+					\subsubsection*{Definições}
+					\small
+					\begin{itemize}
+						\item Composição~ do~ ar~ atmosférico:~ $79\%\; \ce{N2}$ ~e~ $21\%\; \ce{O2}$
+					\end{itemize}
+
+					\subsubsection*{Aproximações~ Numéricas}
+					\small
+					\begin{datalist}(6)
+						\item $\sqrt{2} = \num{1,4}$
+						\item $\sqrt{3} = \num{1,7}$
+						\item $\sqrt{5} = \num{2,2}$
+						\item $\log 2   = \num{0,3}$
+						\item $\log 3   = \num{0,5}$
+						\item $\ln 10   = \num{2,3}$
+					\end{datalist}
+                }       
+            }
+
+		\group_end:
+    } 
+
+%============================================================%
+%   INSTRUÇÕES PARA PROVA
+%============================================================%
+
+\def \TestInstructions
+	{
+		\rowcolors{1}{GreenYellow!20}{GreenYellow!20}
+		\begin{center}
+			\tl_set:Nn \arraystretch {2.5}
+			\begin{tabular}{ | p{0.7\textwidth} p{0.25\textwidth} | }
+				\hline
+				Nome:~ \hrulefill &
+				Turma:~ IME-ITA \\
+				Unidade:~ \hrulefill
+				\quad
+				Professor:~ \hrulefill &
+				Data:~ \PrintDate
+				\\
+				\hline
+				\textbf{Instruções:}
+				\group_begin:
+				\begin{itemize}[noitemsep]
+					\item Faça~ sua~ avaliação~ à~ caneta.
+					\item Resoluções~ a~ lápis~ não~ serão~ corrigidas.
+					\item Questões~ discursivas~ sem~ desenvolvimento~ não~ serão~ consideradas.
+					\item Não~ serão~ fornecidas~ folhas~ para~ rascunho.
+				\end{itemize}
+				\group_end:
+					&
+					\multicolumn { 1 } { |l| } { \textbf{Nota:} }
+				\\
+				\hline
+			\end{tabular}
+		\end{center}
 	}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

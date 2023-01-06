@@ -1,7 +1,8 @@
 {
     "id_": "diag",
     "title": "Diagnóstico",
-    "template": "prova",
+    "template": "pensi",
+    "class": "IME-ITA",
     "problem_sets": [
         {
             "title": "Química",
