@@ -15,6 +15,7 @@ class Exam(BaseModel):
     title: str
     template: str
     affiliation: str | None = None
+    path: Path | None = None
     problem_sets: list[ProblemSet]
 
     def __len__(self):
@@ -43,6 +44,7 @@ class Exam(BaseModel):
         """Cria o arquivo `pdf` do tópico."""
         return Document(
             id_=self.id_,
+            path=self.path,
             title=self.title,
             affiliation=self.affiliation,
             template=self.template,
@@ -53,6 +55,7 @@ class Exam(BaseModel):
         """Cria o arquivo `pdf` do tópico."""
         return Document(
             id_=self.id_ + "_gabarito",
+            path=self.path,
             title=self.title,
             affiliation=self.affiliation,
             template="gabarito",
@@ -61,12 +64,16 @@ class Exam(BaseModel):
 
     def write_pdf(self, tmp_dir: Path, out_dir: Path | None = None):
         """Cria o arquivo `pdf` do tópico."""
-        self.tex_document().write_pdf(tmp_dir.joinpath(self.id_), out_dir)
+        self.tex_document().write_pdf(
+            tmp_dir=tmp_dir.joinpath(self.id_),
+            out_dir=out_dir,
+        )
 
     def write_solutions_pdf(self, tmp_dir: Path, out_dir: Path | None = None):
         """Cria o arquivo `pdf` do tópico."""
         self.tex_solutions_document().write_pdf(
-            tmp_dir.joinpath(self.id_ + "_gabarito"), out_dir
+            tmp_dir=tmp_dir.joinpath(self.id_ + "_gabarito"),
+            out_dir=out_dir,
         )
 
     @classmethod
@@ -83,6 +90,8 @@ class Exam(BaseModel):
                 )
                 for problem_set in problem_sets
             ]
+
+        metadata["path"] = json_path.parent.joinpath("graphics").resolve()
 
         return cls.parse_obj(metadata)
 
@@ -101,5 +110,7 @@ class Exam(BaseModel):
                 )
                 for problem_set in problem_sets
             ]
+
+        metadata["path"] = Path("../../../hedgedoc/uploads")
 
         return cls.parse_obj(metadata)

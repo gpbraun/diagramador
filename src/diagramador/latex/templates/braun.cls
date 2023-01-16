@@ -388,6 +388,7 @@
 				{ \draw_point_polar:nn { \l_triangle_side_dim } { 240 } }
 			\draw_path_close:
 			\color_fill:n { black!10 }
+			\color_stroke:n { black!40 }
 			\draw_path_use_clear:n { stroke, fill }
 			\draw_coffin_use:Nnn \l__braun_txta_coffin {hc} {vc}
 		\draw_end:
@@ -1175,11 +1176,13 @@
             }
             {
 				\str_if_eq:VnTF \l_braun_title_align_tl {r}
-					{ % frist logo on the right
+					{ 
+						% frist logo on the right
 						\braun_set_logo_coffin:N \l_braun_title_logo_l_coffin
 						\braun_set_logo_coffin:N \l_braun_title_logo_r_coffin
 					}
-					{ % frist logo on the left
+					{ 
+						% frist logo on the left
 						\braun_set_logo_coffin:N \l_braun_title_logo_r_coffin
 						\braun_set_logo_coffin:N \l_braun_title_logo_l_coffin
 					}		
@@ -1246,7 +1249,7 @@
 	}
 
 % Não alterar!
-\tl_const:Nn \l_hedgedoc_path_tl { ../../../hedgedoc/uploads }
+% \tl_const:Nn \l_hedgedoc_path_tl { ../../../hedgedoc/uploads }
 
 % #1 -> coffin
 % #2 -> content
@@ -1295,11 +1298,11 @@
             {
                 { .svg }
                 { 
-                    \braun_include_svg:Nn \l_tmpa_coffin { \l_hedgedoc_path_tl / \l_tmpb_tl \l_tmpc_tl }
+                    \braun_include_svg:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
                 }      
             }
             {
-                \braun_include_graphics:Nn \l_tmpa_coffin { \l_hedgedoc_path_tl / \l_tmpb_tl \l_tmpc_tl }
+                \braun_include_graphics:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
             }
 
         \coffin_typeset:Nnnnn \l_tmpa_coffin {l} {vc} {0pt} {0pt}
@@ -1366,7 +1369,6 @@
 \RequirePackage { tasks, enumitem }
 
 %%% ALTERNATIVAS
-
 \NewTasksEnvironment
 	[
 		label  = {\textbf{\Alph*}\,(\;\;)},
@@ -1379,7 +1381,6 @@
 	{ choices } [ \item ]
 
 %%% DADOS NA CAPA
-
 \NewTasksEnvironment
 	[
 		label  = \textbullet,
@@ -1583,7 +1584,7 @@
 
 		% Figuras
         graphics / width = \linewidth,
-        graphics / height = 6cm,
+        graphics / height = 5cm,
     }
 
 %============================================================%
@@ -1621,7 +1622,7 @@
 
 		% Figuras
         graphics / width = \linewidth,
-        graphics / height = 4cm,
+        graphics / height = 5cm,
     }
 
 %============================================================%
@@ -1652,6 +1653,10 @@
 
 		% Química
 		chem / elements / display-style = ptable,
+
+		% Figuras
+        graphics / width = \linewidth,
+        graphics / height = 5cm,
         
     }
 
@@ -1694,7 +1699,7 @@
 
 		% Figuras
         graphics / width = \linewidth,
-        graphics / height = 6cm,
+        graphics / height = 5cm,
     }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1770,12 +1775,12 @@
 					\begin{datalist}(2)
 						\item Aceleração~ local~ da~ gravidade,~ $g = \qty{10}{m.s^{-2}}$
 						\item Velocidade~ da~ luz~ no~ vácuo, $c = \qty{3e8}{m.s^{-1}}$
-						\item Velocidade~ do~ som,~ $v_\mathrm{som} = \qty{340}{m.s^{-1}}$
+						\item Velocidade~ do~ som,~ $v \c_math_subscript_token \mathrm{som} = \qty{340}{m.s^{-1}}$
 						\item Carga~ elementar,~ $e = \qty{1,6e-19}{C}$
 						\item Constante~ de~ Planck~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
 					\end{datalist}
 
-					\subsubsection*{Aproximações Numéricas}
+					\subsubsection*{Aproximações~ Numéricas}
 					\small
 					\begin{itemize}
 						\item $(1 + \alpha)^n \approx 1 + n \alpha$ ~para~ $|\alpha| \ll 1$

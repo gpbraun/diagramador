@@ -1,0 +1,19 @@
+{
+    "id_": "qui-0",
+    "title": "Diagnóstico",
+    "template": "pensi",
+    "affiliation": "Turma IME-ITA",
+    "problem_sets": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "2023/qui-0/problema_1.md",
+                "2023/qui-0/problema_2.md",
+                "2023/qui-0/problema_3.md",
+                "2023/qui-0/problema_4.md",
+                "2023/qui-0/problema_5.md"
+            ]
+        }
+    ]
+}

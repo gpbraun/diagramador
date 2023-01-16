@@ -63,12 +63,14 @@ class Document:
     def __init__(
         self,
         id_: str,
+        path: Path | None = None,
         title: str | None = None,
         affiliation: str | None = None,
         template: str = "",
         contents: str = None,
     ):
         self.id_ = id_
+        self.path = path
         self.title = title
         self.affiliation = affiliation
         self.template = template
@@ -81,6 +83,7 @@ class Document:
             [
                 cmd("title", self.title) if self.title else "",
                 cmd("affiliation", self.affiliation) if self.affiliation else "",
+                cmd("graphicspath", f"{{{str(self.path)}}}") if self.path else "",
             ]
         )
 
