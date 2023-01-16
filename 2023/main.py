@@ -1,7 +1,7 @@
 from diagramador.exam import Exam
 from pathlib import Path
 
-path = Path("2023/fis_0")
+path = Path("2023/qui_0")
 
 
 def main():

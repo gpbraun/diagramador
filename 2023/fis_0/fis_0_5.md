@@ -8,6 +8,6 @@ Calcule a massa de gelo que existia antes de se adicionar o vapor.
 
 **Dados**
 
-- $\text{calor específico da água} = \pu{0,2 cal.g-1.\degree C-1}$;
+- $\text{calor específico da água} = \pu{1 cal.g-1.\degree C-1}$;
 - $\text{calor latente de fusão da água} = \pu{80 cal.g-1}$;
 - $\text{calor de vaporização da água} = \pu{540 cal.g-1}$.

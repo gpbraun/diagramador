@@ -438,7 +438,7 @@
 \AtBeginDocument 
     {
         \usepgfplotslibrary{groupplots, fillbetween}
-        \usetikzlibrary{shapes.geometric, calc}
+        \usetikzlibrary{shapes.geometric, calc, shapes.misc}
     }
 
 \cs_gset_eq:NN \legacydefinecolor \definecolor
@@ -462,7 +462,7 @@
 \definecolor { pink   } { HTML } { d63384 }
 \definecolor { red    } { HTML } { dc3545 } 
 \definecolor { orange } { HTML } { fd7e14 } 
-\definecolor { yellow } { HTML } { ffc107 } 
+\definecolor { yellow } { HTML } { f9c21c } 
 \definecolor { green  } { HTML } { 198754 } 
 \definecolor { teal   } { HTML } { 20c997 } 
 \definecolor { cyan   } { HTML } { 0dcaf0 } 
@@ -573,9 +573,6 @@
 				inner  = 
 					{
 						\group_begin:
-						\dim_zero:N  \parindent
-						\dim_gzero:N \@topnum
-						\raggedright \normalfont
 						\begin{tikzpicture} [ remember~picture, overlay ]
 						\node at ( current~page.north~west )
 							{
@@ -584,7 +581,7 @@
 										{
 											\legacyincludegraphics
 												[ width = \paperwidth ]
-												{ header.png }
+												{ pensi-header.pdf }
 										};
 									\node [ anchor = east, shift={(-8pt, 0pt)} ] at ( header.east )
 										{
@@ -1141,35 +1138,47 @@
                 { 
 					\bool_set_false:N \l_braun_if_maketitle_bool
 					\raggedright \normalfont
-					\begin{tikzpicture} [ remember~picture, overlay ]
-					\node at ( current~page.north~west )
-						{
-							\begin{tikzpicture} [ remember~picture, overlay ]
-								\node [ anchor = north~ west, inner~ sep = 0pt ] at (0,0)  
-									{
-										\legacyincludegraphics
-											[ width = \paperwidth ]
-											{ header_first.png }
-									};
-									\draw [ anchor = east, align = right ] 
-									( \paperwidth - 1.5cm, -1.3cm ) node 
-									{
-										\group_begin:
-											\LARGE
-											\sffamily
-											\bfseries
-											\PrintTitle
-										\group_end:
-										\\[1ex]
-										\group_begin:
-											\large
-											\sffamily
-											\bfseries
-											\PrintAffiliation
-										\group_end:
-									};
-							\end{tikzpicture}
-						};
+					\begin{tikzpicture}[overlay, remember~picture]
+						\node (header) [ anchor = north~ west, inner~ sep = 0pt ] 
+							at (current~page.north~west)
+							{
+								\legacyincludegraphics 
+									[ width = \paperwidth ] 
+									{ pensi-header-title.pdf }	
+							};
+						\node (titlebox)
+							[
+								anchor = east, 
+								shift = {(-1, 0)}, 
+								align=right,
+								fill = yellow,
+								inner~ xsep = 2em,
+								inner~ ysep = 1em,
+								rounded~ rectangle,
+            					rounded~ rectangle~ right~ arc = none,
+							] 
+							at (header.east)
+							{
+								\group_begin:
+									\LARGE
+									\sffamily
+									\bfseries
+									\PrintTitle
+								\group_end:
+								\\[1ex]
+								\group_begin:
+									\large
+									\sffamily
+									\bfseries
+									\PrintAffiliation
+								\group_end:
+							};
+						\fill [yellow] 
+							($(titlebox.north~ east) + (5pt, 0)$) rectangle 
+							($(titlebox.south~ east) + (10pt, 0)$);
+						\fill [yellow] 
+							($(titlebox.north~ east) + (15pt, 0)$) rectangle 
+							($(titlebox.south~ east) + (1cm, 0)$);
 					\end{tikzpicture}
 					\skip_vertical:n { 5em }
                 }         
