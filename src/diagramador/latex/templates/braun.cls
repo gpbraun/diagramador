@@ -587,7 +587,7 @@
 									align=right,
 									fill = yellow,
 									inner~ xsep = 1em,
-									minimum~ size = 8.2mm,
+									minimum~ size = 8.6mm,
 									rounded~ rectangle,
 									rounded~ rectangle~ right~ arc = none,
 									
