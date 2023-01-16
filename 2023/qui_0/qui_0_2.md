@@ -20,7 +20,7 @@ $$
     }{Glutationa (GSH)}
 $$
 
-Os Valor:es de $\mathrm{p}K_\mathrm{a}$ da glutationa são $\mathrm{p}K_\mathrm{a1} = \pu{2,12}$ e $\mathrm{p}K_\mathrm{a2} = \pu{3,59}$ para a desprotonação sucessiva dos dois grupos $\ce{COOH}$, $\mathrm{p}K_\mathrm{a3} = \pu{8,75}$ para o grupo $\ce{NH2}$ e $\mathrm{p}K_\mathrm{a4} = \pu{9,65}$ para o grupo $\ce{SH}$. 
+Os valores de $\mathrm{p}K_\mathrm{a}$ da glutationa são $\mathrm{p}K_\mathrm{a1} = \pu{2,12}$ e $\mathrm{p}K_\mathrm{a2} = \pu{3,59}$ para a desprotonação sucessiva dos dois grupos $\ce{COOH}$, $\mathrm{p}K_\mathrm{a3} = \pu{8,75}$ para o grupo $\ce{NH2}$ e $\mathrm{p}K_\mathrm{a4} = \pu{9,65}$ para o grupo $\ce{SH}$. 
 
 a. (Valor: $\pu{0,5}$) **Identifique** as funções orgânicas presentes na glutationa.
 b. (Valor: $\pu{0,5}$) **Identifique** os produtos de hidrólise completa da glutationa.
