@@ -574,23 +574,29 @@
 					{
 						\group_begin:
 						\begin{tikzpicture} [ remember~picture, overlay ]
-						\node at ( current~page.north~west )
-							{
-								\begin{tikzpicture} [ remember~picture, overlay ]
-									\node (header) [ anchor = north~ west,inner~sep = 0pt ] at (0,0)  
-										{
-											\legacyincludegraphics
-												[ width = \paperwidth ]
-												{ pensi-header.pdf }
-										};
-									\node [ anchor = east, shift={(-8pt, 0pt)} ] at ( header.east )
-										{
-											\large\bfseries\sffamily
-											IME-ITA
-										};
-								\end{tikzpicture}
-							};
-						
+							\node (header) [ anchor = north~west, inner~sep = 0pt ] 
+								at ( current~page.north~west )
+								{
+									\legacyincludegraphics
+										[ width = \paperwidth ]
+										{ pensi-header.pdf }
+								};
+							\node 
+								[ 
+									anchor = north~east, 
+									align=right,
+									fill = yellow,
+									inner~ xsep = 1em,
+									minimum~ size = 8.2mm,
+									rounded~ rectangle,
+									rounded~ rectangle~ right~ arc = none,
+									
+								] 
+								at ( header.north~east )
+								{
+									\large\bfseries\sffamily
+									\PrintTitle
+								};
 						\end{tikzpicture}
 						\group_end:
 					},
