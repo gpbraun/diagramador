@@ -6,11 +6,11 @@ $$
 $$
 Um reator é carregado com $\pu{60 bar}$ de eteno e $\pu{40 bar}$ de água em $\pu{300 \degree C}$. A mistura atinge o equilíbrio no reator. A mistura no equilíbrio é resfriada a $\pu{25 \degree C}$ e transferida para um tambor, permitindo que todo o excesso de eteno escape.
 
-a. **Determine** a entalpia de síntese do etanol.
-b. **Determine** a composição do equilíbrio no reator a $\pu{300 \degree C}$.
-c. **Explique** qual seria o efeito da adição de etanol à composição do equilíbrio a $\pu{300 \degree C}$.
-d. **Compare** a constante de equilíbrio de síntese do etanol a $\pu{300 \degree C}$ e a $\pu{25 \degree C}$.
-e. **Determine** a pressão de vapor no tambor a $\pu{25 \degree C}$.
+a. (Valor: $\pu{0,5}$) **Determine** a entalpia de síntese do etanol.
+b. (Valor: $\pu{0,5}$) **Determine** a composição do equilíbrio no reator a $\pu{300 \degree C}$.
+c. (Valor: $\pu{0,2}$) **Explique** qual seria o efeito da adição de etanol à composição do equilíbrio a $\pu{300 \degree C}$.
+d. (Valor: $\pu{0,3}$) **Compare** a constante de equilíbrio de síntese do etanol a $\pu{300 \degree C}$ e a $\pu{25 \degree C}$.
+e. (Valor: $\pu{0,5}$) **Determine** a pressão de vapor no tambor a $\pu{25 \degree C}$.
 
 **Dados**
 

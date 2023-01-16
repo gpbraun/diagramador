@@ -1,0 +1,19 @@
+{
+    "id_": "mat-0",
+    "title": "Diagnóstico",
+    "template": "pensi",
+    "affiliation": "Turma IME-ITA",
+    "problem_sets": [
+        {
+            "title": "Matemática",
+            "subject": "diag",
+            "problems": [
+                "2023/mat_0/mat_0_1.md",
+                "2023/mat_0/mat_0_2.md",
+                "2023/mat_0/mat_0_3.md",
+                "2023/mat_0/mat_0_4.md",
+                "2023/mat_0/mat_0_5.md"
+            ]
+        }
+    ]
+}

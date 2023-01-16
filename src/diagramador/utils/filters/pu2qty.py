@@ -16,8 +16,8 @@ def parse_fractions(unit_str: str):
 
 
 def qty(num_str: str, unit_str: str) -> str:
-    """Retorna o comando no formato `siunitx` referente a um valor numérico e uma unidade."""
-    # valor numérico sem unidades
+    """Retorna o comando no formato `siunitx` referente a um Valor: numérico e uma unidade."""
+    # Valor: numérico sem unidades
     if not unit_str:
         return f"\\num{{{num_str}}}"
 
@@ -25,7 +25,7 @@ def qty(num_str: str, unit_str: str) -> str:
     formated_unit_str = formated_unit_str.replace("\\mu", "\\micro")
     formated_unit_str = parse_fractions(formated_unit_str)
 
-    # unidades sem valor numérico
+    # unidades sem Valor: numérico
     if not num_str:
         return formated_unit_str
 

@@ -17,6 +17,6 @@ Os experimentos a seguir foram realizados em $\pu{40 \degree C}$.
 A constante de velocidade desse processo em $\pu{70 \degree C}$ é $\pu{8,5e-2 M.s-1}$.
 
 
-a. **Determine** a constante de velocidade da reação em $\pu{40 \degree C}$.
-b. **Determine** a energia de ativação da reação.
-c. **Determine** o tempo de meia-vida da reação em $\pu{25 \degree C}$.
+a. (Valor: $\pu{0,8}$) **Determine** a constante de velocidade da reação em $\pu{40 \degree C}$.
+b. (Valor: $\pu{0,8}$) **Determine** a energia de ativação da reação.
+c. (Valor: $\pu{0,4}$) **Determine** o tempo de meia-vida da reação em $\pu{25 \degree C}$.

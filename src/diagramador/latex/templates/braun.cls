@@ -1454,7 +1454,7 @@
                         [
                             \bfseries
                             \skip_horizontal:n {2em}
-                            Valor: ~  
+                            Valor:: ~  
                             \num 
                                 [ 
                                     detect-all, 

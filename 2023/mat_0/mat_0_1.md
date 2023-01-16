@@ -1,9 +1,6 @@
-Um cilindro de raio $R$ encontra-se no interior de outro de raio $2R$ em contato no ponto $(-2R, 0)$, do sistema de eixos coordenados de origem no centro do cilindro maior. Em $t = 0$ o cilindro interno passa a girar com velocidade constante  no sentido apresentado na figura sem deslizar em relação ao externo.
+Considere o número natural $n = 720$. Responda.
 
-![c](graphics/mat_0_1_1.png)
-
-Responda, para $t > 0$:
-
-a. Qual a equação horária da posição do ponto $A$, do cilindro menor, que se encontra inicialmente na posição $(-R, R)$?
-b. Determine a trajetória do ponto $A$.
-c. Em uma volta completa, todos os pontos do cilindro interno percorrem a mesma distância? Apresente os cálculos para justificar.
+a. (Valor: $\pu{0,5}$) Quantos divisores inteiros positivos possui $n$?
+b. (Valor: $\pu{0,5}$) Quantos divisores inteiros positivos de $n$ são múltiplos de $2$ e de $3$?
+c. (Valor: $\pu{0,5}$) Quantos divisores inteiros positivos de $n$ são múltiplos de $2$ ou de $3$?
+d. (Valor: $\pu{0,5}$) Quantos são os números inteiros e positivos $k$, tais que $1 \leq k \leq n$, de modo que $\mathrm{mdc}(n, k) = 1$?
