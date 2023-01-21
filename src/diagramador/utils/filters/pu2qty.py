@@ -16,8 +16,8 @@ def parse_fractions(unit_str: str):
 
 
 def qty(num_str: str, unit_str: str) -> str:
-    """Retorna o comando no formato `siunitx` referente a um Valor: numérico e uma unidade."""
-    # Valor: numérico sem unidades
+    """Retorna o comando no formato `siunitx` referente a um valor numérico e uma unidade."""
+    # valor numérico sem unidades
     if not unit_str:
         return f"\\num{{{num_str}}}"
 
@@ -25,25 +25,28 @@ def qty(num_str: str, unit_str: str) -> str:
     formated_unit_str = formated_unit_str.replace("\\mu", "\\micro")
     formated_unit_str = parse_fractions(formated_unit_str)
 
-    # unidades sem Valor: numérico
+    # unidades sem valor numérico
     if not num_str:
         return formated_unit_str
 
     return f"\\qty{{{num_str}}}{{{formated_unit_str}}}"
 
 
-def pu2qty(elem, doc, debug=False):
+def pu2qty(text_str) -> str:
     """Converte todos os comandos `\\pu` do mhchem aos equivalentes no formato `siunitx`."""
+    return re.sub(PU_CMD_REGEX, lambda x: qty(x.group(1), x.group(2)), text_str)
+
+
+def filter_pu2qty(elem, doc, debug=False):
+    """Converte todos os comandos `\\pu` do mhchem aos equivalentes no formato `siunitx` em um documento em PANDOC."""
     if isinstance(elem, pf.Math) and doc.format == "latex":
-        elem.text = re.sub(
-            PU_CMD_REGEX, lambda x: qty(x.group(1), x.group(2)), elem.text
-        )
+        elem.text = pu2qty(elem.text)
 
         return elem
 
 
 def main(doc=None):
-    return pf.run_filter(pu2qty, doc=doc)
+    return pf.run_filter(filter_pu2qty, doc=doc)
 
 
 if __name__ == "__main__":

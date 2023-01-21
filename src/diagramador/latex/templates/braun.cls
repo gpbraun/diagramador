@@ -227,6 +227,7 @@
         range-phrase = { ~a~ }, 
         list-final-separator = { ~e~ }, 
         locale = FR,
+		retain-explicit-plus,
     }
 
 \cs_set_eq:NN \pu \mathrm
@@ -584,7 +585,7 @@
 							\node 
 								[ 
 									anchor = north~east, 
-									align=right,
+									align = right,
 									fill = yellow,
 									inner~ xsep = 1em,
 									minimum~ size = 8.6mm,
@@ -1368,10 +1369,6 @@
         breakable .initial:n  = false,
         breakable .default:n  = true,
 
-        single-page .bool_set:N = \l_braun_problem_single_page_bool,
-        single-page .initial:n  = false,
-        single-page .default:n  = true,
-
 		vfill .bool_set:N = \l_braun_problem_fill_bool,
         vfill .initial:n  = true,
         vfill .default:n  = true,
@@ -1507,14 +1504,13 @@
                 }       
             }
             {
-                \textbf{ \l_braun_problem_name_tl \; \arabic { problem }. \quad }   
+                \textbf{ \l_braun_problem_name_tl \; \arabic { problem }. \; }   
             }
 		\dim_set_eq:NN \parskip \medskipamount
     } 
     {
 		\bigskip
         \braun_end_problem_box:
-        \bool_if:NT \l_braun_problem_single_page_bool { \newpage }
     }
 
 %============================================================%
@@ -1575,7 +1571,7 @@
 
 \DeclareBraunTemplate { ITA }
     {
-        DIV = 20,
+        DIV = 18,
         font = lmodern,
         fontsize = 11pt,
         emph = \itshape,
@@ -1585,9 +1581,6 @@
         maketitle / print = { title, subtitle, date },
         maketitle / title / case = upper,
         maketitle / title / font = \Large\bfseries,
-		maketitle / subtitle /value = Turma~ IME-ITA,
-        maketitle / subtitle / case = upper,
-		maketitle / subtitle / font = \large\bfseries,
         maketitle / date / value = \int_use:N \c_sys_year_int,
         maketitle / date / font = \large\bfseries,
 		maketitle / logo / value = ita-alt,
@@ -1623,9 +1616,6 @@
         maketitle / botrule = false,
         maketitle / title / case = upper,
         maketitle / title / font = \Large\bfseries,
-        maketitle / subtitle /value = Turma~ IME-ITA,
-        maketitle / subtitle / case = upper,
-        maketitle / subtitle / font = \large\bfseries,
         maketitle / date / value = \int_use:N \c_sys_year_int,
         maketitle / date / font = \large\bfseries,
 		maketitle / logo / value = ime,
@@ -1811,7 +1801,7 @@
 						\item Carga~ elementar,~ $e = \qty{1,6e-19}{C}$
 						\item Constante~ dos~ gases,~ $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
 						\item Constante~ de~ Planck,~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
-						\item Constante~ de~ Rydberg,~ $\mathcal{R} \c_math_subscript_token \mathrm{\infty} = \qty{1,1e-7}{mol^{-1}}$
+						\item Constante~ de~ Rydberg,~ $\mathcal{R} \c_math_subscript_token \mathrm{\infty} = \qty{1,1e7}{m^{-1}}$
 						\item Constante~ de~ atoionização~ da~ água,~ $K \c_math_subscript_token \mathrm{w} = \num{1e-14}$
 						\item Velocidade~ da~ luz~ no~ vácuo,~ $c = \qty{3e8}{m.s^{-1}}$
 					\end{datalist}

@@ -1,0 +1,26 @@
+{
+    "id_": "qui_1_obj",
+    "title": "ITA Objetivo 1",
+    "template": "ITA",
+    "affiliation": "Turma IME-ITA",
+    "problem_sets": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "2023/qui_1_obj/qui_1_obj_01.md",
+                "2023/qui_1_obj/qui_1_obj_02.md",
+                "2023/qui_1_obj/qui_1_obj_03.md",
+                "2023/qui_1_obj/qui_1_obj_04.md",
+                "2023/qui_1_obj/qui_1_obj_05.md",
+                "2023/qui_1_obj/qui_1_obj_06.md",
+                "2023/qui_1_obj/qui_1_obj_07.md",
+                "2023/qui_1_obj/qui_1_obj_08.md",
+                "2023/qui_1_obj/qui_1_obj_09.md",
+                "2023/qui_1_obj/qui_1_obj_10.md",
+                "2023/qui_1_obj/qui_1_obj_11.md",
+                "2023/qui_1_obj/qui_1_obj_12.md"
+            ]
+        }
+    ]
+}
