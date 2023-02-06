@@ -12,7 +12,8 @@ def parse_fractions(unit_str: str):
         return f"\\unit{{{unit_str}}}"
 
     numerator, denominator = unit_str.split("//", 1)
-    return f"\\tfrac{{{numerator}}}{{{parse_fractions(denominator)}}}"
+    numerator = f"\\unit{{{numerator}}}"
+    return f"\\tfrac{{{ numerator }}}{{{parse_fractions(denominator)}}}"
 
 
 def qty(num_str: str, unit_str: str) -> str:
