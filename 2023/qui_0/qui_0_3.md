@@ -19,3 +19,31 @@ e. (Valor: $\pu{0,5}$) **Determine** a pressão de vapor no tambor a $\pu{25 \de
 - Entalpia de formação do etanol, $\Delta H_\mathrm{f}^\circ(\ce{C2H5OH}) = \pu{-253 kJ.mol-1}$
 - Pressão de vapor da água, $P^\star(\ce{H2O}) = \pu{24 Torr}$
 - Pressão de vapor do etanol, $P^\star(\ce{C2H5OH}) = \pu{60 Torr}$
+
+**a.** Cálculo da entalpia de reação:
+$$
+\begin{aligned}
+    \Delta H_\mathrm{r} 
+        &= \Delta H^\circ_{\mathrm{f}, \ce{C2H5OH(g)}}
+        - \Delta H^\circ_{\mathrm{f}, \ce{C2H4(g)}}
+        - \Delta H^\circ_{\mathrm{f}, \ce{H2O(g)}} \\
+        &= \Big\{ (\pu{-253}) - (\pu{-53}) - (\pu{-242}) \Big\}\,\pu{kJ//mol} \\
+        &= \boxed{ \pu{-42 kJ.mol-1} }
+\end{aligned}
+$$
+
+**b.** Elaboração de uma tabela de reação em bar:
+
+|            |  $\ce{C2H4}$  |  $\ce{H2O}$   | $\ce{C2H5OH}$ |
+| :--------- | :-----------: | :-----------: | :-----------: |
+| início     |   $\pu{60}$   |   $\pu{40}$   |      $0$      |
+| reação     |     $-x$      |     $-x$      |     $+x$      |
+| equilíbrio | $\pu{60} - x$ | $\pu{40} - x$ |      $x$      |
+
+Substituindo os dados da tabela na expressão da constante de equilíbrio:
+$$
+    K = \dfrac{ x }{ (\pu{60} - x)(\pu{40} - x) } = 26
+$$
+
+
+**b.** Elaboração de uma tabela de reação em bar:

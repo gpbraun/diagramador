@@ -5,3 +5,16 @@ b. (Valor: $\pu{0,5}$) **Descreva** a geometria molecular do ânion dihidrogenof
 c. (Valor: $\pu{0,5}$) **Compare** os ângulos de ligação $\ce{O-P-O}$ e $\ce{HO-P-OH}$.
 d. (Valor: $\pu{0,3}$) **Apresente** a estrutura molecular para o cátion *N*-metil-2,4,6-trifenilpiridínio. 
 e. (Valor: $\pu{0,2}$) **Indique** os orbitais que participam do sistema aromático.
+
+**a.** A entalpia de reação é dada por:
+$$
+    \Delta H_\mathrm{r} = 
+$$
+
+**b.**
+
+**c.**
+
+**d.**
+
+**e.** Os orbitais que participam do sistema aromático são os orbitais $\pi$ dos carbonos do ciclo e o orbital $p$ preenchido do nitrogênio.

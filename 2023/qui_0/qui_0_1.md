@@ -15,8 +15,8 @@ d. (Valor: $\pu{0,5}$) **Calcule** volume de solução de selênio precisa ser a
 
 $$
 \begin{aligned}
-    \ce{Cd}: \quad & \ce{[Kr]}\; 4d^{10}\, 5s^2 \\
-    \ce{Se}: \quad & \ce{[Ar]}\; 3d^{10}\, 4s^2\, 4p^4
+    \ce{Cd}: \quad & \ce{[Kr]}\, \mathrm{4d^{10} 5s^2} \\
+    \ce{Se}: \quad & \ce{[Ar]}\, \mathrm{3d^{10} 4s^2 4p^4}
 \end{aligned}
 $$
 
