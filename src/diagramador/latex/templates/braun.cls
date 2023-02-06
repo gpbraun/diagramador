@@ -1528,7 +1528,6 @@
 		\medskip
 		\begin{tcolorbox}
 			[
-				enhanced,
 				breakable,
 				title = \textbf{\sffamily\large Gabarito \IfValueT{#1}{: \; #1}},
 				coltitle = black,
