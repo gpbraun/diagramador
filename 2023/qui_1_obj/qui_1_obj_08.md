@@ -11,3 +11,6 @@ $$
 - [x] $\pu{28}$
 - [ ] $\pu{30}$
 
+---
+
+A fórmula molecular da testosterona é $\ce{C18H28O2}$.

@@ -17,3 +17,23 @@ $$
 - [ ] $\pu{-12 kJ.mol-1}$
 - [ ] $\pu{+16 kJ.mol-1}$
 - [ ] $\pu{+24 kJ.mol-1}$
+
+---
+
+A reação desejada pode ser obtida combinando as reações fornecidas:
+$$
+\begin{aligned}
+    \ce{ 3 BaO(s) &-> 3 Ba(s) + 3/2 O2(g) } \\
+    \ce{ 2 Al(s) + 3/2 O2(g) &-> Al2O3(s) } \\[1ex]
+    \hline
+    \\[-2ex]
+    \ce{ 3 BaO(s) + 2 Al(s) &-> Al2O3(s) + 3 Ba(s) }
+\end{aligned}
+$$
+
+A entalpia da reação desejada é dada por:
+$$
+    \Delta H_\mathrm{r}^\circ 
+        = \Big\{ \tfrac{3}{2}(\pu{-1107}) - (\pu{-1676}) \Big\} \pu{kJ//mol}
+        = \boxed{ \pu{-16 kJ.mol-1} }
+$$
