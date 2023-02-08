@@ -10,9 +10,9 @@ Os experimentos a seguir foram realizados em $\pu{40 \degree C}$.
 
 | **Exp.** | $\ce{[Fe(phen)3^{2+}]}/\pu{M}$ | $\ce{[H2O]}/\pu{M}$ | $v_0/{\pu{mM.s-1}}$ |
 | :------: | :----------------------------: | :-----------------: | :-----------------: |
-|  **1**   |         $\pu{7,50e-3}$         |     $\pu{0,50}$     |    $\pu{9,0e-6}$    |
-|  **2**   |         $\pu{7,50e-3}$         |     $\pu{0,05}$     |    $\pu{9,0e-6}$    |
-|  **3**   |         $\pu{3,75e-2}$         |     $\pu{0,05}$     |    $\pu{4,5e-5}$    |
+|  **1**   |         $\pu{7,50e-3}$         |     $\pu{0,50}$     |    $\pu{9,0e-3}$    |
+|  **2**   |         $\pu{7,50e-3}$         |     $\pu{0,05}$     |    $\pu{9,0e-3}$    |
+|  **3**   |         $\pu{3,75e-2}$         |     $\pu{0,05}$     |    $\pu{4,5e-2}$    |
 
 A constante de velocidade desse processo em $\pu{70 \degree C}$ é $\pu{8,5e-2 s-1}$.
 
@@ -46,11 +46,11 @@ logo, $b = 0$.
 
 Do experimento **1**:
 $$
-    \pu{9,0e-6 mM//s} = k (\pu{7,50e-3})^1
+    \pu{9,0e-6 M//s} = k (\pu{7,50e-3 M})^1
 $$
 logo,
 $$
-    k = \boxed{ \pu{1,2e-6 s-1} }
+    k = \boxed{ \pu{1,2e-3 s-1} }
 $$
 
 **b.** Da equação de Arrhenius:
@@ -65,23 +65,22 @@ $$
 $$
 logo,
 $$
-    E_\mathrm{a} = \boxed{ \pu{330 kJ.mol-1} }
+    E_\mathrm{a} = \boxed{ \pu{127 kJ.mol-1} }
 $$
 
 **c.** Cálculo da constante cinética a $\pu{25 \degree C}$:
 $$
     \ln \left( \frac{ k_{\pu{25 \degree C}} }{ \pu{1,2e-3 s-1} } \right) 
-        = -\dfrac{ \pu{330 kJ.mol-1} }{\pu{8,3e-3 kJ//mol.K}} \left( \frac{1}{ \pu{298 K} } - \frac{1}{ \pu{313 K} } \right)
+        = -\dfrac{ \pu{127 kJ.mol-1} }{\pu{8,3e-3 kJ//mol.K}} \left( \frac{1}{ \pu{298 K} } - \frac{1}{ \pu{313 K} } \right)
 $$
 logo,
 $$
-    k_{\pu{25 \degree C}} = \boxed{ \pu{2e-9 s-1} }
+    k_{\pu{25 \degree C}} = \boxed{ \pu{1e-4 s-1} }
 $$
 A meia vida é dada por $t_{1/2} = \ln 2/k$,
 $$
     t_{1/2} 
         = \dfrac{ \ln(2) }{ \pu{2e-9 s-1} }
-        = \pu{3,5e8 s}
-        = \boxed{ \pu{10 anos} }
+        = \pu{6900 s}
 $$
 
