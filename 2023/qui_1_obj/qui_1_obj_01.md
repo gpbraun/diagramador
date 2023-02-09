@@ -18,5 +18,5 @@ $$
 $$
 logo,
 $$
-    \lambda = \pu{397 nm}
+    \boxed{ \lambda = \pu{397 nm} }
 $$

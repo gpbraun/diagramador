@@ -8,25 +8,28 @@
 
 ---
 
-Existem 10 isômeros.
+Existem 10 isômeros. Cinco isômeros acíclicos insaturados:
 $$
-    \chemfig{=[-1]-[1]-[-1]-[1]}
-    \quad
-    \chemfig{-[-1]=[1]-[-1]-[1]}
-    \quad
+    \chemfig{=[1]-[-1]-[1]-[-1]}
+    \qquad
+    \chemfig{-[1]=[-1]-[1]-[-1]}
+    \qquad
     \chemfig{=[1](-[3])-[-1]-[1]}
-    \quad
+    \qquad
     \chemfig{-[1](-[3])=[-1]-[1]}
-    \quad
+    \qquad
     \chemfig{=[1]-[-1](-[-3])-[1]}
-    \quad
+$$
+
+Além disso, existem cinco isômeros cícilos saturados:
+$$
     \chemfig{*5(-----)}
-    \quad
-    \chemfig{*4(----)}
-    \quad
-    \chemfig{*3(---)}
-    \quad
-    \chemfig{*3(---)}
-    \quad
-    \chemfig{*3(---)}
+    \qquad
+    \chemfig{*4(-(-)---)}
+    \qquad
+    \chemfig{*3(-(-)-(-)-)}
+    \qquad
+    \chemfig{*3(-(--[2])--)}
+    \qquad
+    \chemfig{*3(-(-[2])(-[-2])--)}
 $$
