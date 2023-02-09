@@ -2,7 +2,7 @@
 
 Esse módulo implementa uma classe para os problemas.
 """
-from diagramador.latex.commands import env, itemize, section
+from diagramador.latex.commands import cmd, env, section
 from diagramador.utils.text import md2soup, soup_split, html2tex
 from diagramador.utils.autoprops import autoprops
 
@@ -34,7 +34,7 @@ class Problem(BaseModel):
         if not self.is_objective:
             return ""
 
-        return itemize("choices", self.choices, sep_cmd="item")
+        return cmd("autochoices", self.choices)
 
     def tex_correct_choice(self):
         """Retorna as respostas do problema formatados em LaTeX."""

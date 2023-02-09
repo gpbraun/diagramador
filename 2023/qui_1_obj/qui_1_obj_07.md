@@ -15,11 +15,9 @@ $$
     n_{\ce{O2}} 
         = \dfrac{PV}{RT} 
         = \dfrac{ (\pu{5860 kPa}) \times (\pu{3980 cm3}) }{ (\pu{8,3e3 kPa.cm3//mol.K}) \times (\pu{289 K}) }
+         = \pu{9,7 mol}
 $$
-logo,
-$$
-    n_{\ce{O2}} = \pu{9,7 mol}
-$$
+
 
 A massa de oxigênio, $\ce{O2}$, nos dois tanques é:
 $$

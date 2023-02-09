@@ -34,7 +34,7 @@ $$
 
 A quantidade de propano para fornecer $\pu{350 kJ}$ é:
 $$
-    n_{\ce{C3H8}} = \dfrac{ \pu{350 kJ} }{ \pu{-1542 kJ//mol} } = \pu{0,23 mol}
+    n_{\ce{C3H8}} = \dfrac{ \pu{350 kJ} }{ \pu{1542 kJ//mol} } = \pu{0,23 mol}
 $$
 Da lei dos gases ideais, $PV = nRT$,
 $$

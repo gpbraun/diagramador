@@ -1400,6 +1400,88 @@
 	{ datalist } [ \item ]
 
 %============================================================%
+%   ALTERNATIVAS
+%============================================================%
+
+% Determinacão automática do número de colunas
+
+\box_new:N \l_braun_choices_a_box
+\box_new:N \l_braun_choices_b_box
+\box_new:N \l_braun_choices_c_box
+\box_new:N \l_braun_choices_d_box
+\box_new:N \l_braun_choices_e_box
+
+\fp_new:N \l_braun_choices_a_fp
+\fp_new:N \l_braun_choices_b_fp
+\fp_new:N \l_braun_choices_c_fp
+\fp_new:N \l_braun_choices_d_fp
+\fp_new:N \l_braun_choices_e_fp
+
+% #1 -> alternativa A
+% #2 -> alternativa B
+% #3 -> alternativa C
+% #4 -> alternativa D
+% #5 -> alternativa E
+\cs_set:Npn \autochoices #1#2#3#4#5
+  {
+    \group_begin:
+
+    \hbox_set:Nn \l_braun_choices_a_box {#1}
+    \hbox_set:Nn \l_braun_choices_b_box {#2}
+    \hbox_set:Nn \l_braun_choices_c_box {#3}
+    \hbox_set:Nn \l_braun_choices_d_box {#4}
+    \hbox_set:Nn \l_braun_choices_e_box {#5}
+
+    \fp_set:Nn \l_braun_choices_a_fp
+      { \dim_to_decimal:n { \box_wd:N \l_braun_choices_a_box } }
+    \fp_set:Nn \l_braun_choices_b_fp
+      { \dim_to_decimal:n { \box_wd:N \l_braun_choices_b_box } }
+    \fp_set:Nn \l_braun_choices_c_fp
+      { \dim_to_decimal:n { \box_wd:N \l_braun_choices_c_box } }
+    \fp_set:Nn \l_braun_choices_d_fp
+      { \dim_to_decimal:n { \box_wd:N \l_braun_choices_d_box } }
+    \fp_set:Nn \l_braun_choices_e_fp
+      { \dim_to_decimal:n { \box_wd:N \l_braun_choices_e_box } }
+
+    \fp_set:Nn \l_tmpa_fp % alternativa de maior tamanho
+      { 
+        max(
+          \l_braun_choices_a_fp,
+          \l_braun_choices_b_fp,
+          \l_braun_choices_c_fp,
+          \l_braun_choices_d_fp,
+          \l_braun_choices_e_fp
+        )
+      }
+
+    \fp_set:Nn \l_tmpb_fp % tamanho útil
+      { 
+        0.6 * \dim_to_decimal:n {\columnwidth}
+      }
+
+    \int_set:Nn \l_tmpa_int % número de colunas
+      { 
+        \fp_to_int:n { max( 1, min( 5, floor(\l_tmpb_fp  / \l_tmpa_fp) ) ) } 
+      }
+
+    \int_compare:nNnT { \l_tmpa_int } = {4}
+      {
+        \int_set:Nn \l_tmpa_int {3}
+      }
+
+    \medskip
+    \begin{choices}(\l_tmpa_int)
+      \item #1
+      \item #2
+      \item #3
+      \item #4
+      \item #5
+    \end{choices}
+
+    \group_end:
+  }
+
+%============================================================%
 %   PROBLEM ENVIRONMENT
 %============================================================%
 

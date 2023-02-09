@@ -12,14 +12,20 @@ A cada segundo, uma lâmpada emite $\pu{2,4e21}$ fótons com comprimento de onda
 
 A energia de cada fóton é
 $$
-    E = hf 
+    E = hf
         = \dfrac{hc}{\lambda} 
         = \dfrac{ (\pu{6,6e-34 J.s}) (\pu{3e8 m.s-1}) }{ (\pu{633e-9 m}) }
         = \pu{3,1e-19 J}
 $$
 Assim, a energia total
 $$
-    E_\text{total} = (\pu{2,4e21}) \times (\pu{3,1e-19 J}) = \boxed{ \pu{750 J} }
+    E_\text{total} 
+        = (\pu{2,4e21}) \times (\pu{3,1e-19 J}) 
+        = \pu{750 J}
 $$
-
-A emissão de $\pu{750 J}$ em cada segundo equivale a uma potência de $\pu{750 W}$.
+A potência é dada por:
+$$
+    P = \dfrac{ E_\text{total} }{ \Delta t }
+        = \dfrac{ \pu{750 J} }{ \pu{1 s} }
+        = \boxed{ \pu{750 W} }
+$$

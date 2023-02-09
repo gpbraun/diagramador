@@ -14,7 +14,7 @@ e. (Valor: $\pu{0,5}$) **Determine** a pressão de vapor no tambor a $\pu{25 \de
 
 **Dados**
 
-- Entalpia de formação do eteno, $\Delta H_\mathrm{f}^\circ(\ce{C2H4}) = \pu{53 kJ.mol-1}$
+- Entalpia de formação do eteno, $\Delta H_\mathrm{f}^\circ(\ce{C2H4}) = \pu{+53 kJ.mol-1}$
 - Entalpia de formação da água, $\Delta H_\mathrm{f}^\circ(\ce{H2O}) = \pu{-242 kJ.mol-1}$
 - Entalpia de formação do etanol, $\Delta H_\mathrm{f}^\circ(\ce{C2H5OH}) = \pu{-253 kJ.mol-1}$
 - Pressão de vapor da água, $P^\star(\ce{H2O}) = \pu{24 Torr}$
@@ -29,7 +29,7 @@ $$
         &= \Delta H^\circ_{\mathrm{f}, \ce{C2H5OH(g)}}
         - \Delta H^\circ_{\mathrm{f}, \ce{C2H4(g)}}
         - \Delta H^\circ_{\mathrm{f}, \ce{H2O(g)}} \\
-        &= \Big\{ (\pu{-253}) - (\pu{-53}) - (\pu{-242}) \Big\}\,\pu{kJ//mol} \\
+        &= \Big\{ (\pu{-253}) - (\pu{+53}) - (\pu{-242}) \Big\}\,\pu{kJ//mol} \\
         &= \boxed{ \pu{-42 kJ.mol-1} }
 \end{aligned}
 $$

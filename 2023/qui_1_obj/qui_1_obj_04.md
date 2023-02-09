@@ -20,8 +20,7 @@ $$
     \qquad
     \chemfig{=[1]-[-1](-[-3])-[1]}
 $$
-
-Além disso, existem cinco isômeros cícilos saturados:
+e cinco isômeros cíclicos saturados:
 $$
     \chemfig{*5(-----)}
     \qquad
