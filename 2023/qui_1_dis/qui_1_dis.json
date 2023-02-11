@@ -3,6 +3,7 @@
     "title": "ITA Discursivo 1",
     "template": "ITA",
     "affiliation": "Turma IME-ITA",
+    "start": 11,
     "problem_sets": [
         {
             "title": "Química",

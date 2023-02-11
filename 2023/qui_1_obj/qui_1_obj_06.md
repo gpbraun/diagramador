@@ -1,3 +1,7 @@
+---
+elementos: Ba, Al
+---
+
 O metal bário é produzido pela reação do metal alumínio com óxido de bário:
 $$
     \ce{ 3 BaO(s) + 2 Al(s) ->[$\Delta$] Al2O3(s) + 3 Ba(s) }
