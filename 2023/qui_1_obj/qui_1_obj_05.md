@@ -14,4 +14,4 @@ Um nuclídeo tem átomos com 44 nêutrons, 42 prótons e 42 elétrons.
 
 ---
 
-O elemento que possui número atômico 42 é o molibdênio. A massa desse nuclídeo é $44 + 42 = 82$. Assim, esse é o molibdênio-86.
+O elemento que possui número atômico 42 é o molibdênio. A massa desse nuclídeo é $44 + 42 = 86$. Assim, esse é o molibdênio-86.
