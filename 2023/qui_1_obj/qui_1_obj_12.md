@@ -10,7 +10,7 @@ Considere os compostos:
 - [x] Álcool; ácido carboxílico; alceno; haleto orgânico.
 - [ ] Aldeído; ácido carboxílico; alcino; haleto orgânico.
 - [ ] Cetona; aldeído; alcino; haleto de arila.
-- [ ] Álcool; ácido carboxílico; alceno; haleto orgânico.
+- [ ] Álcool; éster; alceno; haleto orgânico.
 - [ ] Álcool; aldeído; alcano; peróxido orgânico.
 
 ---
