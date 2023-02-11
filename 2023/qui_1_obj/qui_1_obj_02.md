@@ -22,6 +22,6 @@ $$
 logo,
 $$
     \Delta U 
-        = \pu{684 kJ//mol} + (\pu{8,3e-3 kJ//mol.K}) \times (\pu{298 K}) \times (2 - 3)
+        = \pu{-684 kJ//mol} - (\pu{8,3e-3 kJ//mol.K}) \times (\pu{298 K}) \times (2 - 3)
         = \boxed{ \pu{-681 kJ.mol-1} }
 $$
