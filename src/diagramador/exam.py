@@ -15,6 +15,7 @@ class Exam(BaseModel):
     title: str
     template: str
     affiliation: str | None = None
+    start: int = 1
     path: Path | None = None
     problem_sets: list[ProblemSet]
 
@@ -49,6 +50,7 @@ class Exam(BaseModel):
             affiliation=self.affiliation,
             template=self.template,
             contents=self.tex(),
+            start=self.start,
         )
 
     def tex_solutions_document(self):
@@ -60,6 +62,7 @@ class Exam(BaseModel):
             affiliation=self.affiliation,
             template="gabarito",
             contents=self.tex_solutions(),
+            start=self.start,
         )
 
     def write_pdf(self, tmp_dir: Path, out_dir: Path | None = None):

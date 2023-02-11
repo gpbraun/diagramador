@@ -3,6 +3,7 @@
     "title": "ITA Objetivo 1",
     "template": "ITA",
     "affiliation": "Turma IME-ITA",
+    "start": 49,
     "problem_sets": [
         {
             "title": "Química",

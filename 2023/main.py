@@ -12,7 +12,7 @@ def generate_exam(path: str | Path):
 
 
 def main():
-    generate_exam("2023/qui_1_dis")
+    generate_exam("2023/qui_1_obj")
 
 
 if __name__ == "__main__":

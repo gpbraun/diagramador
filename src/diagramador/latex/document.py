@@ -68,6 +68,7 @@ class Document:
         affiliation: str | None = None,
         template: str = "",
         contents: str = None,
+        start: int = 1,
     ):
         self.id_ = id_
         self.path = path
@@ -75,6 +76,7 @@ class Document:
         self.affiliation = affiliation
         self.template = template
         self.contents = contents
+        self.start = start
 
     @property
     def preamble(self) -> str:
@@ -84,6 +86,7 @@ class Document:
                 cmd("title", self.title) if self.title else "",
                 cmd("affiliation", self.affiliation) if self.affiliation else "",
                 cmd("graphicspath", f"{{{str(self.path)}}}") if self.path else "",
+                cmd("setcounter", ["problem", self.start - 1]),
             ]
         )
 
