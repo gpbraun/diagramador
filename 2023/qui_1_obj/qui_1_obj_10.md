@@ -1,8 +1,8 @@
-Considere os dados em $\pu{25 \degree C}$.
+Considere os dados em $\pu{25 \degree C}$:
 
-|                                                                                    |    $\ce{C3H8(g)}$    |    $\ce{H2O(l)}$     |    $\ce{CO2(g)}$     |
-| :--------------------------------------------------------------------------------- | :------------------: | :------------------: | :------------------: |
-| Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/\tfrac{\pu{kJ}}{\pu{mol}}$ | $\pu{-104 kJ.mol-1}$ | $\pu{-286 kJ.mol-1}$ | $\pu{-394 kJ.mol-1}$ |
+|                                                                         | $\ce{C3H8(g)}$ | $\ce{H2O(l)}$ | $\ce{CO2(g)}$ |
+| :---------------------------------------------------------------------- | :------------: | :-----------: | :-----------: |
+| Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/{\pu{kJ//mol}}$ |  $\pu{-104}$   |  $\pu{-286}$  |  $\pu{-394}$  |
 
 **Assinale** a alternativa que mais se aproxima do volume de propano que deve ser queimado a $\pu{0 \degree C}$ e $\pu{1 atm}$ para fornecer $\pu{350 kJ}$ de calor.
 

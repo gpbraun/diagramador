@@ -20,6 +20,7 @@ MARKDOWN_EXTENSIONS = [
     "pipe_tables",
     "implicit_figures",
     "fenced_divs",
+    "backtick_code_blocks",
 ]
 """Extensões de markdown utilizadas"""
 
@@ -34,6 +35,7 @@ PANDOC_FILTER_PATH = importlib.resources.files("diagramador.utils.filters")
 PANDOC_FILTERS = [
     "containers.py",
     "pu2qty.py",
+    "rawtex.py",
 ]
 """Filtros para o pandoc."""
 

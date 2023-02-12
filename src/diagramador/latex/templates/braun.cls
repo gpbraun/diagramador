@@ -206,6 +206,15 @@
 		\end{center}
 	}
 
+\NewDocumentEnvironment { sourceCode } {}
+	{
+		\begin{center}
+		
+	}
+	{
+		\end{center}
+	}
+
 %============================================================%
 %   MATH
 %============================================================%
@@ -228,6 +237,7 @@
         list-final-separator = { ~e~ }, 
         locale = FR,
 		retain-explicit-plus,
+		exponent-product = \cdot,
     }
 
 \cs_set_eq:NN \pu \mathrm
@@ -436,12 +446,6 @@
 
 \tikzstyle{every~pin}=[draw=black]
 
-\AtBeginDocument 
-    {
-        \usepgfplotslibrary{groupplots, fillbetween}
-        \usetikzlibrary{shapes.geometric, calc, shapes.misc}
-    }
-
 \cs_gset_eq:NN \legacydefinecolor \definecolor
 \cs_gset_eq:NN \legacycolor       \color
 
@@ -451,6 +455,29 @@
         \legacydefinecolor {#1} {#2} {#3} 
         \color_set:nnn     {#1} {#2} {#3} 
     }
+
+%============================================================%
+%   BIBLIOTECAS ADICIONAIS DO TIKZ/PGFPLOTS
+%============================================================%
+
+\AtBeginDocument 
+  {
+    \usepgfplotslibrary
+      { 
+        groupplots, 
+        fillbetween 
+      }
+    \usetikzlibrary
+      {
+        calc,
+        shapes.geometric, 
+		shapes.misc,
+        decorations.pathreplacing,
+        decorations.markings,
+        decorations.pathmorphing,
+        arrows.meta,
+      }
+  }
 
 %============================================================%
 %   PALETA DE CORES (BOOTSTRAP)
@@ -1536,6 +1563,9 @@
         \BraunNoWarning
 		\setlength\parindent{24pt}
         \dim_zero:N \parindent
+
+		\tl_set:Nn \arraystretch {1.5}
+		\cs_set_eq:NN \toprule \relax
 		
         \braun_begin_problem_box:
         %% HEADER
@@ -1605,11 +1635,38 @@
 
 \tcbset { enhanced~ jigsaw }
 
+\newcounter { step } [ problem ]
+
+\cs_set:Npn \StepHeader #1
+  {
+    \refstepcounter { step }
+
+    \tcbsubtitle
+      [
+        top = 0.5ex,
+        bottom = 0.5ex,
+        enhanced, 
+        frame~ hidden,
+		colback = yellow!15,
+      ]
+      {    
+        {
+          \strut 
+          \bfseries
+          \small
+          \sffamily 
+          Etapa~ \arabic{ step }. 
+        }
+        \; #1
+      }
+  }
+
 \NewDocumentEnvironment { solution } { o }
     {
 		\medskip
 		\begin{tcolorbox}
 			[
+				enhanced~ jigsaw,
 				breakable,
 				title = \textbf{\sffamily\large Gabarito \IfValueT{#1}{: \; #1}},
 				coltitle = black,
@@ -1627,7 +1684,15 @@
 						boxrule = \g_braun_linewidth_dim,
 					}
 			]	
+	
+		\dim_zero:N \parindent
 		\dim_set_eq:NN \parskip \medskipamount
+		
+		\cs_set_eq:NN \paragraph \StepHeader
+
+		\tl_set:Nn \arraystretch {1.5}
+		\cs_set_eq:NN \toprule \relax
+
 		\medskip
     } 
     {
@@ -1882,7 +1947,7 @@
 						\item Carga~ elementar,~ $e = \qty{1,6e-19}{C}$
 						\item Constante~ dos~ gases,~ $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
 						\item Constante~ de~ Planck,~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
-						\item Constante~ de~ Rydberg,~ $\mathcal{R} \c_math_subscript_token \mathrm{\infty} = \qty{1,1e7}{m^{-1}}$
+						\item Constante~ de~ Rydberg,~ $\mathcal{R} = \qty{1,1e7}{m^{-1}}$
 						\item Constante~ de~ atoionização~ da~ água,~ $K \c_math_subscript_token \mathrm{w} = \num{1e-14}$
 						\item Velocidade~ da~ luz~ no~ vácuo,~ $c = \qty{3e8}{m.s^{-1}}$
 					\end{datalist}
