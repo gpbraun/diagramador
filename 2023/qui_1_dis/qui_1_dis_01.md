@@ -1,17 +1,34 @@
 ---
-elementos: Nb
+elementos: Kr, Br, Nb, Ag
 ---
 
-O momento magnético, $\mu$, é uma medida da força com que uma substância paramagnética é atraída por um campo magnético externo. 
-$$
-    \mu = \mu_\mathrm{B} \sqrt{n(n+2)}
-$$
-Onde $n$ é o número de elétrons desemparelhados e $\mu_\mathrm{B}$, o magneton de Bohr, é uma constante.
+O nióbio-92 e bromo-80 são, respectivamente, isóbaro e isótono do átomo de um elemento.
 
-a. **Determine** a configuração eletrônica do nióbio, que possui $\mu = \pu{5,92}\,\mu_\mathrm{B}$.
-b. **Determine** o número atômico do elemento do quinto período que possui $\mu = \pu{5,92}\,\mu_\mathrm{B}$  no estado fundamental.
-c. **Determine** o número atômico do elemento do sexto período que possui $\mu = \pu{8,94}\,\mu_\mathrm{B}$ no estado fundamental.
+a. **Determine** configuração eletrônica desse átomo no estado fundamental.
+b. **Determine** os números quânticos do orbital atômico mais energético desse átomo no estado fundamental.
 
 ---
 
-**a.** O momento magnético $\mu = \pu{5,92}\,\mu_\mathrm{B}$ 
+#### **(a)** Calcule o número atômico do elemento
+
+O número de massa do nióbio-92 é 92, logo, o átomo possui número de massa 92.
+
+O número de neutrons do bromo-80 é $80 - 35 = 45$, assim, o átomo possui 45 neutrons e seu número atômico é:
+$$
+    Z = 92 - 45 = 47 \quad \text{(prata, Ag)}
+$$
+
+#### Adicione $47$ elétrons, um após o outro, aos orbitais na ordem mostrada na Figura 1B.1, mas não coloque mais de dois elétrons em um mesmo orbital.
+
+$$
+    \ce{Ag}: \ce{[Kr]}\,\mathrm{ 5s^1 4d^{10} }
+$$
+A prata apresenta configuração eletrônica de seu estado fundamental diferente do previsto pelo diagrama.
+
+Em geral, os átomos que possuem configuração prevista $n\mathrm{s^2} (n-1)\mathrm{d^9}$ apresentam configuração $n\mathrm{s^1} (n-1)\mathrm{d^{10}}$ em seu estado fundamental.
+
+#### **(b)** Identifique os números quânticos do orbital mais energético ($\mathrm{4d}$).
+
+$$
+    \boxed{ n = 4 \quad l = 2 \quad m_l = +2 }
+$$

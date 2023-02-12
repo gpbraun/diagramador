@@ -88,7 +88,7 @@ d. **Classifique** os dois produtos minoritários e majoritários quanto à sua 
 
 #### **(a)** O outro produto majoritário é o enantiômero do produto apresentado. Para determinar sua estrutura inverta a configuração de todos os centros quirais do produto apresentado.
 
-$$
+```latex
     \chemfig{
                  O% 1
           =[:288]% 2
@@ -133,11 +133,11 @@ $$
                     )
            =[:90]O% 15
 }
-$$
+```
 
 #### **(b)** Os produtos minoritários possuem a mesma configuração *cis* nos carbonos de ponte do bicilo. Para determinar o primeiro subproduto inverta a configuração do outro centro quiral. O outro subproduto é o enantiômero do primeiro.
 
-$$
+```latex
 \chemfig{
                  O% 1
           =[:288]% 2
@@ -182,7 +182,7 @@ $$
                     )
            =[:90]O% 15
 }
-\qquad\text{e}\qquad
+\qquad e \qquad
 \chemfig{
                 O% 1
         =[:288]% 2
@@ -227,7 +227,7 @@ $$
                 )
         =[:90]O% 15
 }
-$$
+```
 
 #### **(c)** Compare a configuração dos carbonos quirais nos dois produtos minoritários.
 
@@ -235,4 +235,4 @@ Os produtos minoritários constituem um par de **enantiômeros**.
 
 #### **(d)** Compare a configuração dos carbonos quirais dos produtos minoritários e majoritários.
 
-Os produtos minoritários e majoritários apresentam configuração diferente de alguns (porém não de todos) os seus centros quirais. Assim, estes são **diastereoisômeros**.
+Os produtos minoritários e majoritários apresentam configuração diferente de alguns (porém não de todos) os seus centros quirais. Assim, estes são **diastereoisômetros**.

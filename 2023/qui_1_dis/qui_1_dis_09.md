@@ -3,14 +3,14 @@ $$
     \chemname{\chemfig{H_2N-[1]-[-1](=[-3]O)-[1]OH}}{glicina}
 $$
 
-A taxa de oxidação de glicina no corpo humano é cerca de $\pu{100 mg}$ por quilo de massa corporal por dia. Considere a oxidação diária de glicina em uma pessoa de $\pu{75 kg}$.
+A taxa de oxidação de glicina no corpo humano é cerca de $\pu{100 mg}$ por quilo de massa corporal por dia. Considere a oxidação diária de glicina em uma pessoa de $\pu{75 kg}$. A temperatura corporal é $\pu{37 \degree C}$.
 
 a. **Apresente** a reação de oxidação da glicina no organismo.
 b. **Determine** a entalpia padrão da oxidação diária de glicina.
 c. **Determine** a entropia padrão da oxidação diária de glicina.
 d. **Determine** a entropia padrão da vizinhança da oxidação diária de glicina.
 
-Considere os dados em $\pu{25 \degree C}$:
+Considere os dados em $\pu{37 \degree C}$:
 
 |                                                                         | $\ce{O2(g)}$ | $\ce{H2O(l)}$ | $\ce{CO2(g)}$ | $\ce{ureia(s)}$ | $\ce{glicina(s)}$ |
 | :---------------------------------------------------------------------- | -----------: | ------------: | ------------: | --------------: | ----------------: |
@@ -96,5 +96,5 @@ $$
 De $\Delta S_\mathrm{viz} = - \Delta H/T$
 $$
     \Delta S_\mathrm{viz} 
-        = - \dfrac{ (\pu{-65 kJ}) }{ \pu{298 K} } = \boxed{ \pu{+220 J.K-1} }
+        = - \dfrac{ (\pu{-65 kJ}) }{ \pu{310 K} } = \boxed{ \pu{+210 J.K-1} }
 $$
