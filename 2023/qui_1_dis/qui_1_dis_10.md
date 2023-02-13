@@ -1,6 +1,6 @@
 O grafeno é constituído de uma folha bidimensional de átomos de carbono, com apenas um átomo de espessura. Nesse material, os átomos de carbono estão em um arranjo hexagonal, em que a área de cada hexágono é $\pu{5e-20 m2}$.
 
-Pesquisadores da Universidade de Manchester conduziram um experimento em que gás nitrogênio a $\pu{0 \degree C}$ e $\pu{1 atm}$ foi adsorvido sobre uma folha de grafeno colocada sobre um suporte sólido. O arranjo das moléculas de nitrogênio sobre o grafeno é mostrado a seguir:
+Pesquisadores da Universidade de Manchester conduziram um experimento em que gás nitrogênio a $\pu{0 \degree C}$ e $\pu{1 atm}$ foi adsorvido sobre uma folha de $\pu{1 g}$ de grafeno colocada sobre um suporte sólido. O arranjo das moléculas de nitrogênio sobre o grafeno é mostrado a seguir:
 
 ```latex
 \medskip
