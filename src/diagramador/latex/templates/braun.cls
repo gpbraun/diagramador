@@ -470,12 +470,9 @@
     \usetikzlibrary
       {
         calc,
-        shapes.geometric, 
-		shapes.misc,
-        decorations.pathreplacing,
-        decorations.markings,
-        decorations.pathmorphing,
-        arrows.meta,
+        shapes,
+        decorations,
+        arrows,
       }
   }
 
