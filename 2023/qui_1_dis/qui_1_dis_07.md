@@ -11,14 +11,14 @@ c. **Determine** a massa de água formada diariamente por um camelo pela oxidaç
 #### **(a)** Na reação de combustão, o carbono é convertido em $\ce{CO2}$ e o hidrogênio é convertido em $\ce{H2O}$.
 
 $$
-    \ce{ 2 C57H110O6(s) + 165 O2(g) -> 114 CO2(g) + 110 H2O(l) }
+    \ce{ 2 C57H110O6(s) + 163 O2(g) -> 114 CO2(g) + 110 H2O(l) }
 $$
 
 #### **(b)** Calcule a massa de oxigênio que um camelo utiliza diariamente na oxidação de gorduras.
 
 O número de minutos em um dia é
 $$
-    (\pu{24 h//d}) \times (\pu{1440 min//h}) = \pu{1440 min//d}
+    (\pu{24 h//d}) \times (\pu{60 min//h}) = \pu{1440 min//d}
 $$
 Assim, os camelos respiram, em média, $\pu{1440 min} \times \pu{10 resp//min} = \pu{14400 resp//d}$. A massa de oxigênio diária usada na oxidação de gorduras é:
 $$

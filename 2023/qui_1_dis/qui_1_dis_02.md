@@ -17,7 +17,8 @@ $$
 
 De $n = m/M$,
 $$
-    n_{\ce{C6H5COOH}} = \dfrac{ \pu{2,44 g} }{ \pu{122 g//mol} } = \pu{0,02 mol}
+    n_{\ce{C6H5COOH}} 
+        = \dfrac{ \pu{2,44 g} }{ \pu{122 g//mol} } = \pu{0,02 mol}
 $$
 
 #### Cálculo do calor liberado pela pastilha de ácido benzoico.

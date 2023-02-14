@@ -1945,7 +1945,7 @@
 						\item Constante~ dos~ gases,~ $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
 						\item Constante~ de~ Planck,~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
 						\item Constante~ de~ Rydberg,~ $\mathcal{R} = \qty{1,1e7}{m^{-1}}$
-						\item Constante~ de~ atoionização~ da~ água,~ $K \c_math_subscript_token \mathrm{w} = \num{1e-14}$
+						\item Constante~ de~ autoionização~ da~ água,~ $K \c_math_subscript_token \mathrm{w} = \num{1e-14}$
 						\item Velocidade~ da~ luz~ no~ vácuo,~ $c = \qty{3e8}{m.s^{-1}}$
 					\end{datalist}
 

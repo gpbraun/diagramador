@@ -76,7 +76,7 @@ $$
 #### Calcule a área total dos hexágonos $\pu{1 g}$ de grafeno.
 
 $$
-    S = 2(\pu{2,5e22}) \times (\pu{5e-20 m2}) 
+    S = (\pu{2,5e22}) \times (\pu{5e-20 m2}) 
         = \boxed{ \pu{1250 m2} }
 $$
 

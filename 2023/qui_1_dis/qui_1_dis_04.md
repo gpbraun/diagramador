@@ -41,30 +41,33 @@ Assim, a fórmula molecular do hidrocarboneto é $\boxed{ \ce{C6H14} }$
 #### **(c)** Apresente a estrutura de todos os isômeros com fórmula molecular $\ce{C6H14}$. Comece com as cadeias mais longas e diminua o tamanho da cadeia principal adicionando as ramificações.
 
 Existem 5 isômeros constitucionais com fórmula molecular $\ce{C6H14}$:
-$$
-    \chemfig{-[1]-[-1]-[1]-[-1]-[1]}
-    \qquad
-    \chemfig{-[1](-[3])-[-1]-[1]-[-1]}
-    \qquad
-    \chemfig{-[1]-[-1](-[-3])-[1]-[-1]}
-    \qquad
-    \chemfig{-[1](-[4])(-[2])-[-1]-[1]}
-    \qquad
-    \chemfig{-[1](-[3])-[-1](-[-3])-[1]}
-$$
+
+```latex
+\chemfig{-[1]-[-1]-[1]-[-1]-[1]}
+\qquad
+\chemfig{-[1](-[3])-[-1]-[1]-[-1]}
+\qquad
+\chemfig{-[1]-[-1](-[-3])-[1]-[-1]}
+\qquad
+\chemfig{-[1](-[4])(-[2])-[-1]-[1]}
+\qquad
+\chemfig{-[1](-[3])-[-1](-[-3])-[1]}
+```
+
 Nenhum dos compostos possui estereoisômeros.
 
 #### **(d)** Determine a estrutura do hidrocarboneto identificando o único isômero constitucional que leva a formação de apenas dois produtos clorados.
 
 O hidrocarboneto é o 2,3-dimetilbutano:
-$$
+
+```latex
 \schemestart
     \chemfig{-[1](-[3])-[-1](-[-3])-[1]}
     \arrow{->[\ce{Cl2}]}
-    \chemfig{-[1](-[4])(-[2]Cl)-[-1]-[1]}
+    \chemfig{-[1](-[4])(-[2]Cl)-[-1](-[-3])-[1]}
     \arrow{0}[,0]
     \+
     \arrow{0}[,0]
     \chemfig{-[1](-[3])-[-1](-[-3])-[1]-[-1]Cl}
 \schemestop
-$$
+```
