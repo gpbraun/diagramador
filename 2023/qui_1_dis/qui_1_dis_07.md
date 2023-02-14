@@ -43,9 +43,9 @@ $$
 
 #### Converta a quantidade de $\ce{C57H110O6}$ em massa usando a massa molar.
 
-De $m = nM$
 $$
     m_\text{gordura}
+        = n_\text{gordura} \times M_\text{gordura}
         = (\pu{0,22 mol}) \times (\pu{890 g//mol})
         = \boxed{ \pu{195 g} }
 $$
@@ -60,9 +60,10 @@ $$
 
 #### Converta a quantidade de $\ce{H2O}$ em massa usando a massa molar.
 
-De $m = nM$
 $$
     m_{\ce{H2O}}
+        = n_{\ce{H2O}} \times M_{\ce{H2O}}
         = (\pu{12 mol}) \times (\pu{18 g//mol})
         = \boxed{ \pu{216 g} }
 $$
+

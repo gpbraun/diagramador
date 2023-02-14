@@ -13,61 +13,74 @@ $$
     \ce{ C3H6N6O6(s) + 3/2 O2(g) -> 3 CO2(g) + 3 H2O(l) + 3 N2(g) }
 $$
 
-#### **(b)** Converta a massa de ácido benzoico em quantidade usando a massa molar.
+#### **(b)** Converta a massa de ácido benzoico, $\ce{AB}$, em quantidade usando a massa molar.
 
-De $n = m/M$,
 $$
-    n_{\ce{C6H5COOH}} 
+    n_{\ce{AB}} 
+        = \dfrac{ m_{\ce{AB}}  }{ M_{\ce{AB}} }
         = \dfrac{ \pu{2,44 g} }{ \pu{122 g//mol} } = \pu{0,02 mol}
 $$
 
 #### Cálculo do calor liberado pela pastilha de ácido benzoico.
 
-Em volume constante $Q_V = \Delta U$. 
-
-De $\Delta U = n \Delta U_\mathrm{r}$
+Em volume constante,
 $$
-    Q_V = (\pu{0,02 mol}) \times (\pu{-3,2 MJ//mol}) 
+    Q_V = \Delta U
+$$
+logo,
+$$
+    Q_{V, 1} 
+        = \Delta U_1 
+        = n_{\ce{AB}}  \Delta U_{\mathrm{c}, \ce{AB}}
+        = (\pu{0,02 mol}) \times (\pu{-3,2 MJ//mol}) 
         = \pu{-64 kJ}
 $$
 
-#### Calibração. Calcule a capacidade calorífica do calorímetro.
+#### Calibração. Calcule a capacidade calorífica do calorímetro a partir dos dados do primeiro experimento.
 
-De $Q_V = -Q_\mathrm{cal} = -C_\mathrm{cal} \Delta T$, no primeiro experimento:
 $$
     C_\mathrm{cal} 
+        = \dfrac{ Q_{\mathrm{cal}, 1} }{ \Delta T_1 }
+        = \dfrac{ -Q_{V, 1} }{ \Delta T_1 }
         = \dfrac{ \pu{64 kJ} }{ \pu{4 K} } 
         = \pu{16 kJ.K-1}
 $$
 
 #### Converta a massa de RDX em quantidade usando a massa molar.
 
-De $n = m/M$,
 $$
-    n_{\ce{RDX}} = \dfrac{ \pu{7,4 g} }{ \pu{222 g//mol} } = \pu{0,033 mol}
+    n_{\ce{RDX}} 
+        = \dfrac{ m_{\ce{RDX}}  }{ M_{\ce{RDX}} }
+        = \dfrac{ \pu{7,4 g} }{ \pu{222 g//mol} } = \pu{0,033 mol}
 $$
 
-#### Calcule o calor liberado na combustão do RDX.
+#### Calcule o calor liberado na combustão do RDX a partir dos dados do segundo experimento.
 
-De $Q_\mathrm{cal} = C_\mathrm{cal} \Delta T$, no segundo experimento:
 $$
-    Q_\mathrm{cal}
+    Q_{\mathrm{cal}, 2}
+        = C_\mathrm{cal} \Delta T_2
         = (\pu{16 kJ//K}) \times (\pu{4,4 K}) = \pu{ \pu{70,4 kJ} }
 $$
-Como a combustão ocorreu em volume constante, $\Delta U = Q_V = -Q_\mathrm{cal} = \pu{-70,4 kJ}$
+Como a combustão ocorreu em volume constante, 
+$$
+    \Delta U = Q_V = -Q_\mathrm{cal} = \pu{-70,4 kJ}
+$$
 
 #### Calcule a energia interna molar de combustão do RDX.
 
-De $\Delta U_\mathrm{c} = \Delta U/n$,
 $$
-    \Delta U_\mathrm{c} = \dfrac{ (\pu{-70,4 kJ}) }{ \pu{0,033 mol} } = \pu{-2112 kJ.mol-1}
+    \Delta U_{\mathrm{c}, \ce{RDX}}
+        =  \dfrac{\Delta U}{n_{\ce{RDX}}}
+        = \dfrac{ (\pu{-70,4 kJ}) }{ \pu{0,033 mol} } 
+        = \pu{-2112 kJ.mol-1}
 $$
 
 #### Calcule a entalpia molar de combustão do RDX.
 
-De $\Delta H = \Delta U + \Delta n_\text{gás} RT$,
 $$
-    \Delta H_\mathrm{c}
-        = (\pu{-2112 kJ//mol}) + \left(3 + 3 - \dfrac{3}{2}\right) \times (\pu{8,3e-3 kJ//K.mol}) \times (\pu{298 K})
+    \Delta H_{\mathrm{c}, \ce{RDX}}
+        = \Delta U_{\mathrm{c}, \ce{RDX}} + \Delta n_\text{gás} RT 
+        = (\pu{-2112 kJ//mol}) + \left(3 + 3 - \tfrac{3}{2}\right) \times (\pu{8,3e-3 kJ//K.mol}) \times (\pu{298 K})
         = \boxed{ \pu{-2100 kJ.mol-1} }
 $$
+

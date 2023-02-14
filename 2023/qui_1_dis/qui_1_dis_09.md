@@ -35,7 +35,9 @@ $$
 
 De $n = m/M$,
 $$
-    n_\text{glicina} = \dfrac{ \pu{7,5 g} }{ \pu{75 g//mol} } = \pu{0,1 mol}
+    n_\text{glicina}
+        = \dfrac{ m_\text{glicina} }{ M_\text{glicina} }
+        = \dfrac{ \pu{7,5 g} }{ \pu{75 g//mol} } = \pu{0,1 mol}
 $$
 
 #### Calcule a entalpia molar de oxidação da glicina.
@@ -57,9 +59,9 @@ $$
 
 #### Calcule a entalpia de oxidação de $\pu{0,1 mol}$ de glicina.
 
-De $\Delta H^\circ = n \Delta H_\mathrm{r}^\circ$,
 $$
     \Delta H 
+        = n \Delta H_\mathrm{r}^\circ
         = (\pu{-654 kJ//mol}) \times (\pu{0,1 mol})
         = \boxed{ \pu{-65 kJ} }
 $$
@@ -84,17 +86,17 @@ $$
 
 #### Calcule a entropia de oxidação de $\pu{0,1 mol}$ de glicina.
 
-De $\Delta S^\circ = n \Delta S_\mathrm{r}^\circ$,
 $$
     \Delta S^\circ 
+        = n \Delta S_\mathrm{r}^\circ
         = (\pu{+66 J//K.mol}) \times (\pu{0,1 mol})
         = \boxed{ \pu{+6,6 J.K-1} }
 $$
 
 #### **(d)** Calcule a variação de entropia da vizinhança.
 
-De $\Delta S_\mathrm{viz} = - \Delta H/T$
 $$
     \Delta S_\mathrm{viz} 
+        = \dfrac{\Delta H}{T}
         = - \dfrac{ (\pu{-65 kJ}) }{ \pu{310 K} } = \boxed{ \pu{+210 J.K-1} }
 $$

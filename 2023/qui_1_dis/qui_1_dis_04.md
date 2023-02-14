@@ -14,6 +14,7 @@ Cada molécula de produto clorato, $\ce{PC}$, possui um átomo de cloro.
 De $f_{\ce{Cl}} = M_{\ce{Cl}}/M_{\ce{PC}}$
 $$
     M_{\ce{PC}} 
+        = \dfrac{ M_{\ce{PC}} }{ f_{\ce{Cl}} }
         = \dfrac{ \pu{35,5 g//mol} }{ \pu{0,295} } 
         = \pu{120,5 g.mol-1}
 $$
@@ -24,10 +25,6 @@ Na reação de cloração, o hidrocarboneto, $\ce{HC}$, perde um átomo de hidro
 $$
     M_{\ce{HC}} 
         = M_{\ce{PC}} - M_{\ce{Cl}} + M_{\ce{H}}
-$$
-logo:
-$$
-    M_{\ce{HC}} 
         = (\pu{120,5 g//mol}) - (\pu{35,5 g//mol}) + (\pu{1 g//mol}) 
         = \boxed{ \pu{86 g.mol-1} }
 $$

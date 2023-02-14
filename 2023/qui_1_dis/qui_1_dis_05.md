@@ -8,9 +8,9 @@ c. **Determine** o comprimento de onda observado por uma nuvem de cátions héli
 
 #### **(a)** Use a equação de Rydberg.
 
-De $\dfrac{1}{\lambda} = \mathcal{R}\left(\dfrac{1}{n_1^2} - \dfrac{1}{n_1^2}\right)$,
 $$
     \dfrac{1}{\lambda}
+        = \mathcal{R}\left(\dfrac{1}{n_1^2} - \dfrac{1}{n_1^2}\right)
         = (\pu{1,1e7 m-1}) \times \left( \dfrac{1}{2^2} - \dfrac{1}{100^2} \right)
 $$
 logo,
@@ -26,9 +26,9 @@ Como o fóton liberado possui menos energia, ele deverá possui **maior comprime
 
 #### **(c)** Use a equação de Rydberg para o átomo com mais de um próton.
 
-De $\dfrac{1}{\lambda} = Z^2\mathcal{R}\left(\dfrac{1}{n_1^2} - \dfrac{1}{n_2^2}\right)$,
 $$
     \dfrac{1}{\lambda_{\ce{He^+}}}
+        = Z^2\mathcal{R}\left(\dfrac{1}{n_1^2} - \dfrac{1}{n_2^2}\right)
         = 2^2 \times (\pu{1,1e7 m-1}) \times \left( \dfrac{1}{2^2} - \dfrac{1}{100^2} \right)
 $$
 logo,

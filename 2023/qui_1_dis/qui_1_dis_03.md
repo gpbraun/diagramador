@@ -10,11 +10,11 @@ c. **Determine** a fórmula molecular do ácido pseudolárico A.
 
 #### **(a)** Converta a quantidade de $\ce{CO2}$ produzida em quantidade e massa de $\ce{C}$ na amostra.
 
-De $n = m/M$
 $$
 \begin{aligned}
     n_{\ce{C}} 
-        &= n_{\ce{CO2}}
+        &= n_{\ce{CO2}} 
+        = \dfrac{ m_{\ce{CO2}} }{ M_{\ce{CO2}} }
         = \dfrac{ \pu{2,5 g} }{ \pu{44 g//mol} } 
         = \pu{0,057 mol} \\
     m_{\ce{C}} 
@@ -24,11 +24,11 @@ $$
 
 #### Converta a quantidade de $\ce{H2O}$ produzida em quantidade e massa de $\ce{H}$ na amostra.
 
-De $n = m/M$
 $$
 \begin{aligned}
     n_{\ce{H}}
         &= 2 \times n_{\ce{H2O}}
+        = 2 \times \dfrac{ m_{\ce{H2O}} }{ M_{\ce{H2O}} }
         = 2 \times \dfrac{ \pu{0,65 g} }{ \pu{18 g//mol} } 
         = \pu{0,072 mol} \\
     m_{\ce{H}} 
@@ -38,13 +38,14 @@ $$
 
 #### Calcule a massa de oxigênio da amostra a partir da diferença entre a massa da amostra e a massa total de $\ce{C}$ e $\ce{H}$.
 
-De $n = m/M$
 $$
 \begin{aligned}
     m_{\ce{O}}
-        &= \pu{1 g} - \pu{0,68 g} - \pu{0,072 g} = \pu{0,25 g} \\
+        &= m - m_{\ce{C}} - m_{\ce{H}}
+        = \pu{1 g} - \pu{0,68 g} - \pu{0,072 g} = \pu{0,25 g} \\
     n_{\ce{O}}
-        &= \dfrac{ \pu{0,25 g} }{ \pu{16 g//mol} } = \pu{0,016 mol}
+        &= \dfrac{ m_{\ce{O}} }{ M_{\ce{O}} }
+        = \dfrac{ \pu{0,25 g} }{ \pu{16 g//mol} } = \pu{0,016 mol}
 \end{aligned}
 $$
 
@@ -64,24 +65,15 @@ A fórmula empírica é: $\boxed{ \ce{ C11H14O3 } }$
 De $d = PM/RT$
 $$
     M = \dfrac{dRT}{P}
+        = \dfrac{ (\pu{5 g//L}) \times (\pu{62,4 Torr.L//mol.K}) \times (\pu{388 K}) }{ \pu{312 Torr} } 
+        = \boxed{ \pu{388 g.mol-1} }
 $$
-logo,
-$$
-    M = \dfrac{ (\pu{5 g//L}) \times (\pu{62,4 Torr.L//mol.K}) \times (\pu{388 K}) }{ \pu{312 Torr} } = \boxed{ \pu{388 g.mol-1} }
-$$
-
-#### **(c)** Calcule a massa molar de uma fórmula unitária.
-
-$$
-\begin{aligned}
-   M_{\ce{C11H14O3}} = \pu{194 g.mol-1}
-\end{aligned}
-$$ 
 
 #### Divida a massa molar do composto pela massa da fórmula unitária empírica.
 
 $$
-   x = \dfrac{ \pu{388 g//mol} }{ \pu{194 g//mol} } = 2
+    x = \dfrac{ M }{ M_{\ce{ C11H14O3 }} }
+        = \dfrac{ \pu{388 g//mol} }{ \pu{194 g//mol} } = 2
 $$
 
 #### Multiplique os coeficientes na fórmula empírica pelo fator $2$ para obter a fórmula molecular.
