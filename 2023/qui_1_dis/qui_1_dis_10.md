@@ -41,7 +41,7 @@ Pesquisadores da Universidade de Manchester conduziram um experimento em que gá
 \foreach \hex in {A,...,O}
     {
         \foreach \corn in {1,...,6}
-            \draw[fill=black!20] (\hex.corner \corn) circle (3pt); 
+            \draw[fill=black!20, thick] (\hex.corner \corn) circle (3pt); 
     }
 \end{scope}
 \end{tikzpicture}
@@ -55,18 +55,19 @@ b. **Determine** o volume ocupado pelas moléculas de nitrogênio adsorvidas no 
 
 #### **(a)** Converta a massa de grafeno em quantidade de carbono.
 
-De $n = m/M$,
 $$
-    n = \dfrac{ \pu{1 g} }{ \pu{12 g//mol} } = \pu{0,083 mol}
-$$
-#### Calcule o número de átomos de carbono em $\pu{0,083 mol}$ de carbono.
-
-De $N = N_\mathrm{A} n$,
-$$
-    N_{\mathrm{C}} = (\pu{6e23 mol-1}) \times (\pu{0,083 mol}) = \pu{5e22}
+    n_{\mathrm{C}} 
+        = \dfrac{ m_{\mathrm{C}} }{ M_{\mathrm{C}} } 
+        = \dfrac{ \pu{1 g} }{ \pu{12 g//mol} } = \pu{0,083 mol}
 $$
 
-#### Calcule o número de hexágonos em $\pu{5e22}$ de carbono.
+#### Calcule o número de átomos de carbono.
+
+$$
+    N_{\mathrm{C}} = N_\mathrm{A} n_{\mathrm{C}} = (\pu{6e23 mol-1}) \times (\pu{0,083 mol}) = \pu{5e22}
+$$
+
+#### Calcule o número de hexágonos em $\pu{5e22}$ átomos de carbono.
 
 Cada hexágono é formado por 6 átomos de carbono, e cada átomo de carbono está em 3 hexágonos.
 $$
@@ -90,9 +91,6 @@ $$
 #### Calcule o volume de $\ce{N2}$ adsorvido.
 
 O volume molar em CNTP ($\pu{0 \degree C}$ e $\pu{1 atm}$) é $V_\mathrm{CNTP} = \pu{22,4 L.mol-1}$. 
-
-De $V = n V_\mathrm{m}$
 $$
-    V_{\ce{N2}} = (\pu{0,014 mol}) \times (\pu{22,4 L//mol}) = \boxed{ \pu{0,3 L} }
+    V_{\ce{N2}} = n_{\ce{N2}} V_\mathrm{CNTP} = (\pu{0,014 mol}) \times (\pu{22,4 L//mol}) = \boxed{ \pu{0,3 L} }
 $$
-

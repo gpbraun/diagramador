@@ -61,8 +61,8 @@ $$
 
 $$
     \Delta H 
-        = n \Delta H_\mathrm{r}^\circ
-        = (\pu{-654 kJ//mol}) \times (\pu{0,1 mol})
+        = n_\text{glicina} \Delta H_\mathrm{r}^\circ
+        = (\pu{0,1 mol}) \times (\pu{-654 kJ//mol})
         = \boxed{ \pu{-65 kJ} }
 $$
 
@@ -88,8 +88,8 @@ $$
 
 $$
     \Delta S^\circ 
-        = n \Delta S_\mathrm{r}^\circ
-        = (\pu{+66 J//K.mol}) \times (\pu{0,1 mol})
+        = n_\text{glicina} \Delta S_\mathrm{r}^\circ
+        = (\pu{0,1 mol}) \times (\pu{+66 J//K.mol})
         = \boxed{ \pu{+6,6 J.K-1} }
 $$
 

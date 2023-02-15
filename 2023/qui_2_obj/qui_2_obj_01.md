@@ -5,8 +5,8 @@ Muitos fogos de artifício utilizam a combustão do magnésio, que libera quanti
 - [ ] $\pu{207 kJ.mol-1}$
 - [ ] $\pu{216 kJ.mol-1}$
 - [ ] $\pu{220 kJ.mol-1}$
-- [x] $\pu{228 kJ.mol-1}$
-- [ ] $\pu{234 kJ.mol-1}$
+- [ ] $\pu{228 kJ.mol-1}$
+- [x] $\pu{246 kJ.mol-1}$
 
 ---
 
@@ -26,5 +26,6 @@ $$
 
 $$
     E_\mathrm{m} = N_\mathrm{A} E
-        = \dfrac{ (\pu{6,6e-34 J.s}) \times (\pu{3e8 m//s}) }{}
+        = (\pu{6e23 mol-1}) \times (\pu{4,1e-19 J})
+        = \boxed{ \pu{246 kJ.mol-1} }
 $$

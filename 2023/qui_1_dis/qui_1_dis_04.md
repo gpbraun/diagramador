@@ -25,7 +25,7 @@ Na reação de cloração, o hidrocarboneto, $\ce{HC}$, perde um átomo de hidro
 $$
     M_{\ce{HC}} 
         = M_{\ce{PC}} - M_{\ce{Cl}} + M_{\ce{H}}
-        = (\pu{120,5 g//mol}) - (\pu{35,5 g//mol}) + (\pu{1 g//mol}) 
+        = \Big\{ (\pu{120,5}) - (\pu{35,5}) + (\pu{1}) \Big\} \,\pu{g//mol}
         = \boxed{ \pu{86 g.mol-1} }
 $$
 
