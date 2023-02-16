@@ -7,21 +7,21 @@ c. **Determine** a estrutura do hidrocarboneto e dos produtos clorados.
 
 ---
 
-#### **(a)** Calcule a massa molar dos produtos clorados.
+#### **(a)** Calcule a massa molar dos produtos clorados, $\ce{PC}$.
 
-Cada molécula de produto clorato, $\ce{PC}$, possui um átomo de cloro.
+Cada molécula de produto clorado possui apenas um átomo de cloro.
 
 De $f_{\ce{Cl}} = M_{\ce{Cl}}/M_{\ce{PC}}$
 $$
     M_{\ce{PC}} 
-        = \dfrac{ M_{\ce{PC}} }{ f_{\ce{Cl}} }
+        = \dfrac{ M_{\ce{Cl}} }{ f_{\ce{Cl}} }
         = \dfrac{ \pu{35,5 g//mol} }{ \pu{0,295} } 
         = \pu{120,5 g.mol-1}
 $$
 
-#### Calcule a massa molar do hidrocarboneto.
+#### Calcule a massa molar do hidrocarboneto, $\ce{HC}$.
 
-Na reação de cloração, o hidrocarboneto, $\ce{HC}$, perde um átomo de hidrogênio e ganha um átomo de cloro:
+Na reação de cloração, o hidrocarboneto perde um átomo de hidrogênio e ganha um átomo de cloro:
 $$
     M_{\ce{HC}} 
         = M_{\ce{PC}} - M_{\ce{Cl}} + M_{\ce{H}}

@@ -28,16 +28,19 @@ $$
 
 #### Converta a massa de $\ce{O2}$ em quantidade usando a massa molar.
 
-De $n = m/M$
 $$
-    n_{\ce{O2}} = \dfrac{ \pu{576 g} }{ \pu{32 g//mol} } = \pu{18 mol}
+    n_{\ce{O2}} 
+        = \dfrac{ m_{\ce{O2}} }{ M_{\ce{O2}} }
+        = \dfrac{ \pu{576 g} }{ \pu{32 g//mol} } 
+        = \pu{18 mol}
 $$
 
 #### Use a relação estequiométrica para converter a quantidade de $\ce{O2}$ na quantidade de $\ce{C57H110O6}$.
 
 $$
     n_\text{gordura}
-        = (\pu{18 mol}) \times \dfrac{2}{165}
+        = \dfrac{2}{165} n_{\ce{O2}} 
+        = \dfrac{2}{165} \times (\pu{18 mol})
         = \pu{0,22 mol}
 $$
 
@@ -45,7 +48,7 @@ $$
 
 $$
     m_\text{gordura}
-        = n_\text{gordura} \times M_\text{gordura}
+        = n_\text{gordura} M_\text{gordura}
         = (\pu{0,22 mol}) \times (\pu{890 g//mol})
         = \boxed{ \pu{195 g} }
 $$
@@ -54,7 +57,8 @@ $$
 
 $$
     n_{\ce{H2O}}
-        = (\pu{18 mol}) \times \dfrac{110}{165}
+        = \dfrac{110}{165} n_{\ce{O2}} 
+        = \dfrac{110}{165} \times (\pu{18 mol}) 
         = \pu{12 mol}
 $$
 
