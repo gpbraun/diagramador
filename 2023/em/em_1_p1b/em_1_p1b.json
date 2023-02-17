@@ -1,0 +1,24 @@
+{
+    "id_": "em_1_p1b",
+    "title": "Prova de etapa 1",
+    "template": "prova",
+    "affiliation": "Turma EM IME-ITA 1",
+    "problem_sets": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "2023/em/em_1_p1b/em_1_p1b_01.md",
+                "2023/em/em_1_p1b/em_1_p1b_02.md",
+                "2023/em/em_1_p1b/em_1_p1b_03.md",
+                "2023/em/em_1_p1b/em_1_p1b_04.md",
+                "2023/em/em_1_p1b/em_1_p1b_05.md",
+                "2023/em/em_1_p1b/em_1_p1b_06.md",
+                "2023/em/em_1_p1b/em_1_p1b_07.md",
+                "2023/em/em_1_p1b/em_1_p1b_08.md",
+                "2023/em/em_1_p1b/em_1_p1b_09.md",
+                "2023/em/em_1_p1b/em_1_p1b_10.md"
+            ]
+        }
+    ]
+}

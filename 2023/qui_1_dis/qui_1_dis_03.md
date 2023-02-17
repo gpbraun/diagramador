@@ -62,7 +62,7 @@ A fórmula empírica é: $\boxed{ \ce{ C11H14O3 } }$
 
 #### **(b)** Calcule a massa molar usando a densidade do gás.
  
-De $d = PM/RT$
+De $d = PM/RT$,
 $$
     M = \dfrac{dRT}{P}
         = \dfrac{ (\pu{5 g//L}) \times (\pu{62,4 Torr.L//mol.K}) \times (\pu{388 K}) }{ \pu{312 Torr} } 
