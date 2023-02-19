@@ -1619,6 +1619,15 @@
     } 
     {
 		\bigskip
+		\str_case:VnF \l_braun_problem_template_tl
+            {
+				{ prova }
+                {
+                    \skip_vertical:n {7cm}
+                }    
+            }
+            {}
+
         \braun_end_problem_box:
     }
 
@@ -1797,7 +1806,7 @@
 
 		% Problemas
 		problems / name = Questão,
-		problems / template = prova,
+		problems / template = pensi,
 
 		% Química
 		chem / elements / display-style = ptable,
@@ -1814,7 +1823,14 @@
 
 \DeclareBraunTemplate { prova }
     {
-        pensi
+        pensi,
+
+		% Problemas
+		problems / name = Questão,
+		problems / template = prova,
+
+		% Química
+		chem / elements / display-style = ptable,
     }
 
 %============================================================%
