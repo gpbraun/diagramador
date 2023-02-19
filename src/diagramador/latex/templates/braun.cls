@@ -1623,7 +1623,7 @@
             {
 				{ prova }
                 {
-                    \skip_vertical:n {7cm}
+                    \skip_vertical:n {6cm}
                 }    
             }
             {}
