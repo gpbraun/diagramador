@@ -1,3 +1,7 @@
+---
+elementos: Cl, Br, F
+---
+
 Considere a reação entre dióxido de cloro, $\ce{ClO2}$, e trifluoreto de bromo, $\ce{BrF3}$.
 $$
     \ce{ ClO2(g) + BrF3(l) -> ClO2F(s) + Br2(l) }

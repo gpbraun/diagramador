@@ -1,65 +1,127 @@
-Uma amostra de $\pu{59,6 g}$ de biodiesel, contendo somente carbono, hidrogênio e oxigênio, foi analisado por combustão. As massas de água e dióxido de carbono produzidas foram $\pu{68,4 g}$ e $\pu{167,2 g}$, respectivamente.
+O paclitaxel é um medicamento usado no tratamento do câncer.
 
-**Assinale** a alternativa com a fórmula empírica do composto.
+```latex
+\chemname{
+\chemfig{
+                              % 1
+                     -[:264.4]% 2
+    -[:325.3,,,,dbr={55}{157}]% 3
+                       -[:345]% 4
+                                 (
+                          <[:52.5]O% 59
+                         -[:112.5]% 60
+                                     (
+                              -[:52.5]% 62
+                                     )
+                         =[:172.5]O% 61
+                                 )
+                       -[:300]% 5
+                                 (
+                           =[:7.5]O% 6
+                                 )
+                       -[:255]% 7
+                                 (
+                          <[:22.5]% 58
+                                 )
+                       -[:330]% 8
+                                 (
+                        <[:30,,,1]OH% 57
+                                 )
+                       -[:270]% 9
+                       >[:210]% 10
+                       -[:150]% 11
+                                 (
+                           -[:240]% 51
+                           -[:330]O% 52
+                            -[:60]% -> 10
+                                 )
+                                 (
+                          <:[:165]O% 53
+                           -[:225]% 54
+                                     (
+                               -[:285]% 56
+                                     )
+                           =[:165]O% 55
+                                 )
+                        >[:90]% 12
+                                 (
+                            -[:30]% -> 7
+                                 )
+                       -[:165]% 13
+                                 (
+                        <:[:232.5]O% 42
+                         -[:172.5]% 43
+                                     (
+                             -[:232.5]% 45
+                      -[:292.5,,,,drh]% 46
+                             -[:232.5]% 47
+                      -[:172.5,,,,drh]% 48
+                             -[:112.5]% 49
+                       -[:52.5,,,,drh]% 50
+                             -[:352.5]% -> 45
+                                     )
+                         =[:112.5]O% 44
+                                 )
+                       -[:120]% 14
+                                 (
+                            -[:75]% 15
+                                     (
+                               -[:170]% 16
+                                     )
+                                     (
+                               -[:115]% 17
+                                     )
+                            -[:30]% -> 3
+                                 )
+                                 (
+                     <[:219.8,,,2]HO% 41
+                                 )
+                     -[:139.7]% 18
+                      -[:81.6]% 19
+                                 (
+                          -[:23.4]% -> 2
+                                 )
+                    <:[:142.5]O% 20
+                     -[:202.5]% 21
+                                 (
+                         =[:262.5]O% 22
+                                 )
+                     -[:142.5]% 23
+                                 (
+                      <[:82.5,,,1]OH% 40
+                                 )
+                     -[:202.5]% 24
+                                 (
+                         -[:142.5]% 25
+                  -[:202.5,,,,drh]% 26
+                         -[:142.5]% 27
+                   -[:82.5,,,,drh]% 28
+                          -[:22.5]% 29
+                  -[:322.5,,,,drh]% 30
+                         -[:262.5]% -> 25
+                                 )
+                 <[:262.5,,,1]NH% 31
+                  -[:202.5,,1]% 32
+                                 (
+                         =[:142.5]O% 33
+                                 )
+                     -[:262.5]% 34
+              -[:322.5,,,,drh]% 35
+                     -[:262.5]% 36
+              -[:202.5,,,,drh]% 37
+                     -[:142.5]% 38
+               -[:82.5,,,,drh]% 39
+                                 (
+                          -[:22.5]% -> 34
+                                 )
+}
+}{Paclitaxel}
+```
 
-- [ ] $\ce{C20H36O2}$
-- [x] $\ce{C19H38O2}$
-- [ ] $\ce{C16H28O}$
-- [ ] $\ce{C19H28O4}$
-- [ ] $\ce{C16H22O4}$
+**Assinale** a alternativa com as funções orgânicas presentes nesse composto.
 
----
-
-#### Converta a quantidade de $\ce{CO2}$ produzida em quantidade e massa de $\ce{C}$ na amostra.
-
-De $n = m/M$
-$$
-\begin{aligned}
-    n_{\ce{C}} 
-        &= n_{\ce{CO2}} 
-        = \dfrac{ m_{\ce{CO2}} }{ M_{\ce{CO2}}  } 
-        = \dfrac{ \pu{167,2 g} }{ \pu{44 g//mol} } 
-        = \pu{3,8 mol} \\
-    m_{\ce{C}} 
-        &= (\pu{3,8 mol}) \times (\pu{12 g//mol}) = \pu{45,6 g}
-\end{aligned}
-$$
-
-#### Converta a quantidade de $\ce{H2O}$ produzida em quantidade e massa de $\ce{H}$ na amostra.
-
-De $n = m/M$
-$$
-\begin{aligned}
-    n_{\ce{H}}
-        &= 2 n_{\ce{H2O}}
-        = 2 \dfrac{ m_{\ce{H2O}} }{ M_{\ce{H2O}}  } 
-        = 2 \times \dfrac{ \pu{68,4 g} }{ \pu{18 g//mol} } 
-        = \pu{7,6 mol} \\
-    m_{\ce{H}} 
-        &= (\pu{7,6 mol}) \times (\pu{1 g//mol}) = \pu{7,6 g}
-\end{aligned}
-$$
-
-#### Calcule a massa de oxigênio da amostra a partir da diferença entre a massa da amostra e a massa total de $\ce{C}$ e $\ce{H}$.
-
-$$
-\begin{aligned}
-    m_{\ce{O}}
-        &= m - m_{\ce{C}} - m_{\ce{H}}
-        = \pu{59,6 g} - \pu{45,6 g} - \pu{7,6 g} = \pu{6,4 g} \\
-    n_{\ce{O}}
-        &= \dfrac{ m_{\ce{O}} }{ M_{\ce{O}}  } 
-        = \dfrac{ \pu{6,4 g} }{ \pu{16 g//mol} } = \pu{0,4 mol}
-\end{aligned}
-$$
-
-#### Divida a quantidade de $\ce{C}$, $\ce{H}$ e $\ce{O}$ pela menor quantidade ($\pu{0,4 mol}$).
-
-$$
-\begin{aligned}
-    n_{\ce{C}} &: \dfrac{\pu{3,8 mol}}{\pu{0,4 mol}} = \frac{19}{2} \\
-    n_{\ce{H}} &: \dfrac{\pu{7,6 mol}}{\pu{0,4 mol}} = \frac{38}{2} \\
-    n_{\ce{O}} &: \dfrac{\pu{0,4 mol}}{\pu{0,4 mol}} = 1
-\end{aligned}
-$$
-Por fim, a fórmula empírica é: $\boxed{ \ce{ C19H38O2 } }$
+- [x] Álcool, amida, éster, éter, cetona.
+- [ ] Álcool, amida, éster, cetona, aldeído.
+- [ ] Álcool, amina, éster, éter, cetona.
+- [ ] Álcool, amina, acetal, éter, aldeído.
+- [ ] Álcool, amida, éster, ácido carboxílico, cetona.
