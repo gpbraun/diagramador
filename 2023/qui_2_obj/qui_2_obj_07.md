@@ -12,7 +12,6 @@ Uma amostra de $\pu{59,6 g}$ de biodiesel, contendo somente carbono, hidrogênio
 
 #### Converta a quantidade de $\ce{CO2}$ produzida em quantidade e massa de $\ce{C}$ na amostra.
 
-De $n = m/M$
 $$
 \begin{aligned}
     n_{\ce{C}} 
@@ -27,7 +26,6 @@ $$
 
 #### Converta a quantidade de $\ce{H2O}$ produzida em quantidade e massa de $\ce{H}$ na amostra.
 
-De $n = m/M$
 $$
 \begin{aligned}
     n_{\ce{H}}

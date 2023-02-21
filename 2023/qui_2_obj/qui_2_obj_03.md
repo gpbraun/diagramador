@@ -32,6 +32,6 @@ $$
 Como cada molécula de $\ce{N2}$ contém dois átomos de $\ce{N}$
 $$
    N_{\ce{N}} 
-      = (\pu{6e21}) \times 2
+      = 2 \times (\pu{6e21})
       = \boxed{ \pu{1,2E22} }
 $$

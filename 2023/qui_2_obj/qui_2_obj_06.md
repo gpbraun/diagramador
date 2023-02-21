@@ -1,4 +1,11 @@
-O trinitrotolueno, $\ce{C7H5N3O6}$, é um explosivo conhecido como TNT. Em princípio ele poderia ser usado como combustível de foguetes, com os gases formados na decomposição saindo para dar o impulso necessário. Na prática, é claro, ele seria *extremamente* perigoso como combustível, porque é sensível ao choque.
+O trinitrotolueno, TNT, é um explosivo. Em princípio ele poderia ser usado como combustível de foguetes, com os gases formados na decomposição saindo para dar o impulso necessário. Na prática, é claro, ele seria *extremamente* perigoso como combustível, porque é sensível ao choque.
+
+```latex
+\chemnameinit{}
+\chemname{
+\chemfig{*6(-(-NO_2)=-(-NO_2)=(-CH_3)-(-O_2N)=-)}
+}{TNT}
+```
 
 A densidade do TNT é $\pu{1,65 g.cm-3}$. Considere os dados em $\pu{25 \degree C}$:
 
