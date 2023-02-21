@@ -7,9 +7,9 @@ Considere as proposições a respeito da reação de combustão do etanol, $\ce{
 
 Considere os dados.
 
-|                                                                                      | $\ce{O2(g)}$ | $\ce{H2O(l)}$ | $\ce{CO2(g)}$ | $\ce{C2H6O(l)}$ |
-| :----------------------------------------------------------------------------------- | :----------: | :-----------: | :-----------: | :-------------: |
-| Capacidade calorífica molar em pressão constante, $C_{P,\mathrm{m}}/{\pu{J//K.mol}}$ |  $\pu{29}$   |   $\pu{89}$   |   $\pu{37}$   |   $\pu{110}$    |
+|                                                                                | $\ce{O2(g)}$ | $\ce{H2O(l)}$ | $\ce{CO2(g)}$ | $\ce{C2H6O(l)}$ |
+| :----------------------------------------------------------------------------- | :----------: | :-----------: | :-----------: | :-------------: |
+| Capacidade calorífica em pressão constante, $C_{P,\mathrm{m}}/{\pu{J//K.mol}}$ |  $\pu{29}$   |   $\pu{89}$   |   $\pu{37}$   |   $\pu{110}$    |
 
 **Assinale** a alternativa que relaciona as proposições *corretas*
 
@@ -22,23 +22,23 @@ $$
     \ce{ C2H6O(l) + 3 O2(g) -> 2 CO2(g) + 3 H2O(l) }
 $$
 
-#### Compare o calor liberado na combustão completa com o calor liberado na combustão incompleta.
+#### **(1)** Compare o calor liberado na combustão completa com o calor liberado na combustão incompleta.
 
 A combustão do $\ce{CO}$ formando $\ce{CO2}$ ocorre com liberação de energia. Logo, a reação libera menos energia quando há formação de $\ce{CO}$.
 
-#### Compare o calor liberado quando há formação de água líquida com o calor liberado quando há formação de água gasosa.
+#### **(2)** Compare o calor liberado quando há formação de água líquida com o calor liberado quando há formação de água gasosa.
 
 A formação de água gasosa a partir da água líquida requer absorção de energia. Logo, a reação libera menos energia quando há formação de água gasosa.
 
-#### Compare o calor liberado em volume contante com o calor liberado em pressão constante.
+#### **(3)** Compare o calor liberado em volume contante com o calor liberado em pressão constante.
 
-O calor liberado em volume constante é $\Delta U$ e o calor liberado em pressão contante é $\Delta H$. A relação entre $\Delta U$ e $\Delta H$ é:
+O calor liberado em volume constante é $Q_V = \Delta U$ e o calor liberado em pressão contante é $Q_P = \Delta H$. A relação entre $\Delta U$ e $\Delta H$ é:
 $$
     \Delta H = \Delta U + RT \Delta n_\text{gás}
 $$
 Quando há formação de água líquida, $\Delta n_\text{gás} = 2 - 3 = -1$. Como $\Delta n_\text{gás}$ é negativo, $\Delta H$ é menor (mais negativo) que $\Delta U$. Assim, a reação libera mais energia em pressão constante.
 
-#### Compare o calor liberado em duas temperaturas diferentes.
+#### **(4)** Compare o calor liberado em duas temperaturas diferentes.
 
 A relação entre a variação de entalpia padrão de reação e a temperatura é:
 $$
