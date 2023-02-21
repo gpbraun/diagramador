@@ -1404,17 +1404,6 @@
 
 \RequirePackage { tasks, enumitem }
 
-%%% ALTERNATIVAS
-\NewTasksEnvironment
-	[
-		label  = {\textbf{\Alph*}\,(\;\;)},
-		item-indent = 4em,
-		after-item-skip = 2\itemsep,
-		label-width = 2.5em,
-		label-align = right,
-		label-offset = 0.7em,
-	]
-	{ choices } [ \item ]
 
 %%% DADOS NA CAPA
 \NewTasksEnvironment
@@ -1426,6 +1415,17 @@
 %============================================================%
 %   ALTERNATIVAS
 %============================================================%
+
+\NewTasksEnvironment
+	[
+		label  = {\textbf{\Alph*}\,(\;\;)},
+		item-indent = 40pt,
+		after-item-skip = 2\itemsep,
+		label-width = 2.5em,
+		label-align = right,
+		label-offset = 0.7em,
+	]
+	{ choices } [ \item ]
 
 % Determinacão automática do número de colunas
 
@@ -1476,11 +1476,12 @@
           \l_braun_choices_d_fp,
           \l_braun_choices_e_fp
         )
+		+ 50 % (item-indent + column-sep)/pt
       }
 
     \fp_set:Nn \l_tmpb_fp % tamanho útil
       { 
-        0.6 * \dim_to_decimal:n {\columnwidth}
+        \dim_to_decimal:n { \columnwidth }
       }
 
     \int_set:Nn \l_tmpa_int % número de colunas

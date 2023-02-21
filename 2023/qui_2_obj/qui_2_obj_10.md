@@ -1,82 +1,63 @@
----
-elementos: Cl, Br, F
----
+Uma amostra de $\pu{59,6 g}$ de biodiesel, contendo somente carbono, hidrogênio e oxigênio, foi analisado por combustão. As massas de água e dióxido de carbono produzidas foram $\pu{68,4 g}$ e $\pu{167,2 g}$, respectivamente.
 
-Considere a reação entre dióxido de cloro, $\ce{ClO2}$, e trifluoreto de bromo, $\ce{BrF3}$.
-$$
-    \ce{ ClO2(g) + BrF3(l) -> ClO2F(s) + Br2(l) }
-$$
-Em um experimento, $\pu{675 g}$ de $\ce{ClO2}$ reagiram com $\pu{685 g}$ de $\ce{BrF3}$.
+**Assinale** a alternativa com a fórmula empírica do composto.
 
-**Assinale** a alternativa que mais se aproxima da massa do reagente em excesso que permanece ao final da reação.
-
-- [ ] $\pu{200 g}$
-- [x] $\pu{230 g}$
-- [ ] $\pu{260 g}$
-- [ ] $\pu{290 g}$
-- [ ] $\pu{320 g}$
+- [ ] $\ce{C20H36O2}$
+- [x] $\ce{C19H38O2}$
+- [ ] $\ce{C16H28O}$
+- [ ] $\ce{C19H28O4}$
+- [ ] $\ce{C16H22O4}$
 
 ---
 
-#### Balanceie a equação química.
-
-$$
-    \ce{ 6 ClO2(g) + 2 BrF3(l) -> 6 ClO2F(s) + Br2(l) }
-$$
-
-#### Converta as massas em quantidade usando a massa molar.
+#### Converta a quantidade de $\ce{CO2}$ produzida em quantidade e massa de $\ce{C}$ na amostra.
 
 $$
 \begin{aligned}
-    n_{\ce{ClO2}}
-        &= \dfrac{ m_{\ce{ClO2}} }{ M_{\ce{ClO2}} }
-        = \dfrac{ \pu{675 g} }{ \pu{67,5 g//mol} } = \pu{10 mol} \\
-    n_{\ce{BrF3}}
-        &= \dfrac{ m_{\ce{BrF3}} }{ M_{\ce{BrF3}} }
-        = \dfrac{ \pu{685 g} }{ \pu{137 g//mol} } = \pu{5 mol}
+    n_{\ce{C}} 
+        &= n_{\ce{CO2}} 
+        = \dfrac{ m_{\ce{CO2}} }{ M_{\ce{CO2}}  } 
+        = \dfrac{ \pu{167,2 g} }{ \pu{44 g//mol} } 
+        = \pu{3,8 mol} \\
+    m_{\ce{C}} 
+        &= (\pu{3,8 mol}) \times (\pu{12 g//mol}) = \pu{45,6 g}
 \end{aligned}
 $$
 
-#### Para cada reagente, calcule quantos mols de produto ($\ce{Br2}$) ele forma.
-
-Para o $\ce{ClO2}$:
-$$
-    n_{\ce{Br2}}
-        = \dfrac{1}{6} n_{\ce{ClO2}}
-        = \dfrac{1}{6} \times (\pu{10 mol})
-        = \pu{1,67 mol}
-$$
-Para a $\ce{BrF3}$:
-$$
-    n_{\ce{Br2}}
-        = \dfrac{1}{2} n_{\ce{BrF3}}
-        = \dfrac{1}{2} \times (\pu{5 mol})
-        = \pu{2,5 mol}
-$$
-O $\ce{ClO2}$ só pode produzir $\pu{1,67 mol}$ de $\ce{Br2}$. Portanto, ele é o reagente limitante.
-
-#### Calcule a quantidade de $\ce{BrF3}$ consumida na reação.
+#### Converta a quantidade de $\ce{H2O}$ produzida em quantidade e massa de $\ce{H}$ na amostra.
 
 $$
-    n_{\ce{BrF3}, \text{consumido}}
-        = \dfrac{2}{6} n_{\ce{ClO2}}
-        = \dfrac{2}{6} \times (\pu{10 mol})
-        = \pu{3,33 mol}
+\begin{aligned}
+    n_{\ce{H}}
+        &= 2 n_{\ce{H2O}}
+        = 2 \dfrac{ m_{\ce{H2O}} }{ M_{\ce{H2O}}  } 
+        = 2 \times \dfrac{ \pu{68,4 g} }{ \pu{18 g//mol} } 
+        = \pu{7,6 mol} \\
+    m_{\ce{H}} 
+        &= (\pu{7,6 mol}) \times (\pu{1 g//mol}) = \pu{7,6 g}
+\end{aligned}
 $$
 
-#### Calcule a quantidade de $\ce{BrF3}$ remanescente ao final da reação.
+#### Calcule a massa de oxigênio da amostra a partir da diferença entre a massa da amostra e a massa total de $\ce{C}$ e $\ce{H}$.
 
 $$
-    n_{\ce{BrF3}, \text{xs}} 
-        = n_{\ce{BrF3}} - n_{\ce{BrF3}, \text{consumido}}
-        = \pu{5 mol} - \pu{3,33 mol} = \pu{1,67 mol}
+\begin{aligned}
+    m_{\ce{O}}
+        &= m - m_{\ce{C}} - m_{\ce{H}}
+        = \pu{59,6 g} - \pu{45,6 g} - \pu{7,6 g} = \pu{6,4 g} \\
+    n_{\ce{O}}
+        &= \dfrac{ m_{\ce{O}} }{ M_{\ce{O}}  } 
+        = \dfrac{ \pu{6,4 g} }{ \pu{16 g//mol} } = \pu{0,4 mol}
+\end{aligned}
 $$
 
-#### Converta a quantidade de $\ce{BrF3}$ remanescente em massa usando a massa molar.
+#### Divida a quantidade de $\ce{C}$, $\ce{H}$ e $\ce{O}$ pela menor quantidade ($\pu{0,4 mol}$).
 
 $$
-    m_{\ce{BrF3}, \text{xs}}
-        = n_{\ce{BrF3}, \text{xs}} M_{\ce{BrF3}}
-        = (\pu{1,67 mol}) \times (\pu{137 g//mol}) 
-        = \boxed{ \pu{228 g} }
+\begin{aligned}
+    n_{\ce{C}} &: \dfrac{\pu{3,8 mol}}{\pu{0,4 mol}} = \frac{19}{2} \\
+    n_{\ce{H}} &: \dfrac{\pu{7,6 mol}}{\pu{0,4 mol}} = \frac{38}{2} \\
+    n_{\ce{O}} &: \dfrac{\pu{0,4 mol}}{\pu{0,4 mol}} = 1
+\end{aligned}
 $$
+Por fim, a fórmula empírica é: $\boxed{ \ce{ C19H38O2 } }$

@@ -1,131 +1,132 @@
-Colesterol é um lipídio encontrado nas membranas celulares e transportado no plasma sanguíneo de todos os animais. É um componente essencial das membranas celulares dos mamíferos.
+O paclitaxel é um medicamento usado no tratamento do câncer.
 
 ```latex
 \chemname{
 \chemfig{
-                  % 1
-           -[:312]% 2
-                     (
-                -[:12]% 3
-                     )
-           -[:252]% 4
-           -[:192]% 5
-           -[:252]% 6
-           -[:192]% 7
-                     (
-               -[:132]% 8
-                     )
-           -[:252]% 9
-           -[:306]% 10
-           -[:234]% 11
-           -[:162]% 12
-            -[:90]% 13
-                     (
-                -[:18]% -> 9
-                     )
-                     (
-                -[:84]% 28
-                     )
-           -[:150]% 14
-           -[:210]% 15
-           -[:270]% 16
-           -[:330]% 17
-                     (
-                -[:30]% -> 12
-                     )
-           -[:270]% 18
-           -[:210]% 19
-    -[:150,,,,drh]% 20
-            -[:90]% 21
-                     (
-                -[:30]% -> 16
-                     )
-                     (
-                -[:90]% 27
-                     )
-           -[:150]% 22
-           -[:210]% 23
-           -[:270]% 24
-                     (
-           -[:210,,,2]HO% 26
-                     )
-           -[:330]% 25
-                     (
-                -[:30]% -> 20
-                     )
+                             % 1
+                    -[:331.9]% 2
+    -[:32.8,,,,dbr={55}{160}]% 3
+                     -[:52.5]% 4
+                                (
+                          <[:120]O% 59
+                          -[:180]% 60
+                                    (
+                              -[:120]% 62
+                                    )
+                          =[:240]O% 61
+                                )
+                      -[:7.5]% 5
+                                (
+                           =[:75]O% 6
+                                )
+                    -[:322.5]% 7
+                                (
+                           <[:90]% 58
+                                )
+                     -[:37.5]% 8
+                                (
+                     <[:97.5,,,1]OH% 57
+                                )
+                    -[:337.5]% 9
+                    >[:277.5]% 10
+                    -[:217.5]% 11
+                                (
+                        -[:307.5]% 51
+                         -[:37.5]O% 52
+                        -[:127.5]% -> 10
+                                )
+                                (
+                       <:[:232.5,,,,cap=butt]O% 53
+                        -[:292.5]% 54
+                                    (
+                            -[:352.5]% 56
+                                    )
+                        =[:232.5]O% 55
+                                )
+                    >[:157.5]% 12
+                                (
+                         -[:97.5]% -> 7
+                                )
+                    -[:232.5]% 13
+                                (
+                         <:[:300,,,,cap=butt]O% 42
+                          -[:240]% 43
+                                    (
+                              -[:300]% 45
+                           -[,,,,drh]% 46
+                              -[:300]% 47
+                       -[:240,,,,drh]% 48
+                              -[:180]% 49
+                       -[:120,,,,drh]% 50
+                               -[:60]% -> 45
+                                    )
+                          =[:180]O% 44
+                                )
+                    -[:187.5]% 14
+                                (
+                        -[:142.5]% 15
+                                    (
+                            -[:237.5]% 16
+                                    )
+                                    (
+                            -[:182.5]% 17
+                                    )
+                         -[:97.5]% -> 3
+                                )
+                                (
+                    <[:287.3,,,1]OH% 41
+                                )
+                    -[:207.2]% 18
+                    -[:149.1]% 19
+                                (
+                         -[:90.9]% -> 2
+                                )
+                     <:[:210,,,,cap=butt]O% 20
+                      -[:270]% 21
+                                (
+                          =[:330]O% 22
+                                )
+                      -[:210]% 23
+                                (
+                      <[:150,,,2]HO% 40
+                                )
+                      -[:270]% 24
+                                (
+                          -[:210]% 25
+                   -[:270,,,,drh]% 26
+                          -[:210]% 27
+                   -[:150,,,,drh]% 28
+                           -[:90]% 29
+                    -[:30,,,,drh]% 30
+                          -[:330]% -> 25
+                                )
+                  <[:330,,,1]NH% 31
+                   -[:270,,1]% 32
+                                (
+                          =[:210]O% 33
+                                )
+                      -[:330]% 34
+                -[:30,,,,drh]% 35
+                      -[:330]% 36
+               -[:270,,,,drh]% 37
+                      -[:210]% 38
+               -[:150,,,,drh]% 39
+                                (
+                           -[:90]% -> 34
+                                )
 }
-}{Colesterol}
+}{Paclitaxel}
 ```
 
-**Assinale** a alternativa com o número de estereoisômeros do colesterol.
+**Assinale** a alternativa com as funções orgânicas presentes nesse composto.
 
-- [ ] 32
-- [ ] 64
-- [ ] 128
-- [x] 256
-- [ ] 512
+- [x] Álcool, amida, éster, éter e cetona.
+- [ ] Álcool, amida, éster e éter.
+- [ ] Álcool, amida, éster e cetona.
+- [ ] Álcool, amina, éster, éter e cetona.
+- [ ] Álcool, amina, éster e éter.
 
 ---
 
-#### Identifique os centros quirais na estrutura do colesterol.
+A moléculas possui as funções álcool, amida, éster, éter e cetona.
 
-```latex
-\chemfig{
-                  % 1
-           -[:312]% 2
-                     (
-                -[:12]% 3
-                     )
-           -[:252]% 4
-           -[:192]% 5
-           -[:252]% 6
-           -[:192](-[2.5,0.3,,,draw=none]{\color{red}\Large\star})% 7
-                     (
-               -[:132]% 8
-                     )
-           -[:252](-[0,0.3,,,draw=none]{\color{red}\Large\star})% 9
-           -[:306]% 10
-           -[:234]% 11
-           -[:162](-[-3,0.3,,,draw=none]{\color{red}\Large\star})% 12
-            -[:90](-[-5,0.3,,,draw=none]{\color{red}\Large\star})% 13
-                     (
-                -[:18]% -> 9
-                     )
-                     (
-                -[:84]% 28
-                     )
-           -[:150]% 14
-           -[:210]% 15
-           -[:270](-[-3,0.3,,,draw=none]{\color{red}\Large\star})% 16
-           -[:330](-[-1,0.3,,,draw=none]{\color{red}\Large\star})% 17
-                     (
-                -[:30]% -> 12
-                     )
-           -[:270]% 18
-           -[:210]% 19
-    -[:150,,,,drh]% 20
-            -[:90](-[-1,0.3,,,draw=none]{\color{red}\Large\star})% 21
-                     (
-                -[:30]% -> 16
-                     )
-                     (
-                -[:90]% 27
-                     )
-           -[:150]% 22
-           -[:210]% 23
-           -[:270](-[1,0.3,,,draw=none]{\color{red}\Large\star})% 24
-                     (
-           -[:210,,,2]HO% 26
-                     )
-           -[:330]% 25
-                     (
-                -[:30]% -> 20
-                     )
-}
-```
-
-#### Quando não há simetria na molécula, o número de estereoisômeros é $2^n$, onde $n$ é o número de centros quirais.
-
-$$
-     \text{Número de estereoisômeros} = 2^8 = \boxed{ 256 }
-$$

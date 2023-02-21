@@ -9,4 +9,18 @@ Considere os processos.
 
 ---
 
-gaba
+#### Verifique se há aumento na quantidade de espécies com alta entropia padrão molar.
+
+1. O processo que ocorre é:
+    $$
+        \ce{ CO2(s) -> CO2(g) }
+    $$
+    A entropia do gás é maior que a entropia do sólido. A reação ocorre com aumento de entropia do sistema.
+2. O processo que ocorre é:
+    $$
+        \ce{ H2O(s) -> H2O(l) }
+    $$
+    A entropia do líquido é maior que a entropia do sólido. A reação ocorre com aumento de entropia do sistema.
+3. A reação ocorre com diminuição do número de espécies gasosas, acarretamento na diminuição da entropia do sistema.
+4. A reação ocorre com diminuição do número de espécies gasosas, acarretamento na diminuição da entropia do sistema.
+
