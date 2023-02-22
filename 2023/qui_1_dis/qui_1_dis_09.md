@@ -10,9 +10,7 @@ b. **Determine** a entalpia padrão da oxidação diária de glicina.
 c. **Determine** a entropia padrão da oxidação diária de glicina.
 d. **Determine** a entropia padrão da vizinhança da oxidação diária de glicina.
 
-Considere os dados em $\pu{37 \degree C}$:
-
-|                                                                         | $\ce{O2(g)}$ | $\ce{H2O(l)}$ | $\ce{CO2(g)}$ | $\ce{ureia(s)}$ | $\ce{glicina(s)}$ |
+| Dados em $\pu{37 \degree C}$                                            | $\ce{O2(g)}$ | $\ce{H2O(l)}$ | $\ce{CO2(g)}$ | $\ce{ureia(s)}$ | $\ce{glicina(s)}$ |
 | :---------------------------------------------------------------------- | -----------: | ------------: | ------------: | --------------: | ----------------: |
 | Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/{\pu{kJ//mol}}$ |              |   $\pu{-286}$ |   $\pu{-394}$ |     $\pu{-334}$ |       $\pu{-533}$ |
 | Entropia padrão molar, $S_\mathrm{m}^\circ/{\pu{J//K.mol}}$             |   $\pu{205}$ |     $\pu{70}$ |    $\pu{214}$ |      $\pu{105}$ |        $\pu{105}$ |

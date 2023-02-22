@@ -22,9 +22,8 @@ $$
 
 A prata apresenta configuração eletrônica de seu estado fundamental diferente do previsto pelo diagrama.
 $$
-    \boxed{ \ce{Ag}: \ce{[Kr]}\,\mathrm{ 5s^1 4d^{10} } }
+    \ce{Ag}: \ce{[Kr]}\,\mathrm{ 5s^1 4d^{10} }
 $$
-
 
 Em geral, os átomos que possuem configuração prevista $n\mathrm{s^2} (n-1)\mathrm{d^9}$ apresentam configuração $n\mathrm{s^1} (n-1)\mathrm{d^{10}}$ em seu estado fundamental.
 

@@ -127,3 +127,11 @@ e
 }
 \schemestop
 ```
+
+---
+
+a. Diastereoisômeros
+b. Enantiômeros
+c. Representações diferentes do mesmo composto.
+d. Enantiômeros.
+e. Diastereoisômeros

@@ -7,9 +7,9 @@ O trinitrotolueno, TNT, é um explosivo. Em princípio ele poderia ser usado com
 }{TNT}
 ```
 
-A densidade do TNT é $\pu{1,65 g.cm-3}$. Considere os dados em $\pu{25 \degree C}$:
+A densidade do TNT é $\pu{1,65 g.cm-3}$.
 
-|                                                                         | $\ce{H2O(l)}$ | $\ce{CO2(g)}$ | $\ce{TNT(s)}$ |
+| Dados em $\pu{25 \degree C}$                                            | $\ce{H2O(l)}$ | $\ce{CO2(g)}$ | $\ce{TNT(s)}$ |
 | :---------------------------------------------------------------------- | :-----------: | :-----------: | :-----------: |
 | Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/{\pu{kJ//mol}}$ |  $\pu{-286}$  |  $\pu{-394}$  |  $\pu{-67}$   |
 
