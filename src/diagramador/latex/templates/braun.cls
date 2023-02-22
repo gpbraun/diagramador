@@ -2001,10 +2001,9 @@
 			\begin{tabular}{ | p{0.7\textwidth} p{0.25\textwidth} | }
 				\hline
 				Nome:~ \hrulefill &
-				Turma:~ IME-ITA \\
-				Unidade:~ \hrulefill
-				\quad
-				Professor:~ \hrulefill &
+				Turma:~ \PrintAffiliation \\
+				Unidade:~ Tijuca~ II \hspace{2.5cm}
+				Professor:~ Gabriel~ Braun  &
 				Data:~ \PrintDate
 				\\
 				\hline

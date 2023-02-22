@@ -2,7 +2,8 @@
     "id_": "em_2_p1b",
     "title": "Prova de etapa 1",
     "template": "prova",
-    "affiliation": "Turma EM IME-ITA 2",
+    "affiliation": "EM IME-ITA 2",
+    "date": "Abril de 2023",
     "problem_sets": [
         {
             "title": "Química",

@@ -15,6 +15,7 @@ class Exam(BaseModel):
     title: str
     template: str
     affiliation: str | None = None
+    date: str | None = None
     start: int = 1
     path: Path | None = None
     problem_sets: list[ProblemSet]
@@ -48,6 +49,7 @@ class Exam(BaseModel):
             path=self.path,
             title=self.title,
             affiliation=self.affiliation,
+            date=self.date,
             template=self.template,
             contents=self.tex(),
             start=self.start,
@@ -60,6 +62,7 @@ class Exam(BaseModel):
             path=self.path,
             title=self.title,
             affiliation=self.affiliation,
+            date=self.date,
             template="gabarito",
             contents=self.tex_solutions(),
             start=self.start,

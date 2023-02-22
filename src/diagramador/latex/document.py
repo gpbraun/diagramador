@@ -66,6 +66,7 @@ class Document:
         path: Path | None = None,
         title: str | None = None,
         affiliation: str | None = None,
+        date: str | None = None,
         template: str = "",
         contents: str = None,
         start: int = 1,
@@ -74,6 +75,7 @@ class Document:
         self.path = path
         self.title = title
         self.affiliation = affiliation
+        self.date = date
         self.template = template
         self.contents = contents
         self.start = start
@@ -85,6 +87,7 @@ class Document:
             [
                 cmd("title", self.title) if self.title else "",
                 cmd("affiliation", self.affiliation) if self.affiliation else "",
+                cmd("date", self.date) if self.date else "",
                 cmd("graphicspath", f"{{{str(self.path)}}}") if self.path else "",
                 cmd("setcounter", ["problem", self.start - 1]),
             ]
