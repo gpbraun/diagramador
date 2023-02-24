@@ -15,7 +15,7 @@ De $d = PM/RT$,
 $$
     M = \dfrac{dRT}{P}
         = \dfrac{ (\tfrac{ \pu{1,509 g} }{ \pu{0,235 L} }) \times (\pu{62,4 atm.L//mol.K}) \times (\pu{473 K}) }{ \pu{745 Torr} }
-        = \boxed{ \pu{254 g.mol-1} }
+        = \pu{254 g.mol-1}
 $$
 
 #### Suponha que a fórmula molecular do óxido é $\ce{OsO_x}$.

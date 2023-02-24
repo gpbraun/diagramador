@@ -29,7 +29,7 @@ $$
     \ce{Pd}:\; \ce{[Kr]}\, \mathrm{4d^{10}}
 $$
 
-#### **(c)** O elemento possui $\mu = \pu{6,93}\,\mu_\mathrm{B}$, o que corresponde a $5$ elétrons desemparelhados.
+#### **(c)** O elemento possui $\mu = \pu{3,87}\,\mu_\mathrm{B}$, o que corresponde a $3$ elétrons desemparelhados.
 
 Para que um elemento do terceiro período possua três elétrons desemparelhados ele deve ter o subnível $\mathrm{3p}$ completamente semi-preenchido. Sua configuração eletrônica é
 $$
@@ -37,7 +37,7 @@ $$
 $$
 e seu número atômico é $15$ (fósforo).
 
-#### **(c)** O elemento possui $\mu = \pu{6,93}\,\mu_\mathrm{B}$, o que corresponde a $5$ elétrons desemparelhados.
+#### **(c)** O elemento possui $\mu = \pu{5,92}\,\mu_\mathrm{B}$, o que corresponde a $5$ elétrons desemparelhados.
 
 Para que um elemento do quarto período possua cinco elétrons desemparelhados ele deve ter o subnível $\mathrm{3d}$ completamente semi-preenchido. Sua configuração eletrônica é
 $$
