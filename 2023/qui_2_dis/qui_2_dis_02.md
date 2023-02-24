@@ -80,6 +80,6 @@ $$
     \Delta U 
         = Q - W 
         = (\pu{-8118 kJ}) - (\pu{-101 kJ})
-        = \boxed{ \pu{-8219 kJ} }
+        = \boxed{ \pu{-8017 kJ} }
 $$
 

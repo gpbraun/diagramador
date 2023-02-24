@@ -2,7 +2,7 @@
 elementos: Os
 ---
 
-Uma amostra sólida finamente pulverizada de um óxido de ósmio (que funde em $\pu{40 \degree C}$ e ferve em $\pu{130 \degree C}$), suja massa é $\pu{1,509 g}$, foi colocada em um cilindro dotado de um pistão móvel que pode se expandir contra a pressão atmosférica de $\pu{745 Torr}$. A quantidade de ar residual inicialmente presente no cilindro é desprezível. Quando a amostra é aquecida até $\pu{200 \degree C}$, ocorre a vaporização completa e o volume do cilindro se expande até $\pu{235 mL}$.
+Uma amostra sólida finamente pulverizada de um óxido de ósmio (que funde em $\pu{40 \degree C}$ e ferve em $\pu{130 \degree C}$), sua massa é $\pu{1,509 g}$, foi colocada em um cilindro dotado de um pistão móvel que pode se expandir contra a pressão atmosférica de $\pu{745 Torr}$. A quantidade de ar residual inicialmente presente no cilindro é desprezível. Quando a amostra é aquecida até $\pu{200 \degree C}$, ocorre a vaporização completa e o volume do cilindro se expande até $\pu{235 mL}$.
 
 a. **Determine** a fórmula molecular do óxido.
 b. **Determine** raiz quadrada da velocidade quadrática média das moléculas do vapor do óxido.

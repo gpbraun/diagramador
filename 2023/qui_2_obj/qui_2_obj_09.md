@@ -53,7 +53,7 @@ logo,
 $$
     \Delta C_P 
         = \Big\{ 2 (\pu{37}) + 3 (\pu{89}) - (\pu{110}) - 3 (\pu{29}) \Big\}\,\pu{J//K.mol}
-        = \pu{128 J.K-1.mol-1}
+        = \pu{144 J.K-1.mol-1}
 $$
 
 Como $\Delta C_P$ é positivo, a entalpia padrão de reação aumenta (se torna menos negativa) com o aumento da temperatura. Assim, a reação libera menos energia em $\pu{60 \degree C}$ do que em $\pu{10 \degree C}$.

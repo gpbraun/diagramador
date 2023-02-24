@@ -28,7 +28,7 @@ $$
 
 #### Compare as energias de ionização de $\ce{A}$, $\ce{B}$ e $\ce{C}$ baseado em sua posição na Tabela Periódica.
 
-A energia de ionização cresce para baixo e para a esquerda na Tabela Periódica. Logo,
+A energia de ionização cresce para cima e para a direita na Tabela Periódica. Logo,
 $$
     I_{\ce{C}} <  I_{\ce{A}} <  I_{\ce{B}}
 $$
@@ -43,7 +43,7 @@ $$
 
 #### Compare os raios atômicos de $\ce{A}$, $\ce{B}$ e $\ce{C}$ baseado em sua posição na Tabela Periódica.
 
-O raio atômico cresce para cima e para a direita na Tabela Periódica. Logo,
+O raio atômico cresce para baixo e para a esquerda na Tabela Periódica. Logo,
 $$
     r_{\ce{B}} <  r_{\ce{A}} <  r_{\ce{C}}
 $$

@@ -33,7 +33,7 @@ $$
 
 Para que um elemento do terceiro período possua três elétrons desemparelhados ele deve ter o subnível $\mathrm{3p}$ completamente semi-preenchido. Sua configuração eletrônica é
 $$
-    \ce{[Ne]}\, \mathrm{3s^2 3p^6}
+    \ce{[Ne]}\, \mathrm{3s^2 3p^3}
 $$
 e seu número atômico é $15$ (fósforo).
 
