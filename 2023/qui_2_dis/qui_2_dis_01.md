@@ -8,7 +8,7 @@ $$
 $$
 Onde $n$ é o número de elétrons desemparelhados e $\mu_\mathrm{B}$, o magneton de Bohr, é uma constante.
 
-a. **Determine** a configuração eletrônica do molibdênio, que possui $\mu = \pu{6,93}\,\mu_\mathrm{B}$.
+a. **Determine** a configuração eletrônica do molibdênio, que possui $\mu = \pu{6,93}\,\mu_\mathrm{B}$ no estado fundamental.
 b. **Determine** a configuração eletrônica do paládio, que possui $\mu = 0$ no estado fundamental.
 c. **Determine** o elemento do terceiro período que possui $\mu = \pu{3,87}\,\mu_\mathrm{B}$  no estado fundamental.
 d. **Determine** o elemento do quarto período que possui $\mu = \pu{5,92}\,\mu_\mathrm{B}$  no estado fundamental.
