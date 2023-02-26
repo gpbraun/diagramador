@@ -1,0 +1,25 @@
+{
+    "id_": "alfa_1",
+    "title": "Lista Tralhas 01",
+    "template": "pensi",
+    "affiliation": "Turma IME-ITA 2023",
+    "start": 1,
+    "problem_sets": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "2023/alfa_1/alfa_1_01.md",
+                "2023/alfa_1/alfa_1_02.md",
+                "2023/alfa_1/alfa_1_03.md",
+                "2023/alfa_1/alfa_1_04.md",
+                "2023/alfa_1/alfa_1_05.md",
+                "2023/alfa_1/alfa_1_06.md",
+                "2023/alfa_1/alfa_1_07.md",
+                "2023/alfa_1/alfa_1_08.md",
+                "2023/alfa_1/alfa_1_09.md",
+                "2023/alfa_1/alfa_1_10.md"
+            ]
+        }
+    ]
+}

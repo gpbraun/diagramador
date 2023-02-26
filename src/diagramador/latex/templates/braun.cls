@@ -1603,6 +1603,15 @@
 							\; \arabic { problem }
 						}
                 } 
+				{ pensi }
+                {
+                    \PensiHeader
+						{ 
+							\sffamily\bfseries
+							\tl_use:N \l_braun_problem_name_tl
+							\; \arabic { problem }
+						}
+                } 
 				{ gabarito }
                 {
                     \PensiHeader
