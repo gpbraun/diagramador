@@ -2,24 +2,84 @@ A técnica de calorimetria exploratória diferencial pode ser aplicada para dete
 
 ```latex
 \begin{tikzpicture}
-    \begin{axis}
-        [
-            grid = major,
-            xlabel = {Temperatura, $T/\si{\celsius}$},
-            ylabel = {Taxa de troca de calor, $\dot{Q}/\si{J.min^{-1}}$},
-            xmin=20, xmax=100,
-            ymin=59, ymax=71,
-        ]
-    \draw [very thick, rounded corners=2em, blue]
-        (axis cs: 20,60) -- 
-        (axis cs: 40,60) -- 
-        (axis cs: 60, 70.75) -- 
-        (axis cs: 80, 62) -- 
-        (axis cs: 100, 62);
-    \end{axis}
+\begin{axis}
+    [
+        grid = major,
+        xlabel = {Temperatura, $T/\si{\celsius}$},
+        ylabel = {Taxa de troca de calor, $\dot{Q}/\si{J.min^{-1}}$},
+        xmin=20, xmax=100,
+        ymin=59, ymax=71,
+    ]
+\draw [very thick, rounded corners=2em, blue]
+    (axis cs: 20,60) -- 
+    (axis cs: 40,60) -- 
+    (axis cs: 60, 70.75) -- 
+    (axis cs: 80, 62) -- 
+    (axis cs: 100, 62);
+\end{axis}
 \end{tikzpicture}
 ```
 
 a. **Classifique** a desnaturação como endotérmica ou exotérmica.
 b. **Compare** a capacidade calorífica da proteína antes e após a desnaturação.
 c. **Estime** a variação de entalpia da desnaturação.
+
+---
+
+#### **(c)**
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    [
+        grid = major,
+        xlabel = {Temperatura, $T/\si{\celsius}$},
+        ylabel = {Taxa de troca de calor, $\dot{Q}/\si{J.min^{-1}}$},
+        xmin=20, xmax=100,
+        ymin=59, ymax=71,
+    ]
+\draw [very thick, dashed, blue]
+    (axis cs: 20,60) -- 
+    (axis cs: 35,60) -- 
+    (axis cs: 85, 62) -- 
+    (axis cs: 100, 62);
+\draw [very thick, rounded corners=2em, blue]
+    (axis cs: 20,60) -- 
+    (axis cs: 40,60) -- 
+    (axis cs: 60, 70.75) -- 
+    (axis cs: 80, 62) -- 
+    (axis cs: 100, 62);
+\end{axis}
+\end{tikzpicture}
+```
+
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+    [
+        grid = major,
+        xlabel = {Temperatura, $T/\si{\celsius}$},
+        ylabel = {Taxa de troca de calor, $\dot{Q}/\si{J.min^{-1}}$},
+        xmin=20, xmax=100,
+        ymin=59, ymax=71,
+    ]
+\draw [very thick, dashed, blue]
+    (axis cs: 20,60) -- 
+    (axis cs: 35,60) -- 
+    (axis cs: 85, 62) -- 
+    (axis cs: 100, 62);
+\draw [very thick, rounded corners=2em, blue]
+    (axis cs: 20,60) -- 
+    (axis cs: 40,60) -- 
+    (axis cs: 60, 70.75) -- 
+    (axis cs: 80, 62) -- 
+    (axis cs: 100, 62);
+\fill [red, semitransparent, draw=red]
+    (axis cs: 40,60) --
+    (axis cs: 60, 70) --
+    (axis cs: 80, 62) --
+    cycle;
+\end{axis}
+\end{tikzpicture}
+```
