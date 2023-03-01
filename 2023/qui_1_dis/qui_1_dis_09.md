@@ -95,6 +95,6 @@ $$
 
 $$
     \Delta S_\mathrm{viz} 
-        = \dfrac{\Delta H}{T}
+        = - \dfrac{\Delta H}{T}
         = - \dfrac{ (\pu{-65 kJ}) }{ \pu{310 K} } = \boxed{ \pu{+210 J.K-1} }
 $$
