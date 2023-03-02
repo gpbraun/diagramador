@@ -17,7 +17,7 @@ $$
     n = \dfrac{m}{M} = \dfrac{ \pu{18 g} }{ \pu{18 g//mol} } = \pu{1 mol}
 $$
 
-#### Calcule a variação de entropia do aquecimento da água líquida de $\pu{-20 \degree C}$, $T$, a $\pu{0 \degree C}$, $T_0$ (I).
+#### Calcule a variação de entropia do aquecimento da água líquida de T = $\pu{-20 \degree C}$, a $T_0 = \pu{0 \degree C}$ (I).
 
 $$
     \Delta S_\mathrm{I}
@@ -49,7 +49,7 @@ $$
 
 #### Calcule a variação de entropia de congelamento da água em $\pu{0 \degree C}$ (II).
 
-Nessa temperatura o processo é reversível, logo,
+Nessa temperatura o congelamento é reversível, logo,
 $$
     \Delta S_\mathrm{II}
         = \dfrac{ \Delta H_\mathrm{II} }{ T_0 }
@@ -67,7 +67,7 @@ $$
         = \pu{-2,89 J.K-1}
 $$
 
-#### Calcule a variação de total entropia do sistema.
+#### Calcule a variação total de entropia do sistema.
 
 $$
     \Delta S 
@@ -94,7 +94,7 @@ $$
         = \pu{-760 J}
 $$
 
-#### Calcule a variação de total entalpia
+#### Calcule a variação total de entalpia
 
 $$
     \Delta H 

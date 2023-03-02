@@ -147,7 +147,7 @@ $$
 $$
     n_\text{saída}
         = n_{\ce{O2}, \mathrm{xs}} + n_{\ce{N2}} + n_{\ce{CO2}} + n_{\ce{CO}} + n_{\ce{H2O}} 
-        = \pu{2267 mol} + \pu{11488 mol} + \pu{360 mol} + \pu{40 mol} + \pu{450 mol}
+        = \Big\{ \pu{2267} + \pu{11488} + \pu{360} + \pu{40} + \pu{450} \Big\}\,\pu{mol}
         = \pu{14605 mol}
 $$
 
