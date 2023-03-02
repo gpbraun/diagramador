@@ -38,17 +38,20 @@ c. **Estime** a variação de entalpia da desnaturação.
         xmin=20, xmax=100,
         ymin=59, ymax=71,
     ]
-\draw [very thick, dashed, blue]
+\draw [name path=A, very thick, dashed, blue]
     (axis cs: 20,60) -- 
     (axis cs: 35,60) -- 
     (axis cs: 85, 62) -- 
     (axis cs: 100, 62);
-\draw [very thick, rounded corners=2em, blue]
+
+\draw [name path=B, very thick, rounded corners=2em, blue]
     (axis cs: 20,60) -- 
     (axis cs: 40,60) -- 
     (axis cs: 60, 70.75) -- 
     (axis cs: 80, 62) -- 
     (axis cs: 100, 62);
+
+\tikzfillbetween[of=A and B]{blue, semitransparent};
 \end{axis}
 \end{tikzpicture}
 ```
@@ -80,6 +83,10 @@ c. **Estime** a variação de entalpia da desnaturação.
     (axis cs: 60, 70) --
     (axis cs: 80, 62) --
     cycle;
+\draw [very thick, red]
+    (axis cs: 40,60) -- 
+    (axis cs: 60, 70) -- 
+    (axis cs: 80, 62) -- cycle;
 \end{axis}
 \end{tikzpicture}
 ```

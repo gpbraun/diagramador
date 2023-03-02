@@ -8,5 +8,5 @@ c. **Determine** a temperatura adiabática de chama da combustão com $\pu{300}\
 
 | Dados em $\pu{25 \degree C}$                                            | $\ce{C8H18(l)}$ | $\ce{O2(g)}$ | $\ce{N2(g)}$ | $\ce{H2O(g)}$ | $\ce{CO2(g)}$ |
 | :---------------------------------------------------------------------- | --------------: | -----------: | -----------: | ------------: | ------------: |
-| Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/{\pu{kJ//mol}}$ |     $\pu{-250}$ |              |              |   $\pu{-242}$ |    $\pu{394}$ |
+| Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/{\pu{kJ//mol}}$ |     $\pu{-250}$ |              |              |   $\pu{-242}$ |   $\pu{-394}$ |
 | Capacidade calorífica isobárica, $C_P/{\pu{J//K.mol}}$                  |                 |    $\pu{30}$ |    $\pu{30}$ |     $\pu{44}$ |     $\pu{45}$ |
