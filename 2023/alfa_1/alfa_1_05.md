@@ -42,10 +42,5 @@ $$
     Q_P = \Delta H = (\pu{-6718 kJ//mol}) \times (\pu{1 mol}) = \pu{-6718 kJ}
 $$
 
-####  Quando a queima é adiabática, todo calor liberado na combustão é usado para aquecer os produtos. Calcule a variação de temperatura devido ao aquecimento dos produtos.
-
-$$
-
-$$
-
+####  Quando a queima é adiabática, todo calor liberado na combustão é usado para aquecer os produtos. Calcule a capacidade calorífica
 
