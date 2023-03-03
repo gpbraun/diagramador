@@ -20,6 +20,7 @@ O gráfico a seguir apresenta a taxa de liberação de calor para uma reação q
 \end{tikzpicture}
 ```
 
-a. **Determine** a quantidade de produto formada até 4 minutos de reação.
-b. **Determine** o calor liberado até 11 minutos de reação.
+a. **Determine** o calor liberado até 11 minutos de reação.
+b. **Determine** a quantidade de produto formada até 4 minutos de reação.
+
 

@@ -70,10 +70,10 @@ $$
     C_{P, \mathrm{m}} 
         = C_{V, \mathrm{m}} + R
         = \pu{30 J//K.mol} + \pu{8,3 J//K.mol}
-        = \pu{38,3 J//K.mol}
+        = \pu{38,3 J.K-1.mol-1}
 $$
 
-#### **(b)** Calcule a variação de entropia do resfriamento do cloro gasoso de $\pu{300 K}$ a $\pu{238 K}$ acompanhado da redução da pressão de $\pu{100 atm}$ a $\pu{1 atm}$.
+#### **(b)** Calcule a variação de entropia do resfriamento do cloro gasoso de $\pu{300 K}$ a $\pu{238 K}$ acompanhado da redução da pressão de $\pu{100 atm}$ a $\pu{1 atm}$ (I).
 
 $$
     \Delta S_\text{I}
@@ -112,3 +112,4 @@ $$
         = (\pu{-178 J//K}) + (\pu{-8,4 J//K})
         = \boxed{ \pu{-186,4 J//K} }
 $$
+

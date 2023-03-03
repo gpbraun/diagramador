@@ -192,7 +192,7 @@ $$
 logo,
 $$
    \Delta H_\mathrm{cc}^\circ
-        = \Big\{ 8 (\pu{-394}) + 9 (\pu{-242}) - (-250) \Big\}\,\pu{kJ//mol}
+        = \Big\{ 8 (\pu{-394}) + 9 (\pu{-242}) - (\pu{-250}) \Big\}\,\pu{kJ//mol}
         = \pu{-6718 kJ.mol-1}
 $$
 A reação de combustão completa é exotérmica, como esperado.
