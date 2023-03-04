@@ -235,4 +235,4 @@ Os produtos minoritários constituem um par de **enantiômeros**.
 
 #### **(d)** Compare a configuração dos carbonos quirais dos produtos minoritários e majoritários.
 
-Os produtos minoritários e majoritários apresentam configuração diferente de alguns (porém não de todos) os seus centros quirais. Assim, estes são **diastereoisômetros**.
+Os produtos minoritários e majoritários apresentam configuração diferente de alguns (porém não de todos) os seus centros quirais. Assim, estes são **diastereoisômeros**.
