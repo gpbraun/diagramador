@@ -11,7 +11,7 @@ c. **Determine** a massa de água formada diariamente por um camelo pela oxidaç
 #### **(a)** Na reação de combustão, o carbono é convertido em $\ce{CO2}$ e o hidrogênio é convertido em $\ce{H2O}$.
 
 $$
-    \ce{ 2 C57H110O6(s) + 163 O2(g) -> 114 CO2(g) + 110 H2O(l) }
+    \ce{ C57H110O6(s) + 163/2 O2(g) -> 57 CO2(g) + 55 H2O(l) }
 $$
 
 #### **(b)** Calcule a massa de oxigênio que um camelo utiliza diariamente na oxidação de gorduras.
