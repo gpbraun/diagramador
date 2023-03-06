@@ -1,5 +1,7 @@
 Uma mistura de metano e ar na proporção $1:15$, em $\pu{25 \degree C}$ e $\pu{1 atm}$, entra em combustão em um reservatório adiabático, consumindo completamente o metano. O processo ocorre sob pressão constante e os produtos formados permanecem em fase gasosa.
 
+Considere que a capacidade calorífica é constante entre $\pu{1700 K}$ e $\pu{2000 K}$.
+
 a. **Determine** a fração molar de vapor d'água no reservatório ao final da reação.
 b. **Determine** a temperatura final do sistema.
 
@@ -33,13 +35,62 @@ $$
 \begin{aligned}
     n_{\ce{N2}} 
         &= x_{\ce{N2}} n_\text{ar} 
-        = (\pu{0,79}) \times (\pu{14360 mol})
-        = \pu{11488 mol} \\
+        = (\pu{0,79}) \times (\pu{15 mol})
+        = \pu{12 mol} \\
     n_{\ce{O2}} 
         &= x_{\ce{O2}} n_\text{ar} 
-        = (\pu{0,21}) \times (\pu{14360 mol})
-        = \pu{2872 mol}
+        = (\pu{0,21}) \times (\pu{15 mol})
+        = \pu{3 mol}
 \end{aligned}
+$$
+
+#### Use a relação estequiométrica para converter a quantidade de $\ce{CH4}$ na quantidade de $\ce{CO2}$ e $\ce{H2O}$ formados na reação.
+
+$$
+\begin{aligned}
+    n_{\ce{CO2}} 
+        &= \dfrac{1}{1} \times (\pu{1 mol})
+        = \pu{1 mol}
+    &\qquad
+    n_{\ce{H2O}} 
+        &= \dfrac{2}{1} \times (\pu{1 mol})
+        = \pu{2 mol} \\
+\end{aligned}
+$$
+
+#### Use a relação estequiométrica para converter a quantidade de $\ce{C8H18}$ na quantidade de $\ce{O2}$ consumido na reação.
+
+$$
+    n_{\ce{O2}, \text{consumido} } 
+        = \dfrac{2}{1} \times (\pu{1 mol})
+        = \pu{2 mol}
+$$
+
+#### Calcule a quantidade de $\ce{O2}$ remanescente ao final da reação.
+
+$$
+    n_{\ce{O2}, \mathrm{xs}} 
+        = n_{\ce{O2}} -  n_{\ce{O2}, \text{consumido} } 
+        = \pu{3 mol} - \pu{2 mol} 
+        = \pu{1 mol} 
+$$
+
+#### Calcule a quantidade total de gás ao final da reação.
+
+$$
+    n_\text{final} 
+        = n_{\ce{O2}, \mathrm{xs}} + n_{\ce{N2}} + n_{\ce{CO2}} + n_{\ce{H2O}}
+        = \Big\{ 1 + 12 + 1 + 2 \Big\}\,\pu{mol}
+        = \pu{16 mol}
+$$
+
+#### Calcule a a fração molar de vapor d'água ao final da reação.
+
+$$
+    x_{\ce{H2O}}
+        = \dfrac{ n_{\ce{N2O}} }{ n_\text{final} }
+        = \dfrac{ \pu{2 mol} }{ \pu{16 mol} }
+        = \boxed{ \pu{0,125} }
 $$
 
 #### **(b)** Calcule a entalpia padrão de combustão em $\ce{25 \degree C}$.
@@ -59,3 +110,34 @@ $$
 $$
 A reação de combustão completa é exotérmica, como esperado.
 
+#### Calcule a variação de entalpia da combustão de $\pu{1 mol}$ de $\ce{CH4}$ (I).
+
+$$
+    \Delta H_\mathrm{I} 
+        = (\pu{1 mol}) \times (\pu{-192 kcal.mol-1})
+        = \pu{192 kcal}
+$$
+
+#### Calcule a variação de entalpia para aquecer os produtos da reação até $T_2 = \pu{1700 K}$ (II).
+
+$$
+    \Delta H_\mathrm{II} 
+        = \Big\{ (\pu{1} \times \pu{11,5}) + (\pu{12} \times \pu{10,9}) + (\pu{2} \times \pu{13,7}) + (\pu{1} \times \pu{17,6}) \Big\}\,\pu{kcal}
+        = \pu{187,3 kcal}
+$$
+
+#### Calcule a variação de entalpia para aquecer os produtos da reação até $T_3 = \pu{1800 K}$ (III).
+
+$$
+    \Delta H_\mathrm{III} 
+        = \Big\{ (\pu{1} \times \pu{11,5}) + (\pu{12} \times \pu{10,9}) + (\pu{2} \times \pu{13,7}) + (\pu{1} \times \pu{17,6}) \Big\}\,\pu{kcal}
+        = \pu{187,3 kcal}
+$$
+
+#### Calcule a capacidade calorífica entre $\pu{1700 K}$ e $\pu{2000 K}$.
+
+$$
+    C_P = \dfrac{ \Delta H }{ \Delta T }
+        = \dfrac{ \Delta H_\mathrm{III} - \Delta H_\mathrm{II} }{ T_3 - T_2 }
+        = \dfrac{ \pu{187,3 kcal} - \pu{187,3 kcal} }{ \pu{2000 K} - \pu{1700 K} }
+$$
