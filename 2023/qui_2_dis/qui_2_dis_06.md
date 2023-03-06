@@ -34,7 +34,7 @@ $$
 logo,
 $$
    \Delta H_{\mathrm{r}, 1}^\circ
-        = \left\{ 2 (\pu{-137}) - (\pu{-940}) \right\}\,\pu{kJ//mol}
+        = \Big\{ 2 (\pu{-137}) - (\pu{-940}) \Big\}\,\pu{kJ//mol}
         = \boxed{ \pu{+666 kJ.mol-1} }
 $$
 
@@ -49,7 +49,7 @@ $$
 logo,
 $$
    \Delta H_{\mathrm{r}, 2}^\circ
-        = \left\{ (\pu{-394}) - (\pu{-940}) \right\}\,\pu{kJ//mol}
+        = \Big\{ (\pu{-394}) - (\pu{-940}) \Big\}\,\pu{kJ//mol}
         = \pu{+546 kJ.mol-1}
 $$
 
@@ -66,7 +66,7 @@ $$
 logo,
 $$
    \Delta S_{\mathrm{r}, 1}^\circ
-        = \left\{ (\pu{30}) + 2 (\pu{198}) - (\pu{50}) - 2 (\pu{6}) \right\}\,\pu{J//K.mol}
+        = \Big\{ (\pu{30}) + 2 (\pu{198}) - (\pu{50}) - 2 (\pu{6}) \Big\}\,\pu{J//K.mol}
         = \boxed{ \pu{+364 J.K-1.mol-1} }
 $$
 
@@ -83,7 +83,7 @@ $$
 logo,
 $$
    \Delta S_{\mathrm{r}, 1}^\circ
-        = \left\{ (\pu{30}) + (\pu{214}) - (\pu{50}) - (\pu{6}) \right\}\,\pu{J//K.mol}
+        = \Big\{ (\pu{30}) + (\pu{214}) - (\pu{50}) - (\pu{6}) \Big\}\,\pu{J//K.mol}
         = \boxed{ \pu{+188 J.K-1.mol-1} }
 $$
 
