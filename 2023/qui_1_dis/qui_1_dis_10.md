@@ -81,7 +81,7 @@ $$
         = \boxed{ \pu{1250 m2} }
 $$
 
-#### **(b)** Determine a quantidade de $\ce{N2}$ que podem ser adsorvida por $\pu{1 g}$ de grafeno.
+#### **(b)** Determine a quantidade de $\ce{N2}$ que pode ser adsorvida por $\pu{1 g}$ de grafeno.
 
 Nesse caso, como a folha de grafeno está apoiada sobre um suporte sólido, a adsorção ocorre apenas em um dos lados. Assim, cada 6 átomos de carbono adsorvem uma molécula de nitrogênio, ou seja:
 $$
