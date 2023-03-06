@@ -13,10 +13,10 @@ c. **Determine** a temperatura adiabática de chama da combustão com $\pu{300}\
 
 ---
 
-#### **(a)** Escreva a reação balanceada de combustão do metano formando água gasosa.
+#### **(a)** Escreva a reação balanceada de combustão do octano formando água gasosa.
 
 $$
-    \ce{ CH4(g) + 2 O2(g) -> CO2(g) + 2 H2O(g) }
+    \ce{ C8H18(g) + 25/2 O2(g) -> 8 CO2(g) + 9 H2O(g) }
 $$
 
 #### **(c)** Calcule a entalpia padrão de combustão em $\ce{25 \degree C}$.

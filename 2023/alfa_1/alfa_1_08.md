@@ -89,11 +89,11 @@ $$
 \begin{aligned}
     n_{\ce{N2}} 
         &= x_{\ce{N2}} n_\text{ar} 
-        = (\pu{0,8}) \times (\pu{14360 mol})
+        = (\pu{0,79}) \times (\pu{14360 mol})
         = \pu{11488 mol} \\
     n_{\ce{O2}} 
         &= x_{\ce{O2}} n_\text{ar} 
-        = (\pu{0,2}) \times (\pu{14360 mol})
+        = (\pu{0,21}) \times (\pu{14360 mol})
         = \pu{2872 mol}
 \end{aligned}
 $$
