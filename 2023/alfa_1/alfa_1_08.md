@@ -145,7 +145,7 @@ $$
 #### Calcule a quantidade total de gás que sai do motor ao final da reação.
 
 $$
-    n_\text{saída}
+    n_\text{produtos}
         = n_{\ce{O2}, \mathrm{xs}} + n_{\ce{N2}} + n_{\ce{CO2}} + n_{\ce{CO}} + n_{\ce{H2O}} 
         = \Big\{ \pu{2267} + \pu{11488} + \pu{360} + \pu{40} + \pu{450} \Big\}\,\pu{mol}
         = \pu{14605 mol}
@@ -156,25 +156,25 @@ $$
 $$
 \begin{aligned}
     x_{\ce{CO2}} 
-        &= \dfrac{ n_{\ce{CO2}} }{ n_\text{saída} }
+        &= \dfrac{ n_{\ce{CO2}} }{ n_\text{produtos} }
         = \dfrac{ \pu{360 mol} }{ \pu{14605 mol} }
         = \pu{2,47}\%
     &\qquad
     x_{\ce{O2}} 
-        &= \dfrac{ n_{\ce{O2}, \mathrm{xs}} }{ n_\text{saída} }
+        &= \dfrac{ n_{\ce{O2}, \mathrm{xs}} }{ n_\text{produtos} }
         = \dfrac{ \pu{2267 mol} }{ \pu{14605 mol} }
         = \pu{15,52}\% \\
     x_{\ce{CO}} 
-        &= \dfrac{ n_{\ce{CO}} }{ n_\text{saída} }
+        &= \dfrac{ n_{\ce{CO}} }{ n_\text{produtos} }
         = \dfrac{ \pu{40 mol} }{ \pu{14605 mol} }
         = \pu{0,27}\%
     &\qquad
     x_{\ce{N2}} 
-        &= \dfrac{ n_{\ce{N2}} }{ n_\text{saída} }
+        &= \dfrac{ n_{\ce{N2}} }{ n_\text{produtos} }
         = \dfrac{ \pu{11488 mol} }{ \pu{14605 mol} }
         = \pu{78,66}\% \\
     x_{\ce{H2O}} 
-        &= \dfrac{ n_{\ce{H2O}} }{ n_\text{saída} }
+        &= \dfrac{ n_{\ce{H2O}} }{ n_\text{produtos} }
         = \dfrac{ \pu{450 mol} }{ \pu{14605 mol} }
         = \pu{3,08}\%
 \end{aligned}
@@ -223,11 +223,11 @@ $$
         = \pu{-316430 kJ}
 $$
 
-#### Imediatamente após o final da reação não há troca de calor com a vizinhança nem expansão do pistão: todo calor liberado pela reação aquece os gases de saída (temperatura adiabática de chama). Calcule a capacidade calorífica dos gases de saída.
+#### Imediatamente após o final da reação não há troca de calor com a vizinhança nem expansão do pistão: todo calor liberado pela reação aquece os gases de saída (temperatura adiabática de chama). Calcule a capacidade calorífica dos produtos.
 
 De $C_P = \sum n C_{P,m}$,
 $$
-    C_{P, \text{saída}} 
+    C_{P, \text{produtos}} 
         = n_{\ce{O2}, \mathrm{xs}} C_{P,\mathrm{m},\ce{O2}}
         + n_{\ce{N2}} C_{P,\mathrm{m},\ce{N2}}
         + n_{\ce{CO2}} C_{P,\mathrm{m},\ce{CO2}}
@@ -236,7 +236,7 @@ $$
 $$
 logo,
 $$
-    C_{P, \text{saída}}  
+    C_{P, \text{produtos}}  
         = \Big\{ (\pu{2267} \times \pu{30})
         + (\pu{11488} \times \pu{30})
         + (\pu{360} \times \pu{40})
@@ -245,12 +245,12 @@ $$
         = \pu{446,25 kJ.K-1}
 $$
 
-#### Calcule a temperatura dos gases de saída após absorverem o calor liberado pela reação.
+#### Calcule a temperatura dos produtos após absorverem o calor liberado pela reação.
 
 De $Q_P = C_P \Delta T$,
 $$
     \Delta T 
-        = \dfrac{ (-\Delta H) }{ C_{P, \text{saída}} }
+        = \dfrac{ (-\Delta H) }{ C_{P, \text{produtos}} }
         = \dfrac{ \pu{316430 kJ} }{ \pu{446,25 kJ//mol.K} }
         = \pu{710 K}
 $$

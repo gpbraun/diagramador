@@ -28,8 +28,18 @@ c. **Estime** a variação de entalpia da desnaturação.
 
 #### **(a)** Compare a taxa de aquecimento do aparelho ao longo da reação química.
 
-Após o início da reação o equipamento fornece energia adicional ao sistema para garantir o aumento constante de temperatura de $\pu{1 K.s-1}$. Assim, o reação de desnaturação é endotérmica.
+Após o início da reação o equipamento fornece energia adicional ao sistema para garantir o aumento constante de temperatura de $\pu{1 K.s-1}$. 
 
+Logo, o reação de desnaturação é **endotérmica**.
+
+
+#### **(b)** Compare a taxa de aquecimento antes e após a desnaturação.
+
+A taxa de troca de calor aumenta para manter a mesma taxa de aumento de temperatura após a desnaturação. 
+
+Logo, a proteína desnaturada deve possuir maior capacidade calorífica.
+
+#### **(c)** Identifique o a área na gráfico referente ao calor absorvido pela reação.
 
 ```latex
 \begin{tikzpicture}
@@ -61,9 +71,7 @@ Após o início da reação o equipamento fornece energia adicional ao sistema p
 
 A área em azul mostra o calor adicional que foi fornecido pelo equipamento durante o aquecimento para compensar o efeito de absorção de energia da reação química.
 
-#### **(c)** Compare a taxa de aquecimento antes e após a desnaturação.
-
-#### **(c)** Calcule a área 
+#### **(c)** Calcule a área referente ao calor absorvido pela reação.
 
 $$
     \text{Área}
@@ -83,5 +91,13 @@ $$
     \end{vmatrix}
     \,\pu{J.K//min}
     =
-    \pu{360  J.K-1.min-1}
+    \pu{360 J.K-1.min-1}
+$$
+
+#### Calcule a entalpia de desnaturação a partir da área e da taxa de aumento de temperatura.
+
+$$
+    \Delta H 
+        = \dfrac{ \pu{360 J//K.min} }{ \pu{60 K//min} }
+        = \boxed{ \pu{60 J} }
 $$

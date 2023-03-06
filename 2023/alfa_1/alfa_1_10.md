@@ -110,6 +110,6 @@ $$
     \Delta S
         = \Delta S_\text{I} + \Delta S_\text{II}
         = (\pu{-178 J//K}) + (\pu{-8,4 J//K})
-        = \boxed{ \pu{-186,4 J//K} }
+        = \boxed{ \pu{-186,4 J.K-1} }
 $$
 

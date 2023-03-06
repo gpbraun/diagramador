@@ -6,11 +6,11 @@ a. **Determine** a fração molar de vapor d'água no reservatório ao final da 
 b. **Determine** a temperatura final do sistema.
 
 
-| Dados em $\pu{25 \degree C}$                                                       | $\ce{CH4(l)}$ | $\ce{O2(g)}$ | $\ce{N2(g)}$ | $\ce{H2O(g)}$ | $\ce{CO2(g)}$ |
-| :--------------------------------------------------------------------------------- | ------------: | -----------: | -----------: | ------------: | ------------: |
-| Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/{\pu{kcal//mol}}$          |    $\pu{-18}$ |              |              |    $\pu{-58}$ |    $\pu{-94}$ |
-| Entalpia padrão, $(H_{\pu{1700 K}}^\circ - H_{\pu{298 K}}^\circ)/{\pu{kcal//mol}}$ |               |  $\pu{11,5}$ |  $\pu{10,9}$ |   $\pu{13,7}$ |   $\pu{17,6}$ |
-| Entalpia padrão, $(H_{\pu{2000 K}}^\circ - H_{\pu{298 K}}^\circ)/{\pu{kcal//mol}}$ |               |  $\pu{14,1}$ |  $\pu{13,4}$ |   $\pu{17,3}$ |   $\pu{21,9}$ |
+| Dados em $\pu{25 \degree C}$                                                                   | $\ce{CH4(l)}$ | $\ce{O2(g)}$ | $\ce{N2(g)}$ | $\ce{H2O(g)}$ | $\ce{CO2(g)}$ |
+| :--------------------------------------------------------------------------------------------- | ------------: | -----------: | -----------: | ------------: | ------------: |
+| Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/{\pu{kcal//mol}}$                      |    $\pu{-18}$ |              |              |    $\pu{-58}$ |    $\pu{-94}$ |
+| Variação de entalpia padrão, $(H_{\pu{1700 K}}^\circ - H_{\pu{298 K}}^\circ)/{\pu{kcal//mol}}$ |               |  $\pu{11,5}$ |  $\pu{10,9}$ |   $\pu{13,7}$ |   $\pu{17,6}$ |
+| Variação de entalpia padrão, $(H_{\pu{2000 K}}^\circ - H_{\pu{298 K}}^\circ)/{\pu{kcal//mol}}$ |               |  $\pu{14,1}$ |  $\pu{13,4}$ |   $\pu{17,3}$ |   $\pu{21,9}$ |
 
 ---
 
@@ -78,7 +78,7 @@ $$
 #### Calcule a quantidade total de gás ao final da reação.
 
 $$
-    n_\text{final} 
+    n_\text{produtos} 
         = n_{\ce{O2}, \mathrm{xs}} + n_{\ce{N2}} + n_{\ce{CO2}} + n_{\ce{H2O}}
         = \Big\{ 1 + 12 + 1 + 2 \Big\}\,\pu{mol}
         = \pu{16 mol}
@@ -88,7 +88,7 @@ $$
 
 $$
     x_{\ce{H2O}}
-        = \dfrac{ n_{\ce{N2O}} }{ n_\text{final} }
+        = \dfrac{ n_{\ce{N2O}} }{ n_\text{produtos} }
         = \dfrac{ \pu{2 mol} }{ \pu{16 mol} }
         = \boxed{ \pu{0,125} }
 $$
@@ -123,21 +123,45 @@ $$
 $$
     \Delta H_\mathrm{II} 
         = \Big\{ (\pu{1} \times \pu{11,5}) + (\pu{12} \times \pu{10,9}) + (\pu{2} \times \pu{13,7}) + (\pu{1} \times \pu{17,6}) \Big\}\,\pu{kcal}
-        = \pu{187,3 kcal}
+        = \pu{187 kcal}
 $$
 
 #### Calcule a variação de entalpia para aquecer os produtos da reação até $T_3 = \pu{1800 K}$ (III).
 
 $$
     \Delta H_\mathrm{III} 
-        = \Big\{ (\pu{1} \times \pu{11,5}) + (\pu{12} \times \pu{10,9}) + (\pu{2} \times \pu{13,7}) + (\pu{1} \times \pu{17,6}) \Big\}\,\pu{kcal}
-        = \pu{187,3 kcal}
+        = \Big\{ (\pu{1} \times \pu{14,1}) + (\pu{12} \times \pu{13,4}) + (\pu{2} \times \pu{17,3}) + (\pu{1} \times \pu{21,9}) \Big\}\,\pu{kcal}
+        = \pu{231 kcal}
 $$
 
 #### Calcule a capacidade calorífica entre $\pu{1700 K}$ e $\pu{2000 K}$.
 
 $$
-    C_P = \dfrac{ \Delta H }{ \Delta T }
+    C_{P, \mathrm{produtos}} = \dfrac{ \Delta H }{ \Delta T }
         = \dfrac{ \Delta H_\mathrm{III} - \Delta H_\mathrm{II} }{ T_3 - T_2 }
-        = \dfrac{ \pu{187,3 kcal} - \pu{187,3 kcal} }{ \pu{2000 K} - \pu{1700 K} }
+        = \dfrac{ \pu{231 kcal} - \pu{187 kcal} }{ \pu{2000 K} - \pu{1700 K} }
+        = \pu{147 cal//K}
+$$
+
+#### O calor liberado pela reação é aquece os produtos até a temperatura final. Calcule a variação de entalpia para aquecer os produtos de $\pu{1700 K}$ até a temperatura final (IV).
+
+$$
+    \Delta H_\mathrm{IV} 
+        = \Delta H_\mathrm{I} - \Delta H_\mathrm{II}
+        = \pu{192 kcal} - \pu{187 kcal}
+        = \pu{5 kcal}
+$$
+
+#### Calcule a temperatura dos produtos a partir da capacidade calorífica e da variação de entalpia para aquecer os produtos de $\pu{1700 K}$ até a temperatura final.
+
+De $Q_P = C_P \Delta T$,
+$$
+    \Delta T 
+        = \dfrac{ (-\Delta H_\mathrm{IV}) }{ C_{P, \mathrm{produtos}} } 
+        = \dfrac{ \pu{5000 cal} }{ \pu{147 cal//K} }
+        = \pu{34 K}
+$$
+logo,
+$$
+    T_\text{final} = \pu{1700 K} + \pu{34 K} = \boxed{ \pu{1734 K} }
 $$
