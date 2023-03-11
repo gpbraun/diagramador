@@ -24,7 +24,7 @@ $$
 $$
     N_{\ce{N2}} = N_\mathrm{A} n 
         = (\pu{6e23 mol-1}) \times (\pu{0,001 mol})
-        = \pu{6e21}
+        = \pu{6e20}
 $$
 
 #### Calcule o número de átomos de nitrogênio no cilindro.
@@ -32,6 +32,6 @@ $$
 Como cada molécula de $\ce{N2}$ contém dois átomos de $\ce{N}$
 $$
    N_{\ce{N}} 
-      = 2 \times (\pu{6e21})
+      = 2 \times (\pu{6e20})
       = \boxed{ \pu{1,2E21} }
 $$
