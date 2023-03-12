@@ -1757,6 +1757,20 @@
         graphics / height = 5cm,
     }
 
+\DeclareBraunTemplate { ITAdis }
+    {
+        ITA,
+		problems / breakable = false,
+		problems / vfill = true,
+    }
+
+\DeclareBraunTemplate { ITAobj }
+    {
+        ITA,
+		problems / breakable = true,
+		problems / vfill = false,
+    }
+
 %============================================================%
 %   IME
 %============================================================%
@@ -1790,6 +1804,20 @@
 		% Figuras
         graphics / width = \linewidth,
         graphics / height = 5cm,
+    }
+
+\DeclareBraunTemplate { IMEdis }
+    {
+        ITA,
+		problems / breakable = false,
+		problems / vfill = true,
+    }
+
+\DeclareBraunTemplate { IMEobj }
+    {
+        ITA,
+		problems / breakable = true,
+		problems / vfill = false,
     }
 
 %============================================================%
