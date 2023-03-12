@@ -1329,8 +1329,9 @@
 % #1 -> keys: braun/graphics
 % #2 -> figure path
 \DeclareDocumentCommand \includegraphics { o m }
-    { 
-        \group_begin:
+    {
+		\group_begin:
+		\begin{center}  
         \IfValueT {#1} { \keys_set:nn { braun/graphics } {#1} }
         \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_tmpc_tl
 
@@ -1346,7 +1347,8 @@
             }
 
         \coffin_typeset:Nnnnn \l_tmpa_coffin {l} {vc} {0pt} {0pt}
-        \group_end:
+		\end{center}
+		\group_end:
     }
 
 \RenewDocumentEnvironment { figure } {} 
