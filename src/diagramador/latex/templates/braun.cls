@@ -1808,14 +1808,14 @@
 
 \DeclareBraunTemplate { IMEdis }
     {
-        ITA,
+        IME,
 		problems / breakable = false,
 		problems / vfill = true,
     }
 
 \DeclareBraunTemplate { IMEobj }
     {
-        ITA,
+        IME,
 		problems / breakable = true,
 		problems / vfill = false,
     }
