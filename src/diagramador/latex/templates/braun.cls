@@ -1976,10 +1976,10 @@
 					\small
 					\begin{datalist}(2)
 						\item Aceleração~ local~ da~ gravidade,~ $g = \qty{10}{m.s^{-2}}$
-						\item Velocidade~ da~ luz~ no~ vácuo, $c = \qty{3e8}{m.s^{-1}}$
+						\item Velocidade~ da~ luz~ no~ vácuo,~ $c = \qty{3e8}{m.s^{-1}}$
 						\item Velocidade~ do~ som,~ $v \c_math_subscript_token \mathrm{som} = \qty{340}{m.s^{-1}}$
 						\item Carga~ elementar,~ $e = \qty{1,6e-19}{C}$
-						\item Constante~ de~ Planck~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
+						\item Constante~ de~ Planck,~ $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
 					\end{datalist}
 
 					\subsubsection*{Aproximações~ Numéricas}
