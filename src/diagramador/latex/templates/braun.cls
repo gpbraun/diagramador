@@ -1964,10 +1964,10 @@
 					\subsubsection*{Convenções}
 					\begin{itemize}
 						\item Considere~ o~ sistema~ de~ coordenadas~ cartesiano,~ a~ menos~ que~ haja~ indicação~ contrária.
-						\item $\mathbb{N} = \{ 1, 2, 3, \ldots \}$ denota~ o~ conjunto~ dos~ números~ naturais.
-						\item $\mathbb{R}$ denota~ o~ conjunto~ dos~ números~ reais.
-						\item $\mathbb{C}$ denota~ o~ conjunto~ dos~ números~ complexos.
-						\item $i$ denota~ a~ unidade~ imaginária,~ $i^2 = -1$.
+						\item $\mathbb{N} = \{ 1, 2, 3, \ldots \}$~ denota~ o~ conjunto~ dos~ números~ naturais.
+						\item $\mathbb{R}$~ denota~ o~ conjunto~ dos~ números~ reais.
+						\item $\mathbb{C}$~ denota~ o~ conjunto~ dos~ números~ complexos.
+						\item $i$~ denota~ a~ unidade~ imaginária,~ $i^2 = -1$.
 					\end{itemize}
                 }
 				{ fis }
