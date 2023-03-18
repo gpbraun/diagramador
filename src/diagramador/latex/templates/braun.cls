@@ -788,7 +788,6 @@
 						\bfseries \normalsize \text_uppercase:n {#2} 
 						\BraunHRule
 					\end{center}
-					\skip_vertical:n {1em}
 				}
 			}
         \group_end:
@@ -2023,7 +2022,23 @@
 					\end{datalist}
                 }       
             }
+    }
+	
 
+\cs_set:Npn \EndPreamble
+    {
+		\group_begin:
+		\str_case:VnF \l_braun_problem_template_tl
+            {
+				{ ITA }
+                {
+                    \BraunHRule
+					\skip_vertical:n {3em}
+                }       
+            }
+			{
+				\bigskip
+			}
 		\group_end:
     } 
 

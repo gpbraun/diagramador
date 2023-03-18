@@ -72,7 +72,8 @@ class ProblemSet(BaseModel):
                 cmd("Preamble", self.subject),
                 self.tex_data(),
                 self.tex_elements(),
-                cmd(f"bigskip"),
+                cmd(f"EndPreamble"),
+                "\n",
             ]
         )
 

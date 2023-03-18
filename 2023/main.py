@@ -10,11 +10,11 @@ def generate_exam(path: str | Path):
 
     exam = Exam.parse_json(json_path=path.joinpath(f"{path.stem}.json"))
     exam.write_pdf(Path("tmp").joinpath(path), path)
-    exam.write_solutions_pdf(Path("tmp").joinpath(path), path)
+    # exam.write_solutions_pdf(Path("tmp").joinpath(path), path)
 
 
 def main():
-    generate_exam("2023/qui_0")
+    generate_exam("2023/t15_1")
 
 
 if __name__ == "__main__":
