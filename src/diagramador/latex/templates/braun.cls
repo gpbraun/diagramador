@@ -2013,12 +2013,12 @@
 					\subsubsection*{Aproximações~ Numéricas}
 					\small
 					\begin{datalist}(6)
-						\item $\sqrt{2} = \num{1,4}$
-						\item $\sqrt{3} = \num{1,7}$
-						\item $\sqrt{5} = \num{2,2}$
-						\item $\log 2   = \num{0,3}$
-						\item $\log 3   = \num{0,5}$
-						\item $\ln 10   = \num{2,3}$
+						\item $\sqrt{2}  = \num{1,4}$
+						\item $\sqrt{3}  = \num{1,7}$
+						\item $\sqrt{5}  = \num{2,2}$
+						\item $\log 2    = \num{0,3}$
+						\item $\log 3    = \num{0,5}$
+						\item $\ln 10    = \num{2,3}$
 					\end{datalist}
                 }       
             }
