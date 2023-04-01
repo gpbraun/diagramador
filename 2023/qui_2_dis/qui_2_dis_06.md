@@ -70,7 +70,7 @@ $$
         = \boxed{ \pu{+364 J.K-1.mol-1} }
 $$
 
-#### Calcule a entropia padrão de redução do $\ce{TiO2}$ formando $\ce{CO}$, reação 2.
+#### Calcule a entropia padrão de redução do $\ce{TiO2}$ formando $\ce{CO2}$, reação 2.
 
 De $\Delta S_\mathrm{r}^\circ = \sum_\text{produtos} n S^\circ_\mathrm{m} - \sum_\text{reagentes} n S^\circ_\mathrm{m}$,
 $$
