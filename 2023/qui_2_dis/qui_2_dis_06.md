@@ -74,7 +74,7 @@ $$
 
 De $\Delta S_\mathrm{r}^\circ = \sum_\text{produtos} n S^\circ_\mathrm{m} - \sum_\text{reagentes} n S^\circ_\mathrm{m}$,
 $$
-   \Delta S_{\mathrm{r}, 1}^\circ 
+   \Delta S_{\mathrm{r}, 2}^\circ 
         = S^\circ_{\mathrm{m}, \ce{Ti(s)}}
         + S^\circ_{\mathrm{m}, \ce{CO2(g)}} 
         - S^\circ_{\mathrm{m}, \ce{TiO2(s)}}
@@ -82,7 +82,7 @@ $$
 $$
 logo,
 $$
-   \Delta S_{\mathrm{r}, 1}^\circ
+   \Delta S_{\mathrm{r}, 2}^\circ
         = \Big\{ (\pu{30}) + (\pu{214}) - (\pu{50}) - (\pu{6}) \Big\}\,\pu{J//K.mol}
         = \boxed{ \pu{+188 J.K-1.mol-1} }
 $$
