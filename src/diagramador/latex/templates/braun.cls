@@ -225,6 +225,10 @@
 
 \cs_set_eq:NN \degree \textdegree
 
+\RequirePackage [ thicklines ] { cancel }
+
+\cs_set:Npn \CancelColor { \color { red } }
+
 %============================================================%
 %   SI UNITS
 %============================================================%

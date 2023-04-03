@@ -15,5 +15,8 @@
             "comments": true,
             "strings": true
         },
-    }
+    },
+    "cSpell.words": [
+        "picômetros"
+    ]
 }
