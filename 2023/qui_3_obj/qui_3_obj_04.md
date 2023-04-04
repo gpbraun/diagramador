@@ -1,3 +1,7 @@
+---
+elementos: Ag, I
+---
+
 A ação de uma solução alcalina de iodo sobre o raticida varfarina, $\ce{C19H16O4}$ resulta na formação de uma molécula de iodofórmio, $\ce{CHI3}$, para cada molécula do composto reagido. A análise da varfarina pode então ser baseada na reação entre o iodofórmio e cátions prata:
 $$
     \ce{ CHI3(aq) + 3 AgNO3(aq) + H2O(l) -> 3 AgI(s) + 3 HNO3(aq) + CO(g) }
@@ -16,7 +20,12 @@ Considere as proposições.
 
 ---
 
-#### **(1)** Escreva as equações iônicas simplificadas das reações de precipitação.
+#### **(1)** 
+
+O ferro atua como indicador para o íon tiocianato:
+$$
+    \ce{ Fe^{3+}(aq) + SCN^-(aq) -> $\underset{\color{red}\text{vermelho}}{\ce{FeSCN^{2-}(aq)}}$ }
+$$
 
 #### **(2)** Escreva as equações iônicas simplificadas das reações de precipitação.
 
@@ -45,7 +54,7 @@ $$
 \end{aligned}
 $$
 
-#### Use as relações estequiométricas para converter a quantidade de $\ce{Ag^+}$ nas quantidades de $\ce{SCN^-}$ e $\ce{CHI3}$.
+#### Use as relações estequiométricas para converter as quantidades de $\ce{Ag^+}$ em $\ce{SCN^-}$ e $\ce{CHI3}$.
 
 $$
     n_{\ce{Ag^+}} 
@@ -60,7 +69,7 @@ $$
 
 #### Converta a quantidade de $\ce{CHI3}$ na quantidade de varfarina.
 
-Como cada molécula de varfarina libera uma molécula de iodofórmio.
+Como cada molécula de varfarina libera uma molécula de iodofórmio:
 $$
     n_\text{varfarina} = \pu{0,2 mmol}
 $$
@@ -87,4 +96,4 @@ Os íons hidróxido podem reagir com a prata formando um precipitado insolúvel:
 $$
     \ce{ Ag^+(aq) + 2 OH^-(aq) -> Ag2O(s) + H2O(l) }
 $$
-Quando parte da prata é consumida devido à formação de hidróxido de prata, a quantidade de tiocianato necessária para atingir o ponto de equivalência é menor e a massa de iodofórmio calculada é maior. Assim, a fração mássica de varfarina calculada incorretamente seria **superior** ao valor correto.
+Quando parte da prata é consumida devido à formação de hidróxido de prata, a quantidade de tiocianato necessária para atingir o ponto de equivalência é menor e a massa de iodofórmio calculada é maior. Assim, a fração mássica de varfarina calculada incorretamente seria **superior ao valor correto**.

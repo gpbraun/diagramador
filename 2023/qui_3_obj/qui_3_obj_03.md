@@ -110,4 +110,4 @@ Quando uma mistura contendo $\pu{80}\%$ de água e $\pu{20}\%$ de dioxano em bas
 \end{tikzpicture}
 ```
 
-O ponto $B$ representa o vapor $\beta$ gerado pela vaporização do líquido $\alpha$. Quando o vapor $\beta$ é condensado o líquido resultante tem $\pu{40}\%$ de água em base molar.
+O ponto $B$ representa o vapor $\beta$ gerado pela vaporização do líquido $\alpha$. Quando o vapor $\beta$ é condensado o líquido resultante tem $\pu{60}\%$ de dioxano (e $\pu{40}\%$ de água) em base molar.

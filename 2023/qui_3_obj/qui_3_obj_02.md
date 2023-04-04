@@ -1,3 +1,7 @@
+---
+elementos: Na
+---
+
 Considere as proposições.
 
 1. [x] A configuração eletrônica do sódio é $\ce{[Ne]\, \mathrm{3s^1}}$, e não $\ce{[Ne]\, \mathrm{3p^1}}$, devido à maior penetrabilidade do orbital $\mathrm{3s}$, que torna a blindagem dos elétron com número quântico principal $n = 2$ menos efetiva.
