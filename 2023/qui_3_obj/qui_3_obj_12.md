@@ -33,10 +33,8 @@ $$
 logo,
 $$
 \begin{aligned}
-    \ce{ Al(g) &-> Al^{3+}(g) + 3 e^-(g) }
-        && \Delta H^\circ_{I, \ce{Al}} = (\pu{+53}) \times (\pu{96,5 kJ//mol}) = \pu{+5114 kJ//mol} \\
-    \ce{ Br(g) + e^-(g) &-> Br^-(g) }
-        && \Delta H^\circ_{AE, \ce{Br}} = (\pu{-3,4}) \times (\pu{96,5 kJ//mol}) = \pu{-328 kJ//mol}
+    \Delta H^\circ_{I, \ce{Al}} &= (\pu{+53}) \times (\pu{96,5 kJ//mol}) = \pu{+5114 kJ//mol} \\
+    \Delta H^\circ_{AE, \ce{Br}} &= (\pu{-3,4}) \times (\pu{96,5 kJ//mol}) = \pu{-328 kJ//mol}
 \end{aligned}
 $$
 

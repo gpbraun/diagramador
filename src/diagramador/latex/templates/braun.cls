@@ -389,25 +389,7 @@
 % #1 -> text 
 \NewDocumentCommand \FooterTriangle { m }
     {
-        \group_begin:
-		\draw_begin:
-			\draw_linewidth:V \g_braun_linewidth_dim
-			\hcoffin_set:Nn   \l__braun_txta_coffin {#1}
-			\dim_set:Nn \l_triangle_side_dim { 0.6cm }
-			% triangle
-			\draw_path_lineto:n
-				{ \draw_point_polar:nn { \l_triangle_side_dim } {   0 } }
-			\draw_path_lineto:n
-				{ \draw_point_polar:nn { \l_triangle_side_dim } { 120 } }
-			\draw_path_lineto:n
-				{ \draw_point_polar:nn { \l_triangle_side_dim } { 240 } }
-			\draw_path_close:
-			\color_fill:n { black!10 }
-			\color_stroke:n { black!40 }
-			\draw_path_use_clear:n { stroke, fill }
-			\draw_coffin_use:Nnn \l__braun_txta_coffin {hc} {vc}
-		\draw_end:
-        \group_end:
+		#1
     }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -418,6 +400,8 @@
 
 \RequirePackage [ table ] { xcolor }
 \RequirePackage { tikz }
+
+\RequirePackage { chemplants }
 
 \RequirePackage { braunchem }
 
@@ -1327,7 +1311,7 @@
 
 \cs_set_eq:NN \legacyincludegraphics \includegraphics
 
-\tl_new:N \l_tmpc_tl
+\tl_new:N \l_braun_file_extension_tl
 
 % #1 -> keys: braun/graphics
 % #2 -> figure path
@@ -1336,17 +1320,17 @@
 		\group_begin:
 		\begin{center}  
         \IfValueT {#1} { \keys_set:nn { braun/graphics } {#1} }
-        \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_tmpc_tl
+        \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_braun_file_extension_tl
 
-        \str_case:VnF \l_tmpc_tl
+        \str_case:VnF \l_braun_file_extension_tl
             {
                 { .svg }
                 { 
-                    \braun_include_svg:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
+                    \braun_include_svg:Nn \l_tmpa_coffin { \l_tmpb_tl \l_braun_file_extension_tl }
                 }      
             }
             {
-                \braun_include_graphics:Nn \l_tmpa_coffin { \l_tmpb_tl \l_tmpc_tl }
+                \braun_include_graphics:Nn \l_tmpa_coffin { \l_tmpb_tl \l_braun_file_extension_tl }
             }
 
         \coffin_typeset:Nnnnn \l_tmpa_coffin {l} {vc} {0pt} {0pt}
