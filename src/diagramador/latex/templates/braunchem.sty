@@ -695,7 +695,7 @@
 
 \cs_set:Npn \DisplayElements #1
 	{
-		\smallskip
+		\bigskip
         \str_case:VnF \l_elements_display_style_tl
             {
                 { table }
@@ -705,7 +705,9 @@
                 { ptable }
                 {
 					\begin{center}
+					\begin{minipage}{0.9\linewidth}
                     	\PTableRow {#1}
+					\end{minipage}
 					\end{center}
                 }
             }

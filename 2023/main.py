@@ -14,8 +14,8 @@ def generate_exam(path: str | Path):
 
 
 def main():
-    generate_exam("2023/em/em_2_p2a")
-    generate_exam("2023/em/em_2_p2b")
+    generate_exam("2023/em/em_1_p2a")
+    generate_exam("2023/em/em_1_p2b")
 
 
 if __name__ == "__main__":
