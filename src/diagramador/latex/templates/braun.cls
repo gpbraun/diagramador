@@ -157,7 +157,14 @@
                 { 
                     \RequirePackage { lmodern }
                     \RequirePackage [ scaled  ] { helvet }
-                }          
+                }
+				{ prova }
+                { 
+                    \RequirePackage { crimson }
+					\RequirePackage { eulervm }
+					\RequirePackage { FiraSans }
+                    % \RequirePackage [ scaled  ] { helvet }
+                }       
             }
         % family default
         \str_case:Vn \g_braun_family_default_tl
@@ -1622,7 +1629,7 @@
             {
 				{ prova }
                 {
-                    \skip_vertical:n {6cm}
+                    \skip_vertical:n {4cm}
                 }    
             }
             {}
@@ -1851,6 +1858,8 @@
 \DeclareBraunTemplate { prova }
     {
         pensi,
+		font = prova,
+		fontsize = 12pt,
 
 		% Problemas
 		problems / name = Questão,
@@ -2037,9 +2046,9 @@
 \def \TestInstructions
 	{
 		\group_begin:
-		\rowcolors{1}{yellow!15}{yellow!15}
+		\vspace{-3em}
 		\begin{center}
-			\tl_set:Nn \arraystretch {2.5}
+			\tl_set:Nn \arraystretch {2}
 			\begin{tabular}{ | p{0.7\textwidth} p{0.25\textwidth} | }
 				\hline
 				Nome:~ \hrulefill &
@@ -2050,16 +2059,13 @@
 				\\
 				\hline
 				\textbf{Instruções:}
-				\group_begin:
-				\begin{itemize}[noitemsep]
+				\begin{itemize}[noitemsep, topsep=0pt]
 					\item Faça~ sua~ avaliação~ à~ caneta.
 					\item Resoluções~ a~ lápis~ não~ serão~ corrigidas.
 					\item Questões~ discursivas~ sem~ desenvolvimento~ não~ serão~ consideradas.
 					\item Não~ serão~ fornecidas~ folhas~ para~ rascunho.
 				\end{itemize}
-				\group_end:
-					&
-					\multicolumn { 1 } { |l| } { \textbf{Nota:} }
+					& \multicolumn { 1 } { |l| } { \textbf{Nota:} }
 				\\
 				\hline
 			\end{tabular}

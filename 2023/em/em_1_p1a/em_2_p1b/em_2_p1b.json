@@ -1,0 +1,25 @@
+{
+    "id_": "em_2_p1b",
+    "title": "Prova de etapa 1",
+    "template": "prova",
+    "affiliation": "EM IME-ITA 2",
+    "date": "Abril de 2023",
+    "problem_sets": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "2023/em/em_2_p1b/em_2_p1b_01.md",
+                "2023/em/em_2_p1b/em_2_p1b_02.md",
+                "2023/em/em_2_p1b/em_2_p1b_03.md",
+                "2023/em/em_2_p1b/em_2_p1b_04.md",
+                "2023/em/em_2_p1b/em_2_p1b_05.md",
+                "2023/em/em_2_p1b/em_2_p1b_06.md",
+                "2023/em/em_2_p1b/em_2_p1b_07.md",
+                "2023/em/em_2_p1b/em_2_p1b_08.md",
+                "2023/em/em_2_p1b/em_2_p1b_09.md",
+                "2023/em/em_2_p1b/em_2_p1b_10.md"
+            ]
+        }
+    ]
+}
