@@ -1,64 +1,78 @@
-Um engenheiro projetou uma planta para separação de um efluente industrial aquoso contendo massas iguais de uma mistura de nitrato de cobre(II), nitrato de chumbo(II) e nitrato de prata, na concentração total de $\pu{60 g/L}$.
 
-```latex
-\begin{tikzpicture}
-\pic (mixer1) at (0 ,0) { stirred reactor };
-\pic (filter1) at (3 , -2) { bag filter };
-\pic (mixer2) at (6 , -2) { stirred reactor };
-\pic (filter2) at (9 , -4) { bag filter };
-\pic (tank1) at (4, 2) { tank };
-\pic (tank2) at (10, 0) { tank };
-\draw [ main stream ] 
-    ($(mixer1-top left) - (2,0)$) -- (mixer1-top left);
-\draw [ main stream ] 
-    (tank1-bottom left) 
-    -| ($(tank1-bottom left)!0.5!(mixer1-top right)$) 
-    |- (mixer1-top right);
-\draw [ main stream ] 
-    (tank2-bottom left) 
-    -| ($(tank2-bottom left)!0.5!(mixer2-top right)$) 
-    |- (mixer2-top right);
-\draw [ main stream ] 
-    (mixer1-bottom right) 
-    -| ($(mixer1-bottom right)!0.5!(filter1-inlet left)$) 
-    |- (filter1-inlet left);
-\draw [ main stream ] 
-    (filter1-fluid outlet right) 
-    -| ($(filter1-fluid outlet right)!0.5!(mixer2-top left)$) 
-    |- (mixer2-top left);
-\draw [ main stream ] 
-    (mixer2-bottom right) 
-    -| ($(mixer2-bottom right)!0.5!(filter2-inlet left)$) 
-    |- (filter2-inlet left);
-\draw [ main stream ] (filter2-fluid outlet right) --++ (3, 0);
-\draw [ main stream ] (filter1-solid outlet) --++ (0, -1);
-\draw [ main stream ] (filter2-solid outlet) --++ (0, -1);
-\node [align = center] at (tank1-anchor) { Sulfato \\ de amônio \\ aquoso };
-\node [anchor = north] at (tank1-bottom) { Tanque 1 };
-\node [align = center] at (tank2-anchor) { Carbonato \\ de sódio \\ aquoso };
-\node [anchor = north] at (tank2-bottom) { Tanque 2 };
-\node [anchor = north] at (mixer1-bottom) { Misturador 1 };
-\node [anchor = north] at (mixer2-bottom) { Misturador 2 };
-\node [anchor = south, shift={(0, 3pt)}] at (filter1-top) { Filtro 1 };
-\node [anchor = south, shift={(0, 3pt)}] at (filter2-top) { Filtro 2 };
-\node [anchor = south west, shift={(3pt, 3pt)}] at (filter2-fluid outlet right) { Saída líquida };
-\node [anchor = north east, shift={(-3pt, -3pt)}] at (filter2-solid outlet) { Saída sólida 2 };
-\node [anchor = north east, shift={(-3pt, -3pt)}] at (filter1-solid outlet) { Saída  sólida 1 };
-\node [anchor = south east, shift={(-3pt, +3pt)}] at (mixer1-top left) { Entrada };
-\end{tikzpicture}
-```
+---
+elementos: Al, Br
+---
 
-O Misturador 1 recebe a entrada de efluente na vazão de $\pu{100 L.s-1}$, que é misturada com $\pu{100 L.s-1}$ de uma solução de sulfato de amônio $\pu{20 g.L-1}$. O Misturador 2 recebe o material passante do Filtro 1, $\pu{100 L.s-1}$ de uma solução aquosa de carbonato de sódio de concentração $\pu{40 g.L-1}$ e pequena quantidade de uma solução de hidróxido de sódio objetivando o ajuste do pH de precipitação para, em seguida, proceder a filtração.
 
-Considere as proposições.
+As três primeiras energias de ionização do átomo de alumínio são $\pu{6,0 eV}$, $\pu{19 eV}$ e $\pu{28 eV}$ e a afinidade eletrônica do átomo de bromo é $\pu{3,4 eV}$.
 
-1. [x] A saída de sólida do filtro 2 é uma mistura heterogênea.
-2. [ ] Olá
-3. [ ] três
-4. [ ] quatro
+| Dados em $\pu{298 K}$                                                   | $\ce{Al(g)}$ | $\ce{Br(g)}$ | $\ce{AlBr3(s)}$ |
+| :---------------------------------------------------------------------- | -----------: | -----------: | --------------: |
+| Entalpia padrão de formação, $\Delta H_\mathrm{f}^\circ/{\pu{kJ//mol}}$ |  $\pu{+326}$ |  $\pu{+112}$ |     $\pu{-530}$ |
 
-**Assinale** a alternativa que relaciona as proposições corretas.
+**Assinale** a alternativa que mais se aproxima da entalpia de rede do brometo de alumínio em $\pu{298 K}$.
+
+- [ ] $\pu{1,2 MJ.mol-1}$
+- [ ] $\pu{2,7 MJ.mol-1}$
+- [ ] $\pu{4,1 MJ.mol-1}$
+- [x] $\pu{5,3 MJ.mol-1}$
+- [ ] $\pu{8,4 MJ.mol-1}$
 
 ---
 
-Gabarito!
+#### Calcule a energia de ionização do $\ce{Al}$ a $\ce{Al^{3+}}$.
+
+$$
+    I = I_1 + I_2 + I_3 = (\pu{6,0 eV}) + (\pu{19 eV}) + (\pu{28 eV}) = \pu{53 eV}
+$$
+
+#### Converta os dados de elétrons-volt pra $\pu{kJ.mol-1}$.
+
+$$
+    \pu{1 eV} = (\pu{1,6e-19 J}) \times (\pu{6e21 mol-1}) = \pu{96,5 kJ.mol-1}
+$$
+logo,
+$$
+\begin{aligned}
+    \Delta H^\circ_{I, \ce{Al}} &= (\pu{+53}) \times (\pu{96,5 kJ//mol}) = \pu{+5114 kJ//mol} \\
+    \Delta H^\circ_{AE, \ce{Br}} &= (\pu{-3,4}) \times (\pu{96,5 kJ//mol}) = \pu{-328 kJ//mol}
+\end{aligned}
+$$
+
+#### Escreva a reação desejada como uma combinação das reações fornecidas.
+
+$$
+\begin{aligned}
+    \ce{ \cancel{\ce{Al(s)}} &-> \cancel{\ce{Al(g)}} } 
+        && \Delta H^\circ_{\mathrm{f}, \ce{Al(g)}} \\
+    \ce{ \cancel{\ce{Al(g)}} &-> Al^{3+}(g) + \cancel{\ce{3 e^-(g)}} }
+        && \Delta H^\circ_{I, \ce{Al}} \\
+    \ce{ \cancel{\ce{3/2 Br2(l)}} &-> \cancel{\ce{3 Br(g)}} } 
+        && 3 \Delta H^\circ_{\mathrm{f}, \ce{Br(g)}} \\
+    \ce{ \cancel{\ce{3 Br(g)}} + \cancel{\ce{3 e^-(g)}} &-> 3 Br^-(g) }
+        && 3 \Delta H^\circ_{AE, \ce{Br}} \\
+    \ce{ AlBr3(s) &-> \cancel{\ce{Al(s)}} + \cancel{\ce{3/2 Br2(l)}} } 
+            && -\Delta H^\circ_{\mathrm{f}, \ce{AlBr3(s)}} \\[1ex]
+    \hline
+    \\[-2ex]
+    \ce{ AlBr3(s) &-> Al^{3+}(g) + Br^-(g) }
+        && \Delta H_\text{rede}^\circ
+\end{aligned}
+$$
+
+A entalpia da reação desejada é dada por:
+$$
+    \Delta H_\text{rede}^\circ 
+        = \Delta H^\circ_{\mathrm{f}, \ce{Al(g)}}
+            + \Delta H^\circ_{I, \ce{Al}}
+            + 3 \Delta H^\circ_{\mathrm{f}, \ce{Br(g)}}
+            + 3 \Delta H^\circ_{AE, \ce{Br}}
+            -\Delta H^\circ_{\mathrm{f}, \ce{AlBr3(s)}} 
+$$
+logo,
+$$
+    \Delta H_\mathrm{r}^\circ 
+        = \Big\{ (\pu{+326}) + (\pu{+5114}) + 3(\pu{+112}) + 3(\pu{-328}) - (\pu{-530})\Big\} \pu{kJ//mol}
+        = \boxed{ \pu{5322 kJ.mol-1} }
+$$
+

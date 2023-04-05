@@ -13,6 +13,9 @@ def raw_tex(elem, doc, debug=False):
     if isinstance(elem, pf.CodeBlock) and "latex" in elem.classes:
         elem = latex(pf.stringify(elem))
         return elem
+    if isinstance(elem, pf.Code):
+        elem = pf.RawInline(pf.stringify(elem), format="latex")
+        return elem
     return
 
 

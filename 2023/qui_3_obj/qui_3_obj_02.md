@@ -13,4 +13,14 @@ Considere as proposições.
 
 ---
 
-Gabarito!
+#### **(1 e 2)** Compare a penetrabilidade dos orbitais $\mathrm{3s}$ e $\mathrm{3p}$.
+
+
+
+
+#### **(3)** Compare a penetrabilidade dos orbitais $\mathrm{3s}$ e $\mathrm{3p}$.
+
+
+
+#### **(4)** Compare a penetrabilidade dos orbitais $\mathrm{3s}$ e $\mathrm{3p}$.
+

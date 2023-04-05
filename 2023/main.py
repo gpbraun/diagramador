@@ -1,7 +1,7 @@
 from diagramador.exam import Exam
 from pathlib import Path
 
-# TODO: no JSON, colocar o texto das questões convertido pelo PANDOC. Ele só roda dnv se a versão estiver desatualizada, se não puxa do JSON.
+# TODO: no JSON, colocar o texto das questões convertido pelo PANDOC. Ele só roda dnv se a versão estiver desatualizada, se não, puxa do JSON.
 
 
 def generate_exam(path: str | Path):

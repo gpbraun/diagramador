@@ -1,42 +1,82 @@
-Aminoacetais simples são rapidamente hidrolisados em soluções de ácidos diluídos, conforme a reação:
+Uma amostra de $\pu{1,2 g}$ de um soluto apolar foi dissolvida em $\pu{60 g}$ de fenol. O ponto de congelamento da solução abaixou em $\pu{1,4 \degree C}$ e essa tinha densidade $\pu{1,2 g.cm-3}$. 
 
-```latex
-\schemestart
-\chemfig{*5(--(-N(-[2]CH_3)(-[-2]CH_3))-O--)}
-\arrow{->[\chemfig{H_2SO_4}]}[,2]
-\chemfig{HO-[-1]-[1]-[-1]-[1](=[3]O)-[-1]H}
-\+
-\chemfig{H_3C-[1]N-[-1]CH_3}
-\schemestop
-```
+A constante do ponto de congelamento fenol é $k_{\mathrm{c}, \text{fenol}} = \pu{7 K.kg-1.mol-1}$.
 
-A estabilidade do código genético depende da estabilidade do DNA. Se a hidrólise dos aminoacetais que compõe o DNA, apresentados a seguir, fosse tão simples a vida não poderia existir como é hoje.
+Considere as proposições. 
 
-```latex
-\definesubmol{adenine}{N*5([::-18]-*6(-N=-N=(-NH_2)-)=-N=-)}
-\definesubmol{cytosine}{N*6(-(=O)-N()=(-NH_2)-=-)}
-\schemestart
-\chemname{\chemfig{HO-[-1]-[-3](-[::115,1.176]O-[::-50,1.176])<[::45,0.8](-[-3]OH)(-[::45,,,,line width=2.8pt,shorten <=-.5pt,shorten >=-.5pt]>[::45,0.8](-[3]!{adenine}))}}{desoxiadenina}
-\qquad\qquad
-\chemname{\chemfig{HO-[-1]-[-3](-[::115,1.176]O-[::-50,1.176])<[::45,0.8](-[-3]OH)(-[::45,,,,line width=2.8pt,shorten <=-.5pt,shorten >=-.5pt]>[::45,0.8](-[3]!{cytosine}))}}{desoxicitosina}
-\schemestop
-```
+1. [x] A massa molar do soluto é cerca de $\pu{100 g.mol-1}$.
+2. [ ] Caso o soluto sofra dimerização parcial quando dissolvido em fenol, a massa molar calculada considerando que não há dimerização será maior do que sua massa molar real.
+3. [x] A pressão osmótica dessa solução é cerca de $\pu{5,9 atm}$.
+4. [ ] A pressão osmótica dessa solução pode ser medida calculando a pressão exercida pelas moléculas do soluto sob uma membrana semipermeável.
 
-**Assinale** a alternativa que apresenta a justificativa *correta* para a dificuldade de hidrólise dos grupos acetais no DNA.
-
-- [x] Os aminoacetais do DNA possuem átomos de nitrogênio com basicidade consideravelmente menor, já que seus pares eletrônicos não ligantes estão conjugados com o sistema aromático.
-- [ ] Os aminoacetais do DNA possuem grupos hidroxila, que podem formar ligações de hidrogênio intramoleculares com o átomo de nitrogênio do grupo aminoacetal.
-- [ ] Os aminoacetais do DNA possuem grupos hidroxila que, por efeito indutivo, reduzem a densidade eletrônica do oxigênio heteroátomo.
-- [ ] Os aminoacetais do DNA possuem grupos com maior impedimento especial, dificultando a interação com o ácido.
-- [ ] Os aminoacetais do DNA possuem menor barreira de rotação para a ligação $\ce{C-N}$, devido à menor interação com o oxigênio heteroátomo.
+**Assinale** a alternativa que relaciona as proposições *corretas*.
 
 ---
 
-#### Identifique o átomo mais básico no grupo aminoacetal.
+#### **(1)** Calcule a molalidade da solução usando a equação da crioscopia.
 
-O nitrogênio é menos eletronegativo que o oxigênio. Assim o nitrogênio deve ser o átomo protonado na reação dos aminoacetais com ácidos. Para que os aminoacetais do DNA não reajam com ácidos, a basicidade do átomo de nitrogênio nesses compostos deve ser menor.
+De $\Delta T_\mathrm{f} = k_\mathrm{f} \times w i$, com $i = 1$
+$$
+    w 
+        = \dfrac{ \Delta T_\mathrm{f} }{ k_\mathrm{f} }
+        = \dfrac{ \pu{1,4 \degree K} }{ \pu{7 K.kg//mol} } 
+        = \pu{0,2 mol.kg-1}
+$$
 
-#### Identifique diferenças na estrutura dos aminoaceitais do DNA que justifiquem a menor basicidade do átomo de nitrogênio.
+#### Calcule a quantidade de soluto na amostra.
 
-Nos aminoacetais do DNA o átomo de nitrogênio está conjugado, diminuindo sua basicidade.
+$$
+    n_\text{soluto}
+        = w \times m_\mathrm{solvente}
+        = (\pu{0,2 mol.kg-1}) \times (\pu{0,06 kg}) 
+        = \pu{0,012 mol}
+$$
+
+#### Calcule a massa molar do soluto.
+
+$$
+    M_\text{soluto}
+        = \dfrac{ m_\text{soluto} }{ n_\text{soluto} }
+        = \dfrac{ \pu{1,2 g} }{ \pu{0,012 mol} } 
+        = \boxed{ \pu{100 g.mol-1} }
+$$
+
+#### **(2)** 
+
+#### **(3)** Calcule a massa total da solução.
+
+$$
+    m = m_\mathrm{fenol} + \mathrm{soluto}
+        = \pu{1,2 g} + \pu{60 g}
+        = \pu{61,2 g}
+$$
+
+#### Calcule o volume de solução.
+
+$$
+    V
+        = \dfrac{ m }{ d }
+        = \dfrac{ \pu{61,2 g} }{ \pu{1,2 g//mL} } 
+        = \pu{51 mL}
+$$
+
+#### Calcule a concentração molar do soluto.
+
+$$
+    c
+        = \dfrac{ n_\text{soluto} }{ V }
+        = \dfrac{ \pu{0,012 mol} }{ \pu{51 mL} } 
+        = \pu{0,24 mol.L-1}
+$$
+
+#### Calcule a pressão osmótica usando a equação van't Hoff.
+
+$$
+    \Pi 
+        = cRT
+        = (\pu{0,082 atm.L//mol.K}) \times (\pu{300 K}) \times (\pu{0,24 mol//L}) 
+        = \boxed{ \pu{5,9 atm} }
+$$
+
+#### **(4)** 
 

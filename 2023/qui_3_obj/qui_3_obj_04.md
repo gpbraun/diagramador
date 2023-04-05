@@ -20,7 +20,7 @@ Considere as proposições.
 
 ---
 
-#### **(1)** 
+#### **(1)** Escreva a equação iônica simplificada da reação do $\ce{Fe^{3+}}$ com $\ce{SCN^-}$.
 
 O ferro atua como indicador para o íon tiocianato:
 $$
@@ -42,14 +42,14 @@ Os íons nitrato e os cátions ferro(III) **são íons espectadores** já que n�
 $$
 \begin{aligned}
     n_{\ce{Ag^+}}
-        &= n_{\ce{AgNO3}}
+        = n_{\ce{AgNO3}}
         = c_{\ce{AgNO3}} V_{\ce{AgNO3}}
-        = (\pu{0,03 mol//L}) \times (\pu{25 mL}) 
+        &= (\pu{0,03 mol//L}) \times (\pu{25 mL}) 
         = \pu{0,75 mmol} \\
     n_{\ce{SCN^-}}
-        &= n_{\ce{KSCN}}
+        = n_{\ce{KSCN}}
         = c_{\ce{KSCN}} V_{\ce{KSCN}}
-        = (\pu{0,05 mol//L}) \times (\pu{3 mL}) 
+        &= (\pu{0,05 mol//L}) \times (\pu{3 mL}) 
         = \pu{0,15 mmol}
 \end{aligned}
 $$
