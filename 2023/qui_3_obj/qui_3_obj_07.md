@@ -51,7 +51,7 @@ Considere os compostos: $\ce{NSF3}$, $\ce{BeF2}$, $\ce{ClF3}$, $\ce{XeO2F4}$.
 \end{chemscheme}
 ```
 
-#### Calcule o número de nuvens ao redor de cada átomo central.
+#### Calcule o número de nuvens eletrônicas ao redor de cada átomo central.
 
 |   $\ce{NSF3}$   | $\ce{BeCl2}$  |   $\ce{ClF3}$    |    $\ce{XeOF4}$    |
 | :-------------: | :-----------: | :--------------: | :----------------: |

@@ -48,7 +48,7 @@ Quando do soluto dimeriza, o número de mols em solução diminui. Assim, como a
 #### **(3)** Calcule a massa total da solução.
 
 $$
-    m = m_\mathrm{fenol} + \mathrm{soluto}
+    m = m_\mathrm{fenol} + m_\mathrm{soluto}
         = \pu{1,2 g} + \pu{60 g}
         = \pu{61,2 g}
 $$
