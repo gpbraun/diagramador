@@ -5,7 +5,7 @@ A constante do ponto de congelamento fenol é $k_{\mathrm{c}, \text{fenol}} = \p
 Considere as proposições. 
 
 1. [x] A massa molar do soluto é cerca de $\pu{100 g.mol-1}$.
-2. [ ] Caso o soluto sofra dimerização parcial quando dissolvido em fenol, a massa molar calculada considerando que não há dimerização será maior do que sua massa molar real.
+2. [ ] Caso o soluto sofra dimerização parcial quando dissolvido em fenol, a massa molar calculada considerando que não há dimerização será menor do que sua massa molar real.
 3. [x] A pressão osmótica dessa solução é cerca de $\pu{5,9 atm}$.
 4. [ ] A pressão osmótica dessa solução pode ser medida calculando a pressão exercida pelas moléculas do soluto sob uma membrana semipermeável.
 
@@ -41,7 +41,9 @@ $$
         = \boxed{ \pu{100 g.mol-1} }
 $$
 
-#### **(2)** 
+#### **(2)** Verifique o efeito da reação de dimerização.
+
+Quando do soluto dimeriza, o número de mols em solução diminui. Assim, como a massa total é a mesma, a massa molar calculada incorretamente seria **superior ao valor correto**.
 
 #### **(3)** Calcule a massa total da solução.
 
@@ -78,5 +80,7 @@ $$
         = \boxed{ \pu{5,9 atm} }
 $$
 
-#### **(4)** 
+#### **(4)** Use a definição de pressão osmótica.
+
+A pressão osmótica é a pressão exercida sobre a solução necessária para deter o fluxo de solvente quando há diferença de concentração entre soluções separadas por uma membrana semipermeável. Essa pressão **não é exercida sobre a membrana**.
 
