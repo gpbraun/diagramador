@@ -14,7 +14,7 @@ def generate_exam(path: str | Path):
 
 
 def main():
-    generate_exam("2023/qui_3_obj")
+    generate_exam("2023/t15_2")
 
 
 if __name__ == "__main__":
