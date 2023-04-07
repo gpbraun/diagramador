@@ -1724,6 +1724,35 @@
         \skip_vertical:n {3em}
     }
 
+%============================================================%
+%   TEXTO
+%============================================================%
+
+\RequirePackage { lineno }
+
+\RenewDocumentEnvironment { quote } { +b }
+	{
+		\cs_set_eq:NN \subsubsection \minisec
+
+		\begin{center}
+			\parbox { 0.9 \textwidth }
+				{
+					\dim_set_eq:NN \parskip \bigskipamount
+					\internallinenumbers
+					#1
+				}
+	} 
+	{
+		\end{center}
+	}
+
+\NewDocumentEnvironment { textbox } { +b }
+	{
+		#1
+	} 
+	{
+	}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
 %   TEMPLATES
@@ -1929,8 +1958,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage { csquotes, babel }
-
-\AtBeginEnvironment { quote } { \small }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
