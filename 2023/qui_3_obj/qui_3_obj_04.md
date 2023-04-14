@@ -12,13 +12,13 @@
 
 ```latex
 \schemestart
-\chemfig{=[1]-[-1]-[1]NH_2}
+\chemfig{=^[1]-[-1]-[1]NH_2}
 \qquad
-\chemfig{-[1]=[-1]-[1]NH_2}
+\chemfig{-[1]=^[-1]-[1]NH_2}
 \qquad
-\chemfig{(-[3])=[-1]-[1]NH_2}
+\chemfig{(-[3])=^[-1]-[1]NH_2}
 \qquad
-\chemfig{-[1](=[3])-[-1]NH_2}
+\chemfig{-[1](=[3,,,,fix])-[-1]NH_2}
 \schemestop
 ```
 
@@ -26,15 +26,15 @@
 
 ```latex
 \schemestart
-\chemfig{-[1]-[-1]=[1]N-[-1]H}
+\chemfig{-[1]-[-1]=^[1]N-[-1]H}
 \qquad
-\chemfig{-[1]-[-1]=[1]N-[3]H}
+\chemfig{-[1]-[-1]=^[1]N-[3]H}
 \qquad
-\chemfig{-[1]=[-1]N-[1]}
+\chemfig{-[1]=^[-1]N-[1]}
 \qquad
-\chemfig{-[1]=[-1]N-[-3]}
+\chemfig{-[1]=^[-1]N-[-3]}
 \qquad
-\chemfig{-[1](-[3])=[-1]N-[1]H}
+\chemfig{-[1](-[3])=^[-1]N-[1]H}
 \schemestop
 ```
 
