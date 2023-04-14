@@ -236,6 +236,9 @@
 
 \cs_set:Npn \CancelColor { \color { red } }
 
+\cs_undefine:N \sin
+\DeclareMathOperator{\sin}{sen}
+
 %============================================================%
 %   SI UNITS
 %============================================================%
@@ -1591,7 +1594,6 @@
                                     round-precision=2,
                                 ]
                                 { \fp_eval:n { \g_braun_problem_points_fp } }
-                            \skip_horizontal:n {2em}
                         ]
                         {
                             \sffamily\bfseries
@@ -1642,7 +1644,9 @@
                     \skip_vertical:n {4cm}
                 }    
             }
-            {}
+            {
+				\skip_vertical:n {2 em}
+			}
 
         \braun_end_problem_box:
     }
