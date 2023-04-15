@@ -11,12 +11,18 @@ Uma amostra de $\pu{6,16 g}$ de um raticida comercial contendo varfarina foi tra
 
 Considere as proposições.
 
-1. [x] O iodofórmio não pode ser titulado diretamente com a prata devido à dificuldade de identificação do ponto de equivalência. Nesse caso foi empregado o método de titulação indireta por retrotitulação, sendo os cátions ferro(III) adicionados para identificar o ponto de equivalência na titulação da prata com o tiocianato.
-2. [x] Os íons nitrato e os cátions ferro(III) são íons espectadores das reações de titulação.
-3. [x] A amostra continha cerca de $\pu{10}\%$ de varfarina em massa.
-4. [x] Se a solução de nitrato de prata fosse adicionada diretamente à solução resultante da primeira etapa do processo, haveria interferência dos íons hidróxido e a fração mássica de varfarina calculada incorretamente seria superior ao valor correto.
+1. O iodofórmio não pode ser titulado diretamente com a prata devido à dificuldade de identificação do ponto de equivalência. Nesse caso foi empregado o método de titulação indireta por retrotitulação, sendo os cátions ferro(III) adicionados para identificar o ponto de equivalência na titulação da prata com o tiocianato.
+2. Os íons nitrato e os cátions ferro(III) são íons espectadores das reações de titulação.
+3. A amostra continha cerca de $\pu{10}\%$ de varfarina em massa.
+4. Se a solução de nitrato de prata fosse adicionada diretamente à solução resultante da primeira etapa do processo, haveria interferência dos íons hidróxido e a fração mássica de varfarina calculada incorretamente seria superior ao valor correto.
 
 **Assinale** a alternativa que relaciona as proposições *corretas*.
+
+- [ ] **1**, **2** e **3**
+- [ ] **1**, **2** e **4**
+- [ ] **1**, **3** e **4**
+- [ ] **2**, **3** e **4**
+- [ ] **1**, **2**, **4** e **4**
 
 ---
 
@@ -87,7 +93,7 @@ $$
 $$
     f_\text{varfarina}
         = \dfrac{ m_\text{varfarina} }{ m_\text{amostra} }
-        = \dfrac{ \pu{61,6 mg} }{ \pu{6,16 g} } = \boxed{ \pu{10}\% }
+        = \dfrac{ \pu{61,6 mg} }{ \pu{6,16 g} } = \boxed{ \pu{1}\% }
 $$
 
 #### **(4)** Verifique a possibilidade de reações indesejadas com o íon hidróxido.
