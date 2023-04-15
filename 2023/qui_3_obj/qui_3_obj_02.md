@@ -19,7 +19,7 @@ Considere as proposições.
 **Assinale** a alternativa que relaciona as proposições *corretas*.
 
 - [ ] **1**, **2** e **3**
-- [ ] **1**, **2** e **4**
+- [x] **1**, **2** e **4**
 - [ ] **1**, **3** e **4**
 - [ ] **2**, **3** e **4**
 - [ ] **1**, **2**, **4** e **4**
