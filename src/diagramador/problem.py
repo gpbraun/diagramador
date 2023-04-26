@@ -3,8 +3,9 @@
 Esse módulo implementa uma classe para os problemas.
 """
 from diagramador.latex.commands import cmd, env, section
-from diagramador.utils.text import md2soup, soup_split, html2tex
 from diagramador.utils.autoprops import autoprops
+
+from datetime import datetime
 
 import base64
 from pathlib import Path
@@ -12,11 +13,14 @@ from pathlib import Path
 import frontmatter
 from pydantic import BaseModel
 
+from diagramador.utils.converter import md2problem
+
 
 class Problem(BaseModel):
     """Problema."""
 
-    id_: str
+    # id_: str
+    date: datetime
     statement: str
     solution: str = None
     choices: list[str] = None
@@ -72,79 +76,19 @@ class Problem(BaseModel):
         return "\n".join([problem, solution])
 
     @classmethod
-    def parse_mdstr(cls, id_: str, md_str: str):
-        """Cria um `Problem` a partir de um arquivo `.md`."""
-
-        metadata, content = frontmatter.parse(md_str)
-
-        # informações básicas
-        problem = {"id_": id_}
-
-        elements = metadata.pop("elementos", None)
-        if elements:
-            if isinstance(elements, str):
-                problem["elements"] = elements.split(",")
-            elif isinstance(elements, list):
-                problem["elements"] = elements
-
-        data = metadata.pop("data", None)
-        if data:
-            problem["data"] = list(data)
-
-        # conteúdo
-        soup = md2soup(content)
-
-        # resolução
-        soup, solution = soup_split(soup, "hr")
-
-        # problema objetivo: normal
-        choice_list = soup.find("ul", {"class": "task-list"})
-        if choice_list:
-            choices = []
-            for index, li in enumerate(choice_list.find_all("li")):
-                choice = html2tex(li)
-                choices.append(choice)
-                check_box = li.find("input").extract()
-                if check_box.has_attr("checked"):
-                    problem["correct_choice"] = index
-            problem["choices"] = choices
-            choice_list.decompose()
-            if solution:
-                problem["solution"] = html2tex(solution.extract())
-            problem["statement"] = html2tex(soup)
-
-            return cls.parse_obj(problem)
-
-        # problema objetivo: V ou F
-        proposition_input = soup.find("input", {"type": "checkbox"})
-        if proposition_input:
-            proposition_list = proposition_input.parent.parent
-            true_props = []
-            for index, li in enumerate(proposition_list.find_all("li")):
-                check_box = li.find("input").extract()
-                if check_box.has_attr("checked"):
-                    true_props.append(index)
-            choices, correct_choice = autoprops(true_props)
-            problem["choices"] = choices
-            problem["correct_choice"] = correct_choice
-            if solution:
-                problem["solution"] = html2tex(solution.extract())
-            problem["statement"] = html2tex(soup)
-
-            return cls.parse_obj(problem)
-
-        # problema discursivo
-        if solution:
-            problem["solution"] = html2tex(solution.extract())
-        problem["statement"] = html2tex(soup)
-
+    def parse_mdstr2(cls, md_str: str):
+        problem = md2problem(md_str)
         return cls.parse_obj(problem)
 
     @classmethod
     def parse_mdfile(cls, file_path: str):
         path = Path(file_path)
-        problem_id = path.stem
-        return cls.parse_mdstr(problem_id, path.read_text())
+        return cls.parse_mdstr2(path.read_text())
+
+    @classmethod
+    def parse_mdfile_legacy(cls, file_path: str):
+        path = Path(file_path)
+        return cls.parse_mdstr(path.read_text())
 
     @classmethod
     def parse_hedgedoc(cls, cursor, hedgedoc_path: str):

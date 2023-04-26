@@ -40,9 +40,8 @@ def pu2qty(text_str) -> str:
 
 def filter_pu2qty(elem, doc, debug=False):
     """Converte todos os comandos `\\pu` do mhchem aos equivalentes no formato `siunitx` em um documento em PANDOC."""
-    if isinstance(elem, pf.Math) and doc.format == "latex":
+    if isinstance(elem, pf.Math):
         elem.text = pu2qty(elem.text)
-
         return elem
 
 

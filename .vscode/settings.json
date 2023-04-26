@@ -1,7 +1,7 @@
 {
     "code-runner.runInTerminal": true,
     "latex-workshop.latex.autoBuild.run": "never",
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "none",
     "python.analysis.typeCheckingMode": "off",
     "[latex]": {
         "editor.formatOnSave": false
@@ -18,5 +18,11 @@
     },
     "cSpell.words": [
         "picômetros"
-    ]
+    ],
+    "Lua.diagnostics.globals": [
+        "pandoc"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
 }

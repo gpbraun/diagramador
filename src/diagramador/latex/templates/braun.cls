@@ -200,10 +200,12 @@
 \RequirePackage { float, booktabs, array }
 
 \cs_set_eq:NN \endhead \relax
+\cs_set_eq:NN \endlastfoot \relax
 \cs_set_eq:NN \tightlist \relax
 
 \NewDocumentEnvironment { longtable } { O{} m }
 	{
+		
 		\begin{center}
 		\begin{tabular} [] {#2} 
 		

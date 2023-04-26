@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 def main():
-    exam = Exam.parse_json(json_path=Path("test/input.json"))
+    exam = Exam.parse_json(json_path=Path("test/test.json"))
     exam.write_pdf(Path("tmp/test"), Path("./test"))
     exam.write_solutions_pdf(Path("tmp/test"), Path("./test"))
 

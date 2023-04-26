@@ -9,11 +9,6 @@ $$
 $$
 Os experimentos a seguir foram realizados em $\pu{40 \degree C}$.
 
-| **Exp.** | $\ce{[Fe(phen)3^{2+}]}/\pu{M}$ | $\ce{[H2O]}/\pu{M}$ | $v_0/{\pu{mM.s-1}}$ |
-| :------: | :----------------------------: | :-----------------: | :-----------------: |
-|  **1**   |         $\pu{7,50e-3}$         |     $\pu{0,50}$     |    $\pu{9,0e-6}$    |
-|  **2**   |         $\pu{7,50e-3}$         |     $\pu{0,05}$     |    $\pu{9,0e-6}$    |
-|  **3**   |         $\pu{3,75e-2}$         |     $\pu{0,05}$     |    $\pu{4,5e-5}$    |
 
 A constante de velocidade desse processo em $\pu{70 \degree C}$ é $\pu{8,5e-2 M.s-1}$.
 
