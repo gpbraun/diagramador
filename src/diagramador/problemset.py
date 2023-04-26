@@ -2,18 +2,12 @@ from diagramador.latex.commands import cmd, itemize
 from diagramador.latex.commands import section
 from diagramador.problem import Problem
 
+from multiprocessing import Pool
+from itertools import product
+
 from pydantic import BaseModel
 
-QUIM_DEFAULT_ELEMENTS = [
-    "H",
-    "C",
-    "N",
-    "O",
-    "Na",
-    "Mg",
-    "S",
-    "Cl",
-]
+QUIM_DEFAULT_ELEMENTS = ["H", "C", "N", "O", "Na", "Mg", "S", "Cl"]
 
 
 class ProblemSet(BaseModel):
@@ -95,7 +89,9 @@ class ProblemSet(BaseModel):
     @classmethod
     def parse_mdfiles(cls, title: str, subject: str, paths: list[str]):
         """Retorna a prova a partir dos arquivos."""
-        problems = [Problem.parse_mdfile(path) for path in paths]
+        with Pool() as pool:
+            problems = pool.map(Problem.parse_mdfile, paths)
+
         return cls(title=title, subject=subject, problems=problems)
 
     @classmethod
@@ -103,5 +99,10 @@ class ProblemSet(BaseModel):
         cls, cursor, title: str, subject: str, hedgedoc_paths: list[str]
     ):
         """Retorna a prova a partir dos dados do AdminBro."""
+        with Pool() as pool:
+            problems = pool.starmap(
+                Problem.parse_mdfile, product([cursor], hedgedoc_paths)
+            )
+
         problems = [Problem.parse_hedgedoc(cursor, path) for path in hedgedoc_paths]
         return cls(title=title, subject=subject, problems=problems)

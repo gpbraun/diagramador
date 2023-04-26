@@ -6,7 +6,7 @@ import importlib.resources
 import logging
 import json
 
-import pypandoc
+from pypandoc import convert_text, convert_file
 
 logger = logging.getLogger(__name__)
 
@@ -53,10 +53,10 @@ PANDOC_COLUMN_NUM = 150
 """Número de colunas consideradas pelo pandoc"""
 
 
-def md2problem(md_str: str) -> str:
+def md2problem(md: str) -> str:
     """Converte HTML em LaTeX usando pandoc."""
-    problem = pypandoc.convert_text(
-        source=md_str,
+    problem = convert_text(
+        source=md,
         to=PANDOC_WRITER_PATH,
         format=PANDOC_MARKDOWN_FORMAT,
         extra_args=["--quiet", f"--columns={PANDOC_COLUMN_NUM}"],

@@ -5,7 +5,6 @@ Esse módulo implementa uma classe para os problemas.
 from diagramador.latex.commands import cmd, env, section
 from diagramador.utils.converter import md2problem
 
-from datetime import datetime
 from pathlib import Path
 from base64 import urlsafe_b64decode
 
@@ -15,7 +14,6 @@ from pydantic import BaseModel
 class Problem(BaseModel):
     """Problema."""
 
-    # date: datetime
     statement: str
     solution: str = None
     choices: list[str] = None
@@ -71,17 +69,12 @@ class Problem(BaseModel):
         return "\n".join([problem, solution])
 
     @classmethod
-    def parse_mdstr2(cls, md_str: str):
+    def parse_mdstr(cls, md_str: str):
         problem = md2problem(md_str)
         return cls.parse_obj(problem)
 
     @classmethod
     def parse_mdfile(cls, file_path: str):
-        path = Path(file_path)
-        return cls.parse_mdstr2(path.read_text())
-
-    @classmethod
-    def parse_mdfile_legacy(cls, file_path: str):
         path = Path(file_path)
         return cls.parse_mdstr(path.read_text())
 

@@ -21,10 +21,19 @@ function Writer(doc, opts)
 
     -- Converte os dados
     local data = nil
-    if doc.meta.tata ~= nil then
+    if doc.meta.dados ~= nil then
         data = {}
-        for _, block in ipairs(doc.meta.data) do
+        for _, block in ipairs(doc.meta.dados) do
             table.insert(data, text(block, opts))
+        end
+    end
+
+    -- Converte os elementos
+    local elements = nil
+    if doc.meta.elementos ~= nil then
+        elements = {}
+        for _, block in ipairs(doc.meta.elementos) do
+            table.insert(elements, block.text)
         end
     end
 
@@ -48,6 +57,7 @@ function Writer(doc, opts)
         choices        = choices,
         data           = data,
         correct_choice = doc.meta.correct_choice,
+        elements       = elements,
         statement      = text(statement, opts),
         solution       = text(solution, opts)
     }
