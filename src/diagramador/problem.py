@@ -3,24 +3,19 @@
 Esse módulo implementa uma classe para os problemas.
 """
 from diagramador.latex.commands import cmd, env, section
-from diagramador.utils.autoprops import autoprops
+from diagramador.utils.converter import md2problem
 
 from datetime import datetime
-
-import base64
 from pathlib import Path
+from base64 import urlsafe_b64decode
 
-import frontmatter
 from pydantic import BaseModel
-
-from diagramador.utils.converter import md2problem
 
 
 class Problem(BaseModel):
     """Problema."""
 
-    # id_: str
-    date: datetime
+    # date: datetime
     statement: str
     solution: str = None
     choices: list[str] = None
@@ -96,7 +91,7 @@ class Problem(BaseModel):
         link = str(Path(hedgedoc_path).stem)
         print(f"Extraindo problema no link: {link}")
 
-        bytes_id = bytes.hex(base64.urlsafe_b64decode(link + "=="))
+        bytes_id = bytes.hex(urlsafe_b64decode(link + "=="))
         p_id = "-".join(
             [bytes_id[x:y] for x, y in [(0, 8), (8, 12), (12, 16), (16, 20), (20, 32)]]
         )

@@ -1,7 +1,6 @@
 from diagramador.latex.commands import cmd, itemize
 from diagramador.latex.commands import section
 from diagramador.problem import Problem
-from diagramador.utils.text import Text
 
 from pydantic import BaseModel
 
@@ -60,7 +59,7 @@ class ProblemSet(BaseModel):
             return ""
 
         data_header = section("Dados Adicionais", level=2) + cmd("small")
-        all_tex_data = [Text.parse_md(data).tex for data in all_data]
+        all_tex_data = [data.tex for data in all_data]
 
         return data_header + itemize("itemize", all_tex_data)
 

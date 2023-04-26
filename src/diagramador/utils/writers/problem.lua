@@ -1,34 +1,11 @@
-local gettitle = {
-    Header = function(elem)
-        local text = pandoc.utils.stringify(elem)
-        if EnvTitle == "" then
-            EnvTitle = text
-            return {}
-        else
-            return pandoc.RawInline('latex', '\\subheader{' .. text .. '}')
-        end
-    end
-}
-
-local latex_filters = {
-    Div = function(elem)
-        local env_name = elem.classes[1]
-
-        EnvTitle = ""
-        elem.content = elem.content:walk(gettitle)
-
-        return {
-            pandoc.RawInline('latex', '\\begin{' .. env_name .. '}{' .. EnvTitle .. '}'),
-            elem,
-            pandoc.RawInline('latex', '\\end{' .. env_name .. '}'),
-        }
-    end
-}
-
 -- Converte um Pandoc em latex e html
-local text = function(doc, opts)
-    local latex_text = pandoc.write(doc:walk(latex_filters), 'latex', opts)
+local text = function(block, opts)
+    local doc = pandoc.Pandoc(block)
+    local latex_text = pandoc.write(doc, 'latex', opts)
     latex_text = latex_text:gsub("\\noalign{}", "")
+    latex_text = latex_text:gsub("\\endhead", "")
+    latex_text = latex_text:gsub("\\endlastfoot", "")
+    latex_text = latex_text:gsub("\\bottomrule", "")
     return latex_text
 end
 
@@ -38,8 +15,16 @@ function Writer(doc, opts)
     if doc.meta.choices ~= nil then
         choices = {}
         for _, block in ipairs(doc.meta.choices) do
-            local choice_doc = pandoc.Pandoc(block)
-            table.insert(choices, text(choice_doc, opts))
+            table.insert(choices, text(block, opts))
+        end
+    end
+
+    -- Converte os dados
+    local data = nil
+    if doc.meta.tata ~= nil then
+        data = {}
+        for _, block in ipairs(doc.meta.data) do
+            table.insert(data, text(block, opts))
         end
     end
 
@@ -57,15 +42,14 @@ function Writer(doc, opts)
             table.insert(statement, block)
         end
     end
-    local statement_doc = pandoc.Pandoc(statement)
-    local solution_doc  = pandoc.Pandoc(solution)
 
-    local problem_data  = {
+    local problem_data = {
+        -- date           = doc.meta.date,
         choices        = choices,
-        date           = doc.meta.date,
+        data           = data,
         correct_choice = doc.meta.correct_choice,
-        statement      = text(statement_doc, opts),
-        solution       = text(solution_doc, opts)
+        statement      = text(statement, opts),
+        solution       = text(solution, opts)
     }
     return pandoc.json.encode(problem_data)
 end

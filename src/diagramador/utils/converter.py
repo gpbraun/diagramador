@@ -4,10 +4,9 @@ Esse módulo implementa funções para conversão entre diferentes formatos.
 """
 import importlib.resources
 import logging
+import json
 
 import pypandoc
-
-import json
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +19,7 @@ MARKDOWN_EXTENSIONS = [
     "implicit_figures",
     "fenced_divs",
     "yaml_metadata_block",
+    "backtick_code_blocks",
 ]
 """Extensões de markdown utilizadas"""
 
@@ -39,6 +39,8 @@ PANDOC_FILTER_PATH = importlib.resources.files("diagramador.utils.filters")
 PANDOC_FILTERS = [
     "pu2qty.py",
     "lists.lua",
+    "containers.lua",
+    "texblock.lua",
 ]
 """Filtros para o pandoc."""
 

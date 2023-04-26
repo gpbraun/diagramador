@@ -211,6 +211,7 @@
 		
 	}
 	{
+		\bottomrule
 		\end{tabular}
 		\end{center}
 	}
