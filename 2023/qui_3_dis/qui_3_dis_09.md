@@ -1,6 +1,12 @@
-Um composto **A** tem fórmula molecular $\ce{C8H14Cl2}$ e é opticamente ativo. Em um experimento, **A** foi submetido à hidrogenação catalítica na presença de paládio, sendo convertido no composto **B**, opticamente inativo e com fórmula molecular $\ce{C8H16Cl2}$.
+Um reator de $\pu{1 L}$ para desidrogenação do propano foi carregado com $\pu{2 atm}$ de propano e $\pu{9 atm}$ de dióxido de carbono. A mistura é aquecida e os equilíbrios são estabelecidos:
+$$
+\begin{aligned}
+    \ce{ C3H8(g) &<=> C3H6(g) + H2(g)  } && K_1 = \pu{0,1} \\
+    \ce{ CO2(g) + H2(g) &<=> CO(g) + H2O(g)  } && K_2
+\end{aligned}
+$$
+No equilíbrio, a pressão total no reator é $\pu{12 atm}$
 
-A reação de **A** com ozônio formou o intermediário **X**, que ao ser tratado com peróxido de hidrogênio levou à formação de ácido cloroacético e de um ácido carboxílico opticamente ativo **C**. O tratamento do intermediário **X** com zinco metálico resultou na formação dos produtos **D** e **E**. O composto **D** apresenta configuração absoluta *R*.
-
-**Apresente** a estrutura dos compostos **A**, **B**, **C**, **D** e **E**.
+a. **Determine** a concentração de propeno no equilíbrio.
+b. **Determine** a constante de equilíbrio $K_2$.
 

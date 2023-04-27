@@ -6,4 +6,4 @@ c. **Determine** a entalpia de ressonância do benzeno.
 
 | Dados em $\pu{298 K}$                                                    | $\ce{cicloexano(g)}$ | $\ce{cicloexeno(g)}$ | $\ce{benzeno(g)}$ | $\ce{H2(g)}$ |
 | :----------------------------------------------------------------------- | -------------------: | -------------------: | ----------------: | -----------: |
-| Entalpia padrão de combustão, $\Delta H_\mathrm{f}^\circ/{\pu{kJ//mol}}$ |         $\pu{-3950}$ |         $\pu{-3750}$ |      $\pu{-3300}$ |  $\pu{-394}$ |
+| Entalpia padrão de combustão, $\Delta H_\mathrm{c}^\circ/{\pu{kJ//mol}}$ |         $\pu{-3950}$ |         $\pu{-3750}$ |      $\pu{-3300}$ |  $\pu{-394}$ |

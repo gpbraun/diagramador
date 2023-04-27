@@ -1,27 +1,5 @@
-A reação de Cannizzaro é o desproporcionamento induzido por base de duas moléculas de um aldeído não enolizável formando um álcool primário e um íon carboxilato:
+Um composto **A** tem fórmula molecular $\ce{C8H14Cl2}$ e é opticamente ativo. Em um experimento, **A** foi submetido à hidrogenação catalítica na presença de paládio, sendo convertido no composto **B**, opticamente inativo e com fórmula molecular $\ce{C8H16Cl2}$.
 
-```latex
-\schemestart
-    \chemfig{2}\arrow[,0.2,,,draw=none]
-    \chemfig{*6(-=-(-(-[-1]H)=[3,,,,fix]O)=-=)}
-    \arrow[,0.2,,,draw=none]\+\arrow[,0.2,,,draw=none]
-    \chemfig{NaOH}
-    \arrow
-    \chemfig{*6(-=-(-(-[-1]H)-[3]OH)=-=)}
-    \arrow[,0.2,,,draw=none]\+\arrow[,0.2,,,draw=none]
-    \chemfig{*6(-=-(-(-[-1]ONa)=[3,,,,fix]O)=-=)}
-\schemestop
-```
+A reação de **A** com ozônio formou o intermediário **X**, que ao ser tratado com peróxido de hidrogênio levou à formação de ácido cloroacético e de um ácido carboxílico opticamente ativo **C**. O tratamento do intermediário **X** com zinco metálico resultou na formação dos produtos **D** e **E**. O composto **D** apresenta configuração absoluta *R*.
 
-Uma solução foi preparada contendo, inicialmente, $\pu{2 mol.L−1}$ de hidróxido de sódio e $\pu{1 mol.L−1}$ de benzaldeído. Essa solução é adicionada à uma célula cúbica de $\pu{17 mL}$ com $\pu{3,4 cm}$ comprimento.
-
-No equilíbrio, a resistência da célula é $\pu{2 \Omega}$
-
-a. **Determine** a condutividade da solução no equilíbrio.
-b. **Determine** a concentração do íon benzoato no equilíbrio.
-c. **Determine** a contante de equilíbrio da reação.
-
-| Dados em $\pu{298 K}$                               | $\ce{Na^+(aq)}$ | $\ce{OH^-(aq)}$ | $\ce{C6H5CO2^-(aq)}$ |
-| :-------------------------------------------------- | --------------: | --------------: | -------------------: |
-| Condutividade iônica molar, $\lambda/{\pu{S//m.M}}$ |        $\pu{5}$ |       $\pu{20}$ |             $\pu{3}$ |
-
+**Apresente** a estrutura dos compostos **A**, **B**, **C**, **D** e **E**.

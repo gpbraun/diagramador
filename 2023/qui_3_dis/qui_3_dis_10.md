@@ -1,11 +1,27 @@
-Um reator de $\pu{1 L}$ para desidrogenação do propano foi carregado com $\pu{2 atm}$ de propano e $\pu{9 atm}$ de dióxido de carbono. A mistura é aquecida e os equilíbrios são estabelecidos:
-$$
-\begin{aligned}
-    \ce{ C3H8(g) &<=> C3H6(g) + H2(g)  } && K_1 = \pu{0,1} \\
-    \ce{ CO2(g) + H2(g) &<=> CO(g) + H2O(g)  } && K_2
-\end{aligned}
-$$
-No equilíbrio, a pressão total no reator é $\pu{12 atm}$
+A reação de Cannizzaro é o desproporcionamento induzido por base de duas moléculas de um aldeído não enolizável formando um álcool primário e um íon carboxilato:
 
-a. **Determine** a concentração de propeno no equilíbrio.
-b. **Determine** a constante de equilíbrio $K_2$.
+```latex
+\schemestart
+    \chemfig{2}\arrow[,0.2,,,draw=none]
+    \chemfig{*6(-=-(-(-[-1]H)=[3,,,,fix]O)=-=)}
+    \arrow[,0.2,,,draw=none]\+\arrow[,0.2,,,draw=none]
+    \chemfig{NaOH}
+    \arrow
+    \chemfig{*6(-=-(-(-[-1]H)-[3]OH)=-=)}
+    \arrow[,0.2,,,draw=none]\+\arrow[,0.2,,,draw=none]
+    \chemfig{*6(-=-(-(-[-1]ONa)=[3,,,,fix]O)=-=)}
+\schemestop
+```
+
+Uma solução foi preparada contendo, inicialmente, $\pu{2 mol.L−1}$ de hidróxido de sódio e $\pu{1 mol.L−1}$ de benzaldeído. Essa solução é adicionada à uma célula cúbica de $\pu{17 mL}$ com $\pu{3,4 cm}$ comprimento.
+
+No equilíbrio, a resistência da célula é $\pu{2 \Omega}$
+
+a. **Determine** a condutividade da solução no equilíbrio.
+b. **Determine** a concentração do íon benzoato no equilíbrio.
+c. **Determine** a contante de equilíbrio da reação.
+
+| Dados em $\pu{298 K}$                               | $\ce{Na^+(aq)}$ | $\ce{OH^-(aq)}$ | $\ce{C6H5CO2^-(aq)}$ |
+| :-------------------------------------------------- | --------------: | --------------: | -------------------: |
+| Condutividade iônica molar, $\lambda/{\pu{S//m.M}}$ |        $\pu{5}$ |       $\pu{20}$ |             $\pu{3}$ |
+
