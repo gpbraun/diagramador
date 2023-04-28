@@ -163,7 +163,6 @@
                     \RequirePackage { crimson }
 					\RequirePackage { eulervm }
 					\RequirePackage { FiraSans }
-                    % \RequirePackage [ scaled  ] { helvet }
                 }       
             }
         % family default
@@ -197,33 +196,7 @@
 %   FIGURES AND TABLES 
 %============================================================%
 
-\RequirePackage { float, booktabs, array }
-
-\cs_set_eq:NN \endhead \relax
-\cs_set_eq:NN \endlastfoot \relax
-\cs_set_eq:NN \tightlist \relax
-
-\NewDocumentEnvironment { longtable } { O{} m }
-	{
-		
-		\begin{center}
-		\begin{tabular} [] {#2} 
-		
-	}
-	{
-		\bottomrule
-		\end{tabular}
-		\end{center}
-	}
-
-\NewDocumentEnvironment { sourceCode } {}
-	{
-		\begin{center}
-		
-	}
-	{
-		\end{center}
-	}
+\RequirePackage { float, longtable, booktabs }
 
 %============================================================%
 %   MATH
@@ -393,20 +366,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   OUTRAS CAIXAS DE USO GERAL
-%                                              
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\dim_new:N \l_triangle_side_dim
-
-% #1 -> text 
-\NewDocumentCommand \FooterTriangle { m }
-    {
-		#1
-    }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                              
 %   DRAWING
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -563,7 +522,7 @@
 
 \keys_define:nn { braun/page/header }
     {
-        sepline .choices:nn = { true, false } 
+        sepline .choices:nn = { true, false }
             {
                 \exp_args:Nne \KOMAoption { headsepline }
                     {  
@@ -613,7 +572,7 @@
 							\node (header) [ anchor = north~west, inner~sep = 0pt ] 
 								at ( current~page.north~west )
 								{
-									\legacyincludegraphics
+									\includegraphics
 										[ width = \paperwidth ]
 										{ pensi-header.pdf }
 								};
@@ -714,11 +673,11 @@
 		prova .meta:n = 
 			{
 				inner  = ,
-                center = \FooterTriangle{ \textbf{\thepage} },
+                center = { \textbf{\thepage} },
                 outer  = ,
                 sepline = false,
                 title-inner  = ,
-                title-center = \FooterTriangle{ \textbf{\thepage} },
+                title-center = { \textbf{\thepage} },
                 title-outer  = ,
                 title-sepline = false,
 			}
@@ -1089,9 +1048,9 @@
 				\draw_path_use:n { fill }
 			\draw_end:
 		},
-		ime     = \legacyincludegraphics { ime-logo.pdf },
-		ita     = \legacyincludegraphics { ita-logo.pdf },
-        ita-alt = \legacyincludegraphics { ita-logo-alt.pdf },
+		ime     = \includegraphics { ime-logo.pdf },
+		ita     = \includegraphics { ita-logo.pdf },
+        ita-alt = \includegraphics { ita-logo-alt.pdf },
 	}
 
 %============================================================%
@@ -1183,7 +1142,7 @@
 						\node (header) [ anchor = north~ west, inner~ sep = 0pt ] 
 							at (current~page.north~west)
 							{
-								\legacyincludegraphics 
+								\includegraphics 
 									[ width = \paperwidth ] 
 									{ pensi-header-title.pdf }	
 							};
@@ -1281,85 +1240,9 @@
 
 \RequirePackage { svg }
 
-\cs_set:Nn \graphics_include:n
-	{ 
-		\graphics_include:nn {} {#1}
-	}
+\graphicspath{{/var/lib/docker/volumes/hedgedoc_uploads/_data/}}
 
-\keys_define:nn { braun/graphics }
-	{
-        fps .code:n = { \cs_set_protected:Npn \fps@figure {#1} },
-        fps .initial:n = H,
-
-        width .dim_set:N = \l_braun_graphics_width_dim,
-		width .initial:n = 5cm,
-
-		height .dim_set:N = \l_braun_graphics_height_dim,
-		height .initial:n = 4cm,
-	}
-
-% Não alterar!
-% \tl_const:Nn \l_hedgedoc_path_tl { ../../../hedgedoc/uploads }
-
-% #1 -> coffin
-% #2 -> content
-\cs_set:Nn \braun_graphics_box:Nn
-	{ 
-		\hcoffin_set:Nn #1
-			{
-				\group_begin:
-					\hbox_set:Nn \l_tmpa_box {#2}
-					\box_autosize_to_wd_and_ht:NVV \l_tmpa_box 
-						\l_braun_graphics_width_dim \l_braun_graphics_height_dim 
-					\box_use_drop:N \l_tmpa_box
-				\group_end:
-			}   
-	}
-
-% #1 -> coffin
-% #2 -> figure path
-\cs_set:Nn \braun_include_graphics:Nn
-    { 
-		\braun_graphics_box:Nn #1 
-			{ \legacyincludegraphics { #2 } } 
-    }
-
-% #1 -> coffin
-% #2 -> svg path
-\cs_set:Nn \braun_include_svg:Nn
-    { 
-		\braun_graphics_box:Nn #1 
-			{ \includesvg [pretex=\sffamily] { #2 } } 
-    }
-
-\cs_set_eq:NN \legacyincludegraphics \includegraphics
-
-\tl_new:N \l_braun_file_extension_tl
-
-% #1 -> keys: braun/graphics
-% #2 -> figure path
-\DeclareDocumentCommand \includegraphics { o m }
-    {
-		\group_begin:
-		\begin{center}  
-        \IfValueT {#1} { \keys_set:nn { braun/graphics } {#1} }
-        \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_braun_file_extension_tl
-
-        \str_case:VnF \l_braun_file_extension_tl
-            {
-                { .svg }
-                { 
-                    \braun_include_svg:Nn \l_tmpa_coffin { \l_tmpb_tl \l_braun_file_extension_tl }
-                }      
-            }
-            {
-                \braun_include_graphics:Nn \l_tmpa_coffin { \l_tmpb_tl \l_braun_file_extension_tl }
-            }
-
-        \coffin_typeset:Nnnnn \l_tmpa_coffin {l} {vc} {0pt} {0pt}
-		\end{center}
-		\group_end:
-    }
+\setkeys{Gin}{width=.8\textwidth, height=6cm, keepaspectratio}
 
 \RenewDocumentEnvironment { figure } {} 
     { 
@@ -1373,16 +1256,6 @@
         \group_end:
     }
 
-\RenewDocumentEnvironment { table  } {} 
-    { 
-        \group_begin:
-        \cs_set:Npn \caption ##1 { \relax }
-        \begin{center} 
-    } 
-    { 
-        \end{center} 
-        \group_end:
-    }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -1415,7 +1288,6 @@
 %============================================================%
 
 \RequirePackage { tasks, enumitem }
-
 
 %%% DADOS NA CAPA
 \NewTasksEnvironment
@@ -1571,11 +1443,10 @@
         \keys_set:nn { braun/problems } {path = , id = , #1}
 
         \BraunNoWarning
-		\setlength\parindent{24pt}
+
         \dim_zero:N \parindent
 
 		\tl_set:Nn \arraystretch {1.5}
-		\cs_set_eq:NN \toprule \relax
 		
         \braun_begin_problem_box:
         %% HEADER
@@ -1644,11 +1515,11 @@
             {
 				{ prova }
                 {
-                    \skip_vertical:n {4cm}
+                    \skip_vertical:n { 4 cm }
                 }    
             }
             {
-				\skip_vertical:n {2 em}
+				\skip_vertical:n { 2 em }
 			}
 
         \braun_end_problem_box:
@@ -1753,12 +1624,6 @@
 		\end{center}
 	}
 
-\NewDocumentEnvironment { textbox } { +b }
-	{
-		#1
-	} 
-	{
-	}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -1793,10 +1658,6 @@
 		% Problemas
         problems / name = Questão,
         problems / template = ITA,
-
-		% Figuras
-        graphics / width = \linewidth,
-        graphics / height = 5cm,
     }
 
 \DeclareBraunTemplate { ITAdis }
@@ -1842,10 +1703,6 @@
 		% Problemas
         problems / name = Questão,
 		problems / template = IME,
-
-		% Figuras
-        graphics / width = \linewidth,
-        graphics / height = 5cm,
     }
 
 \DeclareBraunTemplate { IMEdis }
@@ -1890,11 +1747,6 @@
 
 		% Química
 		chem / elements / display-style = ptable,
-
-		% Figuras
-        graphics / width = \linewidth,
-        graphics / height = 5cm,
-        
     }
 
 %============================================================%
@@ -1942,10 +1794,6 @@
         problems / template = gabarito,
 		problems / breakable = true,
 		problems / vfill = false,
-
-		% Figuras
-        graphics / width = \linewidth,
-        graphics / height = 5cm,
     }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

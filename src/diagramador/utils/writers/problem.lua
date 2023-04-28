@@ -2,10 +2,7 @@
 local text = function(block, opts)
     local doc = pandoc.Pandoc(block)
     local latex_text = pandoc.write(doc, 'latex', opts)
-    latex_text = latex_text:gsub("\\noalign{}", "")
-    latex_text = latex_text:gsub("\\endhead", "")
-    latex_text = latex_text:gsub("\\endlastfoot", "")
-    latex_text = latex_text:gsub("\\bottomrule", "")
+    latex_text = latex_text:gsub("\\toprule\\noalign{}", "")
     return latex_text
 end
 

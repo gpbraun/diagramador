@@ -100,7 +100,7 @@ $$
     \Delta H 
         = \Delta H_\mathrm{I} + \Delta H_\mathrm{II} + \Delta H_\mathrm{III}
         = \Big\{ (+1500) + (-6000) + (-760) \Big\}\,\pu{J}
-        = \pu{−5260 J}
+        = \pu{-5260 J}
 $$
 
 #### Calcule a variação de entropia da vizinhança.
@@ -108,7 +108,7 @@ $$
 $$
     \Delta S_\mathrm{viz} 
         = -\dfrac{\Delta H}{T} 
-        = -\dfrac{ (\pu{−5260 J}) }{ \pu{253 K} }
+        = -\dfrac{ (\pu{-5260 J}) }{ \pu{253 K} }
         = \boxed{ \pu{+20,8 J.K-1} }
 $$
 

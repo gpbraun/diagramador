@@ -3,7 +3,7 @@
     "title": "Diagnóstico",
     "template": "pensi",
     "affiliation": "Primeira Série IME-ITA",
-    "problem_sets": [
+    "problem_set": [
         {
             "title": "Química",
             "subject": "qui",

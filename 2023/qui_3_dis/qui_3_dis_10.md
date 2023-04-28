@@ -13,7 +13,7 @@ A reação de Cannizzaro é o desproporcionamento induzido por base de duas mol�
 \schemestop
 ```
 
-Uma solução foi preparada contendo, inicialmente, $\pu{2 mol.L−1}$ de hidróxido de sódio e $\pu{1 mol.L−1}$ de benzaldeído. Essa solução é adicionada à uma célula cúbica de $\pu{17 mL}$ com $\pu{3,4 cm}$ comprimento.
+Uma solução foi preparada contendo, inicialmente, $\pu{2 mol.L-1}$ de hidróxido de sódio e $\pu{1 mol.L-1}$ de benzaldeído. Essa solução é adicionada à uma célula cúbica de $\pu{17 mL}$ com $\pu{3,4 cm}$ comprimento.
 
 No equilíbrio, a resistência da célula é $\pu{2 \Omega}$
 

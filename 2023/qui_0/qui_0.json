@@ -3,7 +3,7 @@
     "title": "Diagnóstico",
     "template": "ITAdis",
     "affiliation": "Turma IME-ITA",
-    "problem_sets": [
+    "problem_set": [
         {
             "title": "Química",
             "subject": "qui",
