@@ -38,9 +38,9 @@ PANDOC_FILTER_PATH = importlib.resources.files("diagramador.utils.filters")
 
 PANDOC_FILTERS = [
     "pu2qty.py",
-    "lists.lua",
-    "containers.lua",
-    "texblock.lua",
+    # "lists.lua",
+    # "containers.lua",
+    # "texblock.lua",
 ]
 """Filtros para o pandoc."""
 

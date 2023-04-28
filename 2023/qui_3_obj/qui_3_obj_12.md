@@ -8,9 +8,9 @@ Um engenheiro projetou uma planta para separação de um efluente industrial aqu
 \begin{tikzpicture}
 \pic (mixer1) at (0 ,0) { stirred reactor };
 \pic at (mixer1-anchor) { jacket };
-\pic (filter1) at (3 , -1.3) { bag filter };
+\pic (filter1) at (3 , -1.1) { bag filter };
 \pic (mixer2) at (6 , 0) { stirred reactor };
-\pic (filter2) at (9 , -1.3) { bag filter };
+\pic (filter2) at (9 , -1.1) { bag filter };
 \pic at (mixer2-anchor) { jacket };
 \pic[yscale=0.9] (tank1) at (3, 2) { tank };
 \pic[yscale=0.9] (tank2) at (9, 2) { tank };
