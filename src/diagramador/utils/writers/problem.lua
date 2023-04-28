@@ -300,7 +300,7 @@ function Writer(doc, opts)
         -- date           = doc.meta.date,
         choices        = doc_choices,
         data           = data,
-        correct_choice = doc.meta.correct_choice,
+        correct_choice = doc.meta.correct_choice - 1,
         elements       = elements,
         statement      = text(statement, opts),
         solution       = text(solution, opts)
