@@ -1,0 +1,25 @@
+{
+    "id_": "qui_4_obj",
+    "title": "IME Objetivo 2",
+    "template": "IME",
+    "affiliation": "Turma IME-ITA 2023",
+    "start": 31,
+    "problem_set": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "2023/qui_4_obj/qui_4_obj_01.md",
+                "2023/qui_4_obj/qui_4_obj_02.md",
+                "2023/qui_4_obj/qui_4_obj_03.md",
+                "2023/qui_4_obj/qui_4_obj_04.md",
+                "2023/qui_4_obj/qui_4_obj_05.md",
+                "2023/qui_4_obj/qui_4_obj_06.md",
+                "2023/qui_4_obj/qui_4_obj_07.md",
+                "2023/qui_4_obj/qui_4_obj_08.md",
+                "2023/qui_4_obj/qui_4_obj_09.md",
+                "2023/qui_4_obj/qui_4_obj_10.md"
+            ]
+        }
+    ]
+}

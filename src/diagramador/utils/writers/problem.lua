@@ -256,11 +256,13 @@ function Writer(doc, opts)
     doc = doc:walk(filters)
     -- Converte as alternativas
     local doc_choices
+    local doc_correct_choice = nil
     if doc.meta.choices ~= nil then
         doc_choices = {}
         for _, block in ipairs(doc.meta.choices) do
             table.insert(doc_choices, text(block, opts))
         end
+        doc_correct_choice = doc.meta.correct_choice - 1
     end
 
     -- Converte os dados
@@ -300,7 +302,7 @@ function Writer(doc, opts)
         -- date           = doc.meta.date,
         choices        = doc_choices,
         data           = data,
-        correct_choice = doc.meta.correct_choice - 1,
+        correct_choice = doc_correct_choice,
         elements       = elements,
         statement      = text(statement, opts),
         solution       = text(solution, opts)
