@@ -99,10 +99,6 @@ class ProblemSet(BaseModel):
         cls, cursor, title: str, subject: str, hedgedoc_paths: list[str]
     ):
         """Retorna a prova a partir dos dados do AdminBro."""
-        with Pool() as pool:
-            problems = pool.starmap(
-                Problem.parse_mdfile, product([cursor], hedgedoc_paths)
-            )
 
         problems = [Problem.parse_hedgedoc(cursor, path) for path in hedgedoc_paths]
         return cls(title=title, subject=subject, problems=problems)

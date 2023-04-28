@@ -887,33 +887,33 @@
 		\cs_new:cpn { braun_maketitle_print_#2 }
             {
 				\seq_if_empty:cF { l_braun_title_#2_value_seq }
-                    {
+          {
 						\group_begin:
-							\dim_compare:vNVF 
-								{ l_braun_title_#2_before_skip } = \c_zero_dim
-								{
-									\skip_vertical:c 
-										{ l_braun_title_#2_before_skip }
-								}
-							\exp_not:n 
-								{ \tl_use:c { l_braun_title_#2_font_tl } }
-							\tl_use:c  { l_braun_title_#2_pre_text_tl } 
-							\braun_select_case:ev
-								{ 
-									\braun_select_sep:cv
-										{ l_braun_title_#2_value_seq } 
-										{ l_braun_title_#2_sep_tl    } 
-								} 
-								{ l_braun_title_#2_case_tl  }
-							\tl_use:c { l_braun_title_#2_post_text_tl } 
-							\dim_compare:vNVF 
-								{ l_braun_title_#2_before_skip } = \c_zero_dim
-								{
-									\skip_vertical:c 
-										{ l_braun_title_#2_after_skip }
-								}
+            \dim_compare:vNVF 
+              { l_braun_title_#2_before_skip } = \c_zero_dim
+              {
+                \skip_vertical:c 
+                  { l_braun_title_#2_before_skip }
+              }
+            \exp_not:n 
+              { \tl_use:c { l_braun_title_#2_font_tl } }
+            \tl_use:c  { l_braun_title_#2_pre_text_tl } 
+            \braun_select_case:ev
+              { 
+                \braun_select_sep:cv
+                  { l_braun_title_#2_value_seq } 
+                  { l_braun_title_#2_sep_tl    } 
+              } 
+              { l_braun_title_#2_case_tl  }
+            \tl_use:c { l_braun_title_#2_post_text_tl } 
+            \dim_compare:vNVF 
+              { l_braun_title_#2_before_skip } = \c_zero_dim
+              {
+                \skip_vertical:c 
+                  { l_braun_title_#2_after_skip }
+              }
 						\group_end:
-                    }
+          }
 				\cs_undefine:c { #2 }
 			}
     }
@@ -970,11 +970,11 @@
 \cs_set:Npn \braun_set_logo_coffin:N #1
 	{
 		\group_begin:
-			\seq_gpop_left:NNT \g_braun_logo_value_seq \l_tmpa_tl
-				{
-					\braun_set_logo_box:N \l_tmpa_box
-					\hcoffin_gset:Nn #1 { \box_use_drop:N \l_tmpa_box }
-				}
+    \seq_gpop_left:NNT \g_braun_logo_value_seq \l_tmpa_tl
+      {
+        \braun_set_logo_box:N \l_tmpa_box
+        \hcoffin_gset:Nn #1 { \box_use_drop:N \l_tmpa_box }
+      }
 		\group_end:
 	}
 	
@@ -983,74 +983,41 @@
 % #1 -> box to recieve logo
 \cs_set:Npn \braun_set_logo_box:N #1
 {
-    \hbox_set:Nn #1
-        {
-            \group_begin:
-                \prop_get:NVNTF \l_braun_logos_prop \l_tmpa_tl \l_tmpb_tl 
-                    { \tl_use:N \l_tmpb_tl } 
-                    { \tl_use:N \l_tmpa_tl }
-            \group_end:
-        }
-    \box_autosize_to_wd_and_ht:NVV #1 \l_braun_logo_width_dim \l_braun_logo_height_dim
+  \hbox_set:Nn #1
+    {
+      \group_begin:
+        \prop_get:NVNTF \l_braun_logos_prop \l_tmpa_tl \l_tmpb_tl 
+          { \tl_use:N \l_tmpb_tl } 
+          { \tl_use:N \l_tmpa_tl }
+      \group_end:
+    }
+  \box_autosize_to_wd_and_ht:NVV #1 \l_braun_logo_width_dim \l_braun_logo_height_dim
 }
 
 % #1 -> logo name/value
 \cs_new:Npn \PrintLogo #1 
-    {
-        \group_begin:
-            \braun_set_logo_box:N \l_tmpa_box
-            \hcoffin_set:Nn       \l_tmpa_coffin { \box_use_drop:N \l_tmpa_box }
-            \coffin_typeset:N     \l_tma_coffin  {l} {H} {0pt} {0pt}
-        \group_end:
-    }
+  {
+    \group_begin:
+      \braun_set_logo_box:N \l_tmpa_box
+      \hcoffin_set:Nn       \l_tmpa_coffin { \box_use_drop:N \l_tmpa_box }
+      \coffin_typeset:N     \l_tma_coffin  {l} {H} {0pt} {0pt}
+    \group_end:
+  }
 
 %% PREDEFINED LOGOS
 
 \prop_const_from_keyval:Nn \l_braun_logos_prop
 	{
-		pensi   = {
-			\draw_begin:  
-				\color_set:nnn {color-pensi}{HTML}{FFD166}
-				\fp_set:Nn \l_tmpa_fp { 60 } % Angle
-				\draw_path_moveto:n 
-					{ 0em , 0em }
-				\draw_path_lineto:n 
-					{ 0em , 1cm }
-				\draw_path_lineto:n 
-					{ 1cm * ( sind(\l_tmpa_fp) ) / ( cosd(\l_tmpa_fp) + sind(\l_tmpa_fp) + 1 ) , 1cm }
-				\draw_path_arc:nnn { 90 } { - \l_tmpa_fp }
-					{ 1cm * ( sind(\l_tmpa_fp) ) / ( cosd(\l_tmpa_fp) + sind(\l_tmpa_fp) + 1 ) }
-				\draw_path_close:   
-				\color_fill:n { white }
-				\draw_path_use:n { fill }
-				\draw_transform_shift:n 
-					{  
-						\draw_point_polar:nn 
-							{ 0.7 * 1cm  } { 90 - \l_tmpa_fp / 2 }
-					}
-				\draw_path_moveto:n 
-					{
-						\draw_point_polar:nn 
-							{  1cm / ( 3 * sqrt(3) ) } { 0 }
-					}
-				\draw_path_lineto:n 
-					{
-						\draw_point_polar:nn
-							{  1cm / ( 3 * sqrt(3) ) } { 120 }
-					}
-				\draw_path_lineto:n 
-					{
-						\draw_point_polar:nn
-							{  1cm / ( 3 * sqrt(3) ) } { -120 }
-					}
-				\draw_path_close:
-				\color_fill:n { color-pensi }
-				\draw_path_use:n { fill }
-			\draw_end:
-		},
+		pensi = 
+			{
+			\tikz \fill [ yellow ]
+				(0,0) |- (0.366, 1) 
+				arc [ start~ angle = 90, end~ angle = -60, radius = 0.366] -- cycle 
+				(0.253, 0.772) -- (0.253, 0.439) -- (0.542, 0.606);
+			},
 		ime     = \includegraphics { ime-logo.pdf },
 		ita     = \includegraphics { ita-logo.pdf },
-        ita-alt = \includegraphics { ita-logo-alt.pdf },
+    ita-alt = \includegraphics { ita-logo-alt.pdf },
 	}
 
 %============================================================%
