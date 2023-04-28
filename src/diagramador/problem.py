@@ -93,4 +93,4 @@ class Problem(BaseModel):
 
         print(query_results)
         # get YAML data and contents
-        return cls.parse_mdstr(link, query_results[0][2])
+        return cls.parse_mdstr(query_results[0][2])
