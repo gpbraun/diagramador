@@ -6,7 +6,7 @@ Considere as proposições.
 
 1. [x] A massa molar do soluto é cerca de $\pu{100 g.mol-1}$.
 2. [ ] Caso o soluto sofra dimerização parcial quando dissolvido em fenol, a massa molar calculada considerando que não há dimerização será menor do que sua massa molar real.
-3. [x] A pressão osmótica dessa solução é cerca de $\pu{5,9 atm}$.
+3. [x] A pressão osmótica dessa solução em $\pu{27 \degree C}$ é cerca de $\pu{5,9 atm}$.
 4. [ ] A pressão osmótica dessa solução pode ser medida calculando a pressão exercida pelas moléculas do soluto sob uma membrana semipermeável.
 
 **Assinale** a alternativa que relaciona as proposições *corretas*.

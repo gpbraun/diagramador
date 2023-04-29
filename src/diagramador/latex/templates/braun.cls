@@ -236,17 +236,24 @@
 
 \RequirePackage [ version=4 ] { mhchem }
 
-\RequirePackage { braunchem }
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
 %   DIAGRAMAS
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\RequirePackage [ table ] { xcolor }
+\RequirePackage { tikz, pgfplots, tcolorbox }
+
+\RequirePackage { braunchem }
+
 %============================================================%
 %   BIBLIOTECAS ADICIONAIS DO TIKZ/PGFPLOTS
 %============================================================%
+
+\tcbuselibrary { skins, breakable }
+
+\tcbset { enhanced~jigsaw }
 
 \AtBeginDocument 
   {
@@ -672,7 +679,7 @@
 				{
 					\begin{center}
 						\bfseries \normalsize \text_uppercase:n {#2} 
-						\BraunHRule
+						\braun_horizontal_rule:
 					\end{center}
 				}
 			}
@@ -1627,8 +1634,6 @@
 		pdfcreator  = Braun,
 	}
 
-\recalctypearea
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
 %   MACROS ESPECÍFICAS PARA ALGUMAS PROVAS
@@ -1642,7 +1647,7 @@
       {
 				{ ITA }
         {
-          \BraunHRule
+          \braun_horizontal_rule:
 					\skip_vertical:n {3em}
         }       
       }
@@ -1851,3 +1856,4 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\recalctypearea
