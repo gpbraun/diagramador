@@ -139,59 +139,59 @@
       {
         { lmodern }
         { 
-            \RequirePackage { lmodern  }
+          \RequirePackage { lmodern }
         }
         { ptsans }
         {
-            \RequirePackage { lmodern }
-            \RequirePackage [ scaled ] { PTSans }
+          \RequirePackage { lmodern }
+          \RequirePackage [ scaled ] { PTSans }
         }
         { firasans }
         {
-            \RequirePackage { lmodern }
-            \RequirePackage [ scaled ] { FiraSans }
+          \RequirePackage { lmodern }
+          \RequirePackage [ scaled ] { FiraSans }
         }  
         { helvetica }
         { 
-            \RequirePackage { lmodern }
-            \RequirePackage [ scaled  ] { helvet }
+          \RequirePackage { lmodern }
+          \RequirePackage [ scaled  ] { helvet }
         }
         { prova }
         { 
-            \RequirePackage { crimson }
-            \RequirePackage { eulervm }
-            \RequirePackage { FiraSans }
+          \RequirePackage { crimson }
+          \RequirePackage { eulervm }
+          \RequirePackage { FiraSans }
         }       
       }
   % family default
     \str_case:Vn \g_braun_family_default_tl
       {
-          { rm } { \cs_gset_eq:NN \familydefault \rmdefault }
-          { sf } { \cs_gset_eq:NN \familydefault \sfdefault }
+        { rm } { \cs_gset_eq:NN \familydefault \rmdefault }
+        { sf } { \cs_gset_eq:NN \familydefault \sfdefault }
       }
   }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   BASIC 
+%   BASICO
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %============================================================%
-%   TYPOGRAPHY
+%   TIPOGRAFIA
 %============================================================%
 
 \RequirePackage [T1] { fontenc }
 
 %============================================================%
-%   KOMASCRIPT FEATURES
+%   KOMASCRIPT
 %============================================================%
 
 \keys_define:nn { braun }
-    { unknown .code:n  = \exp_args:NV \KOMAoption \l_keys_key_tl {#1} }
+  { unknown .code:n  = \exp_args:NV \KOMAoption \l_keys_key_tl {#1} }
 
 %============================================================%
-%   FIGURES AND TABLES 
+%   FIGURAS E TABELAS
 %============================================================%
 
 \RequirePackage { float, longtable, booktabs }
@@ -214,7 +214,7 @@
 \DeclareMathOperator{\sin}{sen}
 
 %============================================================%
-%   SI UNITS
+%   UNIDADES DO SI
 %============================================================%
 
 \RequirePackage { siunitx }
@@ -231,38 +231,68 @@
 \cs_set_eq:NN \pu \mathrm
 
 %============================================================%
-%   BASIC CHEMISTRY
+%   QUÏMICA
 %============================================================%
 
 \RequirePackage [ version=4 ] { mhchem }
 
+\RequirePackage { braunchem }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   BOXES
+%   DIAGRAMAS
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\keys_define:nn { braun/box }
-    {
-        width .dim_set:N = \l_braun_box_width_dim,
-        width .initial:n = 2em,
+%============================================================%
+%   BIBLIOTECAS ADICIONAIS DO TIKZ/PGFPLOTS
+%============================================================%
 
-        fill  .tl_set:N  = \l_braun_box_fill_tl,
-        fill  .initial:n = white,
-
-        stroke  .tl_set:N  = \l_braun_box_stroke_tl,
-        stroke  .initial:n = black,
-
-        align  .tl_set:N  = \l_braun_box_align_tl,
-        align  .initial:n = t,
-
-        yshift .dim_set:N  = \l_braun_box_yshift_dim,
-        yshift .initial:n  = 0pt,
-    }
+\AtBeginDocument 
+  {
+    \usepgfplotslibrary
+      { 
+        groupplots, 
+        fillbetween 
+      }
+    \usetikzlibrary
+      {
+        calc,
+        calc,
+        shapes,
+        decorations,
+        arrows,
+        shapes.geometric, 
+        decorations.text,
+        decorations.pathreplacing,
+        decorations.markings,
+        decorations.pathmorphing,
+        arrows.meta,
+      }
+  }
 
 %============================================================%
-%   HEADERS
+%   PALETA DE CORES (BOOTSTRAP)
 %============================================================%
+
+% CORES BÁSICAS
+\definecolor { blue   } { HTML } { 0d6efd }
+\definecolor { indigo } { HTML } { 6610f2 }
+\definecolor { purple } { HTML } { 6f42c1 }
+\definecolor { pink   } { HTML } { d63384 }
+\definecolor { red    } { HTML } { dc3545 } 
+\definecolor { orange } { HTML } { fd7e14 } 
+\definecolor { yellow } { HTML } { f9c21c } 
+\definecolor { green  } { HTML } { 198754 } 
+\definecolor { teal   } { HTML } { 20c997 } 
+\definecolor { cyan   } { HTML } { 0dcaf0 } 
+\definecolor { gray   } { HTML } { adb5bd } 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   CABEÇALHOS
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \coffin_new:N \l__braun_txta_coffin
 \coffin_new:N \l__braun_txtb_coffin
@@ -361,64 +391,6 @@
 			{ \linewidth, 0cm }
   }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                              
-%   DIAGRAMAS
-%                                              
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\RequirePackage [ table ] { xcolor }
-\RequirePackage { tikz, pgfplots, tcolorbox }
-
-%============================================================%
-%   QUÍMICA
-%============================================================%
-
-\RequirePackage { braunchem }
-
-%============================================================%
-%   BIBLIOTECAS ADICIONAIS DO TIKZ/PGFPLOTS
-%============================================================%
-
-\AtBeginDocument 
-  {
-    \usepgfplotslibrary
-      { 
-        groupplots, 
-        fillbetween 
-      }
-    \usetikzlibrary
-      {
-        calc,
-        calc,
-        shapes,
-        decorations,
-        arrows,
-        shapes.geometric, 
-        decorations.text,
-        decorations.pathreplacing,
-        decorations.markings,
-        decorations.pathmorphing,
-        arrows.meta,
-      }
-  }
-
-%============================================================%
-%   PALETA DE CORES (BOOTSTRAP)
-%============================================================%
-
-% CORES BÁSICAS
-\definecolor { blue   } { HTML } { 0d6efd }
-\definecolor { indigo } { HTML } { 6610f2 }
-\definecolor { purple } { HTML } { 6f42c1 }
-\definecolor { pink   } { HTML } { d63384 }
-\definecolor { red    } { HTML } { dc3545 } 
-\definecolor { orange } { HTML } { fd7e14 } 
-\definecolor { yellow } { HTML } { f9c21c } 
-\definecolor { green  } { HTML } { 198754 } 
-\definecolor { teal   } { HTML } { 20c997 } 
-\definecolor { cyan   } { HTML } { 0dcaf0 } 
-\definecolor { gray   } { HTML } { adb5bd } 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -467,89 +439,88 @@
 %============================================================%
 
 \keys_define:nn { braun/page/header }
-    {
-        sepline .choices:nn = { true, false }
-            {
-                \exp_args:Nne \KOMAoption { headsepline }
-                    {  
-                        \str_if_eq:nnTF {#1} { true } 
-                            { \dim_use:N \g_braun_linewidth_dim } { false }
-                    }
-            },
-        sepline .initial:n = false,
-        sepline .default:n = true,
+  {
+    sepline .choices:nn = { true, false }
+      {
+        \exp_args:Nne \KOMAoption { headsepline }
+          {  
+            \str_if_eq:nnTF {#1} { true } 
+              { \dim_use:N \g_braun_linewidth_dim } 
+              { false }
+          }
+      },
+    sepline .initial:n = false,
+    sepline .default:n = true,
 
-        title-sepline .choices:nn = { true, false } 
-            {
-                \KOMAoption { plainheadsepline } {#1}
-            },
-        title-sepline .initial:n = false,
-        title-sepline .default:n = true,
+    title-sepline .choices:nn = { true, false } 
+      { \KOMAoption { plainheadsepline } {#1} },
+    title-sepline .initial:n = false,
+    title-sepline .default:n = true,
 
-        font .code:n    = \setkomafont { pagehead } {#1},
-        font .initial:n =  ,
+    font .code:n    = \setkomafont { pagehead } {#1},
+    font .initial:n =  ,
 
-        inner  .tl_set:N  = \l_braun_page_ihead_tl ,
-        center .tl_set:N  = \l_braun_page_chead_tl ,
-        outer  .tl_set:N  = \l_braun_page_ohead_tl ,
+    inner  .tl_set:N  = \l_braun_page_ihead_tl ,
+    center .tl_set:N  = \l_braun_page_chead_tl ,
+    outer  .tl_set:N  = \l_braun_page_ohead_tl ,
 
-        title-inner  .tl_set:N  = \l_braun_page_title_ihead_tl ,
-        title-center .tl_set:N  = \l_braun_page_title_chead_tl ,
-        title-outer  .tl_set:N  = \l_braun_page_title_ohead_tl ,
+    title-inner  .tl_set:N  = \l_braun_page_title_ihead_tl ,
+    title-center .tl_set:N  = \l_braun_page_title_chead_tl ,
+    title-outer  .tl_set:N  = \l_braun_page_title_ohead_tl ,
 
-        plain .meta:n = 
-            { 
-                inner  = ,
-                center = ,
-                outer  = ,
-                sepline = false,
-                title-inner  = ,
-                title-center = ,
-                title-outer  = ,
-                title-sepline = false,
-            },
+    plain .meta:n = 
+      { 
+        inner  = ,
+        center = ,
+        outer  = ,
+        sepline = false,
+        title-inner  = ,
+        title-center = ,
+        title-outer  = ,
+        title-sepline = false,
+      },
 
-		prova .meta:n = 
-			{
-				inner  = 
-					{
-						\group_begin:
-						\begin{tikzpicture} [ remember~ picture, overlay ]
-							\node (header) [ anchor = north~ west, inner~ sep = 0pt ] 
-								at ( current~ page.north~ west )
-								{
-									\includegraphics
-										[ width = \paperwidth ]
-										{ pensi-header.pdf }
-								};
-							\node 
-								[ 
-									anchor = north~ east, 
-									align = right,
-									fill = yellow,
-									inner~ xsep = 1em,
-									minimum~ size = 8.6mm,
-									rounded~ rectangle,
-									rounded~ rectangle~ right~ arc = none,
-									
-								] 
-								at ( header.north~ east )
-								{
-									\large\bfseries\sffamily
-									\PrintTitle
-								};
-						\end{tikzpicture}
-						\group_end:
-					},
-                center = ,
-                outer  = ,
-                sepline = false,
-                title-inner  = ,
-                title-center = ,
-                title-outer  = ,
-                title-sepline = false,
-			}
-    }
+    pensi .meta:n = 
+      {
+        inner  = 
+          {
+            \group_begin:
+            \begin{tikzpicture} [ remember~ picture, overlay ]
+              \node (header) [ anchor = north~ west, inner~ sep = 0pt ] 
+                at ( current~ page.north~ west )
+                {
+                  \includegraphics
+                    [ width = \paperwidth ]
+                    { pensi-header.pdf }
+                };
+              \node 
+                [ 
+                  anchor = north~ east, 
+                  align = right,
+                  fill = yellow,
+                  inner~ xsep = 1em,
+                  minimum~ size = 8.6mm,
+                  rounded~ rectangle,
+                  rounded~ rectangle~ right~ arc = none,
+                  
+                ] 
+                at ( header.north~ east )
+                {
+                  \large\bfseries\sffamily
+                  \PrintTitle
+                };
+            \end{tikzpicture}
+            \group_end:
+          },
+          center = ,
+          outer  = ,
+          sepline = false,
+          title-inner  = ,
+          title-center = ,
+          title-outer  = ,
+          title-sepline = false,
+  }
+  }
 
 \ihead 
   [ \tl_use:N \l_braun_page_title_ihead_tl ] 
@@ -572,62 +543,63 @@
 %============================================================%
 
 \keys_define:nn { braun/page/footer }
+  {
+      sepline .choices:nn = { true, false } 
+        {
+          \exp_args:Nne \KOMAoption { footsepline }
+            {  
+              \str_if_eq:nnTF {#1} { true } 
+                { \dim_use:N \g_braun_linewidth_dim } 
+                { false }
+            }
+        },
+      sepline .initial:n = false,
+      sepline .default:n = true,
+
+      title-sepline .choices:nn = { true, false } 
+        {
+          \KOMAoption { plainfootsepline } {#1}
+        },
+      title-sepline .initial:n = false,
+      title-sepline .default:n = true,
+
+      font .code:n    = \setkomafont { pagefoot } {#1},
+      font .initial:n =  {},
+
+      inner  .tl_set:N  = \l_braun_page_ifoot_tl ,
+      center .tl_set:N  = \l_braun_page_cfoot_tl ,
+      center .initial:n = { \thepage },
+      outer  .tl_set:N  = \l_braun_page_ofoot_tl ,
+
+      title-inner  .tl_set:N  = \l_braun_page_title_ifoot_tl ,
+      title-center .tl_set:N  = \l_braun_page_title_cfoot_tl ,
+      title-center .initial:n = { \thepage },
+      title-outer  .tl_set:N  = \l_braun_page_title_ofoot_tl ,
+
+      plain .meta:n = 
+        { 
+          inner  = ,
+          center = {\thepage},
+          outer  = ,
+          sepline = false,
+          title-inner  = ,
+          title-center = {\thepage},
+          title-outer  = ,
+          title-sepline = false,
+        },
+
+  pensi .meta:n = 
     {
-        sepline .choices:nn = { true, false } 
-            {
-                \exp_args:Nne \KOMAoption { footsepline }
-                    {  
-                        \str_if_eq:nnTF {#1} { true } 
-                            { \dim_use:N \g_braun_linewidth_dim } { false }
-                    }
-            },
-        sepline .initial:n = false,
-        sepline .default:n = true,
-
-        title-sepline .choices:nn = { true, false } 
-            {
-                \KOMAoption { plainfootsepline } {#1}
-            },
-        title-sepline .initial:n = false,
-        title-sepline .default:n = true,
-
-        font .code:n    = \setkomafont { pagefoot } {#1},
-        font .initial:n =  {},
-
-        inner  .tl_set:N  = \l_braun_page_ifoot_tl ,
-        center .tl_set:N  = \l_braun_page_cfoot_tl ,
-        center .initial:n = { \thepage },
-        outer  .tl_set:N  = \l_braun_page_ofoot_tl ,
-
-        title-inner  .tl_set:N  = \l_braun_page_title_ifoot_tl ,
-        title-center .tl_set:N  = \l_braun_page_title_cfoot_tl ,
-        title-center .initial:n = { \thepage },
-        title-outer  .tl_set:N  = \l_braun_page_title_ofoot_tl ,
-
-        plain .meta:n = 
-            { 
-                inner  = ,
-                center = {\thepage},
-                outer  = ,
-                sepline = false,
-                title-inner  = ,
-                title-center = {\thepage},
-                title-outer  = ,
-                title-sepline = false,
-            },
-
-		prova .meta:n = 
-			{
-				inner  = ,
-                center = { \textbf{\thepage} },
-                outer  = ,
-                sepline = false,
-                title-inner  = ,
-                title-center = { \textbf{\thepage} },
-                title-outer  = ,
-                title-sepline = false,
-			}
+      inner  = ,
+      center = { \textbf{\thepage} },
+      outer  = ,
+      sepline = false,
+      title-inner  = ,
+      title-center = { \textbf{\thepage} },
+      title-outer  = ,
+      title-sepline = false,
     }
+  }
 
 \ifoot 
   [ \tl_use:N \l_braun_page_title_ifoot_tl ] 
@@ -712,15 +684,15 @@
 %============================================================%
 
 \keys_define:nn { braun/page }
-    {
-        IME .meta:n = 
-            {
-                header / plain,
-                footer / plain,
-                boxed = true,
-                section / template = IME,
-            }
-    }
+  {
+    IME .meta:n = 
+      {
+          header / plain,
+          footer / plain,
+          boxed = true,
+          section / template = IME,
+      }
+  }
 
 \pagestyle { scrheadings }
 
@@ -738,12 +710,12 @@
 % #2 -> separation
 \cs_set:Nn \braun_select_sep:Nn
     {
-        \str_case:nn {#2}
-            {
-                { csv    } { \seq_use:Nn #1   { ,  } }
-                { break  } { \seq_use:Nn #1   { \\  } }
-				{ normal } { \seq_use:Nnnn #1 { e } { , } { ,e } }
-            }
+      \str_case:nn {#2}
+        {
+          { csv    } { \seq_use:Nn #1   { ,  } }
+          { break  } { \seq_use:Nn #1   { \\  } }
+				  { normal } { \seq_use:Nnnn #1 { e } { , } { ,e } }
+        }
     }
 \cs_generate_variant:Nn \braun_select_sep:Nn {cv}
 \cs_generate_variant:Nn \braun_select_sep:Nn {cn}
@@ -751,15 +723,15 @@
 % #1 -> text input
 % #2 -> text case
 \cs_set:Nn \braun_select_case:nn
-    {
-        \str_case:nnF {#2}
-            {
-                { upper } { \text_uppercase:n {#1} }
-                { lower } { \text_lowercase:n {#1} }
-                { title } { \text_titlecase:n {#1} }
-                { first } { \text_titlecase_first:n {#1} }
-            } {#1}
-    }
+  {
+    \str_case:nnF {#2}
+      {
+        { upper } { \text_uppercase:n {#1} }
+        { lower } { \text_lowercase:n {#1} }
+        { title } { \text_titlecase:n {#1} }
+        { first } { \text_titlecase_first:n {#1} }
+      } {#1}
+  }
 \cs_generate_variant:Nn \braun_select_case:nn {ev}
 
 % #1 m -> title element name
@@ -1473,7 +1445,6 @@
 \RenewDocumentEnvironment { quote } { +b }
 	{
 		\cs_set_eq:NN \subsubsection \minisec
-
 		\begin{center}
     \parbox { 0.9 \textwidth }
       {
@@ -1506,7 +1477,6 @@
     fontsize = 11pt,
     emph = \itshape,
 		page / section / template = ITA,
-
 		% Título
     maketitle / print = { title, affiliation, date },
     maketitle / title / case = upper,
@@ -1515,7 +1485,6 @@
     maketitle / date / font = \large\bfseries,
 		maketitle / logo / value = ita-alt,
     maketitle / logo / value = pensi,
-
 		% Problemas
     problems / name = Questão,
     problems / template = ITA,
@@ -1591,8 +1560,8 @@
 		footinclude = true,
 		linewidth = 1pt,
 		% Cabeçalho e rodapé
-		page / footer / prova,
-		page / header / prova,
+		page / footer / pensi,
+		page / header / pensi,
 		page / section / template = gabarito,
 		% Título
 		maketitle / template = pensi,
@@ -1625,7 +1594,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   PROCESS OPTIONS
+%   PROCESSAMENTO DAS OPÇÕES
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1635,7 +1604,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   LANGUAGE
+%   LINGUAGEM
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1643,7 +1612,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   BEGIN DOCUMENT HOOK
+%   METADADOS DO PDF
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1665,10 +1634,6 @@
 %   MACROS ESPECÍFICAS PARA ALGUMAS PROVAS
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%============================================================%
-%   PREÂMBULO DAS DISCIPLINAS
-%============================================================%
 
 \cs_set:Npn \EndPreamble
   {
