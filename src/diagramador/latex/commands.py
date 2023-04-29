@@ -2,6 +2,7 @@
 
 Esse módulo implementa comandos de LaTeX.
 """
+from pathlib import Path
 
 
 def cmd(cmd_name: str, args: str = "", end: str = ""):
@@ -53,3 +54,8 @@ def itemize(name: str, items: list[str], sep_cmd: str = "item"):
     # latex enumerate
     content = "\n".join([cmd(sep_cmd) + i for i in items])
     return env(name, content)
+
+
+def graphicspath(paths: list[str | Path]):
+    # latex enumerate
+    return cmd("graphicspath", "\n".join([f"{{{str(path)}}}" for path in paths]))

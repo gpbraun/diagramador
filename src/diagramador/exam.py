@@ -97,7 +97,7 @@ class Exam(BaseModel):
                 for problem_set in problem_set
             ]
 
-        metadata["path"] = json_path.parent.joinpath("graphics").resolve()
+        metadata["path"] = json_path.parent.resolve()
 
         return cls.parse_obj(metadata)
 

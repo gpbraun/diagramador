@@ -2,7 +2,7 @@
 
 Esse módulo implementa uma classe para os problemas.
 """
-from diagramador.latex.commands import cmd, env, section
+from diagramador.latex.commands import cmd, env, section, itemize
 from diagramador.utils.converter import md2problem
 
 from pathlib import Path
@@ -31,7 +31,7 @@ class Problem(BaseModel):
         if not self.is_objective:
             return ""
 
-        return cmd("autochoices", self.choices)
+        return itemize("choices", self.choices)
 
     def tex_correct_choice(self):
         """Retorna as respostas do problema formatados em LaTeX."""

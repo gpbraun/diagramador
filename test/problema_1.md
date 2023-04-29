@@ -4,10 +4,13 @@ elementos: Cd, Se
 
 Você trabalha em um laboratório que investiga as propriedades de nanomateriais semicondutores. Uma de suas pesquisas requer que você sintetize nanocristais de $\ce{CdSe}$ ao reagir $\ce{CdO}$ com $\ce{Se}$ em solução, em temperaturas elevadas. A solução de $\ce{Se}$ é preparada dissolvendo $\pu{150 mg}$ do metal selênio em $\pu{25 mL}$ de um solvente, o 1-octadeceno. Em outro frasco, $\pu{64 mg}$ de $\ce{CdO}$ são dissolvidos em $\pu{3 mL}$ de ácido oleico e $\pu{50 mL}$ de 1-octadeceno, em $\pu{225 \degree C}$.
 
-a. **Determine** as configurações eletrônicas do $\ce{Cd}$ e do $\ce{Se}$.
-b. **Determine** o grupo e o período do $\ce{Cd}$ e do $\ce{Se}$ na Tabela Periódica.
-c. **Explique** qual elemento tem maior probabilidade de formar um ânion no composto iônico $\ce{CdSe}$.
-d. **Calcule** volume de solução de selênio precisa ser adicionado à solução de $\ce{CdO}$.
+![c](protein.jpeg)
+
+- [x] Sim
+- [ ] Não
+- [ ] Talvez
+- [ ] Não sei
+- [ ] NDA
 
 ---
 

@@ -1,4 +1,4 @@
-from diagramador.latex.commands import cmd, env, itemize
+from diagramador.latex.commands import cmd, env, graphicspath
 
 import subprocess
 import shutil
@@ -8,32 +8,15 @@ import importlib.resources
 TEX_TEMPLATES_PATH = importlib.resources.files("diagramador.latex.templates")
 """Diretório da base de dados."""
 
+TEX_TEMPLATE_GRAPHICS_PATH = TEX_TEMPLATES_PATH.joinpath("graphics")
+"""Diretório da base de dados."""
+
+HEDGEDOC_GRAPHICS_PATH = Path("/var/lib/docker/volumes/hedgedoc_uploads/_data/")
+
 TEX_TEMPLATE_FILES = [
     "braun.cls",
     "braunchem.sty",
-    "ime-logo.pdf",
-    "ita-logo.pdf",
-    "ita-logo-alt.pdf",
-    "pensi-header.pdf",
-    "pensi-header-title.pdf",
 ]
-
-
-def run_latexmk(tex_path: Path):
-    """Executa o comando `latexmk`."""
-    latexmk = subprocess.run(
-        [
-            shutil.which("latexmk"),
-            "-shell-escape",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-pdf",
-            "-cd",
-            str(tex_path),
-        ],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
 
 
 def run_tectonic(tex_path: Path):
@@ -44,6 +27,7 @@ def run_tectonic(tex_path: Path):
             "-X",
             "compile",
             "--keep-intermediates",
+            "--keep-logs",
             str(tex_path),
         ],
         stdout=subprocess.PIPE,
@@ -88,7 +72,9 @@ class Document:
                 cmd("title", self.title) if self.title else "",
                 cmd("affiliation", self.affiliation) if self.affiliation else "",
                 cmd("date", self.date) if self.date else "",
-                cmd("graphicspath", f"{{{str(self.path)}}}") if self.path else "",
+                graphicspath(
+                    [self.path, TEX_TEMPLATE_GRAPHICS_PATH, HEDGEDOC_GRAPHICS_PATH]
+                ),
                 cmd("setcounter", ["problem", self.start - 1]),
             ]
         )

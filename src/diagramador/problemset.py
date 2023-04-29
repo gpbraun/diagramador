@@ -62,7 +62,9 @@ class ProblemSet(BaseModel):
         return "\n".join(
             [
                 section_header,
-                cmd("Preamble", self.subject),
+                cmd(
+                    f"{self.subject}Preamble",
+                ),
                 self.tex_data(),
                 self.tex_elements(),
                 cmd(f"EndPreamble"),
