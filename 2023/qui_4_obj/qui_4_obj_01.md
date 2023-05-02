@@ -9,4 +9,3 @@ O processo ocorre em temperatura contante e a pressão total no reator aumentou 
 - [ ] $\pu{0,8 atm}$
 - [ ] $\pu{1,0 atm}$
 - [ ] $\pu{1,2 atm}$
-
