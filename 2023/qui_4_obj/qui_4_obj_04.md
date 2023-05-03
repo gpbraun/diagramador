@@ -6,13 +6,13 @@ Cinco estruturas foram propostas para o composto **X**
 \begin{chemscheme}
 \chemnameinit{\chemfig{*4(-(-)--(-Br)-)}}
 \chemname{\chemfig{*4(--(-[1]-[-1]Br)--)}}{Estrutura 1}
-\qquad
+\qquad\qquad
 \chemname{\chemfig{*4(--(-[3])(-[0]Br)--)}}{Estrutura 2}
-\qquad
+\qquad\qquad
 \chemname{\chemfig{*4(--(-Br)-(-)-)}}{Estrutura 3}
-\qquad
+\qquad\qquad
 \chemname{\chemfig{*4(-(-)--(-Br)-)}}{Estrutura 4}
-\qquad
+\qquad\qquad
 \chemname{\chemfig{-[1](-[3]Br)-[-1]=^[1]-[-1]}}{Estrutura 5}
 \end{chemscheme}
 ```
@@ -32,6 +32,7 @@ Cinco estruturas foram propostas para o composto **X**
 ```latex
 \begin{chemscheme}
 \schemestart
+    \chemnameinit{}
     \chemname{\chemfig{*4(-(-)--(-Br)-)}}{\textbf{X}}
     \arrow{->[\ce{KOH}]}[,1.5]
     \chemname{\chemfig{*4(-(-)-=-)}}{\textbf{Y}}
@@ -44,6 +45,7 @@ Cinco estruturas foram propostas para o composto **X**
 ```latex
 \begin{chemscheme}
 \schemestart
+    \chemnameinit{}
     \chemname{\chemfig{*4(-(-)--(-Br)-)}}{\textbf{Y}}
     \arrow{->[\ce{H2}][\ce{Pt}]}[,1.5]
     \chemname{\chemfig{*4(-(-)---)}}{metilciclobutano}
@@ -56,6 +58,7 @@ Cinco estruturas foram propostas para o composto **X**
 ```latex
 \begin{chemscheme}
 \schemestart
+    \chemnameinit{}
     \chemname{\chemfig{*4(-(-)-=-)}}{\textbf{Y}}
     \arrow{->[1. \ce{O3}][2. \ce{Zn}]}[,1.5]
     \chemname{\chemfig{H-[-1](=[-3,,,,fix]O)-[1]-[-1](-[-3])-[1](=[3,,,,fix]O)-[-1]H}}{\textbf{Z}}

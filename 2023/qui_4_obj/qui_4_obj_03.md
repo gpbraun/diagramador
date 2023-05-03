@@ -9,16 +9,18 @@ Quando o equilíbrio é atingido, $\pu{50}\%$ da quantidade de amônia adicionad
 - [ ] $\pu{0,2 Torr}$
 - [ ] $\pu{0,4 Torr}$
 - [ ] $\pu{0,8 Torr}$
-- [z] $\pu{1,6 Torr}$
+- [x] $\pu{1,6 Torr}$
 - [ ] $\pu{3,2 Torr}$
   
+---
+
 #### Elabore uma tabela de reação.
 
-|        |     $\ce{N2}$     |    $\ce{3 H2}$     | $\ce{->}$ |   $\ce{2 NH3}$    |
-| :----- | :---------------: | :----------------: | --------- | :---------------: |
-| início |        $0$        |        $0$         |           |       $P_0$       |
-| reação | $+\dfrac{P_0}{4}$ | $+\dfrac{3P_0}{4}$ |           | $-\dfrac{P_0}{2}$ |
-| final  | $\dfrac{P_0}{4}$  | $\dfrac{3P_0}{4}$  |           | $\dfrac{P_0}{2}$  |
+|        | $\ce{N2}$ | $\ce{3 H2}$ | $\ce{->}$ | $\ce{2 NH3}$ |
+| :----- | :-------: | :---------: | --------- | :----------: |
+| início |    $0$    |     $0$     |           |    $P_0$     |
+| reação | $+P_0/4$  |  $+3P_0/4$  |           |   $-P_0/2$   |
+| final  |  $P_0/4$  |  $3P_0/4$   |           |   $P_0/2$    |
 
 #### Insira os valores da tabela na expressão do volume total.
 
