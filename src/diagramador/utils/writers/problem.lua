@@ -214,6 +214,12 @@ local filters = {
         end
     end,
 
+    Code = function(block)
+        return {
+            pandoc.RawInline('latex', block.text),
+        }
+    end,
+
     OrderedList = function(elem)
         local frist = elem.content[1][1].content[1].text
         if frist == "☒" or frist == "☐" then

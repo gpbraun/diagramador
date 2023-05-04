@@ -1,29 +1,12 @@
 O composto **X**, $\ce{C5H9Br}$, não reage com bromo ou com permanganato de potássio diluído. O tratamento de **X** com potassa alcoólica leva à formação de um único composto, **Y**. Diferente de **X**, **Y** descora a água de bromo e muda a cor de uma solução de permanganato de violeta para marrom. A reação de **Y** com gás hidrogênio e platila forma metilciclobutano. Quando **Y** é tratado com ozônio seguido de zinco metálico, é formado o composto **Z**, $\ce{C5H8O2}$.
 
-Cinco estruturas foram propostas para o composto **X**
-
-```latex
-\begin{chemscheme}
-\chemnameinit{\chemfig{*4(-(-)--(-Br)-)}}
-\chemname{\chemfig{*4(--(-[1]-[-1]Br)--)}}{Estrutura 1}
-\qquad\qquad
-\chemname{\chemfig{*4(--(-[3])(-[0]Br)--)}}{Estrutura 2}
-\qquad\qquad
-\chemname{\chemfig{*4(--(-Br)-(-)-)}}{Estrutura 3}
-\qquad\qquad
-\chemname{\chemfig{*4(-(-)--(-Br)-)}}{Estrutura 4}
-\qquad\qquad
-\chemname{\chemfig{-[1](-[3]Br)-[-1]=^[1]-[-1]}}{Estrutura 5}
-\end{chemscheme}
-```
-
 **Assinale** a alternativa com a estrutura do composto **X**.
 
-- [x] Estrutura 1
-- [ ] Estrutura 2
-- [ ] Estrutura 3
-- [ ] Estrutura 4
-- [ ] Estrutura 5
+- [x] `\chemfig{*4(-(-)--(-Br)-)}`
+- [ ] `\chemfig{*4(--(-[3])(-[0]Br)--)}`
+- [ ] `\chemfig{*4(--(-Br)-(-)-)}`
+- [ ] `\chemfig{*4(-(-)--(-Br)-)}`
+- [ ] `\chemfig{-[1](-[3]Br)-[-1]=^[1]-[-1]}`
 
 ---
 
