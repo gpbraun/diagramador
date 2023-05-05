@@ -1,3 +1,7 @@
+---
+elementos: C, F, Xe, S, N, F, Cl
+---
+
 Considere as seguintes proposições sobre a estrutura molecular.
 
 1. As moléculas $\ce{CF4}$ e $\ce{XeF4}$ são apolares, entretanto, o $\ce{SF4}$ é polar.

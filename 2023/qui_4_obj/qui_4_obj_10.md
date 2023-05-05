@@ -1,3 +1,7 @@
+---
+elementos: P, Mo
+---
+
 A digestão de $\pu{0,15 g}$ de uma amostra de um composto que contém fósforo em uma mistura de $\ce{HNO3}$ e $\ce{H2SO4}$ resulta na formação de $\ce{CO2}$, $\ce{H2O}$ e $\ce{H3PO4}$. A adição de molibdato de amônio produz um sólido cuja composição é $\ce{(NH4)3PO4.12MoO3}$. Esse precipitado foi filtrado, lavado, e dissolvido em $\pu{50 mL}$ de $\ce{NaOH}$ $\pu{0,2 mol.L-1}$:
 $$
     \ce{ (NH4)3PO4.12MoO3(s) + OH^-(aq) -> HPO4^{2-}(aq) + MoO4^{2-}(aq) + H2O(l) + NH3(g) }

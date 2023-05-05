@@ -34,10 +34,11 @@ def run_tectonic(tex_path: Path):
         stderr=subprocess.PIPE,
     )
     print(f"Comando executado: '{' '.join(tectonic.args)}'")
+    log_path = tex_path.with_suffix(".log")
     if tectonic.stdout:
-        print(tectonic.stdout.decode())
+        log_path.write_bytes(tectonic.stdout)
     if tectonic.stderr:
-        print(tectonic.stderr.decode())
+        log_path.write_bytes(tectonic.stderr)
     print(f"Arquivo '{tex_path}' compilado com tectonic!")
 
 

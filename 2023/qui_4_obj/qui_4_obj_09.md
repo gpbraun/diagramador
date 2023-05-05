@@ -1,3 +1,7 @@
+---
+elementos: Hg
+---
+
 Uma pequena gota de mercúrio é adicionada à uma cubeta de $\pu{10 mL}$ em $\pu{300 K}$.
 
 | Dados em $\pu{300 K}$                                                   | $\ce{Hg(l)}$ | $\ce{Hg(g)}$ |

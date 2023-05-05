@@ -1,3 +1,7 @@
+---
+elementos: Br
+---
+
 O composto **X**, $\ce{C5H9Br}$, não reage com bromo ou com permanganato de potássio diluído. O tratamento de **X** com potassa alcoólica leva à formação de um único composto, **Y**. Diferente de **X**, **Y** descora a água de bromo e muda a cor de uma solução de permanganato de violeta para marrom. A reação de **Y** com gás hidrogênio e platila forma metilciclobutano. Quando **Y** é tratado com ozônio seguido de zinco metálico, é formado o composto **Z**, $\ce{C5H8O2}$.
 
 **Assinale** a alternativa com a estrutura do composto **X**.
