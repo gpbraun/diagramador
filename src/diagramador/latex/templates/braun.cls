@@ -1511,7 +1511,7 @@
 \DeclareBraunTemplate { ITAobj }
   {
     ITA,
-		problems / breakable = true,
+		problems / breakable = false,
 		problems / vfill = false,
   }
 
@@ -1554,7 +1554,7 @@
 \DeclareBraunTemplate { IMEobj }
   {
     IME,
-    problems / breakable = true,
+    problems / breakable = false,
     problems / vfill = false,
   }
 
