@@ -526,7 +526,7 @@
           title-center = ,
           title-outer  = ,
           title-sepline = false,
-  }
+    }
   }
 
 \ihead 
@@ -1114,6 +1114,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \setkeys{Gin}{width=.8\textwidth, height=5cm, keepaspectratio}
+
+\cs_set_eq:NN \legacyincludegraphics \includegraphics 
+
+\DeclareDocumentCommand \includegraphics { o m }
+  { 
+    \group_begin:
+    \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_tmpc_tl
+    \legacyincludegraphics [#1] { \l_tmpb_tl \l_tmpc_tl }
+    \group_end:
+  }
 
 \RenewDocumentEnvironment { figure } {} 
   { 
@@ -1786,7 +1796,7 @@
       \item 
         Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
       \item 
-        Velocidade do som, $v \c_math_subscript_token \mathrm{som} = \qty{340}{m.s^{-1}}$
+        Velocidade do som, $v_\mathrm{som} = \qty{340}{m.s^{-1}}$
       \item 
         Carga elementar, $e = \qty{1,6e-19}{C}$
       \item 
