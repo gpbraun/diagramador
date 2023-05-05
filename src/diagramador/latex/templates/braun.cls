@@ -1113,11 +1113,11 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setkeys{Gin}{width=.8\textwidth, height=5cm, keepaspectratio}
+\setkeys { Gin } { width=.8\textwidth, height=5cm, keepaspectratio }
 
 \cs_set_eq:NN \legacyincludegraphics \includegraphics 
 
-\DeclareDocumentCommand \includegraphics { o m }
+\DeclareDocumentCommand \includegraphics { O{} m }
   { 
     \group_begin:
     \file_parse_full_name:nNNN {#2} \l_tmpa_tl \l_tmpb_tl \l_tmpc_tl
