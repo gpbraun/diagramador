@@ -874,10 +874,10 @@
 		value .code:n = { \seq_put_right:Nn \g_braun_logo_value_seq {#1} },
 
 		height .dim_set:N = \l_braun_logo_height_dim ,
-		height .initial:n = 2cm,
+		height .initial:n = 2.5cm,
 
 		width .dim_set:N = \l_braun_logo_width_dim ,
-		width .initial:n = 2cm,
+		width .initial:n = 3cm,
 	}
 
 %% SET LOGO
@@ -930,13 +930,7 @@
 %% PREDEFINED LOGOS
 \prop_const_from_keyval:Nn \l_braun_logos_prop
 	{
-		pensi = 
-			{
-        \tikz \fill [ yellow ]
-          (0,0) |- (0.366, 1) 
-          arc [ start~ angle = 90, end~ angle = -60, radius = 0.366] -- cycle 
-          (0.253, 0.772) -- (0.253, 0.439) -- (0.542, 0.606);
-			},
+		pensi   = \includegraphics { pensi-logo.pdf },
 		ime     = \includegraphics { ime-logo.pdf },
 		ita     = \includegraphics { ita-logo.pdf },
     ita-alt = \includegraphics { ita-logo-alt.pdf },
@@ -1511,7 +1505,7 @@
   {
     ITA,
 		problems / breakable = false,
-		problems / vfill = true,
+		problems / vfill = false,
   }
 
 \DeclareBraunTemplate { ITAobj }
@@ -1554,7 +1548,7 @@
   {
     IME,
     problems / breakable = false,
-    problems / vfill = true,
+    problems / vfill = false,
   }
 
 \DeclareBraunTemplate { IMEobj }
