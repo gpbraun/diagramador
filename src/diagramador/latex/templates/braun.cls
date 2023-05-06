@@ -1739,7 +1739,7 @@
 				Data: \PrintDate \\
 				\hline
 				\textbf{Instruções:}
-				\begin{itemize}[noitemsep, topsep=0pt]
+				\begin{itemize}[after-item-skip = 0pt]
 					\item 
             Faça sua avaliação à caneta.
 					\item 
