@@ -678,7 +678,7 @@
 				{ ITA }
 				{
 					\begin{center}
-						\bfseries \normalsize \text_uppercase:n {#2} 
+						\bfseries \normalsize \text_uppercase:n {#2} \\
 						\braun_horizontal_rule:
 					\end{center}
 				}
@@ -1085,6 +1085,8 @@
 				% Print title
 				\braun_single_column:n
 					{
+            \skip_vertical:n { -1.5em }
+
 						\bool_if:NT      \l_braun_title_toprule_bool { \braun_horizontal_rule: }
 						\skip_vertical:V \l_braun_title_before_skip
 
@@ -1093,7 +1095,7 @@
 						\skip_vertical:V \l_braun_title_after_skip
 						\bool_if:NT      \l_braun_title_botrule_bool { \braun_horizontal_rule: }
 
-						\skip_vertical:n { 3em }
+						\skip_vertical:n { 2.0em }
 					}
       }
 		\tl_use:N \l_braun_title_post_text_tl
