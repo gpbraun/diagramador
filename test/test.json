@@ -1,12 +1,12 @@
 {
     "id_": "test",
     "title": "Diagnóstico",
-    "template": "IME",
+    "template": "AFA",
     "affiliation": "Primeira Série IME-ITA",
     "problem_set": [
         {
-            "title": "Química",
-            "subject": "qui",
+            "title": "Física",
+            "subject": "fis",
             "problems": [
                 "test/problema_1.md",
                 "test/problema_2.md",

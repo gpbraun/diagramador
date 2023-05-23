@@ -407,6 +407,29 @@
 
 \RequirePackage { scrlayer-scrpage, multicolrule, caption }
 
+%============================================================%
+%   COLUMN SEPARATOR
+%============================================================%
+
+\keys_define:nn { braun/page/mcrule }
+  { 
+    black .meta:n = 
+      {
+        line-style  = solid,
+        width       = thick,
+        color       = black,
+        extend-bot  = 10cm,
+      },
+
+    unknown .code:n = \exp_args:Ne \SetMCRule { \l_keys_key_tl = #1 },
+  }
+
+\SetMCRule{extend-top = 1cm}
+
+%============================================================%
+%   HEADER
+%============================================================%
+
 \cs_set:Nn \braun_page_box:
   {
     \vbox_to_zero:n % zero height
@@ -675,6 +698,14 @@
 							\text_uppercase:n {#2} 
 						} 
 				}
+        { AFA }
+				{
+					\begin{center}
+						\bfseries \normalsize \text_uppercase:n {#2} \\[-1ex]
+            \noindent 
+            \rule{0.3\linewidth}{\g_braun_linewidth_dim}
+					\end{center}
+				}
 				{ ITA }
 				{
 					\begin{center}
@@ -698,6 +729,13 @@
           footer / plain,
           boxed = true,
           section / template = IME,
+      },
+    AFA .meta:n = 
+      {
+          header / plain,
+          footer / plain,
+          boxed = true,
+          section / template = AFA,
       }
   }
 
@@ -932,6 +970,7 @@
 	{
 		pensi   = \includegraphics { pensi-logo.pdf },
 		ime     = \includegraphics { ime-logo.pdf },
+    afa     = \includegraphics { afa-logo.png },
 		ita     = \includegraphics { ita-logo.pdf },
     ita-alt = \includegraphics { ita-logo-alt.pdf },
 	}
@@ -1093,7 +1132,19 @@
 						\coffin_typeset:Nnnnn \l_braun_title_coffin {l} {vc} {0pt} {0pt}
 
 						\skip_vertical:V \l_braun_title_after_skip
-						\bool_if:NT      \l_braun_title_botrule_bool { \braun_horizontal_rule: }
+						\bool_if:NT      \l_braun_title_botrule_bool 
+              {
+                \bool_if:NTF \l_braun_boxed_page_bool
+                {
+                  \skip_vertical:n { 1ex }
+                  \noindent
+                  \hspace{-\marginparsep}
+                  \rule {\linewidth + 2 \marginparsep} {\g_braun_linewidth_dim}
+                }
+                {
+                  \braun_horizontal_rule: 
+                }    
+              }
 
 						\skip_vertical:n { 2.0em }
 					}
@@ -1354,6 +1405,10 @@
                 \tl_use:N \l_braun_problem_name_tl
                 \; \arabic { problem }
               }
+          }
+          { AFA }
+          {
+            \arabic { problem } \, - \, 
           } 
           { gabarito }
           {
@@ -1558,6 +1613,41 @@
     IME,
     problems / breakable = false,
     problems / vfill = false,
+  }
+
+
+%============================================================%
+%   IME
+%============================================================%
+
+\DeclareBraunTemplate { AFA }
+  {
+    DIV = 22,
+    twocolumn = true,
+    font = helvetica,
+    fontsize = 10pt,
+    familydefault = sf,
+    linewidth = 1.2pt,
+    emph = \itshape,
+    page / AFA,
+
+    % Título
+    maketitle / before-skip = 2.2em,
+    maketitle / align = c,
+    maketitle / print = { title, affiliation, date },
+    maketitle / toprule = false,
+    maketitle / botrule = true,
+    maketitle / title / case = upper,
+    maketitle / title / font = \Large\bfseries,
+    maketitle / date / value = \int_use:N \c_sys_year_int,
+    maketitle / date / font = \large\bfseries,
+    maketitle / logo / value = afa,
+    maketitle / logo / value = pensi,
+    page / mcrule / black,
+    % Problemas
+    problems / name = Questão,
+    problems / template = AFA,
+    problems / breakable = true,
   }
 
 %============================================================%
