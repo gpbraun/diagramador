@@ -31,7 +31,7 @@ class Exam(BaseModel):
         """Retorna os problemas em LaTeX."""
         header = cmd("TestInstructions") if self.template == "prova" else ""
         return header + cmd("newpage").join(
-            problem_set.tex(points=self.problem_points())
+            problem_set.tex(points=self.problem_points(), template=self.template)
             for problem_set in self.problem_set
         )
 
@@ -116,7 +116,5 @@ class Exam(BaseModel):
                 )
                 for problem_set in problem_set
             ]
-
-        metadata["path"] = Path("../../../hedgedoc/uploads")
 
         return cls.parse_obj(metadata)

@@ -20,7 +20,11 @@ class ProblemSet(BaseModel):
     def __len__(self):
         return len(self.problems)
 
-    def tex_elements(self):
+    def tex_elements(self, template: str):
+        if template in ["AFA"]:
+            return ""
+        # refatorar isso urgente!
+
         all_elements = QUIM_DEFAULT_ELEMENTS if self.subject == "qui" else []
         for problem in self.problems:
             if not problem.elements:
@@ -39,8 +43,12 @@ class ProblemSet(BaseModel):
 
         return elements_header + elements_cmd
 
-    def tex_data(self):
+    def tex_data(self, template: str):
         """Retorna a união dos dados de todos os problemas no conjunto."""
+        if template in ["AFA"]:
+            return ""
+        # refatorar isso urgente!
+
         all_data = []
 
         for problem in self.problems:
@@ -57,24 +65,26 @@ class ProblemSet(BaseModel):
 
         return data_header + itemize("itemize", all_tex_data)
 
-    def tex_header(self):
+    def tex_header(self, template):
         section_header = section(self.title, level=0)
         return "\n".join(
             [
                 section_header,
                 cmd(
                     f"{self.subject}Preamble",
-                ),
-                self.tex_data(),
-                self.tex_elements(),
+                )
+                if template not in ["AFA"]
+                else "",
+                self.tex_data(template),
+                self.tex_elements(template),
                 cmd(f"EndPreamble"),
                 "\n",
             ]
         )
 
-    def tex(self, points: str):
+    def tex(self, points: str, template: str):
         """Retorna o conjunto de problemas em LaTeX."""
-        return self.tex_header() + "\n".join(
+        return self.tex_header(template) + "\n".join(
             problem.tex(points=points) for problem in self.problems
         )
 
