@@ -705,6 +705,7 @@
             \noindent 
             \rule{0.3\linewidth}{\g_braun_linewidth_dim}
 					\end{center}
+          \skip_vertical:n {-2em}
 				}
 				{ ITA }
 				{
