@@ -21,7 +21,7 @@ class ProblemSet(BaseModel):
         return len(self.problems)
 
     def tex_elements(self, template: str):
-        if template in ["AFA"]:
+        if template in ["AFAEFOMMEN"]:
             return ""
         # refatorar isso urgente!
 
@@ -45,7 +45,7 @@ class ProblemSet(BaseModel):
 
     def tex_data(self, template: str):
         """Retorna a união dos dados de todos os problemas no conjunto."""
-        if template in ["AFA"]:
+        if template in ["AFAEFOMMEN"]:
             return ""
         # refatorar isso urgente!
 
@@ -73,7 +73,7 @@ class ProblemSet(BaseModel):
                 cmd(
                     f"{self.subject}Preamble",
                 )
-                if template not in ["AFA"]
+                if template not in ["AFAEFOMMEN"]
                 else "",
                 self.tex_data(template),
                 self.tex_elements(template),

@@ -970,7 +970,8 @@
 	{
 		pensi   = \includegraphics { pensi-logo.pdf },
 		ime     = \includegraphics { ime-logo.pdf },
-    afa     = \includegraphics { afa-logo.png },
+    afa     = \includegraphics { fab-logo.png },
+    mb      = \includegraphics { mb-logo.pdf },
 		ita     = \includegraphics { ita-logo.pdf },
     ita-alt = \includegraphics { ita-logo-alt.pdf },
 	}
@@ -1620,7 +1621,7 @@
 %   IME
 %============================================================%
 
-\DeclareBraunTemplate { AFA }
+\DeclareBraunTemplate { AFAEFOMMEN }
   {
     DIV = 22,
     twocolumn = true,
@@ -1630,7 +1631,6 @@
     linewidth = 1.2pt,
     emph = \itshape,
     page / AFA,
-
     % Título
     maketitle / before-skip = 2.2em,
     maketitle / align = c,
@@ -1641,14 +1641,26 @@
     maketitle / title / font = \Large\bfseries,
     maketitle / date / value = \int_use:N \c_sys_year_int,
     maketitle / date / font = \large\bfseries,
-    maketitle / logo / value = afa,
-    maketitle / logo / value = pensi,
     page / mcrule / black,
     % Problemas
     problems / name = Questão,
     problems / template = AFA,
     problems / breakable = true,
 		problems / vfill = false,
+  }
+
+\DeclareBraunTemplate { AFA }
+  {
+    AFAEFOMMEN,
+    maketitle / logo / value = afa,
+    maketitle / logo / value = pensi,
+  }
+
+  \DeclareBraunTemplate { MB }
+  {
+    AFAEFOMMEN,
+    maketitle / logo / value = mb,
+    maketitle / logo / value = pensi,
   }
 
 %============================================================%
