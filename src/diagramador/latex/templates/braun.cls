@@ -1516,7 +1516,7 @@
 	{
 		\cs_set_eq:NN \subsubsection \minisec
 		\begin{center}
-    \parbox { 0.9 \textwidth }
+    \parbox { 0.9 \linewidth }
       {
         \dim_set_eq:NN \parskip \bigskipamount
         \internallinenumbers
