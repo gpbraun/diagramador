@@ -1408,7 +1408,7 @@
           }
           { AFA }
           {
-            \arabic { problem } \, - \, 
+            \textbf{\arabic { problem }.}\,
           } 
           { gabarito }
           {
@@ -1470,7 +1470,7 @@
       \begin{tcolorbox}
         [
           breakable,
-          title = \textbf{\sffamily\large Gabarito \IfValueT{#1}{: \; #1}},
+          title = \textbf{\sffamily\large\IfValueTF{#1}{#1}{Gabarito}},
           coltitle = black,
           colback = white,
           boxrule = \g_braun_linewidth_dim,
@@ -1648,6 +1648,7 @@
     problems / name = Questão,
     problems / template = AFA,
     problems / breakable = true,
+		problems / vfill = false,
   }
 
 %============================================================%

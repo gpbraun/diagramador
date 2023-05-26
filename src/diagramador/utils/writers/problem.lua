@@ -268,7 +268,11 @@ function Writer(doc, opts)
         for _, block in ipairs(doc.meta.choices) do
             table.insert(doc_choices, text(block, opts))
         end
-        doc_correct_choice = doc.meta.correct_choice - 1
+        if doc.meta.correct_choice ~= nil then
+            doc_correct_choice = doc.meta.correct_choice - 1
+        else
+            doc_correct_choice = -2
+        end
     end
 
     -- Converte os dados

@@ -38,7 +38,10 @@ class Problem(BaseModel):
         if not self.is_objective:
             return ""
 
-        return chr(65 + self.correct_choice)
+        if self.correct_choice == -2:
+            return "Anulada"
+
+        return f"Gabarito: {chr(65 + self.correct_choice)}"
 
     def tex(self, points):
         """Retorna o enunciado completo do problema em LaTeX."""
@@ -60,11 +63,7 @@ class Problem(BaseModel):
         if self.solution:
             solution = env("solution", self.solution, opt=self.tex_correct_choice())
         else:
-            solution = (
-                section(f"Gabarito: {self.tex_correct_choice()}", level=2)
-                if self.tex_correct_choice()
-                else ""
-            )
+            solution = section(self.tex_correct_choice(), level=2)
 
         return "\n".join([problem, solution])
 
