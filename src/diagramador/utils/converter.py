@@ -20,6 +20,7 @@ MARKDOWN_EXTENSIONS = [
     "fenced_divs",
     "yaml_metadata_block",
     "backtick_code_blocks",
+    "link_attributes",
 ]
 """Extensões de markdown utilizadas"""
 
