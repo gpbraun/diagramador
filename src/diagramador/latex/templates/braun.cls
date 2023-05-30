@@ -1318,10 +1318,6 @@
     breakable .bool_set:N = \l_braun_problem_breakable_bool,
     breakable .initial:n  = false,
     breakable .default:n  = true,
-
-		vfill .bool_set:N = \l_braun_problem_fill_bool,
-    vfill .initial:n  = true,
-    vfill .default:n  = true,
   }
 
 %============================================================%
@@ -1348,10 +1344,6 @@
       { 
         \vbox_set_end:
         \box_use_drop:N \l__braun_problem_box
-      }
-    \bool_if:NT \l_braun_problem_fill_bool 
-      {
-        \vfill
       }
   }
 
@@ -1564,14 +1556,12 @@
   {
     ITA,
 		problems / breakable = false,
-		problems / vfill = false,
   }
 
 \DeclareBraunTemplate { ITAobj }
   {
     ITA,
 		problems / breakable = false,
-		problems / vfill = false,
   }
 
 %============================================================%
@@ -1607,16 +1597,13 @@
   {
     IME,
     problems / breakable = false,
-    problems / vfill = false,
   }
 
 \DeclareBraunTemplate { IMEobj }
   {
     IME,
     problems / breakable = false,
-    problems / vfill = false,
   }
-
 
 %============================================================%
 %   IME
@@ -1647,7 +1634,6 @@
     problems / name = Questão,
     problems / template = AFA,
     problems / breakable = true,
-		problems / vfill = false,
   }
 
 \DeclareBraunTemplate { AFA }
@@ -1657,7 +1643,7 @@
     maketitle / logo / value = pensi,
   }
 
-  \DeclareBraunTemplate { MB }
+\DeclareBraunTemplate { MB }
   {
     AFAEFOMMEN,
     maketitle / logo / value = mb,
