@@ -1692,7 +1692,6 @@
     pensi,
 		% Problemas
 		problems / breakable = true,
-		problems / vfill = false,
   }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
