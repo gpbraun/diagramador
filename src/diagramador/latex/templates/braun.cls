@@ -1676,6 +1676,11 @@
 		chem / elements / display-style = ptable,
   }
 
+\DeclareBraunTemplate { flex }
+  {
+    pensi
+  }
+
 \DeclareBraunTemplate { prova }
   {
     pensi,

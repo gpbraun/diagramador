@@ -21,7 +21,7 @@ class ProblemSet(BaseModel):
         return len(self.problems)
 
     def tex_elements(self, template: str):
-        if template in ["AFA", "MB"]:
+        if template in ["AFA", "MB", "flex"]:
             return ""
         # refatorar isso urgente!
 
@@ -45,7 +45,7 @@ class ProblemSet(BaseModel):
 
     def tex_data(self, template: str):
         """Retorna a união dos dados de todos os problemas no conjunto."""
-        if template in ["AFA", "MB"]:
+        if template in ["AFA", "MB", "flex"]:
             return ""
         # refatorar isso urgente!
 
@@ -66,7 +66,7 @@ class ProblemSet(BaseModel):
         return data_header + itemize("itemize", all_tex_data)
 
     def tex_preamble_cmd(self, template):
-        if template in ["AFA", "MB"]:
+        if template in ["AFA", "MB", "flex"]:
             return ""
 
         if self.subject in ["mat", "fis", "qui"]:
