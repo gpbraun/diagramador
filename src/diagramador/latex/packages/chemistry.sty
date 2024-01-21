@@ -1,0 +1,605 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Gabriel Braun, 2024
+%
+%   chemistry.sty
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\RequirePackage 
+  {
+    xparse, 
+    chemfig,
+		science
+  }
+
+\ExplSyntaxOn
+
+\ProvidesExplPackage
+	{ chemistry }
+	{ 2024/01/01 }
+	{ 2.0 }
+	{ Comandos específicos para provas de química }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   ADIÇÕES AO MHCHEM                  
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mhchemoptions { arrows = pgf {CF} {0.085ex} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   FÓRMULAS PLANAS                   
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\setchemfig
+	{
+		chemfig~style    =  { chemline },
+		atom~sep         =  1.44 em,
+		double~bond~sep  =  0.25 em,
+		bond~offset      =  0.16 em,
+		angle~increment  =  30,
+		cram~width       =  0.30 em,
+		cram~dash~sep    =  0.25 em,
+		cram~dash~width  =  0.06 em,
+	}
+
+\cs_set_protected:Npn \printatom #1 { \ensuremath { \mathsf {#1} } }
+
+\tikzset
+  {
+    chemline/.style = { 
+      line~width = 0.06 em, 
+      shorten~  <= -0.2pt,
+      shorten~  >= -0.2pt,
+    },
+  }
+
+%============================================================%
+%   NOVOS ESTILOS
+%============================================================%
+
+\tikzset
+  {
+    db/.style = 
+			{ 
+				shorten~ <= -0.85pt,
+			},
+		over/.style = 
+			{
+				white,
+				double = black,
+				double~ distance = \the\pgflinewidth,
+				line~ width = 1.5pt,
+			},
+    bold~ bond/.style = 
+      { line~width = 0.25 em },
+    dash~ bond/.style =
+      {
+        dash~pattern = on 0.25 em off 0.25 em,
+        cap          = butt,
+      },
+    hash~ bond/.style =
+      {
+          dash~pattern = on \dim_use:N 0.06 em off 0.25 em,
+          line~width   = 0.30 em,
+          cap          = butt,
+      },
+  }
+
+%============================================================%
+%   COMPATIBILIDADE MOL2CHEMFIG
+%============================================================%
+
+% Círculos em compostos aromáticos
+\cs_set:Npn \mcfcringle #1
+  { 
+    \tikz
+    \draw[chemline](0,0) 
+        circle( 1.44 em * #1 * 0.5 );
+  }
+ 
+% Ligações duplas e triplas
+\pgfdeclaredecoration { mcfsecondstroke } { initial }
+  {
+    \state { initial } [ width = \pgfdecoratedpathlength-1sp ]
+      { \pgfmoveto { \pgfpointorigin } }
+    \state {  final  }
+      { \pgflineto { \pgfpointorigin } }
+  }
+ 
+% Estilos mol2chemfig
+\tikzset
+  { 
+    mcfwavy/.style =
+      {
+        decorate,
+        decoration = 
+          {
+            snake,
+            post~length = 0pt,
+            amplitude   = {1.44 em / 8},
+          }
+      },
+    mcfbond/.style = { cap = butt }, 
+    mcfbgcolor/.style = {white},
+    mcfx/.style~2~args =
+      {
+        preaction =
+          {
+            draw,
+            mcfbgcolor,
+            line~width = 0.25 em,
+            shorten~ <= 
+              { #1 * 0.25 em / 100 },
+            shorten~ >= 
+              { #2 * 0.25 em / 100 }
+          },
+        mcfbond,
+      },
+    mcfcrossbond/.style = { mcfx = { 100 }{ 100 } },
+    secondbond/.style~2~args =
+      {
+        shorten~ <= 
+          { #1 * 0.25 em / 100 }, 
+        shorten~ >= 
+          { #2 * 0.25 em / 100 }, 
+        mcfbond,
+      },  
+    secondfgbond/.style~2~args =
+      {
+        preaction = 
+          {
+            draw, 
+            -,
+            mcfbgcolor,
+            line width=0.25 em,
+          },
+        secondbond = { #1 }{ #2 }    
+      },
+    secondleft/.style~2~args =
+      {
+        secondbond   = { #1 }{ #2 },
+        decoration   = { mcfsecondstroke, raise = 0.25 em },
+        decorate,
+      },   
+    secondright/.style~2~args =
+      {
+        secondbond   = { #1 }{ #2 },
+        decoration   = { mcfsecondstroke, raise = - 0.25 em },
+        decorate,
+      },
+    secondfgleft/.style~2~args =
+      {
+        secondfgbond = { #1 }{ #2 },
+        decoration   = { mcfsecondstroke, raise = 0.25 em },
+        decorate,
+      },
+    secondfgright/.style~2~args = 
+      {
+        secondfgbond = { #1 }{ #2 },
+        decoration   = { mcfsecondstroke, raise = - 0.25 em },
+        decorate,
+      },
+    dbl/.style~2~args =
+      {
+        preaction = { draw, secondleft = { #1 }{ #2 } },
+      }, 
+    dbr/.style~2~args =
+      {
+        preaction = { draw, secondright = { #1 }{ #2 } },
+      },
+    trpl/.style~2~args =
+      {
+        preaction = { draw, secondleft  = { #1 }{ #2 } },
+        preaction = { draw, secondright = { #1 }{ #2 } },
+      },
+    dblx/.style~n~args = {4}
+      {
+        preaction = { draw, secondfgleft = { #1 }{ #2 } },
+        mcfx      = { #3 }{ #4 },
+      },  
+    dbrx/.style~n~args = {4}
+      {
+        preaction = { draw, secondfgright = { #1 }{ #2 } },
+        mcfx      = { #3 }{ #4 },
+      },
+    trplx /. style~n~args = {4}
+      {
+        preaction = { draw, secondfgleft  = { #1 }{ #2 } },
+        preaction = { draw, secondfgright = { #1 }{ #2 } },
+        mcfx      = { #3 }{ #4 },
+      },
+    drh/.style  = { dbr = { 58 }{ 58 } },
+    dlh/.style  = { dbl = { 58 }{ 58 } },
+    drhs/.style = { dbr = { 58 }{  0 } },
+    dlhs/.style = { dbl = { 58 }{  0 } },
+    drhe/.style = { dbr = {  0 }{ 58 } },
+    dlhe/.style = { dbl = {  0 }{ 58 } },
+    drn/.style  = { dbr = {  0 }{  0 } },
+    dln/.style  = { dbl = {  0 }{  0 } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   ELEMENTOS
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_new:Nn \elements_get_property_S:nn 
+  % #1 -> símbolo do elemento
+  % #2 -> propriedades
+	{ 
+		\prop_item:cn { c_elements_#1_prop } {#2} 
+	}
+\cs_generate_variant:Nn \elements_get_property_S:nn {nV}
+
+\cs_new:Nn \elements_get_property_Z:nn
+  % #1 -> número atômico
+  % #2 -> propriedades
+	{ 
+		\prop_item:cn { c_elements_ \clist_item:Nn \c_elements_clist {#1} _prop } {#2} 
+	}
+\cs_generate_variant:Nn \elements_get_property_Z:nn {nV, Vn}
+
+\cs_new:Npn \GetElementProperty #1 #2
+  % #1 -> símbolo ou número atômico
+  % #2 -> propriedade
+	{
+		\regex_match:nnTF {\d} {#1}
+			{ \elements_get_property_Z:nn {#1}{#2} }
+			{ \elements_get_property_S:nn {#1}{#2} }
+	}
+
+%============================================================%
+%   ORGANIZA A LISTA DE ELEMENTOS
+%============================================================%
+
+\cs_generate_variant:Nn \clist_put_right:Nn {Ne}
+
+\clist_new:N \l__mendeleev_organize_tmp_clist
+
+\cs_set:Nn \mendeleev_organize_elements:N
+  % #1 -> clist com os elementos
+	{
+		\clist_map_inline:Nn #1
+			{
+				\clist_put_right:Ne \l__mendeleev_organize_tmp_clist 
+					{ \elements_get_property_S:nn {##1} { number } }
+			}
+		\clist_remove_duplicates:N \l__mendeleev_organize_tmp_clist
+		\clist_sort:Nn \l__mendeleev_organize_tmp_clist
+			{
+				\int_compare:nNnTF { ##1 } > { ##2 }
+					{ \sort_return_swapped: }
+					{ \sort_return_same: }
+			}
+		\clist_set_eq:NN #1 \l__mendeleev_organize_tmp_clist
+	}
+
+%============================================================%
+%   TABELA (ESTILO ITA)
+%============================================================%
+
+\cs_set:Npn \ElementTable #1
+	% #1 -> clist com os elementos
+	{
+		\group_begin:
+		\begin{center}
+			\clist_set:Nn \l_tmpa_clist {#1}
+			%% ORDENA
+			\mendeleev_organize_elements:N \l_tmpa_clist
+			%% SEPARA AS COLUNAS
+			\legacy_if:nTF { @twocolumn } 
+				{ \tl_set_eq:NN \l_tmpb_clist \l_tmpa_clist }
+				{ % divide os elementos em duas colunas
+					\bool_while_do:nn 
+						{ 
+							\int_compare_p:n 
+								{ 
+									\clist_count:N \l_tmpa_clist > 
+									\clist_count:N \l_tmpb_clist 
+								} 
+						}
+						{
+							\clist_pop:NNT \l_tmpa_clist \l_tmpa_tl
+								{ \clist_put_right:NV \l_tmpb_clist \l_tmpa_tl }
+						}
+				}
+			%% TABULAR
+			\tl_set:Nn \arraystretch {1.0}
+			\exp_args:Nx \tabular 
+				{ 		
+					\legacy_if:nTF { @twocolumn } 
+						{
+							c 
+							S[ table-format = 2   ] 
+							S[ 
+								round-mode = places,
+								round-precision = 2,
+								table-format = 3.2, 
+								drop-zero-decimal = false 
+							]
+						}
+						{
+							c 
+							S[ table-format = 2   ] 
+							S[ 
+								round-mode = places,
+								round-precision = 2,
+								table-format = 3.2, 
+								drop-zero-decimal = false 
+							]
+							c 
+							S[ table-format = 2   ] 
+							S[ 
+								round-mode = places,
+								round-precision = 2,
+								table-format = 3.2, 
+								drop-zero-decimal = false 
+							]
+						}
+				}
+				\toprule
+				\legacy_if:nTF { @twocolumn } 
+					{ % top header with one column
+						{ Elemento    } \c_alignment_token 
+						{ Número      } \c_alignment_token 
+						{ Massa~Molar } 
+					}
+					{ % top header with two columns
+						{ Elemento    } \c_alignment_token 
+						{ Número      } \c_alignment_token 
+						{ Massa~Molar } \c_alignment_token 
+						{ Elemento    } \c_alignment_token 
+						{ Número      } \c_alignment_token 
+						{ Massa~Molar }
+					}
+				\tex_cr:D
+				\legacy_if:nTF { @twocolumn } 
+					{ % top header with one column
+						{ Químico }                   \c_alignment_token 
+						{ Atômico }                   \c_alignment_token 
+						{ ( \unit { g.mol^{-1} } ) } 
+					}
+					{  % top header with two columns
+						{ Químico }                   \c_alignment_token 
+						{ Atômico }                   \c_alignment_token 
+						{ ( \unit { g.mol^{-1} } ) }  \c_alignment_token  
+						{ Químico }                   \c_alignment_token 
+						{ Atômico }                   \c_alignment_token 
+						{ ( \unit { g.mol^{-1} } ) } 
+					}
+				\tex_cr:D
+				\midrule 
+				\bool_do_until:nn { \clist_if_empty_p:N \l_tmpb_clist }
+					{
+						\legacy_if:nTF { @twocolumn } 
+							{
+								\elements_ita_ptable_row:N \l_tmpb_clist
+							}
+							{
+								\elements_ita_ptable_row:N \l_tmpb_clist 
+								\c_alignment_token
+								\elements_ita_ptable_row:N \l_tmpa_clist 
+							}
+						\tex_cr:D
+					}
+				\bottomrule
+			\endtabular
+		\end{center}
+		\group_end:
+		\bigskip
+	}
+
+\cs_set:Nn \elements_ita_ptable_row:N
+	% #1 -> clist com os elementos
+	{
+		\clist_gpop:NNT #1 \l_tmpa_tl
+		{
+			\tl_gset_eq:NN \g_tmpa_tl \l_tmpa_tl
+			\elements_get_property_Z:Vn \g_tmpa_tl {symbol}
+			\c_alignment_token
+			\tl_use:N \g_tmpa_tl
+			\c_alignment_token
+			\elements_get_property_Z:Vn \g_tmpa_tl {mass}
+		}
+	}
+
+%============================================================%
+%   TABELA (ESTILO TABELA PERIÓDICA)
+%============================================================%
+
+\cs_set:Npn \PTableElement #1 #2
+	% #1 -> elemento
+	% #2 -> propriedade
+	{
+		\tikz
+			{
+				\node (cell) 
+					[
+						draw = black, 
+						minimum~ size = 2.6em,
+					] 
+					{ 
+						\small\bfseries\sffamily
+						\GetElementProperty {#1}{symbol}  
+					};
+				\node (number) 
+					[
+						inner~ sep = 2.5pt,
+						anchor = north~west,
+					] 
+					at (cell.north~west)
+					{ 
+						\mdseries\tiny\sffamily
+						\GetElementProperty {#1}{number}  
+					};
+				\node (property) 
+					[
+						inner~ sep = 2.0pt,
+						anchor = south,
+					] 
+					at (cell.south)
+					{ 
+						\mdseries\tiny\sffamily
+						\GetElementProperty {#1}{#2}
+					};
+			}	
+	}
+
+\cs_set:Npn \PTableRow #1
+	% #1 -> clist with elements
+	{	
+		\group_begin:
+
+		\clist_set:Nn \l_tmpa_clist {#1}
+		\mendeleev_organize_elements:N \l_tmpa_clist
+
+		\clist_map_inline:Nn \l_tmpa_clist
+			{
+				\PTableElement {##1} {mass}
+				\skip_horizontal:n {-0.4pt}
+			}
+	
+		\group_end:
+	}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   BASE DE DADOS DOS ELEMENTOS
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clist_const:Nn \c_elements_clist
+	{
+		H,	He,	Li,	Be,	B,	C,	N,	O,	F,	Ne,	Na,	Mg,	Al,	Si,	
+		P,	S,	Cl,	Ar,	K,	Ca,	Sc,	Ti,	V,	Cr,	Mn,	Fe,	Co,	Ni,	
+		Cu,	Zn,	Ga,	Ge,	As,	Se,	Br,	Kr,	Rb,	Sr,	Y,	Zr,	Nb,	Mo,	
+		Tc,	Ru,	Rh,	Pd,	Ag,	Cd,	In,	Sn,	Sb,	Te,	I,	Xe,	Cs,	Ba,	
+		La,	Ce,	Pr,	Nd,	Pm,	Sm,	Eu,	Gd,	Tb,	Dy,	Ho,	Er,	Tm,	Yb,	
+		Lu,	Hf,	Ta,	W,	Re,	Os,	Ir,	Pt,	Au,	Hg,	Tl,	Pb,	Bi,	Po,	
+		At,	Rn,	Fr,	Ra,	Ac,	Th,	Pa,	U,	Np,	Pu,	Am,	Cm,	Bk,	Cf,	
+		Es,	Fm,	Md,	No,	Lr,	Rf,	Db,	Sg,	Bh,	Hs,	Mt
+	}
+
+\prop_const_from_keyval:Nn \c_elements_H_prop  { number = 1,   symbol = H,  mass = {1,01}   } 
+\prop_const_from_keyval:Nn \c_elements_He_prop { number = 2,   symbol = He, mass = {4,00}   } 
+\prop_const_from_keyval:Nn \c_elements_Li_prop { number = 3,   symbol = Li, mass = {6,94}   } 
+\prop_const_from_keyval:Nn \c_elements_Be_prop { number = 4,   symbol = Be, mass = {9,01}   } 
+\prop_const_from_keyval:Nn \c_elements_B_prop  { number = 5,   symbol = B,  mass = {10,81}  } 
+\prop_const_from_keyval:Nn \c_elements_C_prop  { number = 6,   symbol = C,  mass = {12,01}  } 
+\prop_const_from_keyval:Nn \c_elements_N_prop  { number = 7,   symbol = N,  mass = {14,01}  } 
+\prop_const_from_keyval:Nn \c_elements_O_prop  { number = 8,   symbol = O,  mass = {16,00}  } 
+\prop_const_from_keyval:Nn \c_elements_F_prop  { number = 9,   symbol = F,  mass = {19,00}  } 
+\prop_const_from_keyval:Nn \c_elements_Ne_prop { number = 10,  symbol = Ne, mass = {20,18}  } 
+\prop_const_from_keyval:Nn \c_elements_Na_prop { number = 11,  symbol = Na, mass = {22,99}  } 
+\prop_const_from_keyval:Nn \c_elements_Mg_prop { number = 12,  symbol = Mg, mass = {24,31}  } 
+\prop_const_from_keyval:Nn \c_elements_Al_prop { number = 13,  symbol = Al, mass = {26,98}  } 
+\prop_const_from_keyval:Nn \c_elements_Si_prop { number = 14,  symbol = Si, mass = {28,09}  }
+\prop_const_from_keyval:Nn \c_elements_P_prop  { number = 15,  symbol = P,  mass = {30,97}  } 
+\prop_const_from_keyval:Nn \c_elements_S_prop  { number = 16,  symbol = S,  mass = {32,06}  } 
+\prop_const_from_keyval:Nn \c_elements_Cl_prop { number = 17,  symbol = Cl, mass = {35,45}  } 
+\prop_const_from_keyval:Nn \c_elements_Ar_prop { number = 18,  symbol = Ar, mass = {39,95}  } 
+\prop_const_from_keyval:Nn \c_elements_K_prop  { number = 19,  symbol = K,  mass = {39,10}  } 
+\prop_const_from_keyval:Nn \c_elements_Ca_prop { number = 20,  symbol = Ca, mass = {40,08}  } 
+\prop_const_from_keyval:Nn \c_elements_Sc_prop { number = 21,  symbol = Sc, mass = {44,96}  } 
+\prop_const_from_keyval:Nn \c_elements_Ti_prop { number = 22,  symbol = Ti, mass = {47,87}  } 
+\prop_const_from_keyval:Nn \c_elements_V_prop  { number = 23,  symbol = V,  mass = {50,94}  } 
+\prop_const_from_keyval:Nn \c_elements_Cr_prop { number = 24,  symbol = Cr, mass = {52,00}  } 
+\prop_const_from_keyval:Nn \c_elements_Mn_prop { number = 25,  symbol = Mn, mass = {54,94}  } 
+\prop_const_from_keyval:Nn \c_elements_Fe_prop { number = 26,  symbol = Fe, mass = {55,84}  } 
+\prop_const_from_keyval:Nn \c_elements_Co_prop { number = 27,  symbol = Co, mass = {58,93}  } 
+\prop_const_from_keyval:Nn \c_elements_Ni_prop { number = 28,  symbol = Ni, mass = {58,69}  } 
+\prop_const_from_keyval:Nn \c_elements_Cu_prop { number = 29,  symbol = Cu, mass = {63,55}  } 
+\prop_const_from_keyval:Nn \c_elements_Zn_prop { number = 30,  symbol = Zn, mass = {65,38}  } 
+\prop_const_from_keyval:Nn \c_elements_Ga_prop { number = 31,  symbol = Ga, mass = {69,72}  } 
+\prop_const_from_keyval:Nn \c_elements_Ge_prop { number = 32,  symbol = Ge, mass = {72,63}  } 
+\prop_const_from_keyval:Nn \c_elements_As_prop { number = 33,  symbol = As, mass = {74,92}  } 
+\prop_const_from_keyval:Nn \c_elements_Se_prop { number = 34,  symbol = Se, mass = {78,97}  } 
+\prop_const_from_keyval:Nn \c_elements_Br_prop { number = 35,  symbol = Br, mass = {79,90}  } 
+\prop_const_from_keyval:Nn \c_elements_Kr_prop { number = 36,  symbol = Kr, mass = {83,80}  } 
+\prop_const_from_keyval:Nn \c_elements_Rb_prop { number = 37,  symbol = Rb, mass = {85,47}  } 
+\prop_const_from_keyval:Nn \c_elements_Sr_prop { number = 38,  symbol = Sr, mass = {87,62}  } 
+\prop_const_from_keyval:Nn \c_elements_Y_prop  { number = 39,  symbol = Y,  mass = {88,91}  } 
+\prop_const_from_keyval:Nn \c_elements_Zr_prop { number = 40,  symbol = Zr, mass = {91,22}  } 
+\prop_const_from_keyval:Nn \c_elements_Nb_prop { number = 41,  symbol = Nb, mass = {92,91}  } 
+\prop_const_from_keyval:Nn \c_elements_Mo_prop { number = 42,  symbol = Mo, mass = {95,95}  } 
+\prop_const_from_keyval:Nn \c_elements_Tc_prop { number = 43,  symbol = Tc, mass = {97,91}  } 
+\prop_const_from_keyval:Nn \c_elements_Ru_prop { number = 44,  symbol = Ru, mass = {101,07} } 
+\prop_const_from_keyval:Nn \c_elements_Rh_prop { number = 45,  symbol = Rh, mass = {102,91} } 
+\prop_const_from_keyval:Nn \c_elements_Pd_prop { number = 46,  symbol = Pd, mass = {106,42} } 
+\prop_const_from_keyval:Nn \c_elements_Ag_prop { number = 47,  symbol = Ag, mass = {107,87} } 
+\prop_const_from_keyval:Nn \c_elements_Cd_prop { number = 48,  symbol = Cd, mass = {112,41} } 
+\prop_const_from_keyval:Nn \c_elements_In_prop { number = 49,  symbol = In, mass = {114,82} } 
+\prop_const_from_keyval:Nn \c_elements_Sn_prop { number = 50,  symbol = Sn, mass = {118,71} } 
+\prop_const_from_keyval:Nn \c_elements_Sb_prop { number = 51,  symbol = Sb, mass = {121,76} } 
+\prop_const_from_keyval:Nn \c_elements_Te_prop { number = 52,  symbol = Te, mass = {127,60} } 
+\prop_const_from_keyval:Nn \c_elements_I_prop  { number = 53,  symbol = I,  mass = {126,90} } 
+\prop_const_from_keyval:Nn \c_elements_Xe_prop { number = 54,  symbol = Xe, mass = {131,29} } 
+\prop_const_from_keyval:Nn \c_elements_Cs_prop { number = 55,  symbol = Cs, mass = {132,91} } 
+\prop_const_from_keyval:Nn \c_elements_Ba_prop { number = 56,  symbol = Ba, mass = {137,33} } 
+\prop_const_from_keyval:Nn \c_elements_La_prop { number = 57,  symbol = La, mass = {138,91} } 
+\prop_const_from_keyval:Nn \c_elements_Ce_prop { number = 58,  symbol = Ce, mass = {140,12} } 
+\prop_const_from_keyval:Nn \c_elements_Pr_prop { number = 59,  symbol = Pr, mass = {140,91} } 
+\prop_const_from_keyval:Nn \c_elements_Nd_prop { number = 60,  symbol = Nd, mass = {144,24} } 
+\prop_const_from_keyval:Nn \c_elements_Pm_prop { number = 61,  symbol = Pm, mass = {144,91} } 
+\prop_const_from_keyval:Nn \c_elements_Sm_prop { number = 62,  symbol = Sm, mass = {150,36} } 
+\prop_const_from_keyval:Nn \c_elements_Eu_prop { number = 63,  symbol = Eu, mass = {151,96} } 
+\prop_const_from_keyval:Nn \c_elements_Gd_prop { number = 64,  symbol = Gd, mass = {157,25} } 
+\prop_const_from_keyval:Nn \c_elements_Tb_prop { number = 65,  symbol = Tb, mass = {158,93} } 
+\prop_const_from_keyval:Nn \c_elements_Dy_prop { number = 66,  symbol = Dy, mass = {162,50} } 
+\prop_const_from_keyval:Nn \c_elements_Ho_prop { number = 67,  symbol = Ho, mass = {164,93} } 
+\prop_const_from_keyval:Nn \c_elements_Er_prop { number = 68,  symbol = Er, mass = {167,26} } 
+\prop_const_from_keyval:Nn \c_elements_Tm_prop { number = 69,  symbol = Tm, mass = {168,93} } 
+\prop_const_from_keyval:Nn \c_elements_Yb_prop { number = 70,  symbol = Yb, mass = {173,05} } 
+\prop_const_from_keyval:Nn \c_elements_Lu_prop { number = 71,  symbol = Lu, mass = {174,97} } 
+\prop_const_from_keyval:Nn \c_elements_Hf_prop { number = 72,  symbol = Hf, mass = {178,49} } 
+\prop_const_from_keyval:Nn \c_elements_Ta_prop { number = 73,  symbol = Ta, mass = {180,95} } 
+\prop_const_from_keyval:Nn \c_elements_W_prop  { number = 74,  symbol = W,  mass = {183,84} } 
+\prop_const_from_keyval:Nn \c_elements_Re_prop { number = 75,  symbol = Re, mass = {186,21} } 
+\prop_const_from_keyval:Nn \c_elements_Os_prop { number = 76,  symbol = Os, mass = {190,23} } 
+\prop_const_from_keyval:Nn \c_elements_Ir_prop { number = 77,  symbol = Ir, mass = {192,22} } 
+\prop_const_from_keyval:Nn \c_elements_Pt_prop { number = 78,  symbol = Pt, mass = {195,08} } 
+\prop_const_from_keyval:Nn \c_elements_Au_prop { number = 79,  symbol = Au, mass = {196,97} } 
+\prop_const_from_keyval:Nn \c_elements_Hg_prop { number = 80,  symbol = Hg, mass = {200,59} } 
+\prop_const_from_keyval:Nn \c_elements_Tl_prop { number = 81,  symbol = Tl, mass = {204,38} } 
+\prop_const_from_keyval:Nn \c_elements_Pb_prop { number = 82,  symbol = Pb, mass = {207,20} } 
+\prop_const_from_keyval:Nn \c_elements_Bi_prop { number = 83,  symbol = Bi, mass = {208,98} } 
+\prop_const_from_keyval:Nn \c_elements_Po_prop { number = 84,  symbol = Po, mass = {208,98} } 
+\prop_const_from_keyval:Nn \c_elements_At_prop { number = 85,  symbol = At, mass = {209,99} } 
+\prop_const_from_keyval:Nn \c_elements_Rn_prop { number = 86,  symbol = Rn, mass = {222,02} } 
+\prop_const_from_keyval:Nn \c_elements_Fr_prop { number = 87,  symbol = Fr, mass = {223,02} } 
+\prop_const_from_keyval:Nn \c_elements_Ra_prop { number = 88,  symbol = Ra, mass = {226,03} } 
+\prop_const_from_keyval:Nn \c_elements_Ac_prop { number = 89,  symbol = Ac, mass = {227,03} } 
+\prop_const_from_keyval:Nn \c_elements_Th_prop { number = 90,  symbol = Th, mass = {232,04} } 
+\prop_const_from_keyval:Nn \c_elements_Pa_prop { number = 91,  symbol = Pa, mass = {231,04} } 
+\prop_const_from_keyval:Nn \c_elements_U_prop  { number = 92,  symbol = U,  mass = {238,03} } 
+\prop_const_from_keyval:Nn \c_elements_Np_prop { number = 93,  symbol = Np, mass = {237,05} } 
+\prop_const_from_keyval:Nn \c_elements_Pu_prop { number = 94,  symbol = Pu, mass = {244,06} } 
+\prop_const_from_keyval:Nn \c_elements_Am_prop { number = 95,  symbol = Am, mass = {243,06} } 
+\prop_const_from_keyval:Nn \c_elements_Cm_prop { number = 96,  symbol = Cm, mass = {247,07} } 
+\prop_const_from_keyval:Nn \c_elements_Bk_prop { number = 97,  symbol = Bk, mass = {247,07} } 
+\prop_const_from_keyval:Nn \c_elements_Cf_prop { number = 98,  symbol = Cf, mass = {251,08} } 
+\prop_const_from_keyval:Nn \c_elements_Es_prop { number = 99,  symbol = Es, mass = {252,08} } 
+\prop_const_from_keyval:Nn \c_elements_Fm_prop { number = 100, symbol = Fm, mass = {257,10} } 
+\prop_const_from_keyval:Nn \c_elements_Md_prop { number = 101, symbol = Md, mass = {258,10} } 
+\prop_const_from_keyval:Nn \c_elements_No_prop { number = 102, symbol = No, mass = {259,10} } 
+\prop_const_from_keyval:Nn \c_elements_Lr_prop { number = 103, symbol = Lr, mass = {262,11} } 
+\prop_const_from_keyval:Nn \c_elements_Rf_prop { number = 104, symbol = Rf, mass = {267,12} } 
+\prop_const_from_keyval:Nn \c_elements_Db_prop { number = 105, symbol = Db, mass = {268,13} } 
+\prop_const_from_keyval:Nn \c_elements_Sg_prop { number = 106, symbol = Sg, mass = {271,13} } 
+\prop_const_from_keyval:Nn \c_elements_Bh_prop { number = 107, symbol = Bh, mass = {272,14} } 
+\prop_const_from_keyval:Nn \c_elements_Hs_prop { number = 108, symbol = Hs, mass = {270,13} } 
+\prop_const_from_keyval:Nn \c_elements_Mt_prop { number = 109, symbol = Mt, mass = {276,15} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   THE END!!!
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ExplSyntaxOff

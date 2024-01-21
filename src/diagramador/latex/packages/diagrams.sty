@@ -1,0 +1,100 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Gabriel Braun, 2024
+%
+%   diagrams.sty
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\RequirePackage 
+  { 
+    tikz,
+    pgfplots,
+    tcolorbox
+  }
+
+\ExplSyntaxOn
+
+\ProvidesExplPackage
+	{ diagrams }
+	{ 2024/01/01 }
+	{ 2.0 }
+	{ Diagramas com tikz e pgfplots }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   CORES
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% CORES BÁSICAS
+\definecolor { red    } { HTML } { dc2626 }
+\definecolor { orange } { HTML } { ea580c }
+\definecolor { yellow } { HTML } { fbbf24 }
+\definecolor { lime   } { HTML } { 65a30d }
+\definecolor { green  } { HTML } { 059669 }
+\definecolor { cyan   } { HTML } { 0891b2 }
+\definecolor { blue   } { HTML } { 4f46e5 }
+\definecolor { purple } { HTML } { 9333ea }
+\definecolor { pink   } { HTML } { db2777 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   CONFIGURAÇÕES
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ExplSyntaxOff
+
+%============================================================%
+%   TIKZ
+%============================================================%
+
+\usetikzlibrary
+  {
+    calc,
+    tikzmark,
+    shapes.misc,
+    shapes.geometric, 
+    decorations.text,
+    decorations.pathreplacing,
+    decorations.markings,
+    decorations.pathmorphing,
+    arrows.meta,
+    perspective,
+  }
+
+%============================================================%
+%   PGFPLOTS
+%============================================================%
+
+\usepgfplotslibrary
+  { 
+    groupplots,
+    fillbetween 
+  }
+
+\pgfqkeys {/pgf/number format}
+  {
+    set thousands separator = {},
+    set decimal separator = {,\!},
+  }
+
+\pgfplotsset
+  {
+    compat  = 1.18,
+    samples = 150,
+    legend cell align = left,
+    every axis plot/.append style = 
+      {
+        very thick,
+        mark = none,
+        mark options = { fill = white },
+      },
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   THE END!!!
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

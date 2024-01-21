@@ -1,0 +1,22 @@
+{
+    "id": "ime",
+    "title": "Prova de Etapa 1",
+    "template": "IME",
+    "affiliation": "EM IME-ITA-1",
+    "date": "2024",
+    "problem_set": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "ime_1",
+                "ime_2",
+                "ime_3",
+                "ime_4",
+                "ime_5"
+            ]
+        }
+    ],
+    "pdf_exam_name": "ime.pdf",
+    "pdf_solution_name": "ime_gabarito.pdf"
+}

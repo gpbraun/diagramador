@@ -1,0 +1,20 @@
+{
+    "id": "prova",
+    "title": "Prova",
+    "date": "2024",
+    "template": "prova",
+    "affiliation": "Primeira Série",
+    "problem_set": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "prova_1",
+                "prova_2",
+                "prova_3"
+            ]
+        }
+    ],
+    "pdf_exam_name": "prova.pdf",
+    "pdf_solution_name": "prova_gabarito.pdf"
+}

@@ -1,0 +1,175 @@
+\documentclass{((* block class *))pensi((* endblock *))}
+
+((# PARÂMETROS BÁSICOS #))
+\title{(((title)))}
+\affiliation{(((affiliation)))}
+\date{(((date)))}
+
+((# LOGOS NA CAPA #))
+((* block logo *))
+\logoleft{pensi-logo.pdf}
+\logoright{ime-logo.pdf}
+((* endblock *))
+
+((# METADADOS DO PDF #))
+((* block hyperref *))
+\usepackage{hyperref}
+\hypersetup
+	{
+		pdftitle    = {(((title)))},
+		pdfauthor   = {Pensi},
+		pdfkeywords = {IME, ITA, Olimpíadas},
+		pdfproducer = {Dastra},
+		pdfcreator  = {Dastra},
+	}
+((* endblock *))
+
+((# USA O PACOTE DE QUÍMICA, SE NECESSÁRIO #))
+((* for pset in problem_set *))
+((* if pset.subject == "qui" *))
+\usepackage{chemistry}
+((* endif *))
+((* endfor *))
+
+((# INÍCIO DO CONTEÚDO #))
+\begin{document}
+((* block content *))
+\maketitle
+((* endblock *))
+
+((# CONJUNTOS DE PROBLEMAS #))
+\setcounter{problem}{(((start-1)))}
+((* block problems *))
+((* for pset in problem_set *))
+
+((* if loop.index > 1 *))
+\newpage
+((* endif *))
+
+((# TÍTULO DO CONJUNTO DE PROBLEMAS #))
+\section{(((pset.title)))}
+
+((# ANTES DOS DADOS ADICIONAIS #))
+((* block before_data *))((* endblock *))
+((# DADOS ADICIONAIS DE MATEMÁTICA #))
+((* if pset.subject == "mat" *))
+((* block data_mat *))
+{
+    \small
+    \minisec{Convenções}
+    \begin{itemize}
+    \item   
+        Considere o sistema de coordenadas cartesiano, a menos que haja indicação contrária.
+    \item 
+        $\mathbb{N} = \{ 1, 2, 3, \ldots \}$ denota o conjunto dos números naturais.
+    \item 
+        $\mathbb{R}$ denota o conjunto dos números reais.
+    \item 
+        $\mathbb{C}$ denota o conjunto dos números complexos.
+    \item 
+        $i$ denota a unidade imaginária, $i^2 = -1$.
+    \end{itemize}
+}
+((* endblock *))
+((* endif *))
+((# DADOS ADICIONAIS DE FÍSICA #))
+((* if pset.subject == "fis" *))
+((* block data_fis *))
+{
+    \small
+    \minisec{Dados}
+    \begin{itemize}
+    \item 
+        Aceleração local da gravidade, $g = \qty{10}{m.s^{-2}}$
+    \item 
+        Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
+    \item 
+        Velocidade do som, $v_\mathrm{som} = \qty{340}{m.s^{-1}}$
+    \item 
+        Carga elementar, $e = \qty{1,6e-19}{C}$
+    \item 
+        Constante de Planck, $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
+    \end{itemize}
+    \minisec{Aproximações Numéricas}
+    \begin{itemize}
+    \item 
+        $(1 + \alpha)^n \approx 1 + n \alpha$ para $|\alpha| \ll 1$
+    \end{itemize}
+}
+((* endblock *))
+((* endif *))
+((# DADOS ADICIONAIS DE QUÍMICA #))
+((* if pset.subject == "qui" *))
+((* block data_qui *))
+{
+    \small
+    \minisec{Dados}
+    \begin{itemize}
+    \item 
+        Constante de Avogadro, $N_\mathrm{A} = \qty{6,02e23}{mol^{-1}}$
+    \item 
+        Constante de Faraday, $F = \qty{96500}{C.mol^{-1}}$
+    \item 
+        Carga elementar, $e = \qty{1,6e-19}{C}$
+    \item 
+        Constante dos gases, $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
+    \item 
+        Constante de Planck, $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
+    \item 
+        Constante de Rydberg, $\mathcal{R} = \qty{1,1e7}{m^{-1}}$
+    \item 
+        Constante de autoionização da água, $K_\mathrm{w} = \num{1e-14}$
+    \item 
+        Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
+    \end{itemize}
+    \minisec{Definições}
+    \begin{itemize}
+    \item 
+        Composição do ar atmosférico: $79\%\; \ce{N2}$ e $21\%\; \ce{O2}$
+    \end{itemize}
+    \minisec{Aproximações numéricas}
+    \begin{itemize}
+    \item 
+        $\sqrt{2} = \num{1,4}$
+    \item 
+        $\sqrt{3} = \num{1,7}$
+    \item 
+        $\sqrt{5} = \num{2,2}$
+    \item 
+        $\log 2 = \num{0,3}$
+    \item 
+        $\log 3 = \num{0,5}$
+    \item 
+        $\ln 10 = \num{2,3}$
+    \end{itemize}
+    ((# DADOS DA TABELA PERIÓDICA #))
+    \minisec{Elementos químicos}
+    ((* block elements *))
+    ((* if elements *))
+    \ElementTable{((* for element in elements *)) (((element))), ((* endfor*))}
+    ((* endif *))
+    ((* endblock *))
+}
+((* endblock *))
+((* endif *))
+((# APÓS OS DADOS ADICIONAIS #))
+((* block after_data *))
+\bigskip
+((* endblock *))
+
+((# PROBLEMAS #))
+((* for problem_id in pset.problem_ids *))
+((* block before_problem *))((* endblock *))
+
+\begin{problem}[(((points)))]
+    \input{(((problem_id))).tex}
+\end{problem}
+
+((* block after_problem *))((* endblock *))
+((* endfor *))
+
+((* endfor *))
+((* endblock *))
+
+\end{document}
+

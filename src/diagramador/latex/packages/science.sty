@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Gabriel Braun, 2024
+%
+%   Listas de química
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage 
+	{ 
+    xparse,
+    tikz,
+	}
+
+\ExplSyntaxOn
+
+\ProvidesExplPackage
+	{ science }
+	{ 2024/01/01 }
+	{ 2.0 }
+	{ Fórmulas e equações. }
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   CIENTÍFICO
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%============================================================%
+%   EQUAÇÕES
+%============================================================%
+
+\RequirePackage { mathtools, amssymb }
+
+\cs_set:Npn \textbf #1 { { \bfseries\boldmath #1 } }
+
+%% CANCEL
+
+\RequirePackage [ thicklines ] { cancel }
+
+\cs_set:Npn \CancelColor { \color { red } }
+
+%============================================================%
+%   MACROS
+%============================================================%
+
+\cs_undefine:N \sin
+\DeclareMathOperator { \sin } { sen }
+
+%============================================================%
+%   UNIDADES DO SI
+%============================================================%
+
+\RequirePackage { siunitx }
+
+\cs_set:Npn \degree { \text { \textdegree } }
+
+\sisetup 
+  { 
+    locale = FR,
+    retain-explicit-plus,
+    parse-units         = false,
+    propagate-math-font = true,
+    reset-math-version  = false,
+    text-family-to-math = true,
+    text-series-to-math = true,
+  }
+
+%============================================================%
+%   COMANDO PU
+%============================================================%
+
+\regex_const:Nn \l_pu_regex
+  { 
+    ([\+\-]? \d* (?:[\.\,]\d*)? (?:[eE][\+\-]?\d+)? )? \s* (.*)?
+  }
+
+\tl_new:N  \l_pu_num_tl
+\tl_new:N  \l_pu_unit_tl
+\seq_new:N \l_pu_unit_seq
+
+\cs_new_protected:Nn \parse_pu_unit:N
+  {
+    \regex_replace_all:nnN { [\.|\s|\*]+ }  {.}     #1
+    \regex_replace_all:nnN { [\+\-]?\d+  }  {^{\0}} #1
+
+    \seq_set_split:NnV \l_pu_unit_seq {//} #1
+    \tl_set:Nn #1 
+      {
+        \int_compare:nTF { \seq_count:N \l_pu_unit_seq > 1 }
+          {
+            \tfrac 
+              { \unit { \seq_item:Nn \l_pu_unit_seq {1} } } 
+              { \unit { \seq_item:Nn \l_pu_unit_seq {2} } }
+          }
+          { \seq_item:Nn \l_pu_unit_seq {1} }
+      }
+  }
+ 
+\cs_new_protected:Npn \pu #1 
+  {{
+      \sisetup { parse-units = false }
+
+      \regex_extract_once:NnN \l_pu_regex {#1} \l_pu_seq
+
+      \seq_pop_right:NN \l_pu_seq \l_pu_unit_tl
+      \seq_pop_right:NN \l_pu_seq \l_pu_num_tl
+
+      \tl_if_empty:NTF \l_pu_unit_tl
+        {
+          \tl_if_empty:NF \l_pu_num_tl { \num { \l_pu_num_tl } }
+        }
+        {
+          \parse_pu_unit:N \l_pu_unit_tl
+          \tl_if_empty:NTF \l_pu_num_tl
+            {
+              \unit { \l_pu_unit_tl }
+            }
+            {
+              \qty { \l_pu_num_tl } { \l_pu_unit_tl }
+            }    
+        }
+  }}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 
+%   FÓRMULAS QUÍMICAS        
+%   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage [ version = 4 ] { mhchem }
+
+\mhchemoptions
+  {
+      textfontcommand = \sffamily,
+      mathfontcommand = \mathsf
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   THE END!!!
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ExplSyntaxOff

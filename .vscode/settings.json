@@ -1,28 +1,30 @@
 {
-    "code-runner.runInTerminal": true,
-    "latex-workshop.latex.autoBuild.run": "never",
-    "python.formatting.provider": "none",
-    "python.analysis.typeCheckingMode": "off",
-    "[latex]": {
-        "editor.formatOnSave": false
-    },
-    "[latex-expl3]": {
-        "editor.formatOnSave": false
-    },
-    "[markdown]": {
-        "editor.quickSuggestions": {
-            "other": true,
-            "comments": true,
-            "strings": true
-        },
-    },
-    "cSpell.words": [
-        "picômetros"
-    ],
-    "Lua.diagnostics.globals": [
-        "pandoc"
-    ],
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
-    }
+  "search.exclude": {
+    "**/*.json": true,
+    ".vscode": true
+  },
+  "editor.wordBasedSuggestions": "off",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.ignoreSelection": true,
+  "code-runner.executorMap": {
+    "markdown": "diagr -les $dir"
+  },
+  "python.analysis.typeCheckingMode": "off",
+  "Lua.diagnostics.globals": ["pandoc", "FORMAT"],
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[latex]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[latex-expl3]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "latex-workshop.latex.autoBuild.run": "never"
 }

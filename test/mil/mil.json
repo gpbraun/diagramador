@@ -1,0 +1,33 @@
+{
+    "id": "mil",
+    "title": "Prova de Etapa 1",
+    "template": "EN",
+    "affiliation": "EM IME-ITA-1",
+    "date": "2024",
+    "problem_set": [
+        {
+            "title": "Física",
+            "subject": "fis",
+            "problems": [
+                "mil_1",
+                "mil_2",
+                "mil_3",
+                "mil_4",
+                "mil_5"
+            ]
+        },
+        {
+            "title": "Matemática",
+            "subject": "mat",
+            "problems": [
+                "mil_1",
+                "mil_2",
+                "mil_3",
+                "mil_4",
+                "mil_5"
+            ]
+        }
+    ],
+    "pdf_exam_name": "mil.pdf",
+    "pdf_solution_name": "mil_gabarito.pdf"
+}

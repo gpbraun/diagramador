@@ -1,0 +1,25 @@
+((* extends "exam/base.tex.j2" *))
+
+((* block class *))mil((* endblock *))
+
+((* block logo *))
+((* if template|upper == "AFA" *))
+\logoleft{pensi-logo.pdf}
+\logoright{fab-logo.png}
+((* endif *))
+((* if template|upper == "EN" *))
+\logoleft{pensi-logo.pdf}
+\logoright{mb-logo.pdf}
+((* endif *))
+((* if template|upper == "EFOMM" *))
+\logoleft{pensi-logo.pdf}
+\logoright{mb-logo.pdf}
+((* endif *))
+((* if template|upper == "FLEX" *))
+\logoleft{pensi-logo.pdf}
+((* endif *))
+((* endblock *))
+
+((* block after_data *))
+\examrule
+((* endblock *))

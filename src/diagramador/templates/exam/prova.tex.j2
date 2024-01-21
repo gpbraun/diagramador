@@ -1,0 +1,71 @@
+((* extends "exam/base.tex.j2" *))
+
+((* block class *))pensi((* endblock *))
+
+((* block content *))
+\maketitle
+\begin{center}
+    \def \arraystretch {2}
+    \begin{tabular}{ | p{0.7\textwidth} p{0.25\textwidth} | }
+    \hline
+        Nome:      \hrulefill        &
+        Turma:     (((affiliation))) \\
+        Unidade:   \hrulefill        \hspace{0.5cm}
+        Professor: \hrulefill        &
+        Data:      (((date)))        \\
+        \hline
+        \textbf{Instruções:}
+        \begin{itemize}[after-item-skip = 0pt]
+            \item 
+                Faça sua avaliação à caneta.
+            \item 
+                Resoluções a lápis não serão corrigidas.
+            \item 
+                Questões discursivas sem desenvolvimento não serão consideradas.
+            \item 
+                Não serão fornecidas folhas para rascunho.
+        \end{itemize}
+        & \multicolumn { 1 } { |l| } { \textbf{Nota:} }
+        \\
+        \hline
+    \end{tabular}
+\end{center}
+((* endblock *))
+
+((* block data_qui *))
+{
+    \small
+    \minisec{Dados}
+    \begin{itemize}
+    \item 
+        Constante de Avogadro, $N_\mathrm{A} = \qty{6,02e23}{mol^{-1}}$
+    \item 
+        Constante de Faraday, $F = \qty{96500}{C.mol^{-1}}$
+    \item 
+        Carga elementar, $e = \qty{1,6e-19}{C}$
+    \item 
+        Constante dos gases, $R = \qty{8,31}{J.K^{-1}.mol^{-1}}$
+    \item 
+        Constante de Planck, $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
+    \item 
+        Constante de Rydberg, $\mathcal{R} = \qty{1,1e7}{m^{-1}}$
+    \item 
+        Constante de autoionização da água, $K_\mathrm{w} = \num{1e-14}$
+    \item 
+        Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
+    \end{itemize}
+    ((# DADOS DA TABELA PERIÓDICA #))
+    \minisec{Elementos químicos}
+    ((* if elements *))
+    \begin{center}
+    \begin{minipage}{0.95\linewidth}
+        \PTableRow{((* for element in elements *)) (((element))), ((* endfor*))}
+    \end{minipage}
+    \end{center}
+    ((* endif *))
+}
+((* endblock *))
+
+((* block after_problem *))
+\vspace{5cm}
+((* endblock *))

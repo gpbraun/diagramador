@@ -1,0 +1,19 @@
+((* extends "exam/base.tex.j2" *))
+
+((* block template *))gabarito((* endblock *))
+
+((* block problems *))
+
+((* for pset in problem_set *))
+\section*{Gabarito (((pset.title)))}
+
+((* for problem_id in pset.problem_ids *))
+\begin{problem}
+\input{(((problem_id))).tex}
+\input{(((problem_id)))_sol.tex}
+\end{problem}
+((* endfor *))
+
+((* endfor *))
+
+((* endblock *))
