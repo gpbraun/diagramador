@@ -24,7 +24,7 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage { crimson, eulervm, FiraSans }
+\RequirePackage { FiraSans }
 
 \examoptions
   { 
@@ -217,11 +217,14 @@
 
 \NewDocumentEnvironment { solution } { o }
     {
-      \medskip
       \begin{tcolorbox}
         [
           breakable,
-          title = \textbf{\sffamily\large\IfValueTF{#1}{#1}{Gabarito}},
+          title = 
+            {
+              \usekomafont{disposition}\small
+              \IfValueTF {#1} {#1} { Gabarito }
+            },
           coltitle = black,
           colback = white,
           boxrule = \g_braun_linewidth_dim,
@@ -238,12 +241,10 @@
             }
         ]	
       \cs_set_eq:NN \toprule \relax
-      \medskip
+      \smallskip
     } 
     {
-      \medskip
       \end{tcolorbox}
-      \skip_vertical:n { 3\bigskipamount }
     }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
