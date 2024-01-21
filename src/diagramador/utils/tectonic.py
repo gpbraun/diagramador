@@ -4,7 +4,7 @@ Base de dados para problemas de química, Gabriel Braun, 2024
 Esse módulo implementa funções do TECTONIC.
 """
 
-import importlib.resources
+import importlib.resources as resources
 import re
 import subprocess
 import time
@@ -15,8 +15,8 @@ from rich.console import Console
 
 from .status import Status
 
-TECTONIC_PATH = importlib.resources.files("diagramador.bin").joinpath("/bin/tectonic")
-TEXINPUTS_PATH = importlib.resources.files("diagramador").joinpath("latex")
+TECTONIC_PATH = resources.files("diagramador.bin").joinpath("/bin/tectonic")
+TEXINPUTS_PATH = resources.files("diagramador").joinpath("latex")
 HEDGEDOC_GRAPHICS_PATH = Path("/var/lib/docker/volumes/hedgedoc_uploads/_data/")
 
 TECTONIC_ERROR_PATTERN = re.compile(

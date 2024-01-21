@@ -288,113 +288,111 @@
 	% #1 -> clist com os elementos
 	{
 		\group_begin:
-		\begin{center}
-			\clist_set:Nn \l_tmpa_clist {#1}
-			%% ORDENA
-			\mendeleev_organize_elements:N \l_tmpa_clist
-			%% SEPARA AS COLUNAS
+		\clist_set:Nn \l_tmpa_clist {#1}
+		%% ORDENA
+		\mendeleev_organize_elements:N \l_tmpa_clist
+		%% SEPARA AS COLUNAS
+		\legacy_if:nTF { @twocolumn } 
+			{ \tl_set_eq:NN \l_tmpb_clist \l_tmpa_clist }
+			{ % divide os elementos em duas colunas
+				\bool_while_do:nn 
+					{ 
+						\int_compare_p:n 
+							{ 
+								\clist_count:N \l_tmpa_clist > 
+								\clist_count:N \l_tmpb_clist 
+							} 
+					}
+					{
+						\clist_pop:NNT \l_tmpa_clist \l_tmpa_tl
+							{ \clist_put_right:NV \l_tmpb_clist \l_tmpa_tl }
+					}
+			}
+		%% TABULAR
+		\tl_set:Nn \arraystretch {1.0}
+		\exp_args:Nx \tabular 
+			{ 		
+				\legacy_if:nTF { @twocolumn } 
+					{
+						c 
+						S[ table-format = 2   ] 
+						S[ 
+							round-mode = places,
+							round-precision = 2,
+							table-format = 3.2, 
+							drop-zero-decimal = false 
+						]
+					}
+					{
+						c 
+						S[ table-format = 2   ] 
+						S[ 
+							round-mode = places,
+							round-precision = 2,
+							table-format = 3.2, 
+							drop-zero-decimal = false 
+						]
+						c
+						c 
+						S[ table-format = 2   ] 
+						S[ 
+							round-mode = places,
+							round-precision = 2,
+							table-format = 3.2, 
+							drop-zero-decimal = false 
+						]
+					}
+			}
+			\toprule
 			\legacy_if:nTF { @twocolumn } 
-				{ \tl_set_eq:NN \l_tmpb_clist \l_tmpa_clist }
-				{ % divide os elementos em duas colunas
-					\bool_while_do:nn 
-						{ 
-							\int_compare_p:n 
-								{ 
-									\clist_count:N \l_tmpa_clist > 
-									\clist_count:N \l_tmpb_clist 
-								} 
-						}
-						{
-							\clist_pop:NNT \l_tmpa_clist \l_tmpa_tl
-								{ \clist_put_right:NV \l_tmpb_clist \l_tmpa_tl }
-						}
+				{ % top header with one column
+					{ Elemento    } \c_alignment_token 
+					{ Número      } \c_alignment_token 
+					{ Massa~Molar } 
 				}
-			%% TABULAR
-			\tl_set:Nn \arraystretch {1.0}
-			\exp_args:Nx \tabular 
-				{ 		
+				{ % top header with two columns
+					{ Elemento    } \c_alignment_token 
+					{ Número      } \c_alignment_token 
+					{ Massa~Molar } \c_alignment_token 
+													\c_alignment_token  
+					{ Elemento    } \c_alignment_token 
+					{ Número      } \c_alignment_token 
+					{ Massa~Molar }
+				}
+			\tex_cr:D
+			\legacy_if:nTF { @twocolumn } 
+				{ % top header with one column
+					{ Químico }                   \c_alignment_token 
+					{ Atômico }                   \c_alignment_token 
+					{ ( \unit { g.mol^{-1} } ) } 
+				}
+				{  % top header with two columns
+					{ Químico }                   \c_alignment_token 
+					{ Atômico }                   \c_alignment_token 
+					{ ( \unit { g.mol^{-1} } ) }  \c_alignment_token  
+																				\c_alignment_token  
+					{ Químico }                   \c_alignment_token 
+					{ Atômico }                   \c_alignment_token 
+					{ ( \unit { g.mol^{-1} } ) } 
+				}
+			\tex_cr:D
+			\midrule 
+			\bool_do_until:nn { \clist_if_empty_p:N \l_tmpb_clist }
+				{
 					\legacy_if:nTF { @twocolumn } 
 						{
-							c 
-							S[ table-format = 2   ] 
-							S[ 
-								round-mode = places,
-								round-precision = 2,
-								table-format = 3.2, 
-								drop-zero-decimal = false 
-							]
+							\elements_ita_ptable_row:N \l_tmpb_clist
 						}
 						{
-							c 
-							S[ table-format = 2   ] 
-							S[ 
-								round-mode = places,
-								round-precision = 2,
-								table-format = 3.2, 
-								drop-zero-decimal = false 
-							]
-							c
-							c 
-							S[ table-format = 2   ] 
-							S[ 
-								round-mode = places,
-								round-precision = 2,
-								table-format = 3.2, 
-								drop-zero-decimal = false 
-							]
+							\elements_ita_ptable_row:N \l_tmpb_clist 
+							\c_alignment_token
+							\c_alignment_token
+							\elements_ita_ptable_row:N \l_tmpa_clist 
 						}
+					\tex_cr:D
 				}
-				\toprule
-				\legacy_if:nTF { @twocolumn } 
-					{ % top header with one column
-						{ Elemento    } \c_alignment_token 
-						{ Número      } \c_alignment_token 
-						{ Massa~Molar } 
-					}
-					{ % top header with two columns
-						{ Elemento    } \c_alignment_token 
-						{ Número      } \c_alignment_token 
-						{ Massa~Molar } \c_alignment_token 
-						                \c_alignment_token  
-						{ Elemento    } \c_alignment_token 
-						{ Número      } \c_alignment_token 
-						{ Massa~Molar }
-					}
-				\tex_cr:D
-				\legacy_if:nTF { @twocolumn } 
-					{ % top header with one column
-						{ Químico }                   \c_alignment_token 
-						{ Atômico }                   \c_alignment_token 
-						{ ( \unit { g.mol^{-1} } ) } 
-					}
-					{  % top header with two columns
-						{ Químico }                   \c_alignment_token 
-						{ Atômico }                   \c_alignment_token 
-						{ ( \unit { g.mol^{-1} } ) }  \c_alignment_token  
-						                              \c_alignment_token  
-						{ Químico }                   \c_alignment_token 
-						{ Atômico }                   \c_alignment_token 
-						{ ( \unit { g.mol^{-1} } ) } 
-					}
-				\tex_cr:D
-				\midrule 
-				\bool_do_until:nn { \clist_if_empty_p:N \l_tmpb_clist }
-					{
-						\legacy_if:nTF { @twocolumn } 
-							{
-								\elements_ita_ptable_row:N \l_tmpb_clist
-							}
-							{
-								\elements_ita_ptable_row:N \l_tmpb_clist 
-								\c_alignment_token
-								\c_alignment_token
-								\elements_ita_ptable_row:N \l_tmpa_clist 
-							}
-						\tex_cr:D
-					}
-				\bottomrule
-			\endtabular
-		\end{center}
+			\bottomrule
+		\endtabular
 		\group_end:
 		\bigskip
 	}

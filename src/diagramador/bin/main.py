@@ -1,4 +1,6 @@
 import argparse
+import configparser
+import importlib.resources as resources
 from pathlib import Path
 
 import psycopg2
@@ -6,20 +8,9 @@ from pydantic import ValidationError
 from rich.console import Console
 
 from diagramador import Exam
+from diagramador.utils import Status
 
-
-def connect():
-    """
-    Retorna: cursor.
-    """
-    conn = psycopg2.connect(
-        host="localhost",
-        port=5432,
-        database="hedgedoc",
-        user="hedgedoc",
-        password="password",
-    )
-    return conn.cursor()
+DEFAULT_CONFIG_PATH = resources.files("diagramador.bin").joinpath("defaults.cfg")
 
 
 def get_json_path(arg_path: Path):
@@ -41,21 +32,72 @@ def get_json_path(arg_path: Path):
     return path
 
 
+def read_config(console: Console, config_path: Path):
+    """
+    Retorna: configurações do diagramador.
+    """
+    config = configparser.ConfigParser()
+    config.read(DEFAULT_CONFIG_PATH)
+
+    if config_path and config_path.exists():
+        config.read(config_path)
+        console.log(
+            "Arquivo de configuração:",
+            f"[magenta]'{config_path}'\n",
+        )
+
+    return config
+
+
 def main():
     """
     Diagr.
     """
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        prog="Diagramador",
+        description="Cria arquivos .pdf de avaliações a partir de arquivos markdown",
+        epilog="Gabriel Braun, 2024",
+    )
 
-    parser.add_argument("path", type=Path)
-    parser.add_argument("-l", "--local", action="store_true", default=False)
-    parser.add_argument("-e", "--exam", action="store_true", default=False)
-    parser.add_argument("-s", "--solution", action="store_true", default=False)
+    parser.add_argument(
+        "path",
+        type=Path,
+        help="endereço do arquivo da avaliação .json",
+    )
+    parser.add_argument(
+        "-c",
+        "--config-file",
+        type=Path,
+        help="endereço do arquivo de configuração .cfg",
+    )
+    parser.add_argument(
+        "-l",
+        "--local",
+        action="store_true",
+        default=False,
+        help="diagramação de arquivos locais",
+    )
+    parser.add_argument(
+        "-e",
+        "--pdf-exam",
+        action="store_true",
+        default=False,
+        help="gera o .pdf da avaliação",
+    )
+    parser.add_argument(
+        "-s",
+        "--pdf-solution",
+        action="store_true",
+        default=False,
+        help="gera o .pdf do gabarito",
+    )
 
     args = parser.parse_args()
 
     console = Console(log_path=False)
     console.rule("[bold blue]Diagramador")
+
+    config = read_config(console, args.config_file)
 
     # procura o arquivo de configurações `.json`
     path = get_json_path(args.path)
@@ -72,7 +114,7 @@ def main():
     try:
         exam = Exam.parse_jsonfile(console, path)
     except ValidationError as exc:
-        console.log(exc)
+        console.log("[bold red]ERRO!", exc)
         console.rule()
         return
 
@@ -83,22 +125,32 @@ def main():
     # modo local/hedgedoc
     if not args.local:
         try:
-            cursor = connect()
+            # parâmetros do arquivo de configuração para conexão
+            host = config["hedgedoc"]["host"]
+            port = config["hedgedoc"]["port"]
+            database = config["hedgedoc"]["database"]
+            user = config["hedgedoc"]["user"]
+            password = config["hedgedoc"]["password"]
+            # conexão pelo psycopg2
+            conn = psycopg2.connect(
+                host=host, port=port, database=database, user=user, password=password
+            )
+            cursor = conn.cursor()
             console.log(
                 "[bold cyan]CONECTADO!",
-                "Carregando problemas da base de dados:\n",
+                "Carregando problemas da base de dados",
+                f"[green]{database}",
+                "em",
+                f"[green]{host}:{port}",
+                "\n",
             )
-            console.log("Carregando problemas da base de dados:")
-        except:
-            console.log(
-                "[bold red]ERRO!",
-                "Falha na conexão com a base de dados!\n",
-            )
-            exam.status = 1
+        except Exception as exc:
+            console.log("[bold red]ERRO!", exc)
+            exam.status = Status.ERROR
     else:
         cursor = None
         console.log(
-            "Carregando problemas no diretório local:",
+            "Carregando problemas no diretório local",
             f"[magenta]'{exam.path.parent}'\n",
         )
 
@@ -107,9 +159,9 @@ def main():
         exam.process_problems(console, cursor=cursor)
 
     # executa os comandos para criação do `.pdf`
-    if args.exam and exam.status_ok():
+    if args.pdf_exam and exam.status_ok():
         exam.create_exam_pdf(console)
-    if args.solution and exam.status_ok():
+    if args.pdf_solution and exam.status_ok():
         exam.create_solution_pdf(console)
 
     exam.write_json()
