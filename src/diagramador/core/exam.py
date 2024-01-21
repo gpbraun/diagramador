@@ -157,8 +157,10 @@ class Exam(ExamParams):
 
                     self.elements.update(problem.elements)
 
-                    # Escrevendo o `.tex` do avaliação.
-                    problem.write_tex(self.problems_tmp_path)
+                    # Escreve o `.tex` do avaliação.
+                    if problem.status_ok():
+                        problem.write_tex(self.problems_tmp_path)
+
                     prog.advance(problem_task)
 
         # Finalização
