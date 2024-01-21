@@ -223,6 +223,7 @@
   {
 		\refstepcounter { problem }
     \ProblemHeader  {#1}
+    \cs_set:Npn \toprule {\\[-1em]}
   } 
   {
     \bigskip
@@ -322,20 +323,13 @@
 
 \def\labelenumii{\arabic{enumii}.}
 
-\RenewTasksEnvironment
-  % Lista enumerada
-  [
-    counter = enumi,
-    label = { \bfseries\labelenumi },
-  ] 
-  { enumerate } [ \item ]
 
-\RenewTasksEnvironment
+\NewTasksEnvironment
   % Lista sem enumeração
   [
     label = { \bfseries\textbullet },  
   ] 
-  { itemize } [ \item ]
+  { datalist } [ \item ]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %

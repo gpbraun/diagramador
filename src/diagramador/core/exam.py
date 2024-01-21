@@ -50,6 +50,7 @@ class Exam(ExamParams):
     # parâmetros de estado
     status: Status = Status.OK
     local: bool = False
+    message: str = ""
     processed: bool = False
     solutions: bool = False
     problems: dict[str, Problem] = Field(default={})
@@ -83,14 +84,21 @@ class Exam(ExamParams):
         """
         return render_doc(self.model_dump(), "gabarito")
 
-    def log_problem_status(self, console: Console):
+    def log_status(self, console: Console):
         """
         Log do status dos problemas com erro no console.
         """
+        if self.message:
+            console.log(
+                "  •",
+                "[bold red]ERRO!",
+                self.message,
+            )
         for problem in self.problems.values():
             if problem.status == Status.ERROR:
                 console.log(
                     "  •",
+                    "[bold red]ERRO!",
                     f"Problema [bold blue]{problem.index:02d}",
                     "•",
                     f"[bold cyan]'{problem.id_}'",
@@ -171,7 +179,7 @@ class Exam(ExamParams):
                 "[bold red]ERRO!",
                 "Falha no processamento:\n",
             )
-            self.log_problem_status(console)
+            self.log_status(console)
         else:
             self.processed = True
 
@@ -190,9 +198,12 @@ class Exam(ExamParams):
         self.status, errors = tectonic(console, tex_path, resource_paths)
 
         for error in errors:
-            problem = self.problems[error.file.stem]
-            problem.status = Status.ERROR
-            problem.message = error.message
+            if error.file.stem in self.problems:
+                problem = self.problems[error.file.stem]
+                problem.status = Status.ERROR
+                problem.message = error.message
+            elif error.file.stem.replace("_sol", "") == self.id_:
+                self.message = f"Arquivo [bold cyan]{error.file}:{error.line}[/bold cyan] • [red]{error.message}"
 
         return self.status
 
@@ -207,7 +218,7 @@ class Exam(ExamParams):
 
         self.compile_tex(console, tex_exam_path, log_name="avaliação")
         if not self.status_ok():
-            self.log_problem_status(console)
+            self.log_status(console)
             return self.status
 
         # copia o `.pdf` pro diretório de output
@@ -239,7 +250,7 @@ class Exam(ExamParams):
 
         self.compile_tex(console, tex_solution_path, log_name="gabarito")
         if not self.status_ok():
-            self.log_problem_status(console)
+            self.log_status(console)
             return self.status
 
         # copia o `.pdf` pro diretório de output

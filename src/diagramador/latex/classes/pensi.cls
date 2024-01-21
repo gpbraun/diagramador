@@ -240,7 +240,7 @@
               boxrule = \g_braun_linewidth_dim,
             }
         ]	
-      \cs_set_eq:NN \toprule \relax
+      \cs_set:Npn \toprule {\\[-1em]}
       \smallskip
     } 
     {

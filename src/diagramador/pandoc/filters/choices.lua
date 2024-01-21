@@ -502,8 +502,10 @@ local function Meta(meta)
     --
     -- Registra as alternativas nos metadados
     --
-    meta.choices = choices
-    meta.correct_choice = correct_choice
+    if #choices > 0 then
+        meta.choices = choices
+        meta.correct_choice = correct_choice
+    end
     return meta
 end
 

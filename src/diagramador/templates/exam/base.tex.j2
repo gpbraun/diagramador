@@ -26,7 +26,7 @@
 
 ((# USA O PACOTE DE QUÍMICA, SE NECESSÁRIO #))
 ((* for pset in problem_set *))
-((* if pset.subject == "qui" *))
+((* if pset.subject|upper == "QUI" *))
 \usepackage{chemistry}
 ((* endif *))
 ((* endfor *))
@@ -61,7 +61,7 @@
 {
     \small
     \minisec{Convenções}
-    \begin{itemize}
+    \begin{datalist}
     \item   
         Considere o sistema de coordenadas cartesiano, a menos que haja indicação contrária.
     \item 
@@ -72,7 +72,7 @@
         $\mathbb{C}$ denota o conjunto dos números complexos.
     \item 
         $i$ denota a unidade imaginária, $i^2 = -1$.
-    \end{itemize}
+    \end{datalist}
 }
 ((* endblock *))
 ((* endif *))
@@ -82,7 +82,7 @@
 {
     \small
     \minisec{Dados}
-    \begin{itemize}
+    \begin{datalist}
     \item 
         Aceleração local da gravidade, $g = \qty{10}{m.s^{-2}}$
     \item 
@@ -93,12 +93,12 @@
         Carga elementar, $e = \qty{1,6e-19}{C}$
     \item 
         Constante de Planck, $h = \qty{6,6e-34}{m^2.kg.s^{-1}}$
-    \end{itemize}
+    \end{datalist}
     \minisec{Aproximações Numéricas}
-    \begin{itemize}
+    \begin{datalist}
     \item 
         $(1 + \alpha)^n \approx 1 + n \alpha$ para $|\alpha| \ll 1$
-    \end{itemize}
+    \end{datalist}
 }
 ((* endblock *))
 ((* endif *))
@@ -108,7 +108,7 @@
 {
     \small
     \minisec{Dados}
-    \begin{itemize}
+    \begin{datalist}
     \item 
         Constante de Avogadro, $N_\mathrm{A} = \qty{6,02e23}{mol^{-1}}$
     \item 
@@ -129,9 +129,9 @@
         Constante de autoionização da água, $K_\mathrm{w} = \num{1e-14}$
     \item 
         Composição do ar atmosférico: $79\%\; \ce{N2}$ e $21\%\; \ce{O2}$
-    \end{itemize}
+    \end{datalist}
     \minisec{Aproximações numéricas}
-    \begin{itemize}
+    \begin{datalist}
     \item 
         $\sqrt{2} = \num{1,4}$
     \item 
@@ -144,15 +144,13 @@
         $\log 3 = \num{0,5}$
     \item 
         $\ln 10 = \num{2,3}$
-    \end{itemize}
+    \end{datalist}
     ((# DADOS DA TABELA PERIÓDICA #))
     ((* block elements *))
-    ((* if elements *))
     \minisec{Elementos químicos}
     \begin{center}
-        \ElementTable{((* for element in elements *)) (((element))), ((* endfor*))}
+    \ElementTable{O, C, H, N, Ca, P, K, S, Na, Cl, Mg, ((* for element in elements *)) (((element))), ((* endfor*))}
     \end{center}
-    ((* endif *))
     ((* endblock *))
 }
 ((* endblock *))

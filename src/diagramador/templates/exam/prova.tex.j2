@@ -19,7 +19,7 @@
         Data:      (((date)))        \\
         \hline
         \textbf{Instruções:}
-        \begin{itemize}[after-item-skip = 0pt]
+        \begin{datalist}[after-item-skip = 0pt]
             \item 
                 Faça sua avaliação à caneta.
             \item 
@@ -28,7 +28,7 @@
                 Questões discursivas sem desenvolvimento não serão consideradas.
             \item 
                 Não serão fornecidas folhas para rascunho.
-        \end{itemize}
+        \end{datalist}
         & \multicolumn { 1 } { |l| } { \textbf{Nota:} }
         \\
         \hline
@@ -40,7 +40,7 @@
 {
     \small
     \minisec{Dados}
-    \begin{itemize}
+    \begin{datalist}
     \item 
         Constante de Avogadro, $N_\mathrm{A} = \qty{6,02e23}{mol^{-1}}$
     \item 
@@ -57,16 +57,14 @@
         Constante de autoionização da água, $K_\mathrm{w} = \num{1e-14}$
     \item 
         Velocidade da luz no vácuo, $c = \qty{3e8}{m.s^{-1}}$
-    \end{itemize}
+    \end{datalist}
     ((# DADOS DA TABELA PERIÓDICA #))
-    ((* if elements *))
     \minisec{Elementos químicos}
     \begin{center}
     \begin{minipage}{0.95\linewidth}
-        \PTableRow{((* for element in elements *)) (((element))), ((* endfor*))}
+    \PTableRow{O, C, H, N, Ca, P, K, S, Na, Cl, Mg, ((* for element in elements *)) (((element))), ((* endfor*))}
     \end{minipage}
     \end{center}
-    ((* endif *))
 }
 ((* endblock *))
 
