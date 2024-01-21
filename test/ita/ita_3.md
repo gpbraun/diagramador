@@ -14,8 +14,3 @@ Você trabalha em um laboratório que investiga as propriedades de nanomateriais
 - [ ] Talvez
 - [ ] Não sei
 
----
-
-#### Um teste
-
-Gabarito

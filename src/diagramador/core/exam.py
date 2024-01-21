@@ -89,7 +89,7 @@ class Exam(BaseModel):
         """
         Retorna: endereço do arquivo `.json` criado.
         """
-        json_path = self.tmp_path.joinpath(self.id_ + "_status").with_suffix(".json")
+        json_path = self.tmp_path.joinpath("status").with_suffix(".json")
 
         return json_path.write_text(self.model_dump_json(indent=4))
 

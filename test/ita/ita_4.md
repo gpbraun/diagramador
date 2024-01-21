@@ -16,6 +16,3 @@ Materiais híbridos orgânicos e inorgânicos são estudados para aplicação em
 - [ ] Não sei
 - [ ] NDA
 
----
-
-Gabarito

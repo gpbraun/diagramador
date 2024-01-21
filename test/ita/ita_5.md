@@ -7,6 +7,3 @@ Em uma estação de tratamento de água deseja-se medir a concentração de íon
 
 **Assinale** a alternativa que relaciona as proposições corretas.
 
----
-
-Gabarito

@@ -8,7 +8,3 @@ Um reator é carregado com $\pu{60 bar}$ de eteno e $\pu{40 bar}$ de água em $\
 
 - [x] A > B > C > D
 
----
-
-Gabarito
-

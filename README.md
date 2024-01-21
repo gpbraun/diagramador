@@ -4,6 +4,8 @@
 
 # Diagramação de questões
 
+## CLI
+
 ## Texto
 
 ### Tipografia
