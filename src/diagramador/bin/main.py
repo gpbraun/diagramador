@@ -164,7 +164,9 @@ def main():
     if args.pdf_solution and exam.status_ok():
         exam.create_solution_pdf(console)
 
-    exam.write_json()
+    # escreve o arquivo `.json`` da avaliação
+    json_path = exam.tmp_path.joinpath("_status").with_suffix(".json")
+    json_path.write_text(exam.model_dump_json(indent=4))
 
     console.log(
         "Diagramação [bold]finalizada[/bold]. Status:",

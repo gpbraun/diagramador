@@ -83,14 +83,6 @@ class Exam(ExamParams):
         """
         return render_doc(self.model_dump(), "gabarito")
 
-    def write_json(self):
-        """
-        Retorna: endereço do arquivo `.json` criado.
-        """
-        json_path = self.tmp_path.joinpath("status").with_suffix(".json")
-
-        return json_path.write_text(self.model_dump_json(indent=4))
-
     def log_problem_status(self, console: Console):
         """
         Log do status dos problemas com erro no console.
@@ -271,7 +263,7 @@ class Exam(ExamParams):
             exam.out_path = exam.path.parent
 
         if not exam.tmp_path:
-            exam.tmp_path = json_path.parent.joinpath(f"tmp_{exam.id_}")
+            exam.tmp_path = json_path.parent.joinpath(f"_tmp_{exam.id_}")
             exam.tmp_path.mkdir(exist_ok=True)
 
         if not exam.problems_tmp_path:

@@ -4,6 +4,11 @@
 ### Temporary Files ###
 **/tmp
 **/tmp*
+**/_tmp
+**/_tmp*
+
+### Output Files ###
+*.pdf
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
