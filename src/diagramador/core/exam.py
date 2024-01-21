@@ -4,7 +4,9 @@ Diagramador, Gabriel Braun, 2024
 Esse módulo implementa uma classe para as avaliações.
 """
 
+from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 from pydantic import BaseModel, Field
 from rich import progress
@@ -16,53 +18,49 @@ from diagramador.utils import Status, tectonic
 from .problem import Problem
 
 
-class ProblemSet(BaseModel):
+class ProblemSetParams(BaseModel):
     """
     Conjunto de problemas em uma prova.
     """
 
     title: str
     subject: str
-    problems: list[Path]
-    problem_ids: list = Field(default=[])
+    start: Optional[int] = None
+    problem_ids: list[str] = Field(alias="problems")
 
 
-class ProblemParams(BaseModel):
+class ExamParams(BaseModel):
     """
-    Status dos problemas.
+    Parâmetros do exame.
     """
 
-    status: Status = Status.OK
-    path: Path
-    index: int
-    message: str
+    id_: str = Field(alias="id")
+    title: str
+    template: str
+    affiliation: str
+    date: str = Field(default=str(datetime.now().year))
+    problem_set: list[ProblemSetParams]
 
 
-class Exam(BaseModel):
+class Exam(ExamParams):
     """
     Avaliação.
     """
 
-    id_: str = Field(alias="id")
+    # parâmetros de estado
     status: Status = Status.OK
     local: bool = False
+    processed: bool = False
     solutions: bool = False
-    problem_params: dict[str, ProblemParams] = Field(default={})
-    # parâmetros de diagramação
-    title: str
-    template: str
-    affiliation: str
-    date: str
-    start: int = 1
-    problem_set: list[ProblemSet]
+    problems: dict[str, Problem] = Field(default={})
     # endereços dos diretórios auxiliares
-    path: Path | None = None
-    out_path: Path | None = None
-    tmp_path: Path | None = None
-    problems_tmp_path: Path | None = None
+    path: Optional[Path] = None
+    out_path: Optional[Path] = None
+    tmp_path: Optional[Path] = None
+    problems_tmp_path: Optional[Path] = None
     # nomes dos `.pdf` gerados
-    pdf_exam_name: str | None = None
-    pdf_solution_name: str | None = None
+    pdf_exam_name: Optional[str] = None
+    pdf_solution_name: Optional[str] = None
     # dados dos problemas
     points: str = "1,00"
     elements: set[str] = Field(default=set())
@@ -75,7 +73,7 @@ class Exam(BaseModel):
 
     def latex(self):
         """
-        Retorna: arquivo em LaTeX da avaliação
+        Retorna: arquivo em LaTeX da avaliação.
         """
         return render_doc(self.model_dump(), self.template)
 
@@ -97,15 +95,15 @@ class Exam(BaseModel):
         """
         Log do status dos problemas com erro no console.
         """
-        for params in self.problem_params.values():
-            if params.status == Status.ERROR:
+        for problem in self.problems.values():
+            if problem.status == Status.ERROR:
                 console.log(
                     "  •",
-                    f"Problema [bold blue]{params.index:02d}",
+                    f"Problema [bold blue]{problem.index:02d}",
                     "•",
-                    f"[magenta]'{params.path}'",
+                    f"[bold cyan]'{problem.id_}'",
                     "•",
-                    f"[red]{params.message}",
+                    f"[red]{problem.message}",
                 )
         console.log()
         return self.status
@@ -125,7 +123,7 @@ class Exam(BaseModel):
             "•",
             progress.TextColumn("Problema [bold blue]{task.fields[num]:02d}"),
             "•",
-            progress.TextColumn("[magenta]'{task.fields[path]}'"),
+            progress.TextColumn("[bold cyan]'{task.fields[id]}'"),
             progress.TextColumn("{task.fields[end]}"),
             console=console,
         )
@@ -134,51 +132,38 @@ class Exam(BaseModel):
         with prog:
             for index, pset in enumerate(self.problem_set):
                 problem_task = prog.add_task(
-                    pset.title, total=len(pset.problems), num=0, path="", end=""
+                    pset.title, total=len(pset.problem_ids), num=0, id="", end=""
                 )
-                for path in pset.problems:
+                if not pset.start:
+                    pset.start = problem_count + 1
+                for problem_id in pset.problem_ids:
                     problem_count += 1
                     # Parsing com PANDOC
-                    path = (
-                        self.path.parent.joinpath(path).with_suffix(".md")
-                        if self.local
-                        else path
-                    )
                     prog.update(
                         problem_task,
                         num=problem_count,
-                        path=path,
+                        id=problem_id,
                         end="\n" if index == len(self.problem_set) - 1 else "",
                     )
-                    problem_id = path.stem
-                    try:
-                        problem = (
-                            Problem.parse_mdfile(problem_id, path)
-                            if self.local
-                            else Problem.parse_hedgedoc(cursor, problem_id, str(path))
-                        )
-                        params = ProblemParams(
-                            status=Status.OK,
-                            path=path,
-                            index=problem_count,
-                            message="Processado com sucesso.",
-                        )
-                    except:
+                    if self.local:
+                        path = self.path.parent.joinpath(problem_id).with_suffix(".md")
+                        problem = Problem.parse_mdfile(problem_id, path)
+                    else:
+                        problem = Problem.parse_hedgedoc(cursor, problem_id)
+
+                    problem.index = problem_count
+
+                    # registra o problema na lista da avaliação.
+                    self.problems[problem_id] = problem
+
+                    # Atualização de parâmetros da avaliação.
+                    if not problem.status_ok():
                         self.status = Status.ERROR
-                        params = ProblemParams(
-                            status=Status.ERROR,
-                            path=path,
-                            index=problem_count,
-                            message="Falha no processamento pelo PANDOC.",
-                        )
-                    self.problem_params[problem_id] = params
 
                     if problem.solution:
                         self.solutions = True
 
-                    # Atualização de dados.
                     self.elements.update(problem.elements)
-                    pset.problem_ids.append(problem.id_)
 
                     # Escrevendo o `.tex` do avaliação.
                     problem.write_tex(self.problems_tmp_path)
@@ -193,6 +178,8 @@ class Exam(BaseModel):
                 "Falha no processamento:\n",
             )
             self.log_problem_status(console)
+        else:
+            self.processed = True
 
         return self.status
 
@@ -209,9 +196,9 @@ class Exam(BaseModel):
         self.status, errors = tectonic(console, tex_path, resource_paths)
 
         for error in errors:
-            params = self.problem_params[error.file.stem]
-            params.status = Status.ERROR
-            params.message = error.message
+            problem = self.problems[error.file.stem]
+            problem.status = Status.ERROR
+            problem.message = error.message
 
         return self.status
 

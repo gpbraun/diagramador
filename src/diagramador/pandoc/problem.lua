@@ -127,16 +127,15 @@ function Writer(doc, opts)
 
     -- dados do problema
     local problem_data = {
-        id                = doc.meta.id,
-        title             = title,
-        statement         = pandoc.latex(statement),
-        solution          = pandoc.latex(solution),
-        answer            = answer,
-        choices           = doc.meta.choices,
-        elements          = parseElementList(doc.meta.elementos),
-        packages          = {},
-        tikzlibraries     = {},
-        pgfplotslibraries = {},
+        id        = doc.meta.id,
+        title     = title,
+        statement = pandoc.latex(statement),
+        solution  = pandoc.latex(solution),
+        answer    = answer,
+        choices   = doc.meta.choices,
+        elements  = parseElementList(doc.meta.elementos),
+        packages  = {},
+
     }
     return pandoc.json.encode(problem_data)
 end

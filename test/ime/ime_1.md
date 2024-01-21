@@ -7,4 +7,3 @@ Nos mamíferos, o metabolismo gera subprodutos nocivos, como o peróxido de hidr
 ---
 
 Olá
-

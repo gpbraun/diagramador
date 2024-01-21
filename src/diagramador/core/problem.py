@@ -5,33 +5,62 @@ Esse módulo implementa uma classe para os problemas.
 """
 
 from base64 import urlsafe_b64decode
-from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
 from diagramador.templates import render_problem, render_solution
-from diagramador.utils import md2problem
+from diagramador.utils import Status, md2problem
+
+
+class Choice(BaseModel):
+    """
+    Alternativa.
+    """
+
+    content: str
+    correct: bool
 
 
 class Problem(BaseModel):
     """
-    Problema.
+    Parâmetros do problema.
     """
 
     id_: str = Field(alias="id")
+    # parâmetros de estado
+    status: Status = Status.OK
+    local: bool = False
+    index: int = 0
+    processed: bool = False
+    message: str = "não processado"
     # parâmetros do problema
     title: str = "Problema"
-    statement: str
-    solution: str
-    answer: str | None = None
-    choices: list[dict] | None = None
+    statement: str = ""
+    solution: str = ""
+    answer: str = ""
+    choices: Optional[list[Choice]] = None
     data: list[str] = Field(default=[])
     # parâmetros para o documento
-    elements: set[str]
-    packages: set[str]
-    tikzlibraries: set[str]
-    pgfplotslibraries: set[str]
+    elements: set[str] = Field(default=set())
+    packages: set[str] = Field(default=set())
+
+    def status_ok(self):
+        """
+        Retorna: verdadeiro se o Status é OK.
+        """
+        return self.status == Status.OK
+
+    def set_status(self, index: int, message: str):
+        """
+        Muda o estado do problema.
+        """
+        self.status = Status.OK
+        self.index = index
+        self.message = message
+
+        return self.status
 
     def latex(self):
         """
@@ -64,6 +93,10 @@ class Problem(BaseModel):
         """
         problem_obj = md2problem(problem_id, md_str)
         problem = cls.model_validate(problem_obj)
+
+        problem.message = "processado com sucesso"
+        problem.processed = True
+
         return problem
 
     @classmethod
@@ -71,23 +104,42 @@ class Problem(BaseModel):
         """
         Retorna: problema de um arquivo md.
         """
-        return cls.parse_mdstr(problem_id, md_path.read_text())
+        try:
+            problem = cls.parse_mdstr(problem_id, md_path.read_text())
+
+        except Exception as exp:
+            problem = Problem(
+                id=problem_id,
+                status=Status.ERROR,
+                message=str(exp),
+            )
+
+        problem.local = True
+        return problem
 
     @classmethod
-    def parse_hedgedoc(cls, cursor, problem_id: str, hedgedoc_path: str):
+    def parse_hedgedoc(cls, cursor, hedgedoc_link: str):
         """
         Retorna: problema de link do hedgedoc.
         """
-        link = str(Path(hedgedoc_path).stem)
-        print(f"Extraindo problema no link: {link}")
+        try:
+            bytes_id = bytes.hex(urlsafe_b64decode(hedgedoc_link + "=="))
+            p_id = "-".join(
+                [
+                    bytes_id[x:y]
+                    for x, y in [(0, 8), (8, 12), (12, 16), (16, 20), (20, 32)]
+                ]
+            )
+            cursor.execute(f"""SELECT * FROM "Notes" WHERE id = {"'"+p_id+"'"}""")
+            query_results = cursor.fetchall()
 
-        bytes_id = bytes.hex(urlsafe_b64decode(link + "=="))
-        p_id = "-".join(
-            [bytes_id[x:y] for x, y in [(0, 8), (8, 12), (12, 16), (16, 20), (20, 32)]]
-        )
-        cursor.execute(f"""SELECT * FROM "Notes" WHERE id = {"'"+p_id+"'"}""")
-        query_results = cursor.fetchall()
+            problem = cls.parse_mdstr(hedgedoc_link, query_results[0][2])
 
-        print(query_results)
-        # get YAML data and contents
-        return cls.parse_mdstr(problem_id, query_results[0][2])
+        except Exception as exp:
+            problem = Problem(
+                id=hedgedoc_link,
+                status=Status.ERROR,
+                message=str(exp),
+            )
+
+        return problem

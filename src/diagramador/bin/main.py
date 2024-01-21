@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import argparse
 from pathlib import Path
 
@@ -57,7 +55,7 @@ def main():
     args = parser.parse_args()
 
     console = Console(log_path=False)
-    console.rule("[bold blue]:star: Diagramador :star:")
+    console.rule("[bold blue]Diagramador")
 
     # procura o arquivo de configurações `.json`
     path = get_json_path(args.path)

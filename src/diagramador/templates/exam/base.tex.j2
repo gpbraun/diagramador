@@ -38,7 +38,6 @@
 ((* endblock *))
 
 ((# CONJUNTOS DE PROBLEMAS #))
-\setcounter{problem}{(((start-1)))}
 ((* block problems *))
 ((* for pset in problem_set *))
 
@@ -48,11 +47,12 @@
 
 ((# TÍTULO DO CONJUNTO DE PROBLEMAS #))
 \section{(((pset.title)))}
+\setcounter{problem}{(((pset.start-1)))}
 
 ((# ANTES DOS DADOS ADICIONAIS #))
 ((* block before_data *))((* endblock *))
 ((# DADOS ADICIONAIS DE MATEMÁTICA #))
-((* if pset.subject == "mat" *))
+((* if pset.subject|upper == "MAT" *))
 ((* block data_mat *))
 {
     \small
@@ -73,7 +73,7 @@
 ((* endblock *))
 ((* endif *))
 ((# DADOS ADICIONAIS DE FÍSICA #))
-((* if pset.subject == "fis" *))
+((* if pset.subject|upper == "FIS" *))
 ((* block data_fis *))
 {
     \small
@@ -99,7 +99,7 @@
 ((* endblock *))
 ((* endif *))
 ((# DADOS ADICIONAIS DE QUÍMICA #))
-((* if pset.subject == "qui" *))
+((* if pset.subject|upper == "QUI" *))
 ((* block data_qui *))
 {
     \small

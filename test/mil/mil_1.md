@@ -4,7 +4,3 @@ Nos mamíferos, o metabolismo gera subprodutos nocivos, como o peróxido de hidr
 
 - [x] $\pu{1E-2}$
 
----
-
-Olá
-

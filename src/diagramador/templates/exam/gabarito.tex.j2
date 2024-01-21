@@ -5,7 +5,13 @@
 ((* block problems *))
 
 ((* for pset in problem_set *))
+
+((* if loop.index > 1 *))
+\newpage
+((* endif *))
+
 \section*{Gabarito (((pset.title)))}
+\setcounter{problem}{(((pset.start-1)))}
 
 ((* for problem_id in pset.problem_ids *))
 \begin{problem}
