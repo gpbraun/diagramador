@@ -101,9 +101,7 @@ class Exam(ExamParams):
                     "[bold red]ERRO!",
                     f"Problema [bold blue]{problem.index:02d}",
                     "•",
-                    f"[bold cyan]'{problem.id_}'",
-                    "•",
-                    f"[red]{problem.message}",
+                    problem.message,
                 )
         console.log()
         return self.status
@@ -198,12 +196,18 @@ class Exam(ExamParams):
         self.status, errors = tectonic(console, tex_path, resource_paths)
 
         for error in errors:
-            if error.file.stem in self.problems:
-                problem = self.problems[error.file.stem]
+            error_id = error.file.stem.replace("_sol", "")
+            message = (
+                f"[magenta]'{error.file}':{error.line}[/magenta] • [red]{error.message}"
+            )
+
+            if error_id == self.id_:
+                self.message = message
+
+            elif error_id in self.problems:
+                problem = self.problems[error_id]
                 problem.status = Status.ERROR
-                problem.message = error.message
-            elif error.file.stem.replace("_sol", "") == self.id_:
-                self.message = f"Arquivo [bold cyan]{error.file}:{error.line}[/bold cyan] • [red]{error.message}"
+                problem.message = message
 
         return self.status
 

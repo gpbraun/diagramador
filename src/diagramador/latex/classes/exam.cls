@@ -314,11 +314,12 @@
 
 \NewTasksEnvironment
   [
-    label = { \textbf{\Alph*} \; (\;\;)\; } ,
-    item-indent = 4em,
-    after-item-skip = 3\itemsep,
-    label-width = 3em,
+    label = { \textbf{\Alph*} \, (\hspace{1ex}) } ,
+    after-item-skip = 1ex,
     label-align = right,
+    label-width  = 3em,
+    label-offset = 0.5em,
+    item-indent  = 3.5em,
   ] 
   { choices } [\item ]
 
