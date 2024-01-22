@@ -246,10 +246,11 @@
 \int_new:N \g_braun_choice_cols_int
 \dim_new:N \l_braun_choice_size_dim
 
-% #1 -> sequencia de alternativas
-\cs_new:Nn \braun_list_col_num:N
+\cs_new:Nn \braun_list_col_num:NN
+  % #1 -> inteiro que vai receber o número de colunas
+  % #2 -> sequencia de alternativas
   {
-    \seq_map_inline:Nn #1
+    \seq_map_inline:Nn #2
       { % encontra o tamanho horizontal do maior item
         \hbox_set:Nn \l_tmpa_box {##1}
         \dim_set:Nn  \l_tmpa_dim { \box_wd:N \l_tmpa_box  } 
@@ -258,7 +259,7 @@
           { \dim_set_eq:NN \l_braun_choice_size_dim \l_tmpa_dim }
       }
 
-    \int_set:Nn \g_braun_choice_cols_int
+    \int_set:Nn #1
       { % calcula o número de linhas
         \fp_to_int:n 
           { 
@@ -279,11 +280,11 @@
   }
 
 % Alteração do original: https://github.com/cgnieder/tasks/blob/master/tasks.sty
-% #1 -> instance
-% #2 -> number of columns
-% #3 -> item separator
-% #4 -> environment body
 \cs_set_protected:Nn \tasks_environment:nnnn
+  % #1 -> instance
+  % #2 -> number of columns
+  % #3 -> item separator
+  % #4 -> environment body
   {
     \bool_if:NT \l__tasks_debug_bool { \dim_set:Nn \fboxsep {0pt} }
     \seq_set_split:Nnn \l__tasks_seq {#3} {#4}
@@ -298,7 +299,14 @@
     \int_gset:Nn \g__tasks_total_items_int
       { \seq_count:N \l__tasks_seq }
 
-    \braun_list_col_num:N \l__tasks_seq
+    % Use regular expression to check for display math
+    \regex_match:nnTF {\c{\[}.*\c{\]}} {#4} 
+      {
+        \int_set:Nn \g_braun_choice_cols_int {1}
+      } 
+      {
+        \braun_list_col_num:NN \g_braun_choice_cols_int \l__tasks_seq
+      }
 
     \UseInstance {tasks} {#1}
       { \g__tasks_total_items_int }
