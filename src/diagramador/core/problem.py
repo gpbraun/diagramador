@@ -123,7 +123,8 @@ class Problem(BaseModel):
         Retorna: problema de link do hedgedoc.
         """
         try:
-            bytes_id = bytes.hex(urlsafe_b64decode(hedgedoc_link + "=="))
+            hedgedoc_id = Path(hedgedoc_link).stem
+            bytes_id = bytes.hex(urlsafe_b64decode(hedgedoc_id + "=="))
             p_id = "-".join(
                 [
                     bytes_id[x:y]
@@ -133,11 +134,11 @@ class Problem(BaseModel):
             cursor.execute(f"""SELECT * FROM "Notes" WHERE id = {"'"+p_id+"'"}""")
             query_results = cursor.fetchall()
 
-            problem = cls.parse_mdstr(hedgedoc_link, query_results[0][2])
+            problem = cls.parse_mdstr(hedgedoc_id, query_results[0][2])
 
         except Exception as exp:
             problem = Problem(
-                id=hedgedoc_link,
+                id=hedgedoc_id,
                 status=Status.ERROR,
                 message=str(exp),
             )
