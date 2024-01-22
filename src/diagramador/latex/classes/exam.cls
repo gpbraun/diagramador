@@ -246,7 +246,7 @@
 \int_new:N \g_braun_choice_cols_int
 \dim_new:N \l_braun_choice_size_dim
 
-\cs_new:Nn \braun_list_col_num:NN
+\cs_new:Nn \braun_set_list_col_num:NN
   % #1 -> inteiro que vai receber o número de colunas
   % #2 -> sequencia de alternativas
   {
@@ -258,7 +258,6 @@
         \dim_compare:nNnT { \l_tmpa_dim } > { \l_braun_choice_size_dim }
           { \dim_set_eq:NN \l_braun_choice_size_dim \l_tmpa_dim }
       }
-
     \int_set:Nn #1
       { % calcula o número de linhas
         \fp_to_int:n 
@@ -299,14 +298,12 @@
     \int_gset:Nn \g__tasks_total_items_int
       { \seq_count:N \l__tasks_seq }
 
-    % Use regular expression to check for display math
+    % não da pra calcular o número de colunas quando tem displaymath.
+    \hbox_set:Nw \l_tmpa_box \seq_item:Nn \l__tasks_seq {1} \hbox_set_end:
+
     \regex_match:nnTF {\c{\[}.*\c{\]}} {#4} 
-      {
-        \int_set:Nn \g_braun_choice_cols_int {1}
-      } 
-      {
-        \braun_list_col_num:NN \g_braun_choice_cols_int \l__tasks_seq
-      }
+      { \int_set:Nn \g_braun_choice_cols_int {1} } 
+      { \braun_set_list_col_num:NN \g_braun_choice_cols_int \l__tasks_seq }
 
     \UseInstance {tasks} {#1}
       { \g__tasks_total_items_int }

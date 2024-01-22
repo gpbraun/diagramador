@@ -88,9 +88,10 @@ def tectonic(console: Console, tex_path: Path, resource_paths: list[Path] = None
     if tectonic.stderr:
         err_path = tex_path.with_suffix(".tectonic.log")
         err_path.write_text(tectonic.stderr)
+    pdf_path = tex_path.with_suffix(".pdf")
 
     errors = parse_log(tectonic.stderr)
-    status = Status.ERROR if errors else Status.OK
+    status = Status.ERROR if errors or not pdf_path.exists() else Status.OK
 
     console.log(
         "Compilado em",
