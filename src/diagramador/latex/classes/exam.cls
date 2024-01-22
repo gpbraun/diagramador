@@ -269,8 +269,9 @@
                 { \columnwidth } 
                 {
                   \l__tasks_item_indent_dim + 
-                  \l_braun_choice_size_dim + 
-                  \l__tasks_column_sep_dim
+                  \l_braun_choice_size_dim  + 
+                  \l__tasks_column_sep_dim  + 2em
+                  % NOTE: coloquei uma margem adicional!
                 }
             )))))
           } 
@@ -321,15 +322,22 @@
   ] 
   { choices } [\item ]
 
-\def\labelenumii{\arabic{enumii}.}
+\def\labelenumi{\arabic{enumi}.}
 
+\RenewTasksEnvironment
+  % Lista enumerada
+  [
+    counter = enumi,
+    label   = { \bfseries\labelenumi },
+  ] 
+  { enumerate } [ \item ]
 
-\NewTasksEnvironment
+\RenewTasksEnvironment
   % Lista sem enumeração
   [
-    label = { \bfseries\textbullet },  
+    label = { \usekomafont{disposition}\textbullet },  
   ] 
-  { datalist } [ \item ]
+  { itemize } [ \item ]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
