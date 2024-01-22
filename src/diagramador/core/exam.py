@@ -139,6 +139,7 @@ class Exam(ExamParams):
                     pset.problem_ids[index] = problem_id
                     problem_count += 1
                     # Parsing com PANDOC
+
                     prog.update(
                         problem_task,
                         num=problem_count,
@@ -160,7 +161,7 @@ class Exam(ExamParams):
                     if not problem.status_ok():
                         self.status = Status.ERROR
 
-                    if problem.solution:
+                    if problem.solution or problem.answer:
                         self.solutions = True
 
                     self.elements.update(problem.elements)
