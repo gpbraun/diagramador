@@ -134,7 +134,9 @@ class Exam(ExamParams):
                 )
                 if not pset.start:
                     pset.start = problem_count + 1
-                for problem_id in pset.problem_ids:
+                for index, problem_path in enumerate(pset.problem_ids):
+                    problem_id = Path(problem_path).stem
+                    pset.problem_ids[index] = problem_id
                     problem_count += 1
                     # Parsing com PANDOC
                     prog.update(
