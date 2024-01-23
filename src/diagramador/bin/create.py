@@ -31,8 +31,16 @@ def create():
         "Criando avaliação",
         f"[magenta]'{exam_id}'",
         "no diretório",
-        f"[magenta]'{args.path}'\n",
+        f"[magenta]'{args.path.absolute()}'\n",
     )
+
+    if args.path.exists():
+        console.print(
+            "[bold red]ERRO!",
+            f"O diretório [magenta]'{args.path.absolute()}'[/magenta] já existe!",
+        )
+        console.rule()
+        return
 
     # PARÂMETROS BÁSICOS DA AVALIAÇÃO
     template = Prompt.ask(
