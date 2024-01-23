@@ -131,7 +131,8 @@
           \\[1ex]
           \group_begin:
             \usekomafont { publishers }
-            \l_braun_affiliation_tl
+            \l_braun_affiliation_tl\;
+            \l_braun_date_tl
           \group_end:
         };
       \fill [yellow] 
@@ -240,7 +241,9 @@
               boxrule = \g_braun_linewidth_dim,
             }
         ]	
-      \cs_set:Npn \toprule {\\[-1em]}
+      \cs_set:Npn \toprule    {\\[-2em]}
+      \cs_set:Npn \bottomrule {\\[-2em]}
+      \dim_set_eq:NN \parskip \bigskipamount
       \smallskip
     } 
     {
