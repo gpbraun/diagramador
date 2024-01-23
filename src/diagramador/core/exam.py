@@ -12,6 +12,7 @@ from pydantic import BaseModel, Field
 from rich import progress
 from rich.console import Console
 
+from diagramador.console import console
 from diagramador.templates import render_doc
 from diagramador.utils import Status, tectonic
 
@@ -84,45 +85,38 @@ class Exam(ExamParams):
         """
         return render_doc(self.model_dump(), "gabarito")
 
-    def log_status(self, console: Console):
+    def log_status(self):
         """
         Log do status dos problemas com erro no console.
         """
         if self.message:
-            console.log(
-                "  •",
-                "[bold red]ERRO!",
+            console.print(
+                "• [bold red]ERRO!",
                 self.message,
             )
         for problem in self.problems.values():
             if problem.status == Status.ERROR:
-                console.log(
-                    "  •",
-                    "[bold red]ERRO!",
+                console.print(
+                    "• [bold red]ERRO!",
                     f"Problema [bold blue]{problem.index:02d}",
                     "•",
                     problem.message,
                 )
-        console.log()
+        console.print()
         return self.status
 
-    def process_problems(self, console: Console, cursor=None):
+    def process_problems(self, cursor=None):
         """
         Cria os arquivos dos problemas e gera os dados e os elementos.
         """
         prog = progress.Progress(
-            12 * " ",
-            "•",
-            progress.TextColumn("[bold blue]{task.description}"),
+            progress.TextColumn("• [bold blue]{task.description}"),
             progress.BarColumn(),
             progress.MofNCompleteColumn(),
             "•",
             progress.TimeElapsedColumn(),
-            "•",
-            progress.TextColumn("Problema [bold blue]{task.fields[num]:02d}"),
-            "•",
-            progress.TextColumn("[bold cyan]'{task.fields[id]}'"),
-            progress.TextColumn("{task.fields[end]}"),
+            progress.TextColumn("• Problema [bold blue]{task.fields[num]:02d}"),
+            progress.TextColumn("• [bold cyan]'{task.fields[id]}'"),
             console=console,
         )
 
@@ -140,12 +134,7 @@ class Exam(ExamParams):
                     problem_count += 1
                     # Parsing com PANDOC
 
-                    prog.update(
-                        problem_task,
-                        num=problem_count,
-                        id=problem_id,
-                        end="\n" if index == len(self.problem_set) - 1 else "",
-                    )
+                    prog.update(problem_task, num=problem_count, id=problem_id)
                     if self.local:
                         path = self.path.parent.joinpath(problem_id).with_suffix(".md")
                         problem = Problem.parse_mdfile(problem_id, path)
@@ -173,10 +162,11 @@ class Exam(ExamParams):
                     prog.advance(problem_task)
 
         # Finalização
+        console.print()
         self.points = f"{10/problem_count:.2f}".replace(".", ",")
 
         if not self.status_ok():
-            console.log(
+            console.print(
                 "[bold red]ERRO!",
                 "Falha no processamento:\n",
             )
@@ -186,17 +176,17 @@ class Exam(ExamParams):
 
         return self.status
 
-    def compile_tex(self, console: Console, tex_path: Path, log_name="documento"):
+    def compile_tex(self, tex_path: Path, log_name="documento"):
         """
         Compila um documento.
         """
         resource_paths = [self.path.parent, self.problems_tmp_path]
         # compila o `.tex`
-        console.log(
+        console.print(
             f"Compilando [bold]{log_name}[/bold] em:",
             f"[magenta]'{tex_path}'",
         )
-        self.status, errors = tectonic(console, tex_path, resource_paths)
+        self.status, errors = tectonic(tex_path, resource_paths)
 
         for error in errors:
             error_id = error.file.stem.replace("_sol", "")
@@ -214,7 +204,7 @@ class Exam(ExamParams):
 
         return self.status
 
-    def create_exam_pdf(self, console: Console):
+    def create_exam_pdf(self):
         """
         Retorna: status da compilação do `.pdf` da avaliação.
         """
@@ -223,9 +213,9 @@ class Exam(ExamParams):
         tex_exam_path = self.tmp_path.joinpath(file_name).with_suffix(".tex")
         tex_exam_path.write_text(self.latex())
 
-        self.compile_tex(console, tex_exam_path, log_name="avaliação")
+        self.compile_tex(tex_exam_path, log_name="avaliação")
         if not self.status_ok():
-            self.log_status(console)
+            self.log_status()
             return self.status
 
         # copia o `.pdf` pro diretório de output
@@ -239,12 +229,12 @@ class Exam(ExamParams):
 
         return self.status
 
-    def create_solution_pdf(self, console: Console):
+    def create_solution_pdf(self):
         """
         Retorna: status da compilação do `.pdf` do gabarito da avaliação.
         """
         if not self.solutions:
-            console.log(
+            console.print(
                 "[bold yellow]ATENÇÃO!",
                 "Nenhum problema possui gabarito.\n",
             )
@@ -255,7 +245,7 @@ class Exam(ExamParams):
         tex_solution_path = self.tmp_path.joinpath(file_name).with_suffix(".tex")
         tex_solution_path.write_text(self.latex_solution())
 
-        self.compile_tex(console, tex_solution_path, log_name="gabarito")
+        self.compile_tex(tex_solution_path, log_name="gabarito")
         if not self.status_ok():
             self.log_status(console)
             return self.status
@@ -272,7 +262,7 @@ class Exam(ExamParams):
         return self.status
 
     @classmethod
-    def parse_jsonfile(cls, console: Console, json_path: Path):
+    def parse_jsonfile(cls, json_path: Path):
         """
         Retorna: prova a partir dos dados de um json.
         """
@@ -290,14 +280,11 @@ class Exam(ExamParams):
             exam.problems_tmp_path = exam.tmp_path.joinpath("problems")
             exam.problems_tmp_path.mkdir(exist_ok=True)
 
-        console.log(
+        console.print(
             f"[bold yellow]{exam.title}",
-            "•",
-            f"[bold yellow]{exam.affiliation}",
-            "•",
-            f"[bold yellow]{exam.date}",
-            "•",
-            f"[bold yellow]Modelo {exam.template}\n",
+            f"• [bold yellow]{exam.affiliation}",
+            f"• [bold yellow]{exam.date}",
+            f"• [bold yellow]Modelo {exam.template}\n",
         )
 
         return exam

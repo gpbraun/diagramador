@@ -8,6 +8,7 @@ from pydantic import ValidationError
 from rich.console import Console
 
 from diagramador import Exam
+from diagramador.console import console
 from diagramador.utils import Status
 
 DEFAULT_CONFIG_PATH = resources.files("diagramador.bin").joinpath("defaults.cfg")
@@ -32,7 +33,7 @@ def get_json_path(arg_path: Path):
     return path
 
 
-def read_config(console: Console, config_path: Path):
+def read_config(config_path: Path):
     """
     Retorna: configurações do diagramador.
     """
@@ -41,7 +42,7 @@ def read_config(console: Console, config_path: Path):
 
     if config_path and config_path.exists():
         config.read(config_path)
-        console.log(
+        console.print(
             "Arquivo de configuração:",
             f"[magenta]'{config_path}'\n",
         )
@@ -94,15 +95,14 @@ def main():
 
     args = parser.parse_args()
 
-    console = Console(log_path=False)
     console.rule("[bold blue]Diagramador")
 
-    config = read_config(console, args.config_file)
+    config = read_config(args.config_file)
 
     # procura o arquivo de configurações `.json`
     path = get_json_path(args.path)
     if not path:
-        console.log(
+        console.print(
             "[bold red]ERRO!",
             "Arquivo '.json' não encontrado em:",
             f"[magenta]'{args.path}'",
@@ -112,9 +112,9 @@ def main():
 
     # valida o `.json`
     try:
-        exam = Exam.parse_jsonfile(console, path)
+        exam = Exam.parse_jsonfile(path)
     except ValidationError as exc:
-        console.log("[bold red]ERRO!", exc)
+        console.print("[bold red]ERRO!", exc)
         console.rule()
         return
 
@@ -136,7 +136,7 @@ def main():
                 host=host, port=port, database=database, user=user, password=password
             )
             cursor = conn.cursor()
-            console.log(
+            console.print(
                 "[bold cyan]CONECTADO!",
                 "Carregando problemas da base de dados",
                 f"[green]{database}",
@@ -145,30 +145,30 @@ def main():
                 "\n",
             )
         except Exception as exc:
-            console.log("[bold red]ERRO!", exc)
+            console.print("[bold red]ERRO!", exc)
             exam.status = Status.ERROR
     else:
         cursor = None
-        console.log(
+        console.print(
             "Carregando problemas no diretório local",
             f"[magenta]'{exam.path.parent}'\n",
         )
 
     # carrega os problemas.
     if exam.status_ok():
-        exam.process_problems(console, cursor=cursor)
+        exam.process_problems(cursor)
 
     # executa os comandos para criação do `.pdf`
     if args.pdf_exam and exam.status_ok():
-        exam.create_exam_pdf(console)
+        exam.create_exam_pdf()
     if args.pdf_solution and exam.status_ok():
-        exam.create_solution_pdf(console)
+        exam.create_solution_pdf()
 
     # escreve o arquivo `.json`` da avaliação
     json_path = exam.tmp_path.joinpath("_status").with_suffix(".json")
     json_path.write_text(exam.model_dump_json(indent=4))
 
-    console.log(
+    console.print(
         "Diagramação [bold]finalizada[/bold]. Status:",
         "[bold cyan]OK!" if exam.status_ok() else "[bold red]ERRO!",
     )

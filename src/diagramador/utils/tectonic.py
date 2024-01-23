@@ -11,7 +11,7 @@ import time
 from collections import namedtuple
 from pathlib import Path
 
-from rich.console import Console
+from diagramador.console import console
 
 from .status import Status
 
@@ -65,7 +65,7 @@ def tectonic_search_paths(resource_paths: list[Path]) -> list[str]:
     return [f"-Zsearch-path={str(search_path)}" for search_path in search_paths]
 
 
-def tectonic(console: Console, tex_path: Path, resource_paths: list[Path] = None):
+def tectonic(tex_path: Path, resource_paths: list[Path] = None):
     """
     Retorna: lista de erros de compilação TECTONIC.
     """
@@ -93,7 +93,7 @@ def tectonic(console: Console, tex_path: Path, resource_paths: list[Path] = None
     errors = parse_log(tectonic.stderr)
     status = Status.ERROR if errors or not pdf_path.exists() else Status.OK
 
-    console.log(
+    console.print(
         "Compilado em",
         f"[bold yellow]{runtime:.0f}s[/bold yellow].",
         "Status:",

@@ -6,6 +6,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 
 from diagramador import ExamParams, ProblemSetParams
+from diagramador.console import console
 
 TITLES = {
     "MAT": "Matemática",
@@ -24,37 +25,35 @@ def create():
 
     exam_id = args.path.stem
 
-    console = Console(log_path=False)
     console.rule("[bold blue]Diagramador")
 
-    console.log(
+    console.print(
         "Criando avaliação",
         f"[magenta]'{exam_id}'",
         "no diretório",
         f"[magenta]'{args.path}'\n",
     )
 
-    indent = 13 * " " + "•"
     # PARÂMETROS BÁSICOS DA AVALIAÇÃO
     template = Prompt.ask(
-        f"{indent} Modelo",
+        "• Modelo",
         choices=["IME", "ITA"],
         default="ITA",
     )
     title = Prompt.ask(
-        f"{indent} Título",
+        "• Título",
         default="Simulado",
     )
     affiliation = Prompt.ask(
-        f"{indent} Turma",
+        "• Turma",
         default="Turma IME-ITA",
     )
     date = Prompt.ask(
-        f"{indent} Data",
+        "• Data",
         default=str(datetime.now().year),
     )
     problem_set_num = Prompt.ask(
-        f"{indent} Número de matérias",
+        "• Número de matérias",
         default="1",
     )
 
@@ -63,14 +62,14 @@ def create():
     # CONJUNTOS DE PROBLEMAS
     for problem_set_index in range(int(problem_set_num)):
         subject = Prompt.ask(
-            f"{indent} Matéria [bold blue]{problem_set_index + 1}",
+            f"\n     Matéria [bold blue]{problem_set_index + 1}",
             choices=["MAT", "FIS", "QUI"],
             default="QUI",
         )
         pset_title = TITLES[subject]
 
         problem_num = Prompt.ask(
-            f"{indent} Número de problemas",
+            "     Número de problemas",
             default="10",
         )
         problems = [
