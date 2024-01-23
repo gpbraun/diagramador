@@ -5,6 +5,7 @@ Esse módulo implementa uma classe para os problemas.
 """
 
 from base64 import urlsafe_b64decode
+from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
@@ -30,6 +31,7 @@ class Problem(BaseModel):
 
     id_: str = Field(alias="id")
     # parâmetros de estado
+    date: datetime
     status: Status = Status.OK
     local: bool = False
     index: int = 0
@@ -100,11 +102,10 @@ class Problem(BaseModel):
         return problem
 
     @classmethod
-    def parse_mdfile(cls, problem_link: str, md_path: str, tmp_path: Path):
+    def parse_mdfile(cls, problem_id: str, md_path: Path, tmp_path: Path):
         """
         Retorna: problema de um arquivo md.
         """
-        problem_id = Path(problem_link).stem
         try:
             md_str = md_path.read_text()
             problem = cls.parse_mdstr(problem_id, md_str, md_path.parent, tmp_path)

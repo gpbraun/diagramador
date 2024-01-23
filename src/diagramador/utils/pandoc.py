@@ -57,14 +57,14 @@ def custom_hash(input_string: str) -> int:
     return hashed_integer
 
 
-def md2problem(problem_id: str, md_str: str, path: Path, tmp_path: Path) -> str:
+def md2problem(problem_id: str, md_str: str, src_path: Path, tmp_path: Path) -> str:
     """
     Converte um arquivo usando o PANDOC.
     """
     args = {
         "id": problem_id,
         "seed": custom_hash(problem_id),
-        "path": path,
+        "src_path": src_path,
         "tmp_path": tmp_path,
     }
 
@@ -72,7 +72,7 @@ def md2problem(problem_id: str, md_str: str, path: Path, tmp_path: Path) -> str:
         source=md_str,
         to=str(WRITER_PATH),
         format="markdown",
-        filters=pandoc_filters(["choices.lua"]),
+        filters=pandoc_filters(["choices.lua", "images.lua"]),
         extra_args=pandoc_args(args),
     )
 

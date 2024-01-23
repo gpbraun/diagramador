@@ -191,7 +191,7 @@
 
 \newcounter { step } [ problem ]
 
-\cs_set:Npn \StepHeader #1
+\cs_set:Npn \SolutionStepHeader #1
   {
     \refstepcounter { step }
 

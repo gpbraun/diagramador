@@ -10,7 +10,6 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 from rich import progress
-from rich.console import Console
 
 from diagramador.console import console
 from diagramador.templates import render_doc
@@ -52,6 +51,7 @@ class Exam(ExamParams):
     status: Status = Status.OK
     local: bool = False
     message: str = ""
+    objective: bool = True
     processed: bool = False
     solutions: bool = False
     problems: dict[str, Problem] = Field(default={})
@@ -132,11 +132,13 @@ class Exam(ExamParams):
                     problem_id = Path(problem_path).stem
                     pset.problem_ids[index] = problem_id
                     problem_count += 1
-                    # Parsing com PANDOC
 
                     prog.update(problem_task, num=problem_count, id=problem_id)
+                    # Parsing com PANDOC
                     if self.local:
                         path = self.path.parent.joinpath(problem_id).with_suffix(".md")
+                        # TOOD: verificar se há modificações
+                        # file_mdate = datetime.fromtimestamp(path.stat().st_mtime)
                         problem = Problem.parse_mdfile(
                             problem_id, path, self.problems_tmp_path
                         )
@@ -156,6 +158,8 @@ class Exam(ExamParams):
 
                     if problem.solution or problem.answer:
                         self.solutions = True
+                    if not problem.choices:
+                        self.objective = False
 
                     self.elements.update(problem.elements)
 
