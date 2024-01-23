@@ -137,9 +137,13 @@ class Exam(ExamParams):
                     prog.update(problem_task, num=problem_count, id=problem_id)
                     if self.local:
                         path = self.path.parent.joinpath(problem_id).with_suffix(".md")
-                        problem = Problem.parse_mdfile(problem_id, path)
+                        problem = Problem.parse_mdfile(
+                            problem_id, path, self.problems_tmp_path
+                        )
                     else:
-                        problem = Problem.parse_hedgedoc(cursor, problem_id)
+                        problem = Problem.parse_hedgedoc(
+                            cursor, problem_id, self.problems_tmp_path
+                        )
 
                     problem.index = problem_count
 
@@ -170,7 +174,7 @@ class Exam(ExamParams):
                 "[bold red]ERRO!",
                 "Falha no processamento:\n",
             )
-            self.log_status(console)
+            self.log_status()
         else:
             self.processed = True
 
@@ -247,7 +251,7 @@ class Exam(ExamParams):
 
         self.compile_tex(tex_solution_path, log_name="gabarito")
         if not self.status_ok():
-            self.log_status(console)
+            self.log_status()
             return self.status
 
         # copia o `.pdf` pro diretório de output

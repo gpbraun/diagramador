@@ -78,9 +78,7 @@
 
 \RequirePackage { graphicx, float, longtable, booktabs }
 
-\tl_set:Nn \arraystretch {1.5}
-
-\setkeys { Gin } { width=.8\textwidth, height=6cm, keepaspectratio }
+\setkeys { Gin } { keepaspectratio }
 
 \RenewDocumentEnvironment { figure } {} 
   { 
@@ -90,6 +88,8 @@
   { 
     \end{center}   
   }
+
+\tl_set:Nn \arraystretch {1.5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           

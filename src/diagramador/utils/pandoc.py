@@ -57,13 +57,15 @@ def custom_hash(input_string: str) -> int:
     return hashed_integer
 
 
-def md2problem(problem_id: str, md_str: Path) -> str:
+def md2problem(problem_id: str, md_str: str, path: Path, tmp_path: Path) -> str:
     """
     Converte um arquivo usando o PANDOC.
     """
     args = {
         "id": problem_id,
         "seed": custom_hash(problem_id),
+        "path": path,
+        "tmp_path": tmp_path,
     }
 
     json_str = pypandoc.convert_text(

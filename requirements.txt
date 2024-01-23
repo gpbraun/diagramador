@@ -4,3 +4,4 @@ rich==13.7.0
 pydantic==2.5.3
 pypandoc_binary==1.12
 psycopg2-binary==2.9.9
+CairoSVG==2.7.1

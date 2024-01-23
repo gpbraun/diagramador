@@ -78,6 +78,17 @@ local function parseElementList(tbl)
 end
 
 -----------------------------------------------------------------
+-- Imagens .svg
+-----------------------------------------------------------------
+
+local function extractSVGWidth(svgContent)
+    local value, unit = svgContent:match('%swidth%s*=%s*\"(%d+)([a-zA-Z%%]+)\"')
+    if value == nil then return end
+
+    return tostring(tonumber(value) * 1.25) .. unit
+end
+
+-----------------------------------------------------------------
 -- Writer
 -----------------------------------------------------------------
 
@@ -91,6 +102,34 @@ function Writer(doc, opts)
 
     -- raw LaTeX
     doc = doc:walk(problemRawTex)
+
+    -- imagens svg
+    doc = doc:walk({
+        Image = function(elem)
+            local img_name, img_ext = pandoc.path.split_extension(elem.src)
+            if img_ext == ".svg" then
+                local svg_path = pandoc.path.join { doc.meta.path, img_name .. ".svg" }
+                local pdf_path = pandoc.path.join { doc.meta.tmp_path, img_name .. ".pdf" }
+
+                local svg_file = io.open(svg_path, "r")
+                if not svg_file then return {} end
+
+                local svg_str = svg_file:read("*all")
+                svg_file:close()
+                local svg_width = extractSVGWidth(svg_str)
+
+                os.execute("cairosvg " .. svg_path .. " -o " .. pdf_path)
+
+                elem.src = pdf_path
+                if elem.attributes.width == nil and svg_width ~= nil then
+                    elem.attributes.width = svg_width
+                end
+
+                return elem
+            end
+            return elem
+        end
+    })
 
     -- separa o enunciado da solução
     local statement = pandoc.Blocks {}

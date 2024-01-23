@@ -11,7 +11,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 from diagramador.templates import render_problem, render_solution
-from diagramador.utils import Status, md2problem
+from diagramador.utils import HEDGEDOC_GRAPHICS_PATH, Status, md2problem
 
 
 class Choice(BaseModel):
@@ -87,11 +87,11 @@ class Problem(BaseModel):
         return problem_tex_file, solution_tex_file
 
     @classmethod
-    def parse_mdstr(cls, problem_id: str, md_str: str):
+    def parse_mdstr(cls, problem_id: str, md_str: str, path: Path, tmp_path: Path):
         """
         Retorna: problema de uma string md.
         """
-        problem_obj = md2problem(problem_id, md_str)
+        problem_obj = md2problem(problem_id, md_str, path, tmp_path)
         problem = cls.model_validate(problem_obj)
 
         problem.message = "processado com sucesso"
@@ -100,13 +100,14 @@ class Problem(BaseModel):
         return problem
 
     @classmethod
-    def parse_mdfile(cls, problem_link: str, md_path: Path):
+    def parse_mdfile(cls, problem_link: str, md_path: str, tmp_path: Path):
         """
         Retorna: problema de um arquivo md.
         """
         problem_id = Path(problem_link).stem
         try:
-            problem = cls.parse_mdstr(problem_id, md_path.read_text())
+            md_str = md_path.read_text()
+            problem = cls.parse_mdstr(problem_id, md_str, md_path.parent, tmp_path)
 
         except Exception as exp:
             problem = Problem(
@@ -119,7 +120,7 @@ class Problem(BaseModel):
         return problem
 
     @classmethod
-    def parse_hedgedoc(cls, cursor, hedgedoc_link: str):
+    def parse_hedgedoc(cls, cursor, hedgedoc_link: str, tmp_path: Path):
         """
         Retorna: problema de link do hedgedoc.
         """
@@ -135,7 +136,9 @@ class Problem(BaseModel):
             cursor.execute(f"""SELECT * FROM "Notes" WHERE id = {"'"+p_id+"'"}""")
             query_results = cursor.fetchall()
 
-            problem = cls.parse_mdstr(hedgedoc_id, query_results[0][2])
+            problem = cls.parse_mdstr(
+                hedgedoc_id, query_results[0][2], HEDGEDOC_GRAPHICS_PATH, tmp_path
+            )
 
         except Exception as exp:
             problem = Problem(
