@@ -11,8 +11,6 @@ from pathlib import Path
 
 import pypandoc
 
-from .status import Status
-
 FILTER_PATH = resources.files("diagramador.pandoc").joinpath("filters")
 WRITER_PATH = resources.files("diagramador.pandoc").joinpath("problem.lua")
 

@@ -4,6 +4,7 @@ Diagramador, Gabriel Braun, 2024
 Esse módulo implementa uma classe para as avaliações.
 """
 
+import json
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
@@ -274,7 +275,13 @@ class Exam(ExamParams):
         """
         Retorna: prova a partir dos dados de um json.
         """
-        exam = cls.model_validate_json(json_path.read_text())
+        exam_json = json.loads(json_path.read_text())
+
+        # LEGADO: compatibilizar com as provas que já estão no site
+        if "id" not in exam_json and "id_" in exam_json:
+            exam_json["id"] = exam_json["id_"]
+
+        exam = cls.model_validate(exam_json)
         exam.path = json_path
 
         if not exam.out_path:

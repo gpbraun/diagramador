@@ -241,8 +241,8 @@
               boxrule = \g_braun_linewidth_dim,
             }
         ]	
-      \cs_set:Npn \toprule    {\\[-2em]}
-      \cs_set:Npn \bottomrule {\\[-2em]}
+      \cs_set:Npn \toprule    {\\[-1.5em]}
+      \cs_set:Npn \bottomrule {\\[-2.5em]}
       \dim_set_eq:NN \parskip \bigskipamount
       \smallskip
     } 

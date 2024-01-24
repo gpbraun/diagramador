@@ -7,10 +7,6 @@
 local src_path
 local tmp_path
 
------------------------------------------------------------------
--- Elementos
------------------------------------------------------------------
-
 local function getMetadata(meta)
     --
     -- Extrai metadados.
@@ -29,7 +25,7 @@ local function Image(elem)
         local svg_path = pandoc.path.join { src_path, img_name .. ".svg" }
         local pdf_path = pandoc.path.join { tmp_path, img_name .. ".pdf" }
 
-        os.execute("cairosvg -s 1.25 " .. svg_path .. " -o " .. pdf_path)
+        os.execute("cairosvg -s 1.33 " .. svg_path .. " -o " .. pdf_path)
 
         elem.src = pdf_path
     end
@@ -37,7 +33,7 @@ local function Image(elem)
 end
 
 -----------------------------------------------------------------
--- Export filtros
+-- Filtro
 -----------------------------------------------------------------
 
 return {
