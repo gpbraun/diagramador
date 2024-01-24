@@ -126,6 +126,14 @@ function Writer(doc, opts)
         end
     end
 
+    -- pacotes de latex
+    local packages = {}
+    if doc.meta.requirepackage ~= nil then
+        for _, package in ipairs(doc.meta.requirepackage) do
+            table.insert(packages, pandoc.utils.stringify(package))
+        end
+    end
+
     -- dados do problema
     local problem_data = {
         id        = doc.meta.id,
@@ -136,7 +144,7 @@ function Writer(doc, opts)
         answer    = answer,
         choices   = doc.meta.choices,
         elements  = parseElementList(doc.meta.elementos),
-        packages  = {},
+        packages  = packages,
 
     }
     return pandoc.json.encode(problem_data)

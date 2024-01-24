@@ -67,6 +67,7 @@ class Exam(ExamParams):
     # dados dos problemas
     points: str = "1,00"
     elements: set[str] = Field(default=set())
+    packages: set[str] = Field(default=set())
 
     def status_ok(self):
         """
@@ -163,6 +164,7 @@ class Exam(ExamParams):
                         self.objective = False
 
                     self.elements.update(problem.elements)
+                    self.packages.update(problem.packages)
 
                     # Escreve o `.tex` do avaliação.
                     if problem.status_ok():

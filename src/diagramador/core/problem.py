@@ -11,6 +11,7 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
+from diagramador.console import console
 from diagramador.templates import render_problem, render_solution
 from diagramador.utils import HEDGEDOC_GRAPHICS_PATH, Status, md2problem
 
@@ -94,6 +95,7 @@ class Problem(BaseModel):
         Retorna: problema de uma string md.
         """
         problem_obj = md2problem(problem_id, md_str, path, tmp_path)
+
         problem = cls.model_validate(problem_obj)
 
         problem.message = "processado com sucesso"
