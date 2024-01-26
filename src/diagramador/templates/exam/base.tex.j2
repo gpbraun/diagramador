@@ -59,7 +59,9 @@
 \setcounter{problem}{(((pset.start-1)))}
 
 ((# ANTES DOS DADOS ADICIONAIS #))
+((* if pset.subject|upper in ["MAT", "FIS", "QUI"] *))
 ((* block before_data *))((* endblock *))
+((* endif *))
 ((# DADOS ADICIONAIS DE MATEMÁTICA #))
 ((* if pset.subject|upper == "MAT" *))
 ((* block data_mat *))
@@ -161,8 +163,9 @@
 ((* endblock *))
 ((* endif *))
 ((# APÓS OS DADOS ADICIONAIS #))
-((* block after_data *))
-((* endblock *))
+((* if pset.subject|upper in ["MAT", "FIS", "QUI"] *))
+((* block after_data *))((* endblock *))
+((* endif *))
 
 ((# PROBLEMAS #))
 ((* for problem_id in pset.problem_ids *))

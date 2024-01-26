@@ -197,6 +197,7 @@
     \dim_set:Nn    \linenumbersep { -10 pt }
 
     \begin{addmargin}[20pt]{20pt}
+    \resetlinenumber
     \begin{linenumbers}
 	}
   {
