@@ -336,6 +336,7 @@
   % Lista enumerada
   [
     counter = enumi,
+    label-align = right,
     label   = { \bfseries\labelenumi },
   ] 
   { enumerate } [ \item ]
