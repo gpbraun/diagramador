@@ -337,6 +337,7 @@
   [
     counter = enumi,
     label-align = right,
+    label-width  = 2em,
     label   = { \bfseries\labelenumi },
   ] 
   { enumerate } [ \item ]
