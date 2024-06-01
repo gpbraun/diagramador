@@ -20,6 +20,7 @@ TEMPLATES = {
     "EFOMM": "mil",
     "ESPCEX": "mil",
     "FLEX": "mil",
+    "PENSI": "pensi",
     "PROVA": "prova",
     "GABARITO": "gabarito",
 }
