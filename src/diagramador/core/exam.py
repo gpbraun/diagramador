@@ -105,8 +105,8 @@ class Exam(ExamParams):
                     "•",
                     problem.message,
                 )
+                sys.stderr.write(f"{problem.index}")
         console.print()
-        sys.stderr.write(str(problem.index))
 
         return self.status
 
