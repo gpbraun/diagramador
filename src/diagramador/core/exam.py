@@ -5,6 +5,7 @@ Esse módulo implementa uma classe para as avaliações.
 """
 
 import json
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
@@ -105,6 +106,8 @@ class Exam(ExamParams):
                     problem.message,
                 )
         console.print()
+        sys.stderr.write(str(problem.index))
+
         return self.status
 
     def process_problems(self, cursor=None):

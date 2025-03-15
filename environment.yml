@@ -1,0 +1,11 @@
+name: braun-dev-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - pip
+  - pandoc
+  - cairosvg
+  - pdf2svg
+  - scour

@@ -5,7 +5,6 @@ from pathlib import Path
 
 import psycopg2
 from pydantic import ValidationError
-from rich.console import Console
 
 from diagramador import Exam
 from diagramador.console import console
