@@ -11,6 +11,8 @@ import time
 from collections import namedtuple
 from pathlib import Path
 
+from pydantic import BaseModel
+
 from diagr.console import console
 
 from .status import Status
@@ -22,7 +24,16 @@ TECTONIC_ERROR_PATTERN = re.compile(
     r"(?P<type>warning|error): (?P<file>[^:]+):(?P<line>\d+): (?P<message>.+)"
 )
 
-TexError = namedtuple("TexError", ["file", "line", "message"])
+
+class TexError(BaseModel):
+    """
+    Erro de compilação no LaTeX.
+    """
+
+    file: Path
+    line: int
+    message: str
+    snippet: str
 
 
 def parse_log(tex_path: Path, log_str: str) -> list[TexError] | None:
@@ -35,24 +46,23 @@ def parse_log(tex_path: Path, log_str: str) -> list[TexError] | None:
     errors = []
     for match in TECTONIC_ERROR_PATTERN.finditer(log_str):
         error_type = match.group("type")
-        file_name = match.group("file")
-        line_num = match.group("line")
+        file_path = tex_path.parent.joinpath("problems", match.group("file"))
+        line_num = int(match.group("line"))
         message = match.group("message")
 
-        if error_type != "error":
-            # ignora os warnings
+        if error_type != "error" or not file_path.exists():
+            # ignora os warnings/erros de arquivos inexistentes (não deveriam acontecer)
             continue
 
-        # arquivo temporário .tex do problema
-        file_path = tex_path.parent.joinpath("problems", file_name)
-
-        error = TexError(file=file_path, line=int(line_num), message=message)
+        snippet = "\n".join(
+            file_path.read_text().splitlines()[line_num - 3 : line_num + 2]
+        )
+        error = TexError(
+            file=file_path, line=line_num, message=message, snippet=snippet
+        )
         errors.append(error)
 
     return errors
-
-
-TectonicOutput = namedtuple("TectonicOutpt", ["status", "errors"])
 
 
 def tectonic_search_paths(resource_paths: list[Path]) -> list[str]:
@@ -69,6 +79,9 @@ def tectonic_search_paths(resource_paths: list[Path]) -> list[str]:
     if resource_paths:
         search_paths.extend(resource_paths)
     return [f"-Zsearch-path={str(search_path)}" for search_path in search_paths]
+
+
+TectonicOutput = namedtuple("TectonicOutpt", ["status", "errors"])
 
 
 def tectonic(tex_path: Path, resource_paths: list[Path] = None):

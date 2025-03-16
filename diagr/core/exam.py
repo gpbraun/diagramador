@@ -125,14 +125,13 @@ class Exam(ExamParams):
                             line_range=(error.line - 2, error.line + 2),
                         ),
                         padding=(1, 1),
-                        title=f"[bold]{error.message}[/bold] @ [magenta]'{error.file}'[bold]:{error.line}[/bold][/magenta]",
+                        width=100,
+                        title=f"[magenta]'{error.file}'[bold]:{error.line}[/bold][/magenta]",
+                        subtitle=f"[bold]{error.message}[/bold]",
                         border_style="red",
                     ),
                 )
             console.print()
-
-            # STDERR - QUESTÃO ERRADA.
-            sys.stderr.write(f"P{problem.index}")
 
         return self.status
 
