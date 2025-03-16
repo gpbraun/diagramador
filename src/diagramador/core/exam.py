@@ -105,6 +105,7 @@ class Exam(ExamParams):
                     "•",
                     problem.message,
                 )
+                # STDERR - QUESTÃO ERRADA.
                 sys.stderr.write(f"{problem.index}")
         console.print()
 

@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%   Gabriel Braun, 2024
-%
 %   exam.cls
+%
+%   Gabriel Braun, 2025
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -39,27 +39,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
-%   FONTES E TIPOGRAFIA
-%                                              
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\RequirePackage [T1] { fontenc }
-% \RequirePackage { microtype }
-
-\cs_new:Npn \HUGE { \@setfontsize \HUGE {27} {37} } 
-
-\RequirePackage [  brazil  ] { babel }
-\RequirePackage { csquotes }
-
-\dim_zero:N    \parindent
-\dim_set_eq:NN \parskip \bigskipamount
-
-\setkomafont { section       } { \usekomafont { disposition } }
-\setkomafont { subsection    } { \usekomafont { disposition } }
-\setkomafont { subsubsection } { \usekomafont { disposition } }
-  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                              
 %   PACOTES
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,6 +69,88 @@
   }
 
 \tl_set:Nn \arraystretch {1.5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   FONTES
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage { microtype }
+
+\RequirePackage
+  [ warnings-off = { mathtools-colon, mathtools-overbracket } ]
+  { unicode-math }
+
+\defaultfontfeatures{
+  Scale=MatchUppercase,
+}
+
+% FONTE PRINCIPAL
+\setmainfont{NotoSans}[
+  Extension = .ttf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+
+% FONTE SEM SERIFAS
+\setsansfont{NotoSans}[
+  Extension = .ttf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+
+% FONTE COM SERIFAS
+\setromanfont{NotoSerif}[
+  Extension = .ttf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+
+% FONTES PARA EQUAÇÕES
+\setmathfont{STIXTwoMath-Regular.ttf}
+
+\setmathfont{NotoSans-Regular.ttf}[range=up/{num}]
+\setmathfont{NotoSans-Regular.ttf}[
+  range={
+    "002C, % - ,
+    "002E, % - .
+    "003A, % - :
+    "003B, % - ;
+    "003F, % - ?
+    "0021, % - !
+    "0025  % - %
+  }
+]
+\setmathfont{NotoSerif-Italic.ttf}[range=it/{Latin,latin,greek}]
+\setmathfont{NotoSerif-Regular.ttf}[range=up/{Greek}]
+
+% FONTES PADRÃO SEM SERIFAS
+\cs_set_eq:NN \familydefault \sfdefault
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   TIPOGRAFIA
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_new:Npn \HUGE { \@setfontsize \HUGE {27} {37} } 
+
+\RequirePackage [  brazil  ] { babel }
+\RequirePackage { csquotes }
+
+\dim_zero:N    \parindent
+\dim_set_eq:NN \parskip \bigskipamount
+
+\setkomafont { section       } { \usekomafont { disposition } }
+\setkomafont { subsection    } { \usekomafont { disposition } }
+\setkomafont { subsubsection } { \usekomafont { disposition } }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           

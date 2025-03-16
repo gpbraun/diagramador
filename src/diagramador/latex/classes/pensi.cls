@@ -24,8 +24,6 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage { FiraSans }
-
 \examoptions
   { 
     DIV = 18,
@@ -204,12 +202,12 @@
         frame~ hidden,
 		    colback = yellow!15,
       ]
-      {    
+      {
+        \sffamily  
         {
           \strut 
           \bfseries
           \small
-          \sffamily 
           Etapa~ \arabic{ step }. 
         }
         \; #1
@@ -223,7 +221,7 @@
           breakable,
           title = 
             {
-              \usekomafont{disposition}\small
+              \usekomafont{disposition}
               \IfValueTF {#1} {#1} { Gabarito }
             },
           coltitle = black,
@@ -245,6 +243,7 @@
       \cs_set:Npn \bottomrule {\\[-2.5em]}
       \dim_set_eq:NN \parskip \bigskipamount
       \smallskip
+      \rmfamily
     } 
     {
       \end{tcolorbox}

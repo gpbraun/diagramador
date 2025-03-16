@@ -58,6 +58,7 @@ def tectonic_search_paths(resource_paths: list[Path]) -> list[str]:
         TEXINPUTS_PATH.joinpath("classes"),
         TEXINPUTS_PATH.joinpath("graphics"),
         TEXINPUTS_PATH.joinpath("packages"),
+        TEXINPUTS_PATH.joinpath("fonts"),
         HEDGEDOC_GRAPHICS_PATH,
     ]
     if resource_paths:

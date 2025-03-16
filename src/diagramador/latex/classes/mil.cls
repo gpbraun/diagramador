@@ -24,11 +24,6 @@
 %                                              
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage { cmbright }
-\RequirePackage [  scaled  ]  { helvet }
-
-\cs_set_eq:NN \familydefault \sfdefault
-
 \mhchemoptions
   {
       textfontcommand = \sffamily,
