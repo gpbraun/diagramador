@@ -1,4 +1,4 @@
-name: braun-dev-env
+name: diagr-dev-env
 channels:
   - conda-forge
   - defaults
@@ -7,5 +7,5 @@ dependencies:
   - pip
   - pandoc
   - cairosvg
-  - pdf2svg
-  - scour
+  - psycopg2
+  - tectonic
