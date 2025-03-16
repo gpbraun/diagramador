@@ -8,7 +8,7 @@
 **/_tmp*
 
 ### Output Files ###
-*.pdf
+**/test/**/*.pdf
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
