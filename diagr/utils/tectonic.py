@@ -25,7 +25,7 @@ TECTONIC_ERROR_PATTERN = re.compile(
 TexError = namedtuple("TexError", ["file", "line", "message"])
 
 
-def parse_log(log_str: str) -> list[TexError] | None:
+def parse_log(tex_path: Path, log_str: str) -> list[TexError] | None:
     """
     Retorna: retorna erros no `.log` do TECTONIC.
     """
@@ -39,9 +39,15 @@ def parse_log(log_str: str) -> list[TexError] | None:
         line_num = match.group("line")
         message = match.group("message")
 
-        if error_type == "error":
-            error = TexError(file=Path(file_name), line=line_num, message=message)
-            errors.append(error)
+        if error_type != "error":
+            # ignora os warnings
+            continue
+
+        # arquivo temporário .tex do problema
+        file_path = tex_path.parent.joinpath("problems", file_name)
+
+        error = TexError(file=file_path, line=int(line_num), message=message)
+        errors.append(error)
 
     return errors
 
@@ -77,6 +83,7 @@ def tectonic(tex_path: Path, resource_paths: list[Path] = None):
             "compile",
             "--keep-intermediates",
             "--keep-logs",
+            "-Zcontinue-on-errors",
             *tectonic_search_paths(resource_paths),
             str(tex_path),
         ],
@@ -90,7 +97,7 @@ def tectonic(tex_path: Path, resource_paths: list[Path] = None):
         err_path.write_text(tectonic.stderr)
     pdf_path = tex_path.with_suffix(".pdf")
 
-    errors = parse_log(tectonic.stderr)
+    errors = parse_log(tex_path, tectonic.stderr)
     status = Status.ERROR if errors or not pdf_path.exists() else Status.OK
 
     console.print(

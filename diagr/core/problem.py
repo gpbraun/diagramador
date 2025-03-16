@@ -11,9 +11,8 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from diagr.console import console
 from diagr.templates import render_problem, render_solution
-from diagr.utils import HEDGEDOC_GRAPHICS_PATH, Status, md2problem
+from diagr.utils import HEDGEDOC_GRAPHICS_PATH, Status, TexError, md2problem
 
 
 class Choice(BaseModel):
@@ -37,33 +36,24 @@ class Problem(BaseModel):
     local: bool = False
     index: int = 0
     processed: bool = False
-    message: str = "não processado"
+    message: str = "Não processado"
+    errors: list[TexError] = Field(default_factory=list)
     # parâmetros do problema
     title: str = "Problema"
     statement: str = ""
     solution: str = ""
     answer: str = ""
     choices: Optional[list[Choice]] = None
-    data: list[str] = Field(default=[])
+    data: list[str] = Field(default_factory=list)
     # parâmetros para o documento
-    elements: set[str] = Field(default=set())
-    packages: set[str] = Field(default=set())
+    elements: set[str] = Field(default_factory=set)
+    packages: set[str] = Field(default_factory=set)
 
     def status_ok(self):
         """
         Retorna: verdadeiro se o Status é OK.
         """
         return self.status == Status.OK
-
-    def set_status(self, index: int, message: str):
-        """
-        Muda o estado do problema.
-        """
-        self.status = Status.OK
-        self.index = index
-        self.message = message
-
-        return self.status
 
     def latex(self):
         """
@@ -98,7 +88,7 @@ class Problem(BaseModel):
 
         problem = cls.model_validate(problem_obj)
 
-        problem.message = "processado com sucesso"
+        problem.message = "Processado com sucesso."
         problem.processed = True
 
         return problem

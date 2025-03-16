@@ -12,6 +12,8 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 from rich import progress
+from rich.panel import Panel
+from rich.syntax import Syntax
 
 from diagr.console import console
 from diagr.templates import render_doc
@@ -98,16 +100,39 @@ class Exam(ExamParams):
                 self.message,
             )
         for problem in self.problems.values():
-            if problem.status == Status.ERROR:
+            if problem.status == Status.OK:
+                continue
+
+            # Questão com PDF
+            console.print(
+                "• [bold red]ERRO!",
+                f"Problema [bold blue]{problem.index:02d}",
+                "•",
+                problem.message,
+            )
+
+            for error in problem.errors:
+                # Mostra os erros de compilação do latex no console
+                console.print()
                 console.print(
-                    "• [bold red]ERRO!",
-                    f"Problema [bold blue]{problem.index:02d}",
-                    "•",
-                    problem.message,
+                    Panel(
+                        Syntax.from_path(
+                            error.file,
+                            line_numbers=True,
+                            theme="monokai",
+                            background_color="default",
+                            highlight_lines={error.line},
+                            line_range=(error.line - 2, error.line + 2),
+                        ),
+                        padding=(1, 1),
+                        title=f"[bold]{error.message}[/bold] @ [magenta]'{error.file}'[bold]:{error.line}[/bold][/magenta]",
+                        border_style="red",
+                    ),
                 )
-                # STDERR - QUESTÃO ERRADA.
-                sys.stderr.write(f"{problem.index}")
-        console.print()
+            console.print()
+
+            # STDERR - QUESTÃO ERRADA.
+            sys.stderr.write(f"P{problem.index}")
 
         return self.status
 
@@ -205,9 +230,8 @@ class Exam(ExamParams):
 
         for error in errors:
             error_id = error.file.stem.replace("_sol", "")
-            message = (
-                f"[magenta]'{error.file}':{error.line}[/magenta] • [red]{error.message}"
-            )
+
+            message = "Erro de compilação com latex."
 
             if error_id == self.id_:
                 self.message = message
@@ -216,6 +240,7 @@ class Exam(ExamParams):
                 problem = self.problems[error_id]
                 problem.status = Status.ERROR
                 problem.message = message
+                problem.errors.append(error)
 
         return self.status
 
@@ -231,16 +256,18 @@ class Exam(ExamParams):
         self.compile_tex(tex_exam_path, log_name="avaliação")
         if not self.status_ok():
             self.log_status()
-            return self.status
+            # descomentar para não copiar o pdf para o output caso haja erro.
+            # return self.status
 
         # copia o `.pdf` pro diretório de output
         tmp_pdf_path = tex_exam_path.with_suffix(".pdf")
-        out_pdf_path = (
-            self.out_path.joinpath(self.pdf_exam_name)
-            if self.pdf_exam_name
-            else self.out_path.joinpath(file_name).with_suffix(".pdf")
-        )
-        out_pdf_path.write_bytes(tmp_pdf_path.read_bytes())
+        if tmp_pdf_path.exists():
+            out_pdf_path = (
+                self.out_path.joinpath(self.pdf_exam_name)
+                if self.pdf_exam_name
+                else self.out_path.joinpath(file_name).with_suffix(".pdf")
+            )
+            out_pdf_path.write_bytes(tmp_pdf_path.read_bytes())
 
         return self.status
 
@@ -263,16 +290,18 @@ class Exam(ExamParams):
         self.compile_tex(tex_solution_path, log_name="gabarito")
         if not self.status_ok():
             self.log_status()
-            return self.status
+            # descomentar para não copiar o pdf para o output caso haja erro.
+            # return self.status
 
         # copia o `.pdf` pro diretório de output
         tmp_pdf_path = tex_solution_path.with_suffix(".pdf")
-        out_pdf_path = (
-            self.out_path.joinpath(self.pdf_solution_name)
-            if self.pdf_solution_name
-            else self.out_path.joinpath(file_name).with_suffix(".pdf")
-        )
-        out_pdf_path.write_bytes(tmp_pdf_path.read_bytes())
+        if tmp_pdf_path.exists():
+            out_pdf_path = (
+                self.out_path.joinpath(self.pdf_solution_name)
+                if self.pdf_solution_name
+                else self.out_path.joinpath(file_name).with_suffix(".pdf")
+            )
+            out_pdf_path.write_bytes(tmp_pdf_path.read_bytes())
 
         return self.status
 

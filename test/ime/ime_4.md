@@ -7,6 +7,9 @@ Um texto em prosa:
 > Donec auctor sapien sit amet nulla euismod, vel finibus erat aliquet. Sed non felis ut tortor vestibulum euismod id vel nulla. Mauris at est suscipit, vulputate mi efficitur, congue lorem. Proin vel risus elit. Curabitur ultrices arcu velit, nec viverra libero suscipit vitae. Duis interdum tellus in sapien pretium feugiat. Suspendisse pulvinar tincidunt justo eget facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent semper blandit leo at dictum. Nam efficitur mi eu nisi consequat, scelerisque elementum nulla venenatis. In porta porttitor turpis, id posuere velit venenatis vitae. Ut id purus non nulla vehicula euismod. Nulla in enim at magna consectetur commodo.
 > 
 > Vivamus ornare est sed nulla consequat, ac sodales sem imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla vestibulum orci ut ex mattis, ac faucibus quam ornare. Sed nec dignissim felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec sodales risus. Nullam ac varius ante, ut interdum neque. Suspendisse vulputate tellus ut lacus viverra, a ultrices nisl hendrerit. Mauris nec pulvinar libero. Fusce euismod placerat metus. Sed felis velit, tempor quis nulla nec, varius blandit tortor. Morbi ultrices turpis quam, ut pretium sapien convallis vitae. Fusce dapibus lacus vel massa lobortis, nec pharetra purus venenatis.
+$$
+    a_b_c
+$$
 
 Materiais híbridos orgânicos e inorgânicos são estudados para aplicação em dispositivos ópticos de armazenamento. Um composto potencialmente útil é o dihidrogenofosfato de *N*-metil-2,4,6-trifenilpiridínio, $\ce{C5H12N}$. O cátion possui uma estrutura análoga à do benzeno, com um nitrogênio heteroátomo. 
 

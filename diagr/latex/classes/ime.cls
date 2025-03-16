@@ -30,9 +30,6 @@
     fontsize = 10pt,
   }
 
-\logoleft  { pensi-logo.pdf }
-\logoright { ime-logo.pdf }
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
 %   CONFIGURAÇÃO DA PÁGINA

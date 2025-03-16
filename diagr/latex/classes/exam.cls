@@ -209,7 +209,7 @@
 \ohead {}
 
 \ifoot {}
-\cfoot { \textbf{\thepage} }
+\cfoot { \small\textbf{\thepage} }
 \ofoot {}
 
 \pagestyle { scrheadings }
