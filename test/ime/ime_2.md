@@ -44,7 +44,7 @@ No ponto 0, $x_0 = 10\%$ da amônia está na fase gasosa. Assim, a temperatura $
 
 A temperatura de ebulição à pressão $P_1 = \pu{3 bar}$ é determinada pela equação empírica:
 $$
-    \log\left(\frac{P^\star_{\ce{NH3}}}{\pu{bar}}\right) = \pu{5,5} - \frac{\pu{1200}}{T/\pu{K} - \pu{20}}
+    \log\left(\frac{P_{\mathrm{sat}}}{\pu{bar}}\right) = \pu{5,5} - \frac{\pu{1200}}{T/\pu{K} - \pu{20}}
 $$
 Logo:
 $$

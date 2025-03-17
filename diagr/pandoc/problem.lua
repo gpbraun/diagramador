@@ -128,8 +128,8 @@ function Writer(doc, opts)
 
     -- pacotes de latex
     local packages = {}
-    if doc.meta.requirepackage ~= nil then
-        for _, package in ipairs(doc.meta.requirepackage) do
+    if doc.meta.usepackage ~= nil then
+        for _, package in ipairs(doc.meta.usepackage) do
             table.insert(packages, pandoc.utils.stringify(package))
         end
     end
