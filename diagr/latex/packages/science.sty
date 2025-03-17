@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%   Gabriel Braun, 2024
+%   science.sty
 %
-%   Listas de química
+%   Gabriel Braun, 2025
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -16,9 +16,9 @@
 
 \ProvidesExplPackage
 	{ science }
-	{ 2024/01/01 }
-	{ 2.0 }
-	{ Fórmulas e equações. }
+	{ \c_diagr_pkg_date_tl }
+	{ \c_diagr_version_tl  }
+	{ \c_diagr_info_tl     }
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -73,8 +73,8 @@
 
 \cs_set:Npn \unitfrac #1#2 {
   \raisebox{1pt}{\ensuremath{\genfrac{}{}{}2
-      { \raisebox{-2pt} { $\scriptstyle\unit{#1}$ } }
-      { \raisebox{2pt}  { $\scriptstyle\unit{#2}$ } }
+      { \scriptstyle\unit{#1} }
+      { \scriptstyle\unit{#2} }
   }}
 }
 
@@ -137,6 +137,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage [ version = 4 ] { mhchem }
+
+\mhchemoptions
+  {
+    textfontname = sffamily,
+    mathfontname = mathsf,
+  }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              

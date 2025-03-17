@@ -1,22 +1,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%   Gabriel Braun, 2024
+%   pensi.cls
 %
-%   ita.cls
+%   Gabriel Braun, 2025
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage { xparse, l3draw }
+\RequirePackage { expl3 }
 
 \ExplSyntaxOn
 
 \ProvidesExplClass
 	{ pensi }
-	{ 2024  }
-	{ 3.0   }
-	{ Avaliação modelo Pensi }
+	{ \c_diagr_pkg_date_tl }
+	{ \c_diagr_version_tl  }
+	{ \c_diagr_info_tl     }
 
-\LoadClass { exam }
+\LoadClass { base }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -31,6 +31,23 @@
 		headinclude = true,
 		footinclude = true,
   }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                              
+%   FONTES ADICIONAIS
+%                                              
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Fonte do título
+\newfontfamily\headingfamily{FiraSans}[
+  Extension = .ttf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+
+\setkomafont { disposition } { \bfseries\headingfamily }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
@@ -206,7 +223,7 @@
         \sffamily  
         {
           \strut 
-          \bfseries
+          \usekomafont { disposition }
           \small
           Etapa~ \arabic{ step }. 
         }
@@ -239,8 +256,8 @@
               boxrule = \g_braun_linewidth_dim,
             }
         ]	
-      \cs_set:Npn \toprule    {\\[-1.5em]}
-      \cs_set:Npn \bottomrule {\\[-2.5em]}
+      % \cs_set:Npn \toprule    {\\[-1.5em]}
+      % \cs_set:Npn \bottomrule {\\[-2.5em]}
       \dim_set_eq:NN \parskip \bigskipamount
       \smallskip
       \rmfamily

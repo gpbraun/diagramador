@@ -6,17 +6,36 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage { silence, xparse, l3draw }
-
-\WarningFilter{latex}{Citation}
+\RequirePackage { silence, expl3, l3draw }
 
 \ExplSyntaxOn
 
+\tl_const:Nn \c_diagr_pkg_date_tl             {2025/03/17}
+\tl_const:Nn \c_diagr_version_major_number_tl {2025}
+\tl_const:Nn \c_diagr_version_minor_number_tl {3}
+\tl_const:Nn \c_diagr_version_subrelease_tl   {17}
+\tl_const:Nx \c_diagr_version_number_tl
+	{
+		\c_diagr_version_major_number_tl .
+		\c_diagr_version_minor_number_tl
+	}
+\tl_const:Nx \c_diagr_version_tl
+	{
+		\c_diagr_version_number_tl
+		\c_diagr_version_subrelease_tl
+	}
+\tl_const:Nn \c_diagr_info_tl 
+	{ Diagramação~ de~ avaliações. }
+
+%============================================================%
+%   DEFINIÇÃO DA CLASSE
+%============================================================%
+
 \ProvidesExplClass
 	{ exam }
-	{ 2024 }
-	{ 3.0  }
-	{ Simulados e gabaritos }
+	{ \c_diagr_pkg_date_tl }
+	{ \c_diagr_version_tl  }
+	{ \c_diagr_info_tl     }
 
 \LoadClass { scrartcl }
 
@@ -85,59 +104,81 @@
   [ warnings-off = { mathtools-colon, mathtools-overbracket } ]
   { unicode-math }
 
-\defaultfontfeatures{
-  Scale=MatchUppercase,
-}
+\defaultfontfeatures { Scale = MatchUppercase }
 
 % FONTE PRINCIPAL
-\setmainfont{NotoSans}[
-  Extension = .ttf,
-  UprightFont    = *-Regular,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic,
-]
+\setmainfont { NotoSans }
+  [
+    Extension = .ttf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]
 
 % FONTE SEM SERIFAS
-\setsansfont{NotoSans}[
-  Extension = .ttf,
-  UprightFont    = *-Regular,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic,
-]
+\setsansfont { NotoSans }
+  [
+    Extension = .ttf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]
 
 % FONTE COM SERIFAS
-\setromanfont{NotoSerif}[
-  Extension = .ttf,
-  UprightFont    = *-Regular,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic,
-]
+\setromanfont { NotoSerif }
+  [
+    Extension = .ttf,
+    UprightFont    = *-Regular,
+    BoldFont       = *-Bold,
+    ItalicFont     = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]
 
-% FONTES PARA EQUAÇÕES
-\setmathfont{STIXTwoMath-Regular.ttf}
+%============================================================%
+%   FONTES PARA EQUAÇÕES
+%============================================================%  
 
-\setmathfont{NotoSans-Regular.ttf}[
-  range={
-    "002C, % - ,
-    "002E, % - .
-    "003A, % - :
-    "003B, % - ;
-    "003F, % - ?
-    "0021, % - !
-    "0025  % - %
-  }
-]
+\setmathfont { STIXTwoMath-Regular.ttf }
 
-\setmathfont{NotoSans-Regular.ttf}[range=up/num]
-\setmathfont{NotoSans-Bold.ttf}[range=bfup/num]
+\setmathfont { NotoSans-Regular.ttf }
+  [
+    range = {
+      "002C, % - ,
+      "002E, % - .
+      "003A, % - :
+      "003B, % - ;
+      "003F, % - ?
+      "0021, % - !
+      "0025  % - %
+    }
+  ]
 
-\setmathfont{NotoSerif-Regular.ttf}[range=up/{Latin,latin,Greek,greek}]
-\setmathfont{NotoSerif-Bold.ttf}[range=bfup/{Latin,latin,Greek,greek}]
-\setmathfont{NotoSerif-Italic.ttf}[range=it/{Latin,latin,Greek,greek}]
-\setmathfont{NotoSerif-BoldItalic.ttf}[range=bfit/{Latin,latin,Greek,greek}]
+\setmathfont{ NotoSans-Regular.ttf }
+  [
+    range = up/num
+  ]
+\setmathfont{ NotoSans-Bold.ttf }
+  [
+    range = bfup/num
+  ]
+\setmathfont{ NotoSerif-Regular.ttf }
+  [
+    range = up/{ Latin, latin, Greek, greek }
+  ]
+\setmathfont{ NotoSerif-Bold.ttf }
+  [
+    range = bfup/{ Latin, latin, Greek, greek }
+  ]
+\setmathfont{ NotoSerif-Italic.ttf }
+  [
+    range = it/{ Latin, latin, Greek, greek }
+  ]
+\setmathfont{ NotoSerif-BoldItalic.ttf }
+  [
+    range = bfit/{ Latin, latin, Greek, greek }
+  ]
 
 % FONTES PADRÃO SEM SERIFAS
 \cs_set_eq:NN \familydefault \sfdefault
@@ -172,7 +213,7 @@
 \ModifyLayer [ addvoffset = -0.7ex ] { plain.scrheadings.foot.above.line }
 
 %============================================================%
-%   FRAME NA PÁGINA
+%   FUNÇÕES PARA FRAME NA PÁGINA
 %============================================================%
 
 \cs_new:Npn \examrule

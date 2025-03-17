@@ -1,22 +1,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%   Gabriel Braun, 2024
+%   mil.cls
 %
-%   ita.cls
+%   Gabriel Braun, 2025
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage { xparse }
+\RequirePackage { expl3 }
 
 \ExplSyntaxOn
 
 \ProvidesExplClass
 	{ mil  }
-	{ 2024 }
-	{ 3.0  }
-	{ Avaliação modelo MIL }
+	{ \c_diagr_pkg_date_tl }
+	{ \c_diagr_version_tl  }
+	{ \c_diagr_info_tl     }
 
-\LoadClass { exam }
+\LoadClass { base }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              

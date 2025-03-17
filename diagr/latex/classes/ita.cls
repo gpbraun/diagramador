@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%   Gabriel Braun, 2024
-%
 %   ita.cls
+%
+%   Gabriel Braun, 2025
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -12,11 +12,11 @@
 
 \ProvidesExplClass
 	{ ita  }
-	{ 2024 }
-	{ 3.0  }
-	{ Avaliação modelo ITA }
+	{ \c_diagr_pkg_date_tl }
+	{ \c_diagr_version_tl  }
+	{ \c_diagr_info_tl     }
 
-\LoadClass { exam }
+\LoadClass { base }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                              
