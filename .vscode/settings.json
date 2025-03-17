@@ -1,30 +1,69 @@
 {
+  // CONFIGURAÇÕES DO EDITOR
   "search.exclude": {
+    "venv/*": true,
     "**/*.json": true,
     ".vscode": true
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.egg-info": true
   },
   "editor.wordBasedSuggestions": "off",
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
+  "files.associations": {
+    "*.md": "markdown",
+    "*.j2": "jinja-latex",
+    "*.cls": "latex-expl3",
+    "*.sty": "latex-expl3"
+  },
+  // EXTENSÃO: CODE RUNNER
   "code-runner.runInTerminal": true,
   "code-runner.ignoreSelection": true,
   "code-runner.executorMap": {
     "markdown": "diagr -les $dir"
   },
-  "python.analysis.typeCheckingMode": "off",
-  "Lua.diagnostics.globals": ["pandoc", "FORMAT"],
+  // CONFIGURAÕES DAS LINGUAGENS
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
   "[python]": {
     "editor.tabSize": 4,
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "always"
+    }
+  },
+  "[lua]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true
   },
   "[latex]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true
   },
   "[latex-expl3]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false
   },
-  "latex-workshop.latex.autoBuild.run": "never"
+  // EXTENSÃO: LUA
+  "Lua.diagnostics.globals": [
+    "FORMAT",
+    "PANDOC_READER_OPTIONS",
+    "PANDOC_WRITER_OPTIONS",
+    "PANDOC_VERSION",
+    "PANDOC_API_VERSION",
+    "PANDOC_SCRIPT_FILE",
+    "PANDOC_STATE",
+    "PANDOC_FILE_TYPE",
+    "pandoc",
+    "lpeg",
+    "re",
+    "content"
+  ],
+  // EXTENSÃO: LATEX WORKSHOP
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.formatting.latex": "tex-fmt"
 }

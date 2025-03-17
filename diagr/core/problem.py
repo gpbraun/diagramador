@@ -31,7 +31,7 @@ class Problem(BaseModel):
 
     id_: str = Field(alias="id")
     # parâmetros de estado
-    date: datetime
+    date: Optional[datetime] = None
     status: Status = Status.OK
     local: bool = False
     index: int = 0
@@ -107,6 +107,7 @@ class Problem(BaseModel):
                 id=problem_id,
                 status=Status.ERROR,
                 message=str(exp),
+                date=None,
             )
 
         problem.local = True

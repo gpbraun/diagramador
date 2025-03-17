@@ -26,7 +26,7 @@ def parse_lua_table(obj: dict) -> dict | list:
     return obj
 
 
-def pandoc_args(meta: dict) -> str:
+def pandoc_args(meta: dict) -> list[str]:
     """
     Converte um `dict` na lista de argumentos extras para o PANDOC.
     """
@@ -37,7 +37,7 @@ def pandoc_args(meta: dict) -> str:
     return args
 
 
-def pandoc_filters(filters: list) -> list:
+def pandoc_filters(*filters: str) -> list:
     """
     Converte uma lista na lista de filtros PANDOC.
     """
@@ -70,7 +70,11 @@ def md2problem(problem_id: str, md_str: str, src_path: Path, tmp_path: Path) -> 
         source=md_str,
         to=str(WRITER_PATH),
         format="markdown",
-        filters=pandoc_filters(["choices.lua", "images.lua"]),
+        filters=pandoc_filters(
+            "choices.lua",
+            "images.lua",
+            "columns.lua",
+        ),
         extra_args=pandoc_args(args),
     )
 
