@@ -1,3 +1,3 @@
 from diagr.core import *
 
-VERSION = "2025.3.16.6"
+VERSION = "2025.3.16.7"

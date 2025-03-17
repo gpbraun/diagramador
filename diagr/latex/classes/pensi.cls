@@ -27,7 +27,7 @@
 \examoptions
   { 
     DIV = 18,
-    fontsize = 11pt,
+    fontsize = 10pt,
 		headinclude = true,
 		footinclude = true,
   }
