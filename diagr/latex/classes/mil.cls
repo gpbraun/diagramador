@@ -26,8 +26,8 @@
 
 \KOMAoptions 
   { 
-    DIV = 25, 
-    fontsize = 9pt,
+    DIV = 28, 
+    fontsize = 8pt,
     twocolumn = true,
   }
 

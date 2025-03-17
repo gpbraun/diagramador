@@ -224,7 +224,6 @@
         {
           \strut 
           \usekomafont { disposition }
-          \small
           Etapa~ \arabic{ step }. 
         }
         \; #1
@@ -256,11 +255,9 @@
               boxrule = \g_braun_linewidth_dim,
             }
         ]	
-      % \cs_set:Npn \toprule    {\\[-1.5em]}
-      % \cs_set:Npn \bottomrule {\\[-2.5em]}
       \dim_set_eq:NN \parskip \bigskipamount
       \smallskip
-      \rmfamily
+      \small
     } 
     {
       \end{tcolorbox}
