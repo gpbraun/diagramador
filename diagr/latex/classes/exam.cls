@@ -119,7 +119,6 @@
 % FONTES PARA EQUAÇÕES
 \setmathfont{STIXTwoMath-Regular.ttf}
 
-\setmathfont{NotoSans-Regular.ttf}[range=up/num]
 \setmathfont{NotoSans-Regular.ttf}[
   range={
     "002C, % - ,
@@ -132,8 +131,13 @@
   }
 ]
 
-\setmathfont{NotoSerif-Italic.ttf}[range=it/{Latin,latin,Greek,greek}]
+\setmathfont{NotoSans-Regular.ttf}[range=up/num]
+\setmathfont{NotoSans-Bold.ttf}[range=bfup/num]
+
 \setmathfont{NotoSerif-Regular.ttf}[range=up/{Latin,latin,Greek,greek}]
+\setmathfont{NotoSerif-Bold.ttf}[range=bfup/{Latin,latin,Greek,greek}]
+\setmathfont{NotoSerif-Italic.ttf}[range=it/{Latin,latin,Greek,greek}]
+\setmathfont{NotoSerif-BoldItalic.ttf}[range=bfit/{Latin,latin,Greek,greek}]
 
 % FONTES PADRÃO SEM SERIFAS
 \cs_set_eq:NN \familydefault \sfdefault
