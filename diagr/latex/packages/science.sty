@@ -62,17 +62,24 @@
     parse-units         = false,
     propagate-math-font = true,
     reset-math-version  = false,
-    text-family-to-math = true,
-    text-series-to-math = true,
+    % text-family-to-math = true,
+    % text-series-to-math = true,
   }
 
 %============================================================%
 %   COMANDO PU
 %============================================================%
 
+\cs_set:Npn \unitfrac #1#2 {
+  \raisebox{1.5pt}{\ensuremath{\genfrac{}{}{}2
+      { \raisebox{-2pt} { $\scriptstyle\unit{#1}$ } }
+      { \raisebox{2pt}  { $\scriptstyle\unit{#2}$ } }
+  }}
+}
+
 \regex_const:Nn \l_pu_regex
   { 
-    ([\+\-]? \d* (?:[\.\,]\d*)? (?:[eE][\+\-]?\d+)? )? \s* (.*)?
+    \s* ([\+\-]? \d* (?:[\.\,]\d*)? (?:[eE][\+\-]?\d+)? )? \s* (.*)? \s*
   }
 
 \tl_new:N  \l_pu_num_tl
@@ -85,13 +92,13 @@
     \regex_replace_all:nnN { [\+\-]?\d+  }  {^{\0}} #1
 
     \seq_set_split:NnV \l_pu_unit_seq {//} #1
-    \tl_set:Nn #1 
+    \tl_set:Nn #1
       {
         \int_compare:nTF { \seq_count:N \l_pu_unit_seq > 1 }
           {
-            \tfrac 
-              { \unit { \seq_item:Nn \l_pu_unit_seq {1} } } 
-              { \unit { \seq_item:Nn \l_pu_unit_seq {2} } }
+            \unitfrac
+              { \seq_item:Nn \l_pu_unit_seq {1} }
+              { \seq_item:Nn \l_pu_unit_seq {2} }
           }
           { \seq_item:Nn \l_pu_unit_seq {1} }
       }
