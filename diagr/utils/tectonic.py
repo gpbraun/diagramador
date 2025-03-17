@@ -35,6 +35,21 @@ class TexError(BaseModel):
     message: str
     snippet: str
 
+    def __eq__(self, other) -> bool:
+        """
+        Retorna: True se os erros são iguais.
+        """
+        if all(
+            [
+                self.line == other.line,
+                self.file.stem == other.file.stem,
+                self.message == other.message,
+            ]
+        ):
+            return True
+
+        return False
+
 
 def parse_log(tex_path: Path, log_str: str) -> list[TexError] | None:
     """

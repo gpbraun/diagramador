@@ -1,5 +1,9 @@
 Nos sistemas de refrigeração industrial a amônia é usada como fluido térmico, por não contribuir para o efeito estufa e nem para a destruição a camada de ozônio. Estas unidades industriais são muito grandes e caras, assim, antes de serem construídas, devem ser planejadas tendo em conta diferentes parâmetros. Em sistemas reais, parte do líquido refrigerante é liberado, no início do aquecimento, sob a forma de vapor para o ambiente (ponto 0) e, no final (ponto 1), é sempre aquecido acima da sua temperatura de ebulição.
 
+$$
+a_b_c_d
+$$
+
 :::::::::::::: {.columns}
 
 ::: {.column width=35%}

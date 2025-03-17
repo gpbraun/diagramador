@@ -117,7 +117,7 @@ class Exam(ExamParams):
                 console.print(
                     Panel(
                         Syntax.from_path(
-                            error.file,
+                            str(error.file),
                             line_numbers=True,
                             theme="monokai",
                             background_color="default",
@@ -239,6 +239,12 @@ class Exam(ExamParams):
                 problem = self.problems[error_id]
                 problem.status = Status.ERROR
                 problem.message = message
+
+                # Evita erros duplicados
+                # Ver o método `__eq__` da classe TexError
+                if error in problem.errors:
+                    continue
+
                 problem.errors.append(error)
 
         return self.status

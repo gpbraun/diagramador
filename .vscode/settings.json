@@ -26,7 +26,7 @@
     "markdown": "diagr -les $dir"
   },
   // CONFIGURAÕES DAS LINGUAGENS
-  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeCheckingMode": "off",
   "python.analysis.autoImportCompletions": true,
   "[python]": {
     "editor.tabSize": 4,
