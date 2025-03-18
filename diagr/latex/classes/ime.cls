@@ -65,7 +65,7 @@
       { 0cm  , 0cm }
       { \linewidth + 2 \marginparsep ,  \coffin_ht:N \l_tmpa_coffin + 1em }
     \color_fill:n { white }
-    \draw_path_use_clear:n { stroke, fill }
+    \draw_path_use_clear:n { stroke }
     \draw_transform_shift:n 
       { \linewidth / 2 + \marginparsep ,  0.5em }
     \draw_coffin_use:Nnn \l_tmpa_coffin {hc} {H}

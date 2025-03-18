@@ -1,18 +1,14 @@
 Nos sistemas de refrigeração industrial a amônia é usada como fluido térmico, por não contribuir para o efeito estufa e nem para a destruição a camada de ozônio. Estas unidades industriais são muito grandes e caras, assim, antes de serem construídas, devem ser planejadas tendo em conta diferentes parâmetros. Em sistemas reais, parte do líquido refrigerante é liberado, no início do aquecimento, sob a forma de vapor para o ambiente (ponto 0) e, no final (ponto 1), é sempre aquecido acima da sua temperatura de ebulição.
 
-$$
-a_b_c_d
-$$
+:::::::::::::: columns
 
-:::::::::::::: {.columns}
+::: {.column width=40% align=center}
 
-::: {.column width=35%}
-
-![](NH3_vapor_cycle.svg){width=95%}
+![](NH3_vapor_cycle.svg){width=90%}
 
 :::
 
-::: {.column width=65% }
+::: {.column width=60% align=left}
 
 - **Etapa 0--1.** A mistura em equilíbrio, líquido e seu vapor, recebe calor do ambiente a pressão constante $P_1 = \pu{3 bar}$. O líquido refrigerante evapora completamente e superaquece até à temperatura $T_1 = \pu{275 K}$.
 - **Etapa 1--2.** O líquido é comprimido reversivelmente em condições adiabáticas e aquece até $T_2 = \pu{400 K}$.

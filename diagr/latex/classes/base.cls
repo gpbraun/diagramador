@@ -217,9 +217,6 @@
 
 \RequirePackage { scrlayer-scrpage, caption }
 
-\ModifyLayer [ addvoffset = -0.7ex ] {       scrheadings.foot.above.line }
-\ModifyLayer [ addvoffset = -0.7ex ] { plain.scrheadings.foot.above.line }
-
 %============================================================%
 %   FUNÇÕES PARA FRAME NA PÁGINA
 %============================================================%
@@ -263,7 +260,7 @@
 \ohead {}
 
 \ifoot {}
-\cfoot { \small\textbf{\thepage} }
+\cfoot { \raisebox{-5pt}{\textbf{\thepage}} }
 \ofoot {}
 
 \pagestyle { scrheadings }
@@ -316,7 +313,7 @@
 
     \begin{addmargin}[20pt]{20pt}
     \resetlinenumber
-    \rmfamily
+    \rmfamily\small
     \begin{linenumbers}
 	}
   {

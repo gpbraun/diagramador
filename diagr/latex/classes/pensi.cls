@@ -256,6 +256,8 @@
             }
         ]	
       \dim_set_eq:NN \parskip \bigskipamount
+      \cs_set:Npn \toprule    {\\[-1.5em]}
+      \cs_set:Npn \bottomrule {\\[-2.5em]}
       \smallskip
       \small
     } 

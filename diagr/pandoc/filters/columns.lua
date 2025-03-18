@@ -45,7 +45,7 @@ local function column(elem, width)
     -- Retorna: (Block) Div.
     --
 
-    -- Possibilidades de horizontal
+    -- Possibilidades de alinhamento horizontal
     if elem.attributes.align == "center" then
         elem.content:insert(1,
             inline("\\centering")
