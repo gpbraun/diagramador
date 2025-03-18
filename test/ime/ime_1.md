@@ -1,8 +1,18 @@
 Os amino-ácidos são os tijolos de construção das moléculas de proteínas, que são moléculas com longas cadeias. Eles são oxidados, no organismo, a ureia, $\ce{H2NCONH2}$, dióxido de carbono e água líquida. O amino-ácido mais simples é a glicina: $\mathbf{x}$, $x$ e $\ce{H2O}$ e **$x$ e $\ce{H2O}$**
 
-```latex
-\chemname{\chemfig{H_2N-[1]-[-1](=[-3]O)-[1]OH}}{glicina}
-```
+~~~latex
+\begin{tikzpicture}[scale=1]
+  % Eixos
+  \draw[->] (0,0) -- (3,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,3) node[above] {$y$};
+  
+  % Círculo centrado na origem
+  \draw (0,0) circle (1cm);
+  
+  % Seta diagonal
+  \draw[->, red, thick] (0,0) -- (2,2) node[midway, above, sloped] {$\vec{v}$};
+\end{tikzpicture}
+~~~
 
 A taxa de oxidação de glicina no corpo humano é cerca de $\pu{100 mg}$ por quilo de massa corporal por dia. Considere a oxidação diária de glicina em uma pessoa de $\pu{75 kg}$. A temperatura corporal é $\pu{37 \degree C}$.
 

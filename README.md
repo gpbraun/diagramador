@@ -1,42 +1,134 @@
-# DIAGR – Documentação Completa
+# DIAGR
 
-O **DIAGR** é uma ferramenta que gera arquivos PDF de avaliações a partir de arquivos escritos em Markdown. Ele possibilita a criação de provas e exercícios complexos, combinando enunciados, gabaritos, fórmulas matemáticas, imagens, tabelas e layouts avançados. Esta documentação cobre:
-
-1. [Interface de Linha de Comando (CLI)](#interface-de-linha-de-comando-cli)
-2. [Estrutura do Arquivo de Questão](#estrutura-do-arquivo-de-questão)
-3. [Guia de Sintaxe Markdown](#guia-de-sintaxe-markdown)
-
----
+O **DIAGR** é uma ferramenta que gera arquivos PDF de avaliações a partir de arquivos escritos em Markdown. Ele possibilita a criação de provas e exercícios complexos, combinando enunciados, gabaritos, fórmulas matemáticas, imagens, tabelas e layouts avançados.
 
 ## Interface de Linha de Comando (CLI)
 
-O DIAGR é operado via terminal e permite a diagramação automatizada das avaliações a partir dos arquivos que você criar.
+O DIAGR é operado via terminal e permite a diagramação automatizada das avaliações a partir dos arquivos JSON criados.
 
 ### Sintaxe de Uso
 
 ```bash
-diagr [-h] [-c CONFIG_FILE] [-l] [-e] [-s] path
+diagr [-h] [-l] [-e] [-s] [-c CONFIG_FILE] path
 ```
 
-### Descrição dos Argumentos e Opções
+#### Descrição dos Argumentos e Opções
 
-- **Posicional:**
-  - **path**  
-    Caminho para o arquivo da avaliação. Geralmente, trata-se de um arquivo JSON que contém os dados estruturados da prova.
+- **`path`**  
+  Caminho para o arquivo da avaliação. Geralmente, trata-se de um arquivo JSON que contém os dados estruturados da prova.
 
-- **Opções:**
-  - **`-h, --help`**  
-    Exibe esta mensagem de ajuda e encerra a execução.
-  - **`-c, --config-file CONFIG_FILE`**  
-    Especifica o caminho para um arquivo de configuração (.cfg) que permite ajustar opções personalizadas para a diagramação.
-  - **`-l, --local`**  
-    Indica que a diagramação utilizará arquivos locais.
-  - **`-e, --pdf-exam`**  
-    Gera o arquivo PDF do exame.
-  - **`-s, --pdf-solution`**  
-    Gera o arquivo PDF do gabarito.
+**Opções:**
 
----
+- **`-h, --help`**  
+  Exibe a mensagem de ajuda e encerra a execução.
+
+- **`-l, --local`**  
+  Indica que a diagramação utilizará arquivos locais.
+
+- **`-e, --pdf-exam`**  
+  Gera o arquivo `.pdf` do exame.
+
+- **`-s, --pdf-solution`**  
+  Gera o arquivo `.pdf` do gabarito.
+
+- **`-c, --config-file CONFIG_FILE`**  
+  Especifica o caminho para um arquivo de configuração `.cfg` que permite ajustar opções gerais para a diagramação.
+  
+  É necessário quando executado em modo não local, pois contém as credenciais e   configurações para acessar a base de dados HedgeDoc.
+  
+  **Arquivo de configuração padrão:** `config.cfg`
+    ```ini
+    [hedgedoc]
+    host = localhost123
+    port = 5432
+    database = hedgedoc
+    user = hedgedoc
+    password = password
+    ```
+
+## Estrutura do Arquivo JSON
+
+O arquivo JSON contém a estrutura necessária para que o DIAGR possa gerar a diagramação automatizada da avaliação. Abaixo está a descrição detalhada dos campos utilizados.
+
+**Campos principais**
+
+- **`id_`** *(string)*
+  - Identificador único da avaliação.
+  - Exemplo: "ime"
+
+- **`title`** *(string)*
+  - Título da avaliação.
+  - Exemplo: "Prova de Etapa 1"
+
+- **`template`** *(string)*
+  - Modelo utilizado para a diagramação. Deve ser um dos seguintes valores:
+    ```
+    {"IME", "ITA", "EN", "AFA", "EFOMM", "ESPCEX", "FLEX", "PENSI", "PROVA", "GABARITO"}
+    ```
+  - Exemplo: "IME"
+
+- **`affiliation`** *(string)*
+  - Instituição responsável ou turma que executará a prova.
+  - Exemplo: "EM IME-ITA-1"
+
+- **`date`** *(string)*
+  - Ano da avaliação.
+  - Exemplo: "2024"
+
+**Estrutura das questões**
+
+- **`problem_set`** *(array de objetos)*
+  - Lista das disciplinas e respectivas questões.
+  
+Cada item do array contém os seguintes campos:
+  - **`title`** *(string)*: Nome da disciplina.
+    - Exemplo: "Química"
+  - **`subject`** *(string)*: Código da disciplina.
+    - Exemplo: "qui"
+  - **`problems`** *(array de strings)*: Lista de identificadores das questões.
+    - Quando executado em modo local, os arquivos Markdown (`.md`) são buscados localmente.
+    - Quando executado em modo não local, os identificadores referenciam arquivos na plataforma HedgeDoc.
+    - Exemplo:
+      ```json
+      ["ime_1", "ime_2", "ime_3", "ime_4", "ime_5"]
+      ```
+
+**Configurações de Saída**
+
+- **`pdf_exam_name`** *(string)*
+  - Nome do arquivo PDF gerado para a prova.
+  - Exemplo: "ime.pdf"
+
+- **`pdf_solution_name`** *(string)*
+  - Nome do arquivo PDF gerado para o gabarito.
+  - Exemplo: "ime_gabarito.pdf"
+
+### Exemplo Completo do Arquivo JSON
+
+```json
+{
+    "id_": "ime",
+    "title": "Prova de Etapa 1",
+    "template": "IME",
+    "affiliation": "EM IME-ITA-1",
+    "date": "2024",
+    "problem_set": [
+        {
+            "title": "Química",
+            "subject": "qui",
+            "problems": [
+                "ime_1",
+                "ime_2",
+                "ime_3",
+                "ime_4",
+                "ime_5"
+            ]
+        }
+    ],
+    "pdf_exam_name": "ime.pdf",
+    "pdf_solution_name": "ime_gabarito.pdf"
+}
+```
 
 ## Estrutura do Arquivo de Questão
 
@@ -44,34 +136,29 @@ Cada questão deve ser escrita em um arquivo Markdown seguindo uma estrutura pad
 
 ### Estrutura Básica da Questão
 
-A estrutura recomendada para cada questão é a seguinte:
+A estrutura para cada questão é a seguinte:
 
 ```markdown
-# Título do problema (opcional)
+# Título do problema
 
-Enunciado
+Enunciado da questão...
 
 ---
 
-Gabarito
+#### Primeira etapa da solução.
 
-#### Primeira etapa do gabarito (formata automaticamente como “Etapa 1: …”)
+Texto da primeira etapa...
 
-Texto da primeira etapa
+#### Segunda etapa da solução.
 
-#### Segunda etapa do gabarito
-
-Texto da segunda etapa
+Texto da segunda etapa...
 ```
 
 - **Título (opcional):**  
   Um header de nível 1 (`#`) pode ser usado para identificar a questão. Se não for necessário, pode ser omitido.
   
 - **Enunciado:**  
-  Texto que descreve o problema. Aqui você pode utilizar:
-  - Texto explicativo (inclusive com caracteres Unicode como “α”, “β”, “π”, “✓”, “✔”, etc.)
-  - Equações e fórmulas (usando LaTeX inline ou em blocos)
-  - Imagens, tabelas, listas, block quotes e ambientes em colunas.
+  Texto que descreve o problema.
   
 - **Linha Horizontal (`---`):**  
   Esta linha é **exclusiva** para separar o enunciado do gabarito.
@@ -95,20 +182,21 @@ Enunciado
 
 > **Atenção:** Se mais de uma alternativa for marcada como correta (ou seja, se houver mais de um `[x]`), a questão será considerada **anulada** no gabarito.
 
-
 ### Metadados Suportados
 
 Os metadados são opcionais e devem ser inseridos no início do arquivo, delimitados por três traços (`---`). Atualmente, são suportados dois tipos:
 
-1. **Massa Molar de Elementos (para provas de Química):**
+**Massa Molar de Elementos.**
 
 ```yaml
 ---
-elementos: C, H, O
+elementos: Cu, Ag, Au
 ---
+
+Enunciado da questão...
 ```
 
-2. **Inclusão de Pacotes LaTeX (disponíveis no CTAN):**
+**Inclusão de Pacotes LaTeX.**
 
 ```yaml
 ---
@@ -116,73 +204,71 @@ usepackage:
   - modiagram
   - circuitikz
 ---
+
+Enunciado da questão...
 ```
 
 ---
 
-## Guia de Sintaxe Markdown
+## DIAGR Markdown: guia de sintaxe básica
 
 Esta seção explica em detalhes os elementos da sintaxe Markdown suportada pelo DIAGR, permitindo que usuários sem experiência prévia possam criar questões complexas.
 
-### 1. Cabeçalhos
+### Parágrafos e Quebras de Linha
 
-Utilize os símbolos `#` para criar títulos e seções:
+**Parágrafos:**  
+
+Escreva o texto de forma contínua. Para iniciar um novo parágrafo, insira uma linha em branco.
 
 ```markdown
-# Título Principal (opcional)
+Este é o primeiro parágrafo.
+
+Este é o segundo parágrafo.
 ```
 
-### 2. Parágrafos e Quebras de Linha
+A partir da versão **2025**, caracteres Unicode como α, β, π, ✓, podem ser incluídos diretamente no texto!
 
-- **Parágrafos:**  
-  Escreva o texto de forma contínua. Para iniciar um novo parágrafo, insira uma linha em branco.
+### Fórmulas e equações matemáticas
 
-  ```markdown
-  Este é o primeiro parágrafo.
+Você pode incluir fórmulas matemáticas tanto em formato inline quanto em destaque:
+
+#### Equação em linha
+
+Utilize `$ ... $` para fórmulas no meio do texto.
   
-  Este é o segundo parágrafo.
-  ```
-
-### 3. Linha Horizontal
-
-Utilize três ou mais traços para criar uma linha horizontal, que no DIAGR é usada **exclusivamente** para separar o enunciado do gabarito.
-
 ```markdown
----
+A famosa fórmula de Einstein é $E = mc^2$.
 ```
 
-### 4. Blocos de Código para LaTeX (incluindo TikZ)
+#### Equação em destaque
 
-Blocos de código permitem inserir trechos de LaTeX diretamente, possibilitando a inclusão de figuras e gráficos via TikZ.
+Utilize `$$ ... $$` para fórmulas centralizadas.
 
-- **Exemplo Básico de Equação com TikZ:**
+```markdown
+$$
+  \int_{a}^{b} f(x) \, dx = F(b) - F(a)
+$$
+```
 
-  ```latex
-  \begin{tikzpicture}[scale=1]
-    % Eixos
-    \draw[->] (0,0) -- (3,0) node[right] {$x$};
-    \draw[->] (0,0) -- (0,3) node[above] {$y$};
-    
-    % Círculo centrado na origem
-    \draw (0,0) circle (1cm);
-    
-    % Seta diagonal
-    \draw[->, red, thick] (0,0) -- (2,2) node[midway, above, sloped] {$\vec{v}$};
-  \end{tikzpicture}
-  ```
+A partir da versão **2025**, caracteres Unicode como α, β, π, ✓, podem ser incluídos diretamente no texto!
 
-Neste exemplo, o bloco de código em LaTeX renderiza um diagrama simples com:
-- Eixos \(x\) e \(y\)
-- Um círculo centrado na origem
-- Uma seta diagonal vermelha representando um vetor
+```markdown
+$$
+  ΔS = ∫ δQᵣ/T
+$$
+```
 
-Você pode incluir esse bloco diretamente em seu arquivo Markdown para que o DIAGR processe e renderize a figura no documento final.
+É diagramado como:
 
-### 5. Tipos de Listas
+$$
+    ΔS = ∫ δQᵣ/T
+$$
+
+### Listas
 
 O Markdown suporta diversos estilos de listas. A seguir, são apresentados alguns tipos comuns:
 
-#### 5.1 Listas Não Ordenadas
+#### Listas Não Ordenadas
 
 Utilize `-` ou `*` para itens simples:
 
@@ -191,7 +277,7 @@ Utilize `-` ou `*` para itens simples:
 - Item 2
 ```
 
-#### 5.2 Listas Ordenadas (Numéricas)
+#### Listas Ordenadas (Numéricas)
 
 Utilize números seguidos de ponto:
 
@@ -200,7 +286,7 @@ Utilize números seguidos de ponto:
 2. Segundo item
 ```
 
-#### 5.3 Listas Ordenadas com Letras
+#### Listas Ordenadas com Letras
 
 Utilize letras seguidas de ponto. Insira dois espaços após o marcador para uma formatação adequada:
 
@@ -210,7 +296,7 @@ b.  Item B
 c.  Item C
 ```
 
-#### 5.4 Listas Ordenadas com Números Romanos
+#### Listas Ordenadas com Números Romanos
 
 Utilize numerais romanos seguidos de ponto, com dois espaços após o marcador:
 
@@ -220,17 +306,17 @@ II. Segundo item
 III. Terceiro item
 ```
 
-### 6. Imagens
+### Imagens
 
 Para inserir imagens, utilize a sintaxe padrão do Markdown:
 
 ```markdown
-![](caminho/para/imagem.svg){width=95%}
+![](caminho/para/imagem.png){width=95%}
 ```
 
 - O atributo `{width=95%}` é opcional e ajusta a largura da imagem.
 
-### 7. Tabelas
+### Tabelas
 
 Crie tabelas utilizando pipes (`|`) e hifens (`-`):
 
@@ -241,7 +327,48 @@ Crie tabelas utilizando pipes (`|`) e hifens (`-`):
 | Dado 4      | Dado 5      | Dado 6      |
 ```
 
-### 8. Ambientes em Colunas
+### Blocos de referência textual
+
+Block quotes são usados para destacar trechos de texto, como citações ou excertos. No DIAGR, esses blocos podem incluir uma contagem de linhas (conforme a configuração do tema):
+
+```markdown
+
+:::text
+
+### Título do texto
+
+Este é um exemplo de block quote. Cada linha do block quote pode ser numerada ou formatada para destacar o conteúdo.
+
+> Clarice Lispector
+
+:::
+
+```
+
+## DIAGR Markdown: guia de sintaxe avançada
+
+### Blocos de código LaTeX
+
+Blocos de código permitem inserir trechos de LaTeX diretamente. O conteúdo dos blocos é ignorado pela ferramenta de conversão e inserido diretamente no arquivo `.tex` para compilação.
+
+```markdown
+Uma figura tikz:
+
+~~~latex
+\begin{tikzpicture}[scale=1]
+  \draw[->] (0,0) -- (3,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,3) node[above] {$y$};
+  
+  \draw (0,0) circle (1cm);
+
+  \draw[->, red, thick] (0,0) -- (2,2) node[midway, above, sloped] {$\vec{v}$};
+\end{tikzpicture}
+~~~
+```
+
+Você pode incluir esse bloco diretamente em seu arquivo Markdown para que o DIAGR processe e renderize a figura no documento final.
+
+### Ambientes em Colunas
 
 O DIAGR suporta layouts com colunas para organizar conteúdo lado a lado, útil para combinar imagens, listas e textos:
 
@@ -253,8 +380,8 @@ O DIAGR suporta layouts com colunas para organizar conteúdo lado a lado, útil 
 :::
 
 ::: {.column width=65%}
-- **Etapa 0–1:** Descrição da etapa.
-- **Etapa 1–2:** Descrição da etapa.
+- **Etapa 0-1:** Descrição da etapa.
+- **Etapa 1-2:** Descrição da etapa.
 :::
 
 ::::::::::::::
@@ -264,41 +391,4 @@ O DIAGR suporta layouts com colunas para organizar conteúdo lado a lado, útil 
   - O bloco `:::::::::::::: {.columns}` inicia o ambiente de colunas.
   - Cada coluna é definida com `::: {.column width=XX%}`, onde o valor `width` determina a largura relativa da coluna.
 
-### 9. Block Quotes
-
-Block quotes são usados para destacar trechos de texto, como citações ou excertos. No DIAGR, esses blocos podem incluir uma contagem de linhas (conforme a configuração do tema):
-
-```markdown
-> Este é um exemplo de block quote.
-> Cada linha do block quote pode ser numerada ou formatada para destacar o conteúdo.
-```
-
-- O caractere `>` inicia a citação em bloco.
-
-### 10. Fórmulas Matemáticas e Uso de Unicode
-
-Você pode incluir fórmulas matemáticas tanto em formato inline quanto em destaque:
-
-- **Inline:**  
-  Utilize `$ ... $` para fórmulas no meio do texto.
-  
-  ```markdown
-  A famosa fórmula de Einstein é $E = mc²$, onde $c \approx 3×10⁸ \, \text{m/s}$.
-  ```
-
-- **Display:**  
-  Utilize `$$ ... $$` para fórmulas centralizadas.
-  
-  ```markdown
-  $$
-  \int_{a}^{b} f(x) \, dx = F(b) - F(a)
-  $$
-  ```
-
-**Uso de Unicode:**  
-Tanto o texto quanto as equações podem conter caracteres Unicode, permitindo a utilização de símbolos como:
-- Letras gregas: α, β, γ, Δ, Ω
-- Símbolos matemáticos: √, ∑, ∏, ≠, ≤, ≥
-- Outros caracteres especiais: ✓, ✔, ©, ®
-
-Certifique-se de que o arquivo esteja salvo com codificação UTF-8 para que todos os caracteres sejam renderizados corretamente.
+---
