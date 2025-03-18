@@ -11,8 +11,10 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
+from diagr.latex import HEDGEDOC_GRAPHICS_PATH
+from diagr.pandoc import md2problem
 from diagr.templates import render_problem, render_solution
-from diagr.utils import HEDGEDOC_GRAPHICS_PATH, Status, TexError, md2problem
+from diagr.utils import Error, Status
 
 
 class Choice(BaseModel):
@@ -36,8 +38,8 @@ class Problem(BaseModel):
     local: bool = False
     index: int = 0
     processed: bool = False
-    message: str = "Não processado"
-    errors: list[TexError] = Field(default_factory=list)
+    message: str = "Não processado."
+    errors: list[Error] = Field(default_factory=list)
     # parâmetros do problema
     title: str = "Problema"
     statement: str = ""
@@ -127,7 +129,7 @@ class Problem(BaseModel):
                     for x, y in [(0, 8), (8, 12), (12, 16), (16, 20), (20, 32)]
                 ]
             )
-            cursor.execute(f"""SELECT * FROM "Notes" WHERE id = {"'"+p_id+"'"}""")
+            cursor.execute(f'SELECT * FROM "Notes" WHERE id = {repr(p_id)}')
             query_results = cursor.fetchall()
 
             problem = cls.parse_mdstr(

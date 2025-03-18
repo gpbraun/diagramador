@@ -5,7 +5,6 @@ Esse módulo implementa uma classe para as avaliações.
 """
 
 import json
-import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
@@ -16,8 +15,9 @@ from rich.panel import Panel
 from rich.syntax import Syntax
 
 from diagr.console import console
+from diagr.latex import tectonic_compile
 from diagr.templates import render_doc
-from diagr.utils import Status, tectonic
+from diagr.utils import Status
 
 from .problem import Problem
 
@@ -225,7 +225,7 @@ class Exam(ExamParams):
             f"Compilando [bold]{log_name}[/bold] em:",
             f"[magenta]'{tex_path}'",
         )
-        self.status, errors = tectonic(tex_path, resource_paths)
+        self.status, errors = tectonic_compile(tex_path, resource_paths)
 
         for error in errors:
             error_id = error.file.stem.replace("_sol", "")

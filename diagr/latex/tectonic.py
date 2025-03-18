@@ -4,6 +4,12 @@ Base de dados para problemas de química, Gabriel Braun, 2024
 Esse módulo implementa funções do TECTONIC.
 """
 
+__all__ = [
+    "HEDGEDOC_GRAPHICS_PATH",
+    "tectonic_compile",
+]
+
+
 import importlib.resources as resources
 import re
 import subprocess
@@ -11,11 +17,8 @@ import time
 from collections import namedtuple
 from pathlib import Path
 
-from pydantic import BaseModel
-
 from diagr.console import console
-
-from .status import Status
+from diagr.utils import Error, Status
 
 TEXINPUTS_PATH = resources.files("diagr").joinpath("latex")
 HEDGEDOC_GRAPHICS_PATH = Path("/var/lib/docker/volumes/hedgedoc_uploads/_data/")
@@ -25,33 +28,7 @@ TECTONIC_ERROR_PATTERN = re.compile(
 )
 
 
-class TexError(BaseModel):
-    """
-    Erro de compilação no LaTeX.
-    """
-
-    file: Path
-    line: int
-    message: str
-    snippet: str
-
-    def __eq__(self, other) -> bool:
-        """
-        Retorna: True se os erros são iguais.
-        """
-        if all(
-            [
-                self.line == other.line,
-                self.file.stem == other.file.stem,
-                self.message == other.message,
-            ]
-        ):
-            return True
-
-        return False
-
-
-def parse_log(tex_path: Path, log_str: str) -> list[TexError] | None:
+def parse_log(tex_path: Path, log_str: str) -> list[Error] | None:
     """
     Retorna: retorna erros no `.log` do TECTONIC.
     """
@@ -72,9 +49,7 @@ def parse_log(tex_path: Path, log_str: str) -> list[TexError] | None:
         snippet = "\n".join(
             file_path.read_text().splitlines()[line_num - 3 : line_num + 2]
         )
-        error = TexError(
-            file=file_path, line=line_num, message=message, snippet=snippet
-        )
+        error = Error(file=file_path, line=line_num, message=message, snippet=snippet)
         errors.append(error)
 
     return errors
@@ -99,7 +74,7 @@ def tectonic_search_paths(resource_paths: list[Path]) -> list[str]:
 TectonicOutput = namedtuple("TectonicOutpt", ["status", "errors"])
 
 
-def tectonic(tex_path: Path, resource_paths: list[Path] = None):
+def tectonic_compile(tex_path: Path, resource_paths: list[Path] = None):
     """
     Retorna: lista de erros de compilação TECTONIC.
     """

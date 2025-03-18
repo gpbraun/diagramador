@@ -36,7 +36,7 @@ diagr [-h] [-l] [-e] [-s] [-c CONFIG_FILE] path
   
   É necessário quando executado em modo não local, pois contém as credenciais e   configurações para acessar a base de dados HedgeDoc.
   
-  **Arquivo de configuração padrão:** `config.cfg`
+  **Arquivo de configuração padrão:** `defaults.cfg`
     ```ini
     [hedgedoc]
     host = localhost123

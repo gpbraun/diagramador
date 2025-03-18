@@ -55,41 +55,41 @@ def main():
     """
     parser = argparse.ArgumentParser(
         prog="Diagramador",
-        description="Cria arquivos .pdf de avaliações a partir de arquivos markdown",
-        epilog="Gabriel Braun, 2024",
+        description="Cria arquivos .pdf de avaliações a partir de arquivos markdown.",
+        epilog="Gabriel Braun, 2025",
     )
 
     parser.add_argument(
         "path",
         type=Path,
-        help="endereço do arquivo da avaliação .json",
+        help="endereço do arquivo da avaliação JSON.",
     )
     parser.add_argument(
         "-c",
         "--config-file",
         type=Path,
-        help="endereço do arquivo de configuração .cfg",
+        help="endereço do arquivo de configuração.",
     )
     parser.add_argument(
         "-l",
         "--local",
         action="store_true",
         default=False,
-        help="diagramação de arquivos locais",
+        help="diagramação de arquivos locais.",
     )
     parser.add_argument(
         "-e",
         "--pdf-exam",
         action="store_true",
         default=False,
-        help="gera o .pdf da avaliação",
+        help="gera o .pdf da avaliação.",
     )
     parser.add_argument(
         "-s",
         "--pdf-solution",
         action="store_true",
         default=False,
-        help="gera o .pdf do gabarito",
+        help="gera o .pdf do gabarito.",
     )
 
     args = parser.parse_args()
