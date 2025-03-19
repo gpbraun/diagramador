@@ -52,11 +52,10 @@ class Exam(ExamParams):
     """
 
     # parâmetros de estado
-    status: Status = Status.OK
+    status: Status = Status.EMPTY
     local: bool = False
     message: str = ""
     objective: bool = True
-    processed: bool = False
     solutions: bool = False
     problems: dict[str, Problem] = Field(default={})
     # endereços dos diretórios auxiliares
@@ -74,9 +73,22 @@ class Exam(ExamParams):
 
     def status_ok(self):
         """
-        Retorna: verdadeiro se o Status é OK.
+        Retorna: verdadeiro se não ocorreu nenhum erro.
         """
-        return self.status == Status.OK
+        return Status.is_ok(self.status)
+
+    def log(self) -> None:
+        """
+        Log do exame no console.
+        """
+        if self.message:
+            console.print(
+                "• [bold red]ERRO!",
+                self.message,
+            )
+
+        for problem in self.problems.values():
+            problem.log()
 
     def latex(self):
         """
@@ -89,51 +101,6 @@ class Exam(ExamParams):
         Retorna: arquivo em LaTeX do gabarito da avaliação.
         """
         return render_doc(self.model_dump(), "gabarito")
-
-    def log_status(self):
-        """
-        Log do status dos problemas com erro no console.
-        """
-        if self.message:
-            console.print(
-                "• [bold red]ERRO!",
-                self.message,
-            )
-        for problem in self.problems.values():
-            if problem.status == Status.OK:
-                continue
-
-            # Questão com PDF
-            console.print(
-                "• [bold red]ERRO!",
-                f"Problema [bold blue]{problem.index:02d}",
-                "•",
-                problem.message,
-            )
-
-            for error in problem.errors:
-                # Mostra os erros de compilação do latex no console
-                console.print()
-                console.print(
-                    Panel(
-                        Syntax.from_path(
-                            str(error.file),
-                            line_numbers=True,
-                            theme="monokai",
-                            background_color="default",
-                            highlight_lines={error.line},
-                            line_range=(error.line - 2, error.line + 2),
-                        ),
-                        padding=(1, 1),
-                        width=100,
-                        title=f"[magenta]'{error.file}'[bold]:{error.line}[/bold][/magenta]",
-                        subtitle=f"[bold]{error.message}[/bold]",
-                        border_style="red",
-                    ),
-                )
-            console.print()
-
-        return self.status
 
     def process_problems(self, cursor=None):
         """
@@ -211,7 +178,7 @@ class Exam(ExamParams):
             )
             self.log_status()
         else:
-            self.processed = True
+            self.status = Status.PANDOC_OK
 
         return self.status
 
@@ -260,7 +227,7 @@ class Exam(ExamParams):
 
         self.compile_tex(tex_exam_path, log_name="avaliação")
         if not self.status_ok():
-            self.log_status()
+            self.log()
             # descomentar para não copiar o pdf para o output caso haja erro.
             # return self.status
 
@@ -294,7 +261,7 @@ class Exam(ExamParams):
 
         self.compile_tex(tex_solution_path, log_name="gabarito")
         if not self.status_ok():
-            self.log_status()
+            self.log()
             # descomentar para não copiar o pdf para o output caso haja erro.
             # return self.status
 

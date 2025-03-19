@@ -145,7 +145,7 @@ def main():
             )
         except Exception as exc:
             console.print("[bold red]ERRO!", exc)
-            exam.status = Status.ERROR
+            exam.status = Status.DATABASE_ERROR
     else:
         cursor = None
         console.print(

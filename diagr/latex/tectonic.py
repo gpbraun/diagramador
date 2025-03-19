@@ -64,7 +64,6 @@ def tectonic_search_paths(resource_paths: list[Path]) -> list[str]:
         TEXINPUTS_PATH.joinpath("graphics"),
         TEXINPUTS_PATH.joinpath("packages"),
         TEXINPUTS_PATH.joinpath("fonts"),
-        HEDGEDOC_GRAPHICS_PATH,
     ]
     if resource_paths:
         search_paths.extend(resource_paths)
@@ -101,13 +100,13 @@ def tectonic_compile(tex_path: Path, resource_paths: list[Path] = None):
     pdf_path = tex_path.with_suffix(".pdf")
 
     errors = parse_log(tex_path, tectonic.stderr)
-    status = Status.ERROR if errors or not pdf_path.exists() else Status.OK
+    status = Status.LATEX_ERROR if errors or not pdf_path.exists() else Status.LATEX_OK
 
     console.print(
         "Compilado em",
         f"[bold yellow]{runtime:.0f}s[/bold yellow].",
         "Status:",
-        "[bold cyan]OK!" if status == Status.OK else "[bold red]ERRO!",
+        "[bold cyan]OK!" if status == Status.LATEX_OK else "[bold red]ERRO!",
         "\n",
     )
 

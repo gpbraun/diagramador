@@ -10,7 +10,11 @@ from pathlib import Path
 from typing import Optional
 
 from pydantic import BaseModel, Field
+from rich import progress
+from rich.panel import Panel
+from rich.syntax import Syntax
 
+from diagr.console import console
 from diagr.latex import HEDGEDOC_GRAPHICS_PATH
 from diagr.pandoc import md2problem
 from diagr.templates import render_problem, render_solution
@@ -34,10 +38,9 @@ class Problem(BaseModel):
     id_: str = Field(alias="id")
     # parâmetros de estado
     date: Optional[datetime] = None
-    status: Status = Status.OK
+    status: Status = Status.EMPTY
     local: bool = False
     index: int = 0
-    processed: bool = False
     message: str = "Não processado."
     errors: list[Error] = Field(default_factory=list)
     # parâmetros do problema
@@ -53,9 +56,31 @@ class Problem(BaseModel):
 
     def status_ok(self):
         """
-        Retorna: verdadeiro se o Status é OK.
+        Retorna: verdadeiro se não há erro.
         """
-        return self.status == Status.OK
+        return Status.is_ok(self.status)
+
+    def log(self) -> None:
+        """
+        Log do problema no console.
+        """
+        if self.status_ok():
+            return
+
+        # Questão com PDF
+        console.print_error(
+            f"Problema [bold blue]{self.index:02d}",
+            "•",
+            self.message,
+        )
+
+        for error in self.errors:
+            console.print()
+            error.log()
+
+        console.print()
+
+        return self.status
 
     def latex(self):
         """
@@ -86,12 +111,20 @@ class Problem(BaseModel):
         """
         Retorna: problema de uma string md.
         """
-        problem_obj = md2problem(problem_id, md_str, path, tmp_path)
+        try:
+            problem_obj = md2problem(problem_id, md_str, path, tmp_path)
+            problem = cls.model_validate(problem_obj)
 
-        problem = cls.model_validate(problem_obj)
+        except Exception as exp:
+            return Problem(
+                id=problem_id,
+                status=Status.PANDOC_ERROR,
+                message=str(exp),
+                date=None,
+            )
 
+        problem.status = Status.PANDOC_OK
         problem.message = "Processado com sucesso."
-        problem.processed = True
 
         return problem
 
@@ -100,17 +133,8 @@ class Problem(BaseModel):
         """
         Retorna: problema de um arquivo md.
         """
-        try:
-            md_str = md_path.read_text()
-            problem = cls.parse_mdstr(problem_id, md_str, md_path.parent, tmp_path)
-
-        except Exception as exp:
-            problem = Problem(
-                id=problem_id,
-                status=Status.ERROR,
-                message=str(exp),
-                date=None,
-            )
+        md_str = md_path.read_text()
+        problem = cls.parse_mdstr(problem_id, md_str, md_path.parent, tmp_path)
 
         problem.local = True
         return problem
@@ -132,15 +156,13 @@ class Problem(BaseModel):
             cursor.execute(f'SELECT * FROM "Notes" WHERE id = {repr(p_id)}')
             query_results = cursor.fetchall()
 
-            problem = cls.parse_mdstr(
-                hedgedoc_id, query_results[0][2], HEDGEDOC_GRAPHICS_PATH, tmp_path
-            )
-
         except Exception as exp:
-            problem = Problem(
+            return Problem(
                 id=hedgedoc_id,
-                status=Status.ERROR,
+                status=Status.DATABASE_ERROR,
                 message=str(exp),
             )
 
-        return problem
+        return cls.parse_mdstr(
+            hedgedoc_id, query_results[0][2], HEDGEDOC_GRAPHICS_PATH, tmp_path
+        )

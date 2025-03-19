@@ -311,13 +311,13 @@
     \dim_set_eq:NN \parindent     {  15 pt }
     \dim_set:Nn    \linenumbersep { -10 pt }
 
-    \begin{addmargin}[20pt]{20pt}
-    \resetlinenumber
+    \begin{addmargin}[0.05\linewidth]{0.05\linewidth}
     \rmfamily\small
-    \begin{linenumbers}
+    % \resetlinenumber
+    % \begin{linenumbers}
 	}
   {
-    \end{linenumbers}
+    % \end{linenumbers}
     \end{addmargin}
   }
 
