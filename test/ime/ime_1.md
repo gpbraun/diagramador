@@ -1,4 +1,4 @@
-Os amino-ácidos são os tijolos de construção das moléculas de proteínas, que são moléculas com longas cadeias. Eles são oxidados, no organismo, a ureia, $\ce{H2NCONH2}$, dióxido de carbono e água líquida. O amino-ácido mais simples é a glicina: $\mathbf{x}$, $x$ e $\ce{H2O}$ e **$x$ e $\ce{H2O}$**
+Os amino-ácidos são os tijolos de construção das moléculas de proteínas, que são moléculas com longas cadeias. Eles são oxidados, no organismo, a ureia, $\ce{H2NCONH2}$, dióxido de carbono e água líquida. O amino-ácido mais simples é a glicina: $\mathbf{x}$, $x$ e $\ce{H2O}$ e **$x$ e $\ce{H2O}$** $\x$
 
 ~~~latex
 \begin{tikzpicture}[scale=1]

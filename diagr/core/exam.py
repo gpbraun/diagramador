@@ -82,10 +82,7 @@ class Exam(ExamParams):
         Log do exame no console.
         """
         if self.message:
-            console.print(
-                "• [bold red]ERRO!",
-                self.message,
-            )
+            console.print_error(self.message)
 
         for problem in self.problems.values():
             problem.log()
@@ -204,7 +201,7 @@ class Exam(ExamParams):
 
             elif error_id in self.problems:
                 problem = self.problems[error_id]
-                problem.status = Status.ERROR
+                problem.status = Status.LATEX_ERROR
                 problem.message = message
 
                 # Evita erros duplicados

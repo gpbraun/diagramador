@@ -5,7 +5,6 @@ Esse módulo implementa funções do TECTONIC.
 """
 
 __all__ = [
-    "HEDGEDOC_GRAPHICS_PATH",
     "tectonic_compile",
 ]
 
@@ -20,8 +19,12 @@ from pathlib import Path
 from diagr.console import console
 from diagr.utils import Error, Status
 
-TEXINPUTS_PATH = resources.files("diagr").joinpath("latex")
-HEDGEDOC_GRAPHICS_PATH = Path("/var/lib/docker/volumes/hedgedoc_uploads/_data/")
+TEXINPUTS_ROOT = resources.files("diagr").joinpath("latex")
+TEXINPUTS_PATHS = [
+    folder
+    for folder in TEXINPUTS_ROOT.glob("**/")
+    if folder.is_dir() and folder.name != "__pycache__"
+]
 
 TECTONIC_ERROR_PATTERN = re.compile(
     r"(?P<type>warning|error): (?P<file>[^:]+):(?P<line>\d+): (?P<message>.+)"
@@ -55,25 +58,19 @@ def parse_log(tex_path: Path, log_str: str) -> list[Error] | None:
     return errors
 
 
-def tectonic_search_paths(resource_paths: list[Path]) -> list[str]:
+def tectonic_search_paths(search_paths: list[Path]) -> list[str]:
     """
     Retorna: diretórios para busca pelo TECTONIC.
     """
-    search_paths = [
-        TEXINPUTS_PATH.joinpath("classes"),
-        TEXINPUTS_PATH.joinpath("graphics"),
-        TEXINPUTS_PATH.joinpath("packages"),
-        TEXINPUTS_PATH.joinpath("fonts"),
-    ]
-    if resource_paths:
-        search_paths.extend(resource_paths)
+    search_paths.extend(TEXINPUTS_PATHS)
+
     return [f"-Zsearch-path={str(search_path)}" for search_path in search_paths]
 
 
 TectonicOutput = namedtuple("TectonicOutpt", ["status", "errors"])
 
 
-def tectonic_compile(tex_path: Path, resource_paths: list[Path] = None):
+def tectonic_compile(tex_path: Path, search_paths: list[Path] = None):
     """
     Retorna: lista de erros de compilação TECTONIC.
     """
@@ -86,7 +83,7 @@ def tectonic_compile(tex_path: Path, resource_paths: list[Path] = None):
             "--keep-intermediates",
             "--keep-logs",
             "-Zcontinue-on-errors",
-            *tectonic_search_paths(resource_paths),
+            *tectonic_search_paths(search_paths),
             str(tex_path),
         ],
         stdout=subprocess.PIPE,

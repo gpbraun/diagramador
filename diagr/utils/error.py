@@ -1,8 +1,6 @@
 from pathlib import Path
 
 from pydantic import BaseModel
-from rich.panel import Panel
-from rich.syntax import Syntax
 
 from diagr.console import console
 
@@ -19,6 +17,8 @@ class Error(BaseModel):
 
     def __eq__(self, other) -> bool:
         """
+        Função usada para remover os erros duplicados no log do tectonic.
+
         Retorna: True se os erros são iguais.
         """
         if all(
@@ -36,22 +36,4 @@ class Error(BaseModel):
         """
         Log do erro no console.
         """
-        console.print(
-            Panel(
-                Syntax.from_path(
-                    str(self.file),
-                    line_numbers=True,
-                    theme="monokai",
-                    background_color="default",
-                    highlight_lines={self.line},
-                    line_range=(self.line - 2, self.line + 2),
-                ),
-                padding=(1, 1),
-                width=100,
-                title=f"[magenta]'{self.file}'[bold]:{self.line}[/bold][/magenta]",
-                subtitle=f"[bold]{self.message}[/bold]",
-                border_style="red",
-            ),
-        )
-
-        return self.status
+        console.print_error_file(self.file, self.line, self.message)

@@ -10,15 +10,13 @@ from pathlib import Path
 from typing import Optional
 
 from pydantic import BaseModel, Field
-from rich import progress
-from rich.panel import Panel
-from rich.syntax import Syntax
 
 from diagr.console import console
-from diagr.latex import HEDGEDOC_GRAPHICS_PATH
 from diagr.pandoc import md2problem
 from diagr.templates import render_problem, render_solution
 from diagr.utils import Error, Status
+
+HEDGEDOC_GRAPHICS_PATH = Path("/var/lib/docker/volumes/hedgedoc_uploads/_data/")
 
 
 class Choice(BaseModel):
@@ -79,8 +77,6 @@ class Problem(BaseModel):
             error.log()
 
         console.print()
-
-        return self.status
 
     def latex(self):
         """
@@ -146,7 +142,7 @@ class Problem(BaseModel):
         """
         try:
             hedgedoc_id = Path(hedgedoc_link).stem
-            bytes_id = bytes.hex(urlsafe_b64decode(hedgedoc_id + "=="))
+            bytes_id = bytes.hex(urlsafe_b64decode(f"{hedgedoc_id}=="))
             p_id = "-".join(
                 [
                     bytes_id[x:y]
